@@ -17,5 +17,5 @@ For both scRNA-seq and 5mC data, raw data is being deposited in GEO.
 
 A running [MCView](https://tanaylab.github.io/MCView/) app is live at: 
 
-https://tanaylab.weizmann.ac.il/Dnmt3ab_EB
+https://tanaylab.weizmann.ac.il/Dnmt3ab_MEEB
 
