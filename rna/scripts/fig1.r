@@ -4,7 +4,7 @@ library(metacell)
 scdb_init("scrna_db/", force_reinit=T); 
 scfigs_init("figs/")
 
-source("paper_scripts/ebdnmt_util_plots.r")
+source("scripts/ebdnmt_util_plots.r")
 
 tgconfig::override_params("config/eseb.yaml", package="metacell")
 

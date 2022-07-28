@@ -3,11 +3,10 @@ library(metacell)
 scdb_init("scrna_db", force_reinit=T)
 scfigs_init("figs/")
 
-source("paper_scripts/ebdnmt_proj_atlas_util.r")
+source("scripts/ebdnmt_proj_atlas_util.r")
 
 tgconfig::override_params("config/eseb.yaml",package="metacell")
 
-#source("scripts/mars_10x_translate.r")
 do_wt = 1
 do_3a = 0
 do_3b = 0

@@ -1,9 +1,10 @@
 
 library(metacell)
+library(Matrix)
 scdb_init("scrna_db", force_reinit=T)
 scfigs_init("figs/")
 
-source("paper_scripts/ebdnmt_proj_atlas_util.r")
+source("scripts/ebdnmt_proj_atlas_util.r")
 
 tgconfig::override_params("config/eseb.yaml",package="metacell")
 

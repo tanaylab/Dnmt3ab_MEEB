@@ -1,7 +1,7 @@
 
 #we use ebdnmt_module
-source("paper_scripts/ebdnmt_util_plots.r")
-source("paper_scripts/ebdnmt_module_analysis.r")
+source("scripts/ebdnmt_util_plots.r")
+source("scripts/ebdnmt_module_analysis.r")
 
 tgconfig::override_params("config/eseb.yaml", package="metacell")
 

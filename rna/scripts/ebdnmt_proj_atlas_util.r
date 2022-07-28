@@ -39,7 +39,7 @@ atlas_annot_w_all = function(mc_id, qmat_id, recomp_knn=T, max_entropy=2)
 
 		if(recomp_knn | !file.exists(obj_fn)) {
 			message("will create new annots")
-	      sc_annots = mcatlas_annotate_sc_by_projection(atlas, qmat_id, 
+	      sc_annots = metacell:::mcatlas_annotate_sc_by_projection(atlas, qmat_id, 
 										qmat_naming_type = "mars", all_vs_all = F)
   	    	sc_annots$color = as.character(sc_annots$color)
 			save(sc_annots, file=obj_fn)
