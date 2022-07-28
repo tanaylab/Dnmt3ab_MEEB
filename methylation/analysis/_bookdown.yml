@@ -1,0 +1,14 @@
+rmd_files: 
+  - "index.Rmd"
+  - "Methylation-trends.Rmd"
+  - "Sequence-model.Rmd"
+  - "Sequence-model-validation.Rmd"
+  - "Strand-specific-models.Rmd"
+  - "Yagi_et_al.Rmd"
+  - "Single-cell-methylation.Rmd"
+  - "Day6-differential-methylation.Rmd"
+  - "QC-bulk-meth.Rmd"
+  - "QC-sc-meth.Rmd"
+
+new_session: yes
+

@@ -4,7 +4,7 @@ Files in this directory are supporting Mukamel et al. work on Dnmt3a/b activity 
 
 Scripts in the `rna` directory can reproduce metacell derivation and analysis generating figure panels 1-3. The metacell models used in the papers are also provided.
 
-DNA methylation data is provided in a processed form to ease up analysis, and the scripts that reproduce it are provided as jupyter notebooks at `methylation/analysis` directory. 
+DNA methylation data is provided in a processed form to ease up analysis, and the scripts that reproduce it are provided as jupyter notebooks at `methylation/analysis` directory, and as a rendered `bookdown` [here](https://tanaylab.github.io/Dnmt3ab_MEEB/). 
 
 The processed files can be downloaded by running: 
 
@@ -68,6 +68,8 @@ R packages (available from CRAN):
 - doMC
 - grDevices
 - pheatmap
+- segmented
+- usethis
 
 R packages (available from github):
 

@@ -1,4 +1,4 @@
-library("devtools")
+
 library("Matrix")
 
 library(metacell)
@@ -8,7 +8,7 @@ scfigs_init("figs/")
 bats = read.table("config/eseb_select_batches_Aug20.txt",h=T, stringsAsFactors=F)
 rownames(bats) = bats$Amp.Batch.ID
 
-key = read.table("data/zm/sc_amp_batches_es_eb.txt",h=T,sep="\t", stringsAsFactors=F)
+key = read.table("data/sc_amp_batches_es_eb.txt",h=T,sep="\t", stringsAsFactors=F)
 fkey = key[key$Amp.Batch.ID %in% bats$Amp.Batch.ID,]
 fkey$exp_state_r = bats[fkey$Amp.Batch.ID, "Type"]
 fkey$exp_state  = sub("_r\\d", "", fkey$exp_state)
@@ -45,7 +45,7 @@ import_set = function(prefix, mat_nm, from_day, to_day)
 
 	mcell_import_multi_mars(mat_nm = mat_nm,
                      dataset_table_fn = key_fn,
-                     base_dir = "data/zm/",
+                     base_dir = "data/raw/",
                      patch_cell_name=T,
                      force=TRUE)
 	mat = scdb_mat(mat_nm)

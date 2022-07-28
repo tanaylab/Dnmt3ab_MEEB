@@ -34,20 +34,10 @@ plot_principal_curve <- function(fit, x) {
 plot_cc_circle <- function(df, point_size = 0.5, fit = NULL) {
     p <- ggplot(df, aes(x = avg_late - avg_early, y = early_late_cov, fill = ord2)) +
         geom_point(size = point_size, stroke = 0.1, shape = 21) +
-        scale_fill_gradientn(colors = c("white", "blue", "red", "yellow")) +
-        # guides(fill=FALSE) +
+        scale_fill_gradientn(colors = c("white", "blue", "red", "yellow")) +        
         theme(aspect.ratio = 1) +
         xlab("Late meth. - Early meth.") +
         ylab("log2(Early cov. / Late cov.)")
-
-    # if (!is.null(fit)){
-    #     curve <-
-    #         as_data_frame(fit$s) %>%
-    #         mutate(lambda = fit$lambda) %>%
-    #         slice(fit$ord)
-    #     p <- p +
-    #         geom_path(inherit.aes=FALSE, aes(x=early_late_diff, y=early_late_cov), data=curve)
-    # }
 
     return(p)
 }
@@ -65,11 +55,6 @@ get_cc_segments <- function(df, n_breaks = 2, psi = c(0.2, 0.5), labels = c("S-s
     cov_lm_model <- lm(cov_trend ~ ord2, data = trend_df_cov)
     seg_model <- segmented::segmented(cov_lm_model, seg.Z = ~ord2, npsi = n_breaks, psi = psi, ...)
 
-    # plot(seg_model)
-    # points(trend_df_cov$ord2, trend_df_cov$cov_trend, col="red", cex=0.1)
-    # points(df$ord2, df$early_late_cov, col="blue", cex=0.1)
-    # title(df$type[1])
-
     psi_breaks <- seg_model$psi[, 2]
 
     df <- df %>%
@@ -85,7 +70,7 @@ get_cc_segments <- function(df, n_breaks = 2, psi = c(0.2, 0.5), labels = c("S-s
         geom_line(aes(x = ord2, y = cov_trend), data = trend_df_cov, inherit.aes = FALSE, color = "red") +
         geom_vline(xintercept = psi_breaks, color = "gray", linetype = "dashed") +
         geom_smooth(method = "lm", se = FALSE, color = "black") +
-        guides(color = FALSE) +
+        guides(color = "none") +
         ggtitle(df$type[1]) +
         theme_bw()
 
@@ -126,11 +111,6 @@ get_cc_stats <- function(df, span = 0.2) {
             amplitude = peak - trough
         )
 
-    # p_early <- early_df %>% filter(ord2 <= 1) %>% ggplot(aes(x=ord2, y=meth)) + geom_point() + geom_vline(xintercept = c(stats$peak_pos[1], stats$trough_pos[1])) + geom_line(aes(x=ord2 - 1, y=trend_meth), color="red", data = trend_df %>% filter(el_type == "early")) + ggtitle(df$type[1])
-    # p_late <- late_df %>% filter(ord2 <= 1) %>% ggplot(aes(x=ord2, y=meth)) + geom_point() + geom_vline(xintercept = c(stats$peak_pos[2], stats$trough_pos[2])) + geom_line(aes(x=ord2 - 1, y=trend_meth), color="red", data = trend_df %>% filter(el_type == "late"))
-    # print(p_early / p_late)
-
-
     return(stats)
 }
 
@@ -160,8 +140,7 @@ plot_cc_early_late_meth <- function(df, point_size = 0.5, add_trend_lines = FALS
             phases <- c(df[["S-mid"]][1], df[["S-end"]][1]) + 1
         }
 
-        p <- p +
-            # geom_vline(xintercept = phases[c(-1, -length(phases))], linetype = "dashed", color="darkgray")
+        p <- p +           
             geom_vline(xintercept = phases, linetype = "dashed", color = "darkgray")
     }
 
@@ -188,8 +167,7 @@ plot_cc_early_late_meth <- function(df, point_size = 0.5, add_trend_lines = FALS
             geom_point(size = point_size, alpha = 1) +
             geom_smooth(method = "loess", span = 0.2, se = FALSE, size = 0.4, color = "red") +
             coord_cartesian(xlim = c(1, 2), expand = 0) +
-            geom_vline(xintercept = phases, linetype = "dashed", color = "darkgray") #+
-        # theme(axis.text.y = element_text(size = 5))
+            geom_vline(xintercept = phases, linetype = "dashed", color = "darkgray") 
         if (!is.null(trend_ylim)) {
             p_early_late_cov <- p_early_late_cov + scale_y_continuous(limits = trend_ylim, breaks = trend_ylim)
         }
@@ -201,14 +179,12 @@ plot_cc_early_late_meth <- function(df, point_size = 0.5, add_trend_lines = FALS
     }
 
     if (rm_legend) {
-        p <- p + guides(color = FALSE)
+        p <- p + guides(color = "none")
     }
 
-    p_early_late_cov <- p_early_late_cov +
-        # ylab("Early/Late cov.") +
+    p_early_late_cov <- p_early_late_cov +        
         theme(
-            axis.text.x = element_blank(),
-            # axis.text.y = element_blank(),
+            axis.text.x = element_blank(),            
             axis.ticks = element_blank(),
             axis.title.x = element_blank(),
             axis.title.y = element_blank(),
@@ -231,8 +207,7 @@ calc_cc_early_late_ab_diff <- function(df, low = "(-1.24,-0.709]", high = "(0.26
         filter(ab_score %in% c("h_ab", "l_ab")) %>%
         select(-cov_late, -cov_early, -meth_late, -meth_early) %>%
         pivot_wider(names_from = c(ab_score), values_from = c(avg_late, avg_early)) %>%
-        mutate(d_ab_early = avg_early_h_ab - avg_early_l_ab, d_ab_late = avg_late_h_ab - avg_late_l_ab) %>%
-        # select(-starts_with("avg_")) %>%
+        mutate(d_ab_early = avg_early_h_ab - avg_early_l_ab, d_ab_late = avg_late_h_ab - avg_late_l_ab) %>%        
         pivot_longer(cols = starts_with("d_ab"), names_to = "el_type", values_to = "d_ab") %>%
         mutate(el_type = gsub("^d_ab_", "", el_type))
 
@@ -263,47 +238,6 @@ plot_cc_early_late_ab_diff <- function(df, ret_df = FALSE) {
     }
 
     return(p)
-
-
-    # p <- df %>%
-    #     ggplot(aes(x=ord2, y=d_ab, color=el_type)) +
-    #         geom_point(size = point_size) +
-    #         scale_color_manual(name="", values=c("early" = "cyan", "late" = "darkblue")) +
-    #         xlab("Cell cycle phase") +
-    #         ylab("A-phil - B-phil")
-
-    # p1 <- cowplot::ggdraw(p + guides(color=FALSE)) +
-    #     cowplot::draw_plot(
-    #         ggplot( df %>% mutate(ord_grp = cut(ord2, seq(0,1,l=10), include.lowest=TRUE))) +
-    #             geom_boxplot(aes(x=ord_grp, y=d_ab, fill=el_type), outlier.shape=NA, width=0.3, position=position_dodge(width=0.5)) +
-    #             scale_fill_manual(name="", values=c("early" = "cyan", "late" = "darkblue")) +
-    #             guides(fill=FALSE) +
-    #             xlab("") +
-    #             ylab("") +
-    #             theme(plot.background = element_rect(fill = "transparent",colour = NA)))
-
-    # df <- df %>%
-    #     mutate(ord_grp = cut(ord2, breaks=phases, labels=phase_names, include.lowest=TRUE))
-
-    # p2 <- df %>%
-    #     # mutate(ord_grp = cut(ord2, seq(0,1,l=n_bins), include.lowest=TRUE)) %>%
-    #     ggplot(aes(x=ord_grp, y=d_ab, fill=el_type, color=el_type)) +
-    #         ggforce::geom_sina(size = point_size, alpha=0.2, position=position_dodge(width=1)) +
-    #         geom_boxplot(width=0.3, position=position_dodge(width=1), color="black", outlier.shape=NA, fatten = 0.5, lwd = 0.5) +
-    #         # geom_boxplot(color="black", outlier.shape=NA) +
-    #         scale_fill_manual(name="", values=c("early" = "cyan", "late" = "darkblue")) +
-    #         scale_color_manual(name="", values=c("early" = "cyan", "late" = "darkblue")) +
-    #         # theme(axis.text.x=element_blank(),
-    #         #     axis.ticks.x=element_blank()) +
-    #         xlab("Cell cycle phase") +
-    #         ylab("B-phil - A-phil")
-
-
-    # if (ret_df){
-    #     return(df)
-    # }
-
-    # return(p2)
 }
 
 

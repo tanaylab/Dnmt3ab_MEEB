@@ -2,6 +2,8 @@
 ## generate matrices from select batches
 ebdnmt_import.r
 
+> Note that this would require a directory called "data/raw" with the processed RNA data from GEO.  
+
 ## aid in finding genes for filtering
 ebdnmt_find_bad_genes.r
 

@@ -1,0 +1,10 @@
+group	gene	color	priority	T_fold
+ESC	Klf4	darkseagreen2	5	2
+Pluri1	Epas1	navajowhite3	5	2
+Pluri1	Tcf15	navajowhite3	3	1.4
+Epi	Pou3f1	lightpink2	5	2
+EarlyPS	Eomes	lightcyan3	3	1.5
+PS	T	lightsteelblue4	4	2
+Endo	Foxa2	darksalmon	9	2
+Meso	Msx1	gold2	9	2.5
+Trh	Trh	olivedrab	3	4

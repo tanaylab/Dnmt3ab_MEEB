@@ -1,0 +1,30 @@
+"type_name" "type_color" "type_id"
+"1" "Epiblast" "#635547" 1
+"2" "Surface ectoderm" "#f7f79e" 2
+"3" "Rostral neural plate" "#647a4f" 3
+"4" "Neurectoderm progenitors" "#65A83E" 4
+"5" "Caudal neural plate" "#354E23" 5
+"6" "Caudal epiblast" "#9e6762" 6
+"7" "PGC" "#FACB12" 7
+"8" "Caudal mesoderm" "#1a3f52" 8
+"9" "Primitive streak" "#DABE99" 9
+"10" "Early nascent mesoderm" "#C594BF" 10
+"11" "Late nascent mesoderm" "#DFCDE4" 11
+"12" "Paraxial mesoderm" "#408DA1" 12
+"13" "Rostral mesoderm" "#8DB5CE" 13
+"14" "Lateral & intermediate mesoderm" "#45d1c5" 14
+"15" "Cardiac crescent" "#53f1fc" 15
+"16" "Cardiomyocytes" "#B51D8D" 16
+"17" "Amnion/Chorion" "#cc7818" 17
+"18" "ExE mesoderm" "#8870ad" 18
+"19" "Allantois" "#532C8A" 19
+"20" "Haematoendothelial progenitors" "#FBBE92" 20
+"21" "Blood progenitors" "#c9a997" 21
+"22" "Erythroid 1" "#C72228" 22
+"23" "Erythroid 2" "#EF4E22" 23
+"24" "Primitive node" "#0F4A9C" 24
+"25" "Anterior Primitive Streak" "#c19f70" 25
+"26" "Definitive endoderm" "#F397C0" 26
+"27" "Foregut" "#EF5A9D" 27
+"28" "Visceral endoderm" "#F6BFCB" 28
+"29" "ExE endoderm" "#7F6874" 29

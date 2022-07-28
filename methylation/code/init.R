@@ -12,7 +12,7 @@ set.seed(17)
 
 theme_set(tgppt::theme_arial(8))
 gsetroot(here("db"))
-options(gmax.data.size = 1e9, gmultitasking = FALSE)
+options(gmax.data.size = 1e9, gmultitasking = FALSE, tgutil.verbose = FALSE)
 
 source(here("code/utils.R"))
 

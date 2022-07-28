@@ -72,16 +72,12 @@ plot_spatial_meth <- function(intervals, tracks, expand_s = 0, expand_e = 0, min
             annotate("text", label = genes$name[i], x = genes$start[i], y = 1.5, size = 2)
     }
 
-    # p_genome <- p_genome +
-    #     annotate('text', label = scales::unit_format(scale = 1e-3, unit = 'Kbp', big.mark = ',')(scope_intervals$end - scope_intervals$start), x = scope_intervals$start + 1e3, y = -0.5, size = 2) +
-    #     annotate('text', label = '⟷', x = scope_intervals$start + 1e3, y = -1, size = 3)
-
     if (separate_plots) {
         return(list(p_genome = p_genome, p_meth = p_meth))
     }
 
     margin <- margin(t = 0, b = 0, r = 3, l = 3, unit = "pt")
-    p <- cowplot::plot_grid(cowplot::plot_grid(p_genome + theme(plot.margin = margin), p_meth + guides(color = FALSE) + theme(plot.margin = margin), ncol = 1, align = "v", rel_heights = c(0.3, 0.7)), cowplot::get_legend(p_meth), nrow = 1, rel_widths = c(0.8, 0.2))
+    p <- cowplot::plot_grid(cowplot::plot_grid(p_genome + theme(plot.margin = margin), p_meth + guides(color = "none") + theme(plot.margin = margin), ncol = 1, align = "v", rel_heights = c(0.3, 0.7)), cowplot::get_legend(p_meth), nrow = 1, rel_widths = c(0.8, 0.2))
 
     return(p)
 }

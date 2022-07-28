@@ -15,3 +15,9 @@ rna/paper_figs/
 umi_tables.tar.gz
 rna.tar.gz
 methylation_data.tar.gz
+methylation/analysis/_book/
+methylation/analysis/*.rds
+methylation/analysis/*_files/
+methylation/analysis/_main.rds
+methylation/analysis/*knit*
+methylation/analysis/.ipynb_checkpoints/

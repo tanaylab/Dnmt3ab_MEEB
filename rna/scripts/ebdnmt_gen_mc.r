@@ -1,8 +1,6 @@
-library("devtools")
-
 library(metacell)
 
-scdb_init("scrna_db")
+scdb_init("scrna_db", force_reinit = TRUE)
 
 scfigs_init("figs/")
 tgconfig::override_params("config/eseb.yaml",package="metacell")

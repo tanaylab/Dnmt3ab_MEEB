@@ -1,3 +1,6 @@
+library(metacell)
+library(Matrix)
+scdb_init("scrna_db", force_reinit = T)
 
 by_line = 1
 if(0) {
@@ -76,6 +79,7 @@ gset = scdb_gset(mat_nm)
 
 gset_batch = tapply(bat_fold[names(gset@gene_set)], gset@gene_set, mean)
 
+dir.create(sprintf("figs/%s.gset_cors/", mat_nm), showWarnings = FALSE)
 png(sprintf("figs/%s.gset_cors/batch_gset_bars.png", mat_nm), w=400, h=800)
 barplot(gset_batch, horiz=T)
 dev.off()
