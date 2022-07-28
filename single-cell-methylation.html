@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7 Single cell methylation | DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation</title>
+  <meta name="description" content="Analysis and code for the paper: DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7 Single cell methylation | DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Analysis and code for the paper: DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
+  <meta name="github-repo" content="tanaylab/Dnmt3ab_MEEB" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7 Single cell methylation | DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
+  
+  <meta name="twitter:description" content="Analysis and code for the paper: DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
+  
+
+<meta name="author" content="Aviezer Lifshitz" />
+
+
+<meta name="date" content="2022-07-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="yagi-et-al..html"/>
+<link rel="next" href="differential-methylation-in-eb-day-6.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#run-the-notebooks"><i class="fa fa-check"></i><b>1.1</b> Run the notebooks</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#download-the-umi-matrices"><i class="fa fa-check"></i><b>1.2</b> Download the UMI matrices</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#notebook-order"><i class="fa fa-check"></i><b>1.3</b> Notebook order</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html"><i class="fa fa-check"></i><b>2</b> Methylation trends in EB days 0-6</a><ul>
+<li class="chapter" data-level="2.0.1" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#initialize-definitions"><i class="fa fa-check"></i><b>2.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="2.0.2" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#load-data"><i class="fa fa-check"></i><b>2.0.2</b> Load data</a></li>
+<li class="chapter" data-level="2.0.3" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#cluster"><i class="fa fa-check"></i><b>2.0.3</b> Cluster</a></li>
+<li class="chapter" data-level="2.0.4" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#project-dnmt1-data"><i class="fa fa-check"></i><b>2.0.4</b> Project DNMT1 data</a></li>
+<li class="chapter" data-level="2.1" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#plot-global-eb-trends"><i class="fa fa-check"></i><b>2.1</b> Plot global EB trends</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#figure-4a"><i class="fa fa-check"></i><b>2.1.1</b> Figure 4A</a></li>
+<li class="chapter" data-level="2.1.2" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#extended-data-figure-8k"><i class="fa fa-check"></i><b>2.1.2</b> Extended Data Figure 8K</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#cluster-methylation-in-days-5-and-6-with-dko"><i class="fa fa-check"></i><b>2.2</b> cluster methylation in days 5 and 6 with DKO</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#project-dko-on-day-1-4-clusters"><i class="fa fa-check"></i><b>2.2.1</b> Project DKO on day 1-4 clusters</a></li>
+<li class="chapter" data-level="2.2.2" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#figure-4c"><i class="fa fa-check"></i><b>2.2.2</b> Figure 4C</a></li>
+<li class="chapter" data-level="2.2.3" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#figure-4b"><i class="fa fa-check"></i><b>2.2.3</b> Figure 4B</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html"><i class="fa fa-check"></i><b>3</b> A/B sequence model</a><ul>
+<li class="chapter" data-level="3.0.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#initialize-definitions-1"><i class="fa fa-check"></i><b>3.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="3.0.2" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#get-ab-meth-data"><i class="fa fa-check"></i><b>3.0.2</b> Get A/B meth data</a></li>
+<li class="chapter" data-level="3.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#calculate-models"><i class="fa fa-check"></i><b>3.1</b> Calculate models</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#compute-models"><i class="fa fa-check"></i><b>3.1.1</b> Compute models</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#plot-models-vs-preditions"><i class="fa fa-check"></i><b>3.2</b> Plot models vs preditions</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-4f"><i class="fa fa-check"></i><b>3.2.1</b> Figure 4F</a></li>
+<li class="chapter" data-level="3.2.2" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#plot-glm-model-parameters"><i class="fa fa-check"></i><b>3.2.2</b> Plot GLM model parameters</a></li>
+<li class="chapter" data-level="3.2.3" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-4d"><i class="fa fa-check"></i><b>3.2.3</b> Figure 4D</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#plot-logo"><i class="fa fa-check"></i><b>3.3</b> plot logo</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-4e"><i class="fa fa-check"></i><b>3.3.1</b> Figure 4E</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#test-models-with-closest-cpg-methylation"><i class="fa fa-check"></i><b>3.4</b> Test models with closest CpG methylation</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#compute-model-with-cg-and-gc-content"><i class="fa fa-check"></i><b>3.4.1</b> Compute model with CG and GC content</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#compute-model-with-tor"><i class="fa fa-check"></i><b>3.4.2</b> Compute model with TOR</a></li>
+<li class="chapter" data-level="3.4.3" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#compute-model-with-closest-cpg"><i class="fa fa-check"></i><b>3.4.3</b> Compute model with closest CpG</a></li>
+<li class="chapter" data-level="3.4.4" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#compute-model-with-all-enhancer-methylation"><i class="fa fa-check"></i><b>3.4.4</b> Compute model with all enhancer methylation</a></li>
+<li class="chapter" data-level="3.4.5" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-7a"><i class="fa fa-check"></i><b>3.4.5</b> Figure 7A</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#estimate-prediction-noise"><i class="fa fa-check"></i><b>3.5</b> Estimate prediction noise</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#kinteics-per-time-and-score-bin"><i class="fa fa-check"></i><b>3.5.1</b> Kinteics per time and score bin</a></li>
+<li class="chapter" data-level="3.5.2" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-4g"><i class="fa fa-check"></i><b>3.5.2</b> Figure 4G</a></li>
+<li class="chapter" data-level="3.5.3" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#scores-within-enhancers"><i class="fa fa-check"></i><b>3.5.3</b> Scores within enhancers</a></li>
+<li class="chapter" data-level="3.5.4" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-7b"><i class="fa fa-check"></i><b>3.5.4</b> Figure 7B</a></li>
+<li class="chapter" data-level="3.5.5" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#extract-proaprob-enhancers"><i class="fa fa-check"></i><b>3.5.5</b> Extract proA/proB enhancers</a></li>
+<li class="chapter" data-level="3.5.6" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#no-difference-in-methylation-of-full-enhancers-vs-shuffled"><i class="fa fa-check"></i><b>3.5.6</b> No difference in methylation of full enhancers vs shuffled</a></li>
+<li class="chapter" data-level="3.5.7" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#toatal-enh-methylation-prediction"><i class="fa fa-check"></i><b>3.5.7</b> Toatal enh methylation prediction</a></li>
+<li class="chapter" data-level="3.5.8" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-7c"><i class="fa fa-check"></i><b>3.5.8</b> Figure 7C</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html"><i class="fa fa-check"></i><b>4</b> Validation from external data</a><ul>
+<li class="chapter" data-level="4.0.1" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html#initialize-definitions-2"><i class="fa fa-check"></i><b>4.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="4.0.2" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html#get-ab-meth-data-1"><i class="fa fa-check"></i><b>4.0.2</b> Get A/B meth data</a></li>
+<li class="chapter" data-level="4.0.3" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html#get-meissner-data"><i class="fa fa-check"></i><b>4.0.3</b> Get Meissner data</a></li>
+<li class="chapter" data-level="4.0.4" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html#figure-4h"><i class="fa fa-check"></i><b>4.0.4</b> Figure 4H</a></li>
+<li class="chapter" data-level="4.0.5" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html#figure-4i"><i class="fa fa-check"></i><b>4.0.5</b> Figure 4I</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html"><i class="fa fa-check"></i><b>5</b> Mallona et al. NAR 2020</a><ul>
+<li class="chapter" data-level="5.0.1" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#initialize-definitions-3"><i class="fa fa-check"></i><b>5.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="5.1" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#model-es"><i class="fa fa-check"></i><b>5.1</b> Model ES</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5bc"><i class="fa fa-check"></i><b>5.1.1</b> Figure 5B,C</a></li>
+<li class="chapter" data-level="5.1.2" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5d"><i class="fa fa-check"></i><b>5.1.2</b> Figure 5D</a></li>
+<li class="chapter" data-level="5.1.3" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5e"><i class="fa fa-check"></i><b>5.1.3</b> Figure 5E</a></li>
+<li class="chapter" data-level="5.1.4" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5fg"><i class="fa fa-check"></i><b>5.1.4</b> Figure 5F,G</a></li>
+<li class="chapter" data-level="5.1.5" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5h"><i class="fa fa-check"></i><b>5.1.5</b> Figure 5H</a></li>
+<li class="chapter" data-level="5.1.6" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5i"><i class="fa fa-check"></i><b>5.1.6</b> Figure 5I</a></li>
+<li class="chapter" data-level="5.1.7" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5j"><i class="fa fa-check"></i><b>5.1.7</b> Figure 5J</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="yagi-et-al..html"><a href="yagi-et-al..html"><i class="fa fa-check"></i><b>6</b> Yagi et al. </a><ul>
+<li class="chapter" data-level="6.0.1" data-path="yagi-et-al..html"><a href="yagi-et-al..html#initialize-definitions-4"><i class="fa fa-check"></i><b>6.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="6.0.2" data-path="yagi-et-al..html"><a href="yagi-et-al..html#dmrs"><i class="fa fa-check"></i><b>6.0.2</b> DMRs</a></li>
+<li class="chapter" data-level="6.0.3" data-path="yagi-et-al..html"><a href="yagi-et-al..html#get-meissner-data-1"><i class="fa fa-check"></i><b>6.0.3</b> Get Meissner data</a></li>
+<li class="chapter" data-level="6.0.4" data-path="yagi-et-al..html"><a href="yagi-et-al..html#get-meeb-data"><i class="fa fa-check"></i><b>6.0.4</b> Get MEEB data</a></li>
+<li class="chapter" data-level="6.0.5" data-path="yagi-et-al..html"><a href="yagi-et-al..html#extended-data-figure-8i"><i class="fa fa-check"></i><b>6.0.5</b> Extended Data Figure 8I</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html"><i class="fa fa-check"></i><b>7</b> Single cell methylation</a><ul>
+<li class="chapter" data-level="7.0.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#initialize-definitions-5"><i class="fa fa-check"></i><b>7.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="7.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#generate-cell-cycle-ordering"><i class="fa fa-check"></i><b>7.1</b> Generate cell-cycle ordering</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#in-vivo"><i class="fa fa-check"></i><b>7.1.1</b> In-vivo</a></li>
+<li class="chapter" data-level="7.1.2" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#eb"><i class="fa fa-check"></i><b>7.1.2</b> EB</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#plot-in-vivo-cell-cycle"><i class="fa fa-check"></i><b>7.2</b> Plot in-vivo cell-cycle</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6b"><i class="fa fa-check"></i><b>7.2.1</b> Figure 6B</a></li>
+<li class="chapter" data-level="7.2.2" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6a"><i class="fa fa-check"></i><b>7.2.2</b> Figure 6A</a></li>
+<li class="chapter" data-level="7.2.3" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6c"><i class="fa fa-check"></i><b>7.2.3</b> Figure 6C</a></li>
+<li class="chapter" data-level="7.2.4" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#extended-data-figure-9g"><i class="fa fa-check"></i><b>7.2.4</b> Extended Data Figure 9G</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#plot-ebs-cell-cycle"><i class="fa fa-check"></i><b>7.3</b> Plot EBs cell cycle</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6de"><i class="fa fa-check"></i><b>7.3.1</b> Figure 6D,E</a></li>
+<li class="chapter" data-level="7.3.2" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6fg-extended-data-figure-9i"><i class="fa fa-check"></i><b>7.3.2</b> Figure 6F,G, Extended Data Figure 9I</a></li>
+<li class="chapter" data-level="7.3.3" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6d"><i class="fa fa-check"></i><b>7.3.3</b> Figure 6D</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#plot-other-eb-batches"><i class="fa fa-check"></i><b>7.4</b> Plot other EB batches</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#extended-data-figure-9h"><i class="fa fa-check"></i><b>7.4.1</b> Extended Data Figure 9H</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html"><i class="fa fa-check"></i><b>8</b> Differential methylation in EB day 6</a><ul>
+<li class="chapter" data-level="8.1" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#initialize-definitions-6"><i class="fa fa-check"></i><b>8.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="8.2" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#extract-data"><i class="fa fa-check"></i><b>8.2</b> Extract data</a></li>
+<li class="chapter" data-level="8.3" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#plot-global-differences"><i class="fa fa-check"></i><b>8.3</b> Plot global differences</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#figure-7d"><i class="fa fa-check"></i><b>8.3.1</b> Figure 7D</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#extract-dnmt3a-targets"><i class="fa fa-check"></i><b>8.4</b> Extract DNMT3A targets</a></li>
+<li class="chapter" data-level="8.5" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#plot-distribution-of-ab-score-on-the-differential-regions"><i class="fa fa-check"></i><b>8.5</b> Plot distribution of AB score on the differential regions</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#figure-7e"><i class="fa fa-check"></i><b>8.5.1</b> Figure 7E</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#plot-examples"><i class="fa fa-check"></i><b>8.6</b> Plot examples</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#figure-7g-extended-data-figure-10"><i class="fa fa-check"></i><b>8.6.1</b> Figure 7G, Extended Data Figure 10</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#test-regions-enrichment-vs-gene-expression"><i class="fa fa-check"></i><b>8.7</b> Test regions enrichment vs gene expression</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#figure-7f"><i class="fa fa-check"></i><b>8.7.1</b> Figure 7F</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html"><i class="fa fa-check"></i><b>9</b> QC - bulk methylation</a><ul>
+<li class="chapter" data-level="9.0.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#initialize-definitions-7"><i class="fa fa-check"></i><b>9.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="9.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#probe-design"><i class="fa fa-check"></i><b>9.1</b> Probe design</a></li>
+<li class="chapter" data-level="9.2" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#breakdown-of-probes"><i class="fa fa-check"></i><b>9.2</b> Breakdown of probes</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8b"><i class="fa fa-check"></i><b>9.2.1</b> Extended Data Figure 8B</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#wgbs-e8.5"><i class="fa fa-check"></i><b>9.3</b> WGBS E8.5</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#coverage"><i class="fa fa-check"></i><b>9.3.1</b> Coverage</a></li>
+<li class="chapter" data-level="9.3.2" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8a"><i class="fa fa-check"></i><b>9.3.2</b> Extended Data Figure 8A</a></li>
+<li class="chapter" data-level="9.3.3" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#methylation-distribution-on-target-vs-off-target"><i class="fa fa-check"></i><b>9.3.3</b> Methylation distribution on-target vs off-target</a></li>
+<li class="chapter" data-level="9.3.4" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8c"><i class="fa fa-check"></i><b>9.3.4</b> Extended Data Figure 8C</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#distribution-of-coverage-per-condition"><i class="fa fa-check"></i><b>9.4</b> Distribution of coverage per condition</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8d"><i class="fa fa-check"></i><b>9.4.1</b> Extended Data Figure 8D</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#distribution-of-non-cpgs-methylation-per-condition"><i class="fa fa-check"></i><b>9.5</b> Distribution of non-CpGs methylation per condition</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8h"><i class="fa fa-check"></i><b>9.5.1</b> Extended Data Figure 8H</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#on-target-statistics"><i class="fa fa-check"></i><b>9.6</b> “On target” statistics</a><ul>
+<li class="chapter" data-level="9.6.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8e"><i class="fa fa-check"></i><b>9.6.1</b> Extended Data Figure 8E</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#global-methylation-trend"><i class="fa fa-check"></i><b>9.7</b> Global methylation trend</a><ul>
+<li class="chapter" data-level="9.7.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8g"><i class="fa fa-check"></i><b>9.7.1</b> Extended Data Figure 8G</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html"><i class="fa fa-check"></i><b>10</b> QC - sc methylation</a><ul>
+<li class="chapter" data-level="10.0.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#initialize-definitions-8"><i class="fa fa-check"></i><b>10.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="10.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#distribution-of-chh"><i class="fa fa-check"></i><b>10.1</b> Distribution of %CHH</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9b"><i class="fa fa-check"></i><b>10.1.1</b> Extended Data Figure 9B</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#number-of-cells"><i class="fa fa-check"></i><b>10.2</b> Number of cells</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9a"><i class="fa fa-check"></i><b>10.2.1</b> Extended Data Figure 9A</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#number-of-cpgs"><i class="fa fa-check"></i><b>10.3</b> Number of CpGs</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9c"><i class="fa fa-check"></i><b>10.3.1</b> Extended Data Figure 9C</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#sorting-plots"><i class="fa fa-check"></i><b>10.4</b> Sorting plots</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9d"><i class="fa fa-check"></i><b>10.4.1</b> Extended Data Figure 9D</a></li>
+<li class="chapter" data-level="10.4.2" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9e"><i class="fa fa-check"></i><b>10.4.2</b> Extended Data Figure 9E</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#earlylate-coverage-per-cell-e7.5"><i class="fa fa-check"></i><b>10.5</b> Early/Late coverage per cell (e7.5)</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9f"><i class="fa fa-check"></i><b>10.5.1</b> Extended Data Figure 9F</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="single-cell-methylation" class="section level1 hasAnchor">
+<h1><span class="header-section-number">7</span> Single cell methylation<a href="single-cell-methylation.html#single-cell-methylation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<!-- #region tags=[] -->
+<div id="initialize-definitions-5" class="section level3 hasAnchor">
+<h3><span class="header-section-number">7.0.1</span> initialize definitions<a href="single-cell-methylation.html#initialize-definitions-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<!-- #endregion -->
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="single-cell-methylation.html#cb414-1"></a><span class="kw">suppressMessages</span>(<span class="kw">suppressWarnings</span>(<span class="kw">source</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;code/init.R&quot;</span>))))</span></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="single-cell-methylation.html#cb415-1"></a><span class="kw">suppressMessages</span>(<span class="kw">suppressWarnings</span>(<span class="kw">load_cgdb</span>()))</span></code></pre></div>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="single-cell-methylation.html#cb416-1"></a><span class="kw">suppressMessages</span>(<span class="kw">suppressWarnings</span>(<span class="kw">load_plpdb</span>()))</span></code></pre></div>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="single-cell-methylation.html#cb417-1"></a>db</span></code></pre></div>
+<pre><code>## cgdb object
+## 21,342,746 CpGs X 24,179 cells</code></pre>
+<pre><code>## --- root (@db_root): /net/mraid14/export/tgdata/users/aviezerl/proj/ebdnmt/Dnmt3ab_EB/methylation/data/cgdb</code></pre>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="single-cell-methylation.html#cb420-1"></a>db_f &lt;-<span class="st"> </span>db_f <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">fill_sort_column</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="single-cell-methylation.html#cb421-1"></a>db_plp_f &lt;-<span class="st"> </span>db_plp <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join_cells</span>(db_f<span class="op">@</span>cells <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(cell_id))</span></code></pre></div>
+<pre><code>## Joining, by = &quot;cell_id&quot;</code></pre>
+</div>
+<div id="generate-cell-cycle-ordering" class="section level2 hasAnchor">
+<h2><span class="header-section-number">7.1</span> Generate cell-cycle ordering<a href="single-cell-methylation.html#generate-cell-cycle-ordering" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Extract coverage in early and late regions per single cell:</p>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="single-cell-methylation.html#cb423-1"></a>tor_covs &lt;-<span class="st"> </span>db_plp_f <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb423-2"><a href="single-cell-methylation.html#cb423-2"></a><span class="st">    </span><span class="kw">mutate_cpgs</span>(<span class="dt">tor_grp =</span> <span class="kw">case_when</span>(tor <span class="op">&lt;=</span><span class="st"> </span><span class="dv">0</span> <span class="op">~</span><span class="st"> &quot;late&quot;</span>, tor <span class="op">&gt;=</span><span class="st"> </span><span class="dv">0</span> <span class="op">~</span><span class="st"> &quot;early&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb423-3"><a href="single-cell-methylation.html#cb423-3"></a><span class="st">    </span><span class="kw">filter_cpgs</span>(chrom <span class="op">!=</span><span class="st"> &quot;chrX&quot;</span>, chrom <span class="op">!=</span><span class="st"> &quot;chrY&quot;</span>, <span class="op">!</span><span class="kw">is.na</span>(tor_grp)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb423-4"><a href="single-cell-methylation.html#cb423-4"></a><span class="st">    </span><span class="kw">group_by_cpgs</span>(tor_grp) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb423-5"><a href="single-cell-methylation.html#cb423-5"></a><span class="st">    </span><span class="kw">summarise</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb423-6"><a href="single-cell-methylation.html#cb423-6"></a><span class="st">    </span><span class="kw">select</span>(<span class="op">-</span>meth) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb423-7"><a href="single-cell-methylation.html#cb423-7"></a><span class="st">    </span><span class="kw">spread</span>(tor_grp, cov) <span class="op">%cache_df%</span><span class="st"> </span></span>
+<span id="cb423-8"><a href="single-cell-methylation.html#cb423-8"></a><span class="st">    </span><span class="kw">here</span>(<span class="st">&quot;output/tor_cov_per_cell.tsv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb423-9"><a href="single-cell-methylation.html#cb423-9"></a><span class="st">    </span><span class="kw">as_tibble</span>()</span></code></pre></div>
+<p>Extract the same stratified by CpG content:</p>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="single-cell-methylation.html#cb424-1"></a>tor_cgc_meth &lt;-<span class="st"> </span>db_f <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb424-2"><a href="single-cell-methylation.html#cb424-2"></a><span class="st">    </span><span class="kw">mutate_cpgs</span>(<span class="dt">cg_cont =</span> <span class="kw">cut</span>(cg500, <span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.02</span>,<span class="fl">0.08</span>,<span class="fl">0.2</span>)), <span class="dt">tor_grp =</span> <span class="kw">case_when</span>(tor <span class="op">&lt;=</span><span class="st"> </span><span class="dv">0</span> <span class="op">~</span><span class="st"> &quot;late&quot;</span>, tor <span class="op">&gt;=</span><span class="st"> </span><span class="dv">0</span> <span class="op">~</span><span class="st"> &quot;early&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb424-3"><a href="single-cell-methylation.html#cb424-3"></a><span class="st">    </span><span class="kw">filter_cpgs</span>(chrom <span class="op">!=</span><span class="st"> &quot;chrX&quot;</span>, chrom <span class="op">!=</span><span class="st"> &quot;chrY&quot;</span>, <span class="op">!</span><span class="kw">is.na</span>(tor_grp), <span class="op">!</span><span class="kw">is.na</span>(cg_cont)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb424-4"><a href="single-cell-methylation.html#cb424-4"></a><span class="st">    </span><span class="kw">group_by_cpgs</span>(cg_cont, tor_grp) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb424-5"><a href="single-cell-methylation.html#cb424-5"></a><span class="st">    </span><span class="kw">summarise</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb424-6"><a href="single-cell-methylation.html#cb424-6"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">avg =</span> meth <span class="op">/</span><span class="st"> </span>cov) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb424-7"><a href="single-cell-methylation.html#cb424-7"></a><span class="st">    </span><span class="kw">pivot_wider</span>(<span class="kw">c</span>(cell_id, cg_cont), <span class="dt">names_from=</span>tor_grp, <span class="dt">values_from=</span>cov<span class="op">:</span>avg) <span class="op">%cache_df%</span><span class="st"> </span></span>
+<span id="cb424-8"><a href="single-cell-methylation.html#cb424-8"></a><span class="st">    </span><span class="kw">here</span>(<span class="st">&quot;output/tor_meth_cgc_per_cell.tsv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb424-9"><a href="single-cell-methylation.html#cb424-9"></a><span class="st">    </span><span class="kw">as_tibble</span>()</span></code></pre></div>
+<p>Extract the same stratified by CpG content and AB score:</p>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="single-cell-methylation.html#cb425-1"></a>tor_ab_meth &lt;-<span class="st"> </span><span class="kw">calc_cgc_ab_score_sc</span>(db_f, ab_score) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb425-2"><a href="single-cell-methylation.html#cb425-2"></a><span class="st">        </span><span class="kw">rename</span>(<span class="dt">ab_score =</span> score) <span class="op">%cache_df%</span><span class="st"> </span></span>
+<span id="cb425-3"><a href="single-cell-methylation.html#cb425-3"></a><span class="st">    </span><span class="kw">here</span>(<span class="st">&quot;output/tor_meth_cgc_ab_score_per_cell.tsv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb425-4"><a href="single-cell-methylation.html#cb425-4"></a><span class="st">    </span><span class="kw">as_tibble</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="single-cell-methylation.html#cb426-1"></a>tor_a_meth &lt;-<span class="st"> </span><span class="kw">calc_cgc_ab_score_sc</span>(db_f, a_score) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb426-2"><a href="single-cell-methylation.html#cb426-2"></a><span class="st">        </span><span class="kw">rename</span>(<span class="dt">a_score =</span> score) <span class="op">%cache_df%</span><span class="st"> </span></span>
+<span id="cb426-3"><a href="single-cell-methylation.html#cb426-3"></a><span class="st">    </span><span class="kw">here</span>(<span class="st">&quot;output/tor_meth_cgc_a_score_per_cell.tsv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb426-4"><a href="single-cell-methylation.html#cb426-4"></a><span class="st">    </span><span class="kw">as_tibble</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="single-cell-methylation.html#cb427-1"></a>tor_b_meth &lt;-<span class="st"> </span><span class="kw">calc_cgc_ab_score_sc</span>(db_f, b_score) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb427-2"><a href="single-cell-methylation.html#cb427-2"></a><span class="st">        </span><span class="kw">rename</span>(<span class="dt">b_score =</span> score) <span class="op">%cache_df%</span><span class="st"> </span></span>
+<span id="cb427-3"><a href="single-cell-methylation.html#cb427-3"></a><span class="st">    </span><span class="kw">here</span>(<span class="st">&quot;output/tor_meth_cgc_b_score_per_cell.tsv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb427-4"><a href="single-cell-methylation.html#cb427-4"></a><span class="st">    </span><span class="kw">as_tibble</span>()</span></code></pre></div>
+<p>Generate for each cell the ratio between early and late coverage (<code>early_late_cov</code>) and the difference in methylation between early and late regions (<code>meth_late_early_diff</code>).</p>
+<p>Requirments:
+- CpG content &lt;= 2%
+- Early coverage &gt; 2000 and Late coverage &gt; 2000
+- Total coverage of early + late higher than 20000</p>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="single-cell-methylation.html#cb428-1"></a>min_cov &lt;-<span class="st"> </span><span class="fl">2e3</span></span>
+<span id="cb428-2"><a href="single-cell-methylation.html#cb428-2"></a>min_cov_both &lt;-<span class="st"> </span><span class="fl">2e4</span></span>
+<span id="cb428-3"><a href="single-cell-methylation.html#cb428-3"></a>df_cell_cycle_annot &lt;-<span class="st"> </span>tor_cgc_meth <span class="op">%&gt;%</span><span class="st">     </span></span>
+<span id="cb428-4"><a href="single-cell-methylation.html#cb428-4"></a><span class="st">    </span><span class="kw">filter</span>(cg_cont <span class="op">==</span><span class="st"> &quot;(0,0.02]&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb428-5"><a href="single-cell-methylation.html#cb428-5"></a><span class="st">    </span><span class="kw">select</span>(<span class="op">-</span>cg_cont) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb428-6"><a href="single-cell-methylation.html#cb428-6"></a><span class="st">    </span><span class="kw">filter</span>(cov_early <span class="op">&gt;=</span><span class="st"> </span>min_cov, cov_late <span class="op">&gt;=</span><span class="st"> </span>min_cov) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb428-7"><a href="single-cell-methylation.html#cb428-7"></a><span class="st">    </span><span class="kw">left_join</span>(tor_covs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(early <span class="op">&gt;=</span><span class="st"> </span>min_cov, late <span class="op">&gt;=</span><span class="st"> </span>min_cov)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb428-8"><a href="single-cell-methylation.html#cb428-8"></a><span class="st">    </span><span class="kw">left_join</span>(db_f<span class="op">@</span>cells) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb428-9"><a href="single-cell-methylation.html#cb428-9"></a><span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(early)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb428-10"><a href="single-cell-methylation.html#cb428-10"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">early_late_cov =</span> <span class="kw">log2</span>(early <span class="op">/</span><span class="st"> </span>late), <span class="dt">meth_late_early_diff =</span> avg_late <span class="op">-</span><span class="st"> </span>avg_early) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb428-11"><a href="single-cell-methylation.html#cb428-11"></a><span class="st">    </span><span class="kw">filter</span>(early <span class="op">+</span><span class="st"> </span>late <span class="op">&gt;=</span><span class="st"> </span>min_cov_both) <span class="op">%cache_df%</span><span class="st"> </span></span>
+<span id="cb428-12"><a href="single-cell-methylation.html#cb428-12"></a><span class="st">    </span><span class="kw">here</span>(<span class="st">&quot;output/sc_cell_cycle_annot.tsv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb428-13"><a href="single-cell-methylation.html#cb428-13"></a><span class="st">    </span><span class="kw">as_tibble</span>()</span></code></pre></div>
+<div id="in-vivo" class="section level3 hasAnchor">
+<h3><span class="header-section-number">7.1.1</span> In-vivo<a href="single-cell-methylation.html#in-vivo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Merge with germ layer annotations (FACS):</p>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="single-cell-methylation.html#cb429-1"></a>invivo_sort &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="kw">here</span>(<span class="st">&quot;data/cells_germ_layer_invivo.tsv&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()</span>
+<span id="cb429-2"><a href="single-cell-methylation.html#cb429-2"></a>df_cell_cycle_invivo &lt;-<span class="st"> </span>df_cell_cycle_annot <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb429-3"><a href="single-cell-methylation.html#cb429-3"></a><span class="st">    </span><span class="kw">inner_join</span>(invivo_sort) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb429-4"><a href="single-cell-methylation.html#cb429-4"></a><span class="st">    </span><span class="kw">filter</span>(germ_layer <span class="op">!=</span><span class="st"> &quot;ExE&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb429-5"><a href="single-cell-methylation.html#cb429-5"></a><span class="st">    </span><span class="kw">select</span>(cell_id, day, germ_layer, avg_late, avg_early, early, late, early_late_cov, <span class="dt">early_late_diff =</span> meth_late_early_diff)</span></code></pre></div>
+<pre><code>## Joining, by = &quot;cell_id&quot;</code></pre>
+<p>Calculate cell-cycle ordering for each day and germ layer using prinicipal curve on the coverage ratio and methylation difference:</p>
+<p><code>calc_cell_cycle_ord</code> function:</p>
+<ul>
+<li>Divides log2(early/late) coverage ratio by its standard deviation.</li>
+<li>Divides late - early methylation difference by its standard deviation.</li>
+<li>Calculates principal curve using:</li>
+</ul>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="single-cell-methylation.html#cb431-1"></a>pc &lt;-<span class="st"> </span>princurve<span class="op">::</span><span class="kw">principal_curve</span>(<span class="dt">x=</span>mat_norm, <span class="dt">start=</span>princurve<span class="op">:::</span><span class="kw">start_circle</span>(mat_norm), <span class="dt">stretch=</span><span class="dv">2</span>, <span class="dt">smoother =</span> <span class="st">&quot;periodic_lowess&quot;</span>)</span></code></pre></div>
+<p>We then:</p>
+<ul>
+<li>define highest early/late coverage ratio as start</li>
+<li>smooth early/late coverage (rolling mean, k=20)</li>
+<li>define the middle of cell cycle as the minimum of smoothed trend</li>
+<li>reorder cells</li>
+</ul>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="single-cell-methylation.html#cb432-1"></a>l_invivo &lt;-<span class="st"> </span>df_cell_cycle_invivo <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb432-2"><a href="single-cell-methylation.html#cb432-2"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">day =</span> <span class="kw">ifelse</span>(day <span class="op">==</span><span class="st"> &quot;e8&quot;</span>, <span class="st">&quot;e8.5&quot;</span>, day)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb432-3"><a href="single-cell-methylation.html#cb432-3"></a><span class="st">    </span><span class="kw">add_count</span>(day, germ_layer) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(n <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>, germ_layer <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;epi&quot;</span>, <span class="st">&quot;ecto&quot;</span>, <span class="st">&quot;endo&quot;</span>, <span class="st">&quot;meso&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb432-4"><a href="single-cell-methylation.html#cb432-4"></a><span class="st">    </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb432-5"><a href="single-cell-methylation.html#cb432-5"></a><span class="st">    </span>plyr<span class="op">::</span><span class="kw">dlply</span>(<span class="kw">c</span>(<span class="st">&quot;day&quot;</span>, <span class="st">&quot;germ_layer&quot;</span>), <span class="cf">function</span>(x) <span class="kw">calc_cell_cycle_ord</span>(<span class="kw">as_tibble</span>(x)))</span></code></pre></div>
+<pre><code>## Joining, by = &quot;cell_id&quot;
+## Joining, by = &quot;cell_id&quot;
+## Joining, by = &quot;cell_id&quot;
+## Joining, by = &quot;cell_id&quot;
+## Joining, by = &quot;cell_id&quot;
+## Joining, by = &quot;cell_id&quot;
+## Joining, by = &quot;cell_id&quot;</code></pre>
+<p>Anchor ordering for in-vivo samples:</p>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="single-cell-methylation.html#cb434-1"></a><span class="kw">dir.create</span>(<span class="kw">here</span>(<span class="st">&quot;output/cell_cycle&quot;</span>), <span class="dt">showWarnings =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="single-cell-methylation.html#cb435-1"></a>df_ord_invivo &lt;-<span class="st"> </span>l_invivo <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb435-2"><a href="single-cell-methylation.html#cb435-2"></a><span class="st">    </span><span class="kw">map_dfr</span>(<span class="op">~</span><span class="st"> </span>.<span class="op">$</span>df) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb435-3"><a href="single-cell-methylation.html#cb435-3"></a><span class="st">    </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb435-4"><a href="single-cell-methylation.html#cb435-4"></a><span class="st">    </span><span class="kw">unite</span>(<span class="st">&quot;type&quot;</span>, day<span class="op">:</span>germ_layer, <span class="dt">remove=</span><span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb435-5"><a href="single-cell-methylation.html#cb435-5"></a><span class="st">    </span><span class="kw">group_by</span>(day, germ_layer) <span class="op">%&gt;%</span><span class="st">         </span></span>
+<span id="cb435-6"><a href="single-cell-methylation.html#cb435-6"></a><span class="st">    </span><span class="kw">arrange</span>(day, germ_layer, <span class="kw">desc</span>(early_late_cov) ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb435-7"><a href="single-cell-methylation.html#cb435-7"></a><span class="st">    </span><span class="kw">mutate</span>(</span>
+<span id="cb435-8"><a href="single-cell-methylation.html#cb435-8"></a>        <span class="dt">new_ord =</span> ord <span class="op">-</span><span class="st"> </span>ord[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span><span class="dv">1</span>, </span>
+<span id="cb435-9"><a href="single-cell-methylation.html#cb435-9"></a>        <span class="dt">new_ord =</span> <span class="kw">ifelse</span>(new_ord <span class="op">&gt;=</span><span class="st"> </span><span class="dv">0</span>, new_ord, <span class="kw">max</span>(new_ord) <span class="op">+</span><span class="st"> </span><span class="kw">abs</span>(<span class="kw">min</span>(new_ord)) <span class="op">-</span><span class="st"> </span><span class="kw">abs</span>(new_ord)),</span>
+<span id="cb435-10"><a href="single-cell-methylation.html#cb435-10"></a>        <span class="dt">ord1 =</span> new_ord <span class="op">/</span><span class="st"> </span><span class="kw">max</span>(new_ord)</span>
+<span id="cb435-11"><a href="single-cell-methylation.html#cb435-11"></a>    ) <span class="op">%&gt;%</span><span class="st">    </span></span>
+<span id="cb435-12"><a href="single-cell-methylation.html#cb435-12"></a><span class="st">    </span><span class="kw">mutate</span>(</span>
+<span id="cb435-13"><a href="single-cell-methylation.html#cb435-13"></a>        <span class="dt">trend =</span> zoo<span class="op">::</span><span class="kw">rollmean</span>(early_late_cov[<span class="kw">order</span>(ord1)], <span class="dv">20</span>, <span class="dt">na.pad =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb435-14"><a href="single-cell-methylation.html#cb435-14"></a>        <span class="dt">i_mid =</span> zoo<span class="op">::</span><span class="kw">rollmean</span>(ord1[<span class="kw">order</span>(ord1)],<span class="dv">20</span>)[<span class="kw">which.min</span>(trend)],</span>
+<span id="cb435-15"><a href="single-cell-methylation.html#cb435-15"></a>        <span class="dt">ord2 =</span> i_mid <span class="op">-</span><span class="st"> </span>ord1,</span>
+<span id="cb435-16"><a href="single-cell-methylation.html#cb435-16"></a>        <span class="dt">ord2 =</span> ord2 <span class="op">-</span><span class="st"> </span><span class="kw">floor</span>(ord2)</span>
+<span id="cb435-17"><a href="single-cell-methylation.html#cb435-17"></a>    ) <span class="op">%cache_df%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/cell_cycle/invivo.tsv&quot;</span>)</span></code></pre></div>
+<p>Add ordering to CpG content and ab-score objects:</p>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="single-cell-methylation.html#cb436-1"></a>df_ord_cgc_invivo &lt;-<span class="st"> </span>tor_cgc_meth <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb436-2"><a href="single-cell-methylation.html#cb436-2"></a><span class="st">    </span><span class="kw">inner_join</span>(df_ord_invivo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(cell_id, day, germ_layer, ord2, early_late_cov)) <span class="op">%fcache_df%</span><span class="st"> </span></span>
+<span id="cb436-3"><a href="single-cell-methylation.html#cb436-3"></a><span class="st">    </span><span class="kw">here</span>(<span class="st">&quot;output/cell_cycle/invivo_cgc.tsv&quot;</span>)</span></code></pre></div>
+<pre><code>## Joining, by = &quot;cell_id&quot;</code></pre>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="single-cell-methylation.html#cb438-1"></a>df_ord_ab_score_invivo &lt;-<span class="st"> </span>tor_ab_meth <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb438-2"><a href="single-cell-methylation.html#cb438-2"></a><span class="st">    </span><span class="kw">inner_join</span>(df_ord_invivo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(cell_id, day, germ_layer, ord2, early_late_cov)) <span class="op">%fcache_df%</span><span class="st"> </span></span>
+<span id="cb438-3"><a href="single-cell-methylation.html#cb438-3"></a><span class="st">    </span><span class="kw">here</span>(<span class="st">&quot;output/cell_cycle/invivo_ab_score.tsv&quot;</span>)</span></code></pre></div>
+<pre><code>## Joining, by = &quot;cell_id&quot;</code></pre>
+</div>
+<div id="eb" class="section level3 hasAnchor">
+<h3><span class="header-section-number">7.1.2</span> EB<a href="single-cell-methylation.html#eb" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="single-cell-methylation.html#cb440-1"></a>df_cell_cycle_annot <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(line <span class="op">!=</span><span class="st"> &quot;mouse&quot;</span>, day <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;d5&quot;</span>, <span class="st">&quot;d6&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(day, experiment)</span></code></pre></div>
+<pre><code>## # A tibble: 7 x 3
+##   day  experiment    n
+## 1  d5 experiment3  659
+## 2  d5 experiment4 1672
+## 3  d5 experiment6 1021
+## 4  d5 experiment8  362
+## 5  d6 experiment2  746
+## 6  d6 experiment3  645
+## # ... with 1 more rows</code></pre>
+<p>Experiments 5,6 and 8 had a strong batch effect and therefore they are processed separatley below.</p>
+<p>We remove cells with extremly low methylation (less than 0.7)</p>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="single-cell-methylation.html#cb442-1"></a>df_cell_cycle_eb &lt;-<span class="st"> </span>df_cell_cycle_annot <span class="op">%&gt;%</span><span class="st">  </span></span>
+<span id="cb442-2"><a href="single-cell-methylation.html#cb442-2"></a><span class="st">    </span><span class="kw">filter</span>(line <span class="op">!=</span><span class="st"> &quot;mouse&quot;</span>, day <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;d5&quot;</span>, <span class="st">&quot;d6&quot;</span>), <span class="op">!</span>(experiment <span class="op">%in%</span><span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;experiment&quot;</span>, <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">8</span>))), avg_early <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.7</span>, avg_late <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.7</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb442-3"><a href="single-cell-methylation.html#cb442-3"></a><span class="st">    </span><span class="kw">select</span>(cell_id, day, line, sort, experiment, avg_late, avg_early, early, late, early_late_cov, <span class="dt">early_late_diff =</span> meth_late_early_diff)</span></code></pre></div>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="single-cell-methylation.html#cb443-1"></a>l_ebs &lt;-<span class="st"> </span>df_cell_cycle_eb <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_count</span>(day, line) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(n <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span><span class="st"> </span>plyr<span class="op">::</span><span class="kw">dlply</span>(<span class="kw">c</span>(<span class="st">&quot;day&quot;</span>, <span class="st">&quot;line&quot;</span>), <span class="cf">function</span>(x) <span class="kw">calc_cell_cycle_ord</span>(<span class="kw">as_tibble</span>(x)))</span></code></pre></div>
+<pre><code>## Joining, by = &quot;cell_id&quot;
+## Joining, by = &quot;cell_id&quot;
+## Joining, by = &quot;cell_id&quot;
+## Joining, by = &quot;cell_id&quot;</code></pre>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="single-cell-methylation.html#cb445-1"></a>df_ord_ebs &lt;-<span class="st"> </span>l_ebs <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb445-2"><a href="single-cell-methylation.html#cb445-2"></a><span class="st">    </span><span class="kw">map_dfr</span>(<span class="op">~</span><span class="st"> </span>.<span class="op">$</span>df) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb445-3"><a href="single-cell-methylation.html#cb445-3"></a><span class="st">    </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb445-4"><a href="single-cell-methylation.html#cb445-4"></a><span class="st">    </span><span class="kw">unite</span>(<span class="st">&quot;type&quot;</span>, day<span class="op">:</span>line, <span class="dt">remove=</span><span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb445-5"><a href="single-cell-methylation.html#cb445-5"></a><span class="st">    </span><span class="kw">group_by</span>(day, line) <span class="op">%&gt;%</span><span class="st">         </span></span>
+<span id="cb445-6"><a href="single-cell-methylation.html#cb445-6"></a><span class="st">    </span><span class="kw">arrange</span>(day, line, <span class="kw">desc</span>(early_late_cov) ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb445-7"><a href="single-cell-methylation.html#cb445-7"></a><span class="st">    </span><span class="kw">mutate</span>(</span>
+<span id="cb445-8"><a href="single-cell-methylation.html#cb445-8"></a>        <span class="dt">new_ord =</span> ord <span class="op">-</span><span class="st"> </span>ord[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span><span class="dv">1</span>, </span>
+<span id="cb445-9"><a href="single-cell-methylation.html#cb445-9"></a>        <span class="dt">new_ord =</span> <span class="kw">ifelse</span>(new_ord <span class="op">&gt;=</span><span class="st"> </span><span class="dv">0</span>, new_ord, <span class="kw">max</span>(new_ord) <span class="op">+</span><span class="st"> </span><span class="kw">abs</span>(<span class="kw">min</span>(new_ord)) <span class="op">-</span><span class="st"> </span><span class="kw">abs</span>(new_ord)),</span>
+<span id="cb445-10"><a href="single-cell-methylation.html#cb445-10"></a>        <span class="dt">ord1 =</span> new_ord <span class="op">/</span><span class="st"> </span><span class="kw">max</span>(new_ord)</span>
+<span id="cb445-11"><a href="single-cell-methylation.html#cb445-11"></a>    ) <span class="op">%&gt;%</span><span class="st">    </span></span>
+<span id="cb445-12"><a href="single-cell-methylation.html#cb445-12"></a><span class="st">    </span><span class="kw">mutate</span>(</span>
+<span id="cb445-13"><a href="single-cell-methylation.html#cb445-13"></a>        <span class="dt">trend =</span> zoo<span class="op">::</span><span class="kw">rollmean</span>(early_late_cov[<span class="kw">order</span>(ord1)], <span class="dv">20</span>, <span class="dt">na.pad =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb445-14"><a href="single-cell-methylation.html#cb445-14"></a>        <span class="dt">i_mid =</span> zoo<span class="op">::</span><span class="kw">rollmean</span>(ord1[<span class="kw">order</span>(ord1)],<span class="dv">20</span>)[<span class="kw">which.min</span>(trend)],</span>
+<span id="cb445-15"><a href="single-cell-methylation.html#cb445-15"></a>        <span class="dt">ord2 =</span> i_mid <span class="op">-</span><span class="st"> </span>ord1,</span>
+<span id="cb445-16"><a href="single-cell-methylation.html#cb445-16"></a>        <span class="dt">ord2 =</span> ord2 <span class="op">-</span><span class="st"> </span><span class="kw">floor</span>(ord2)</span>
+<span id="cb445-17"><a href="single-cell-methylation.html#cb445-17"></a>    ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb445-18"><a href="single-cell-methylation.html#cb445-18"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">type =</span> <span class="kw">factor</span>(type, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;d6_wt&quot;</span>, <span class="st">&quot;d5_wt&quot;</span>, <span class="st">&quot;d5_ko3a&quot;</span>, <span class="st">&quot;d5_ko3b&quot;</span>, <span class="st">&quot;d6_ko3a&quot;</span>, <span class="st">&quot;d6_ko3b&quot;</span>))) <span class="op">%fcache_df%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/cell_cycle/ebs.tsv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="single-cell-methylation.html#cb446-1"></a>df_ord_cgc_ebs &lt;-<span class="st"> </span>tor_cgc_meth <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb446-2"><a href="single-cell-methylation.html#cb446-2"></a><span class="st">    </span><span class="kw">inner_join</span>(df_ord_ebs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(cell_id, day, line, type, ord2, early_late_cov)) </span></code></pre></div>
+<pre><code>## Joining, by = &quot;cell_id&quot;</code></pre>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="single-cell-methylation.html#cb448-1"></a>df_ord_ab_score_ebs &lt;-<span class="st"> </span>tor_ab_meth <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb448-2"><a href="single-cell-methylation.html#cb448-2"></a><span class="st">    </span><span class="kw">inner_join</span>(df_ord_ebs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(cell_id, day, line, type, ord2, early_late_cov))</span></code></pre></div>
+<pre><code>## Joining, by = &quot;cell_id&quot;</code></pre>
+<p>Merge in-vivo and ebs data</p>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="single-cell-methylation.html#cb450-1"></a>df_ord_all &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(</span>
+<span id="cb450-2"><a href="single-cell-methylation.html#cb450-2"></a>    df_ord_invivo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(day <span class="op">==</span><span class="st"> &quot;e7.5&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">line =</span> germ_layer) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>germ_layer),</span>
+<span id="cb450-3"><a href="single-cell-methylation.html#cb450-3"></a>    df_ord_ebs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(day <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;d5&quot;</span>, <span class="st">&quot;d6&quot;</span>))    </span>
+<span id="cb450-4"><a href="single-cell-methylation.html#cb450-4"></a>)</span></code></pre></div>
+<p>Homogenize cell-cycle</p>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="single-cell-methylation.html#cb451-1"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">8</span>, <span class="dt">repr.plot.height =</span> <span class="dv">5</span>)</span>
+<span id="cb451-2"><a href="single-cell-methylation.html#cb451-2"></a>segmented &lt;-<span class="st"> </span>df_ord_all <span class="op">%&gt;%</span><span class="st"> </span>plyr<span class="op">::</span><span class="kw">ddply</span>(<span class="st">&quot;type&quot;</span>, <span class="cf">function</span>(x) x <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">get_cc_segments</span>(<span class="dt">n_breaks=</span><span class="dv">2</span>, <span class="dt">psi=</span><span class="kw">c</span>(<span class="fl">0.2</span>, <span class="fl">0.5</span>), <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;S-start&quot;</span>, <span class="st">&quot;S-mid&quot;</span>, <span class="st">&quot;S-end&quot;</span>))) <span class="op">%fcache_df%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/cell_cycle/segmented.tsv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="Single-cell-methylation_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="Single-cell-methylation_files/figure-html/unnamed-chunk-24-2.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="Single-cell-methylation_files/figure-html/unnamed-chunk-24-3.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="Single-cell-methylation_files/figure-html/unnamed-chunk-24-4.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="Single-cell-methylation_files/figure-html/unnamed-chunk-24-5.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="Single-cell-methylation_files/figure-html/unnamed-chunk-24-6.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="Single-cell-methylation_files/figure-html/unnamed-chunk-24-7.png" width="672" /></p>
+</div>
+</div>
+<div id="plot-in-vivo-cell-cycle" class="section level2 hasAnchor">
+<h2><span class="header-section-number">7.2</span> Plot in-vivo cell-cycle<a href="single-cell-methylation.html#plot-in-vivo-cell-cycle" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="single-cell-methylation.html#cb459-1"></a><span class="kw">get_cc_early_late_meth_trend</span>(df_ord_invivo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(germ_layer <span class="op">==</span><span class="st"> &quot;ecto&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(<span class="dt">avg =</span> avg_early)) <span class="op">%&gt;%</span><span class="st"> </span>skimr<span class="op">::</span><span class="kw">skim</span>(.fitted)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-25">Table 7.1: </span>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">Piped data</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">595</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">19</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">numeric</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">.fitted</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.88</td>
+<td align="right">0.02</td>
+<td align="right">0.85</td>
+<td align="right">0.86</td>
+<td align="right">0.89</td>
+<td align="right">0.91</td>
+<td align="right">0.91</td>
+<td align="left">▅▃▃▃▇</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="single-cell-methylation.html#cb460-1"></a><span class="kw">get_cc_early_late_meth_trend</span>(df_ord_invivo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(germ_layer <span class="op">==</span><span class="st"> &quot;ecto&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(<span class="dt">avg =</span> avg_late)) <span class="op">%&gt;%</span><span class="st"> </span>skimr<span class="op">::</span><span class="kw">skim</span>(.fitted)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-25">Table 7.1: </span>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">Piped data</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">595</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">19</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">numeric</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">.fitted</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.92</td>
+<td align="right">0.02</td>
+<td align="right">0.88</td>
+<td align="right">0.9</td>
+<td align="right">0.92</td>
+<td align="right">0.93</td>
+<td align="right">0.93</td>
+<td align="left">▃▂▂▂▇</td>
+</tr>
+</tbody>
+</table>
+<div id="figure-6b" class="section level3 hasAnchor">
+<h3><span class="header-section-number">7.2.1</span> Figure 6B<a href="single-cell-methylation.html#figure-6b" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="single-cell-methylation.html#cb461-1"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">10</span>, <span class="dt">repr.plot.height =</span> <span class="dv">7</span>)</span>
+<span id="cb461-2"><a href="single-cell-methylation.html#cb461-2"></a></span>
+<span id="cb461-3"><a href="single-cell-methylation.html#cb461-3"></a>p_el_invivo_<span class="fl">7.5</span> &lt;-<span class="st"> </span><span class="kw">map</span>(<span class="kw">c</span>(<span class="st">&quot;ecto&quot;</span>, <span class="st">&quot;meso&quot;</span>, <span class="st">&quot;endo&quot;</span>), <span class="op">~</span><span class="st"> </span>df_ord_invivo <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb461-4"><a href="single-cell-methylation.html#cb461-4"></a><span class="st">            </span><span class="kw">filter</span>(germ_layer <span class="op">==</span><span class="st"> </span>.x) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb461-5"><a href="single-cell-methylation.html#cb461-5"></a><span class="st">            </span><span class="kw">plot_cc_early_late_meth</span>(<span class="dt">point_size=</span><span class="fl">0.1</span>, <span class="dt">add_trend_lines =</span> <span class="ot">TRUE</span>, <span class="dt">y_lim =</span> <span class="kw">c</span>(<span class="fl">0.7</span>, <span class="dv">1</span>), <span class="dt">plot_phase_lines =</span> <span class="ot">FALSE</span>, <span class="dt">trend_ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">1.2</span>))) </span>
+<span id="cb461-6"><a href="single-cell-methylation.html#cb461-6"></a></span>
+<span id="cb461-7"><a href="single-cell-methylation.html#cb461-7"></a>p_el_invivo_<span class="fl">7.5</span></span></code></pre></div>
+<pre><code>## [[1]]</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<pre><code>## Warning: Removed 63 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 63 rows containing missing values (geom_point).</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="Single-cell-methylation_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<pre><code>## 
+## [[2]]</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<pre><code>## Warning: Removed 588 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 588 rows containing missing values (geom_point).</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="Single-cell-methylation_files/figure-html/unnamed-chunk-26-2.png" width="672" /></p>
+<pre><code>## 
+## [[3]]</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<pre><code>## Warning: Removed 3 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 3 rows containing missing values (geom_point).</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="Single-cell-methylation_files/figure-html/unnamed-chunk-26-3.png" width="672" /></p>
+</div>
+<div id="figure-6a" class="section level3 hasAnchor">
+<h3><span class="header-section-number">7.2.2</span> Figure 6A<a href="single-cell-methylation.html#figure-6a" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="single-cell-methylation.html#cb477-1"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">10</span>, <span class="dt">repr.plot.height =</span> <span class="dv">15</span>)</span>
+<span id="cb477-2"><a href="single-cell-methylation.html#cb477-2"></a></span>
+<span id="cb477-3"><a href="single-cell-methylation.html#cb477-3"></a>p_el_invivo_<span class="fl">7.5</span>_circle &lt;-<span class="st"> </span>df_ord_invivo <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb477-4"><a href="single-cell-methylation.html#cb477-4"></a><span class="st">    </span><span class="kw">filter</span>(day <span class="op">==</span><span class="st"> &quot;e7.5&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb477-5"><a href="single-cell-methylation.html#cb477-5"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">germ_layer =</span> <span class="kw">factor</span>(germ_layer, <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;ecto&quot;</span>, <span class="st">&quot;meso&quot;</span>, <span class="st">&quot;endo&quot;</span>))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb477-6"><a href="single-cell-methylation.html#cb477-6"></a><span class="st">    </span><span class="kw">plot_cc_circle</span>(<span class="dt">point_size=</span><span class="fl">0.4</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb477-7"><a href="single-cell-methylation.html#cb477-7"></a><span class="st">    </span><span class="kw">facet_grid</span>(germ_layer<span class="op">~</span>.) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb477-8"><a href="single-cell-methylation.html#cb477-8"></a><span class="st">    </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.1</span>, <span class="fl">0.15</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb477-9"><a href="single-cell-methylation.html#cb477-9"></a><span class="st">    </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.15</span>, <span class="fl">1.9</span>), <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.12</span>, <span class="fl">0.14</span>))</span>
+<span id="cb477-10"><a href="single-cell-methylation.html#cb477-10"></a>p_el_invivo_<span class="fl">7.5</span>_circle  <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">aspect.ratio=</span><span class="dv">1</span>) </span></code></pre></div>
+<p><img src="Single-cell-methylation_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="single-cell-methylation.html#cb478-1"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">8</span>, <span class="dt">repr.plot.height =</span> <span class="dv">8</span>)</span>
+<span id="cb478-2"><a href="single-cell-methylation.html#cb478-2"></a>germ_layer_colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ecto&quot;</span> =<span class="st"> &quot;#5A9E30&quot;</span>, <span class="st">&quot;meso&quot;</span> =<span class="st"> &quot;#BE89B7&quot;</span>, <span class="st">&quot;endo&quot;</span> =<span class="st"> &quot;#ED4F93&quot;</span>)</span>
+<span id="cb478-3"><a href="single-cell-methylation.html#cb478-3"></a>df &lt;-<span class="st"> </span>df_ord_ab_score_invivo <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb478-4"><a href="single-cell-methylation.html#cb478-4"></a><span class="st">    </span><span class="kw">filter</span>(cg_cont <span class="op">==</span><span class="st"> &#39;(0,0.02]&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb478-5"><a href="single-cell-methylation.html#cb478-5"></a><span class="st">    </span><span class="kw">group_by</span>(germ_layer) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb478-6"><a href="single-cell-methylation.html#cb478-6"></a><span class="st">    </span><span class="kw">do</span>({<span class="kw">calc_cc_early_late_ab_diff</span>(., <span class="dt">low =</span> <span class="st">&quot;(-1.46,-0.734]&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;(0.281,1.63]&quot;</span>)}) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb478-7"><a href="single-cell-methylation.html#cb478-7"></a><span class="st">    </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb478-8"><a href="single-cell-methylation.html#cb478-8"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">germ_layer =</span> <span class="kw">factor</span>(germ_layer, <span class="dt">levels =</span> <span class="kw">names</span>(germ_layer_colors))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb478-9"><a href="single-cell-methylation.html#cb478-9"></a><span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(germ_layer)) </span>
+<span id="cb478-10"><a href="single-cell-methylation.html#cb478-10"></a></span>
+<span id="cb478-11"><a href="single-cell-methylation.html#cb478-11"></a>df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb478-12"><a href="single-cell-methylation.html#cb478-12"></a><span class="st">    </span><span class="kw">pivot_longer</span>(<span class="dt">names_sep=</span><span class="st">&quot;_&quot;</span>, <span class="dt">names_prefix=</span><span class="st">&quot;avg_&quot;</span>, <span class="dt">cols=</span><span class="kw">starts_with</span>(<span class="st">&quot;avg&quot;</span>), <span class="dt">names_to=</span><span class="kw">c</span>(<span class="st">&quot;tor&quot;</span>, <span class="st">&quot;ab_score&quot;</span>, <span class="st">&quot;dummy&quot;</span>), <span class="dt">values_to=</span><span class="st">&quot;avg&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb478-13"><a href="single-cell-methylation.html#cb478-13"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">ab_score =</span> forcats<span class="op">::</span><span class="kw">fct_recode</span>(<span class="kw">factor</span>(ab_score), <span class="st">&quot;A-phil&quot;</span> =<span class="st"> &quot;l&quot;</span>, <span class="st">&quot;B-phil&quot;</span> =<span class="st"> &quot;h&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb478-14"><a href="single-cell-methylation.html#cb478-14"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">germ_layer =</span> <span class="kw">factor</span>(germ_layer, <span class="dt">levels =</span> <span class="kw">names</span>(germ_layer_colors))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb478-15"><a href="single-cell-methylation.html#cb478-15"></a><span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(line)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb478-16"><a href="single-cell-methylation.html#cb478-16"></a><span class="st">    </span><span class="kw">filter</span>(cg_cont <span class="op">==</span><span class="st"> &quot;(0,0.02]&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning in is.na(line): is.na() applied to non-(list or vector) of type
+## &#39;closure&#39;</code></pre>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="single-cell-methylation.html#cb480-1"></a><span class="co"># show ecto trends on endo and meso</span></span>
+<span id="cb480-2"><a href="single-cell-methylation.html#cb480-2"></a>df_ecto &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(germ_layer <span class="op">==</span><span class="st"> &quot;ecto&quot;</span>)</span>
+<span id="cb480-3"><a href="single-cell-methylation.html#cb480-3"></a>df_ecto &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(df_ecto <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">germ_layer =</span> <span class="st">&quot;meso&quot;</span>), df_ecto <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">germ_layer =</span> <span class="st">&quot;endo&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb480-4"><a href="single-cell-methylation.html#cb480-4"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">germ_layer =</span> <span class="kw">factor</span>(germ_layer, <span class="dt">levels =</span> <span class="kw">names</span>(germ_layer_colors)))</span></code></pre></div>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="single-cell-methylation.html#cb481-1"></a>df_max_repli &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb481-2"><a href="single-cell-methylation.html#cb481-2"></a><span class="st">    </span><span class="kw">group_by</span>(germ_layer, tor) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb481-3"><a href="single-cell-methylation.html#cb481-3"></a><span class="st">    </span><span class="kw">filter</span>(ord2 <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>, ord2 <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb481-4"><a href="single-cell-methylation.html#cb481-4"></a><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">s =</span> ord2[<span class="kw">which.max</span>(early_late_cov)])</span>
+<span id="cb481-5"><a href="single-cell-methylation.html#cb481-5"></a>df_max_repli</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+## # groups: germ_layer
+##   germ_layer   tor        s
+## 1       ecto early 1.651786
+## 2       ecto  late 1.651786
+## 3       meso early 1.661822
+## 4       meso  late 1.661822
+## 5       endo early 1.570423
+## 6       endo  late 1.570423</code></pre>
+</div>
+<div id="figure-6c" class="section level3 hasAnchor">
+<h3><span class="header-section-number">7.2.3</span> Figure 6C<a href="single-cell-methylation.html#figure-6c" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="single-cell-methylation.html#cb483-1"></a>p_ab_trend_invivo &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb483-2"><a href="single-cell-methylation.html#cb483-2"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">germ_layer =</span> <span class="kw">factor</span>(germ_layer, <span class="dt">levels =</span> <span class="kw">names</span>(germ_layer_colors))) <span class="op">%&gt;%</span></span>
+<span id="cb483-3"><a href="single-cell-methylation.html#cb483-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>ord2, <span class="dt">y=</span>avg, <span class="dt">color=</span>ab_score)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb483-4"><a href="single-cell-methylation.html#cb483-4"></a><span class="st">        </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;loess&quot;</span>, <span class="dt">span=</span><span class="fl">0.2</span>, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">size=</span><span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb483-5"><a href="single-cell-methylation.html#cb483-5"></a><span class="st">        </span><span class="kw">geom_smooth</span>(<span class="dt">data =</span> df_ecto <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ab_score <span class="op">==</span><span class="st"> &quot;A-phil&quot;</span>), <span class="dt">method=</span><span class="st">&quot;loess&quot;</span>, <span class="dt">span=</span><span class="fl">0.2</span>, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">size=</span><span class="fl">0.5</span>, <span class="dt">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="dt">color=</span><span class="st">&quot;gray&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb483-6"><a href="single-cell-methylation.html#cb483-6"></a><span class="st">        </span><span class="kw">geom_smooth</span>(<span class="dt">data =</span> df_ecto <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ab_score <span class="op">==</span><span class="st"> &quot;B-phil&quot;</span>), <span class="dt">method=</span><span class="st">&quot;loess&quot;</span>, <span class="dt">span=</span><span class="fl">0.2</span>, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">size=</span><span class="fl">0.5</span>, <span class="dt">linetype=</span><span class="st">&quot;dotted&quot;</span>, <span class="dt">color=</span><span class="st">&quot;gray&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb483-7"><a href="single-cell-methylation.html#cb483-7"></a><span class="st">        </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">expand=</span><span class="dv">0</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb483-8"><a href="single-cell-methylation.html#cb483-8"></a><span class="st">        </span>ggsci<span class="op">::</span><span class="kw">scale_color_lancet</span>(<span class="dt">name =</span> <span class="st">&quot;CpGs&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb483-9"><a href="single-cell-methylation.html#cb483-9"></a><span class="st">        </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> s), <span class="dt">data =</span> df_max_repli, <span class="dt">color =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb483-10"><a href="single-cell-methylation.html#cb483-10"></a><span class="st">        </span><span class="kw">facet_grid</span>(germ_layer<span class="op">~</span>tor) <span class="op">+</span><span class="st">  </span></span>
+<span id="cb483-11"><a href="single-cell-methylation.html#cb483-11"></a><span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb483-12"><a href="single-cell-methylation.html#cb483-12"></a><span class="st">        </span><span class="kw">ylab</span>(<span class="st">&quot;Methylation&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb483-13"><a href="single-cell-methylation.html#cb483-13"></a><span class="st">        </span><span class="kw">theme</span>(</span>
+<span id="cb483-14"><a href="single-cell-methylation.html#cb483-14"></a>            <span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>(), </span>
+<span id="cb483-15"><a href="single-cell-methylation.html#cb483-15"></a>            <span class="dt">axis.ticks.x =</span> <span class="kw">element_blank</span>()</span>
+<span id="cb483-16"><a href="single-cell-methylation.html#cb483-16"></a>        ) </span>
+<span id="cb483-17"><a href="single-cell-methylation.html#cb483-17"></a></span>
+<span id="cb483-18"><a href="single-cell-methylation.html#cb483-18"></a>p_ab_trend_invivo</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;
+## `geom_smooth()` using formula &#39;y ~ x&#39;
+## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="Single-cell-methylation_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+</div>
+<div id="extended-data-figure-9g" class="section level3 hasAnchor">
+<h3><span class="header-section-number">7.2.4</span> Extended Data Figure 9G<a href="single-cell-methylation.html#extended-data-figure-9g" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="single-cell-methylation.html#cb485-1"></a>germ_layer_colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ecto&quot;</span> =<span class="st"> &quot;#5A9E30&quot;</span>, <span class="st">&quot;meso&quot;</span> =<span class="st"> &quot;#BE89B7&quot;</span>, <span class="st">&quot;endo&quot;</span> =<span class="st"> &quot;#ED4F93&quot;</span>)</span>
+<span id="cb485-2"><a href="single-cell-methylation.html#cb485-2"></a>df_diff &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">distinct</span>(cell_id, cg_cont, day, germ_layer, ord2, tor, ab_score, avg)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">spread</span>(ab_score, avg) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">diff =</span> <span class="st">`</span><span class="dt">B-phil</span><span class="st">`</span> <span class="op">-</span><span class="st"> `</span><span class="dt">A-phil</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ord2 <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1</span>, ord2 <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">ord_grp =</span> <span class="kw">cut</span>(ord2, <span class="dv">3</span>, <span class="dt">include.lowest=</span><span class="ot">TRUE</span>, <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;S-start&quot;</span>, <span class="st">&quot;S-mid&quot;</span>, <span class="st">&quot;S-end&quot;</span>)))</span>
+<span id="cb485-3"><a href="single-cell-methylation.html#cb485-3"></a>p_ab_diff &lt;-<span class="st"> </span>df_diff <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>ord_grp, <span class="dt">y=</span>diff, <span class="dt">fill=</span>germ_layer)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>(<span class="dt">outlier.shape=</span><span class="ot">NA</span>) <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(.<span class="op">~</span>tor) <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_manual</span>(<span class="dt">name=</span><span class="st">&quot;&quot;</span>, <span class="dt">values=</span>germ_layer_colors) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;B-phil - A-phil&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span>ggforce<span class="op">::</span><span class="kw">geom_sina</span>(<span class="dt">size=</span><span class="fl">0.01</span>, <span class="dt">alpha=</span><span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span><span class="kw">vertical_labs</span>() <span class="op">+</span><span class="st"> </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.04</span>, <span class="fl">0.06</span>))</span>
+<span id="cb485-4"><a href="single-cell-methylation.html#cb485-4"></a></span>
+<span id="cb485-5"><a href="single-cell-methylation.html#cb485-5"></a>p_ab_diff</span></code></pre></div>
+<p><img src="Single-cell-methylation_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="single-cell-methylation.html#cb486-1"></a>df_diff <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(tor, ord_grp, germ_layer) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(germ_layer)</span></code></pre></div>
+<pre><code>## # A tibble: 18 x 4
+##     tor ord_grp germ_layer   n
+## 1 early S-start       ecto 198
+## 2 early   S-mid       ecto 199
+## 3 early   S-end       ecto 198
+## 4  late S-start       ecto 198
+## 5  late   S-mid       ecto 199
+## 6  late   S-end       ecto 198
+## # ... with 12 more rows</code></pre>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="single-cell-methylation.html#cb488-1"></a>df_diff <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(tor, ord_grp) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">do</span>({broom<span class="op">::</span><span class="kw">tidy</span>(<span class="kw">ks.test</span>(.<span class="op">$</span>diff[.<span class="op">$</span>germ_layer <span class="op">==</span><span class="st"> &quot;ecto&quot;</span>], .<span class="op">$</span>diff[.<span class="op">$</span>germ_layer <span class="op">==</span><span class="st"> &quot;meso&quot;</span>]))}) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">type =</span> <span class="st">&quot;ecto vs meso&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">stars =</span> <span class="kw">case_when</span>(p.value <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.0001</span> <span class="op">~</span><span class="st"> &quot;****&quot;</span>, p.value <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.001</span> <span class="op">~</span><span class="st"> &quot;***&quot;</span>, p.value <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.01</span> <span class="op">~</span><span class="st"> &quot;**&quot;</span>, p.value <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.05</span> <span class="op">~</span><span class="st"> &quot;*&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 8
+## # groups: tor, ord_grp
+##     tor ord_grp statistic      p.value                             method
+## 1 early S-start 0.3774929 4.440892e-16 Two-sample Kolmogorov-Smirnov test
+## 2 early   S-mid 0.3640675 3.996803e-15 Two-sample Kolmogorov-Smirnov test
+## 3 early   S-end 0.3658460 3.663736e-15 Two-sample Kolmogorov-Smirnov test
+## 4  late S-start 0.2272727 4.183555e-06 Two-sample Kolmogorov-Smirnov test
+## 5  late   S-mid 0.2105753 2.425034e-05 Two-sample Kolmogorov-Smirnov test
+## 6  late   S-end 0.3532197 3.708145e-14 Two-sample Kolmogorov-Smirnov test
+##   alternative         type stars
+## 1   two-sided ecto vs meso  ****
+## 2   two-sided ecto vs meso  ****
+## 3   two-sided ecto vs meso  ****
+## 4   two-sided ecto vs meso  ****
+## 5   two-sided ecto vs meso  ****
+## 6   two-sided ecto vs meso  ****</code></pre>
+<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="single-cell-methylation.html#cb490-1"></a>df_diff <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(tor, ord_grp) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">do</span>({broom<span class="op">::</span><span class="kw">tidy</span>(<span class="kw">ks.test</span>(.<span class="op">$</span>diff[.<span class="op">$</span>germ_layer <span class="op">==</span><span class="st"> &quot;endo&quot;</span>], .<span class="op">$</span>diff[.<span class="op">$</span>germ_layer <span class="op">==</span><span class="st"> &quot;meso&quot;</span>]))}) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">type =</span> <span class="st">&quot;endo vs meso&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">stars =</span> <span class="kw">case_when</span>(p.value <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.0001</span> <span class="op">~</span><span class="st"> &quot;****&quot;</span>, p.value <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.001</span> <span class="op">~</span><span class="st"> &quot;***&quot;</span>, p.value <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.01</span> <span class="op">~</span><span class="st"> &quot;**&quot;</span>, p.value <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.05</span> <span class="op">~</span><span class="st"> &quot;*&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 8
+## # groups: tor, ord_grp
+##     tor ord_grp statistic       p.value                             method
+## 1 early S-start 0.4212963 0.00040083315 Two-sample Kolmogorov-Smirnov test
+## 2 early   S-mid 0.3951311 0.00113293441 Two-sample Kolmogorov-Smirnov test
+## 3 early   S-end 0.4107955 0.00044987569 Two-sample Kolmogorov-Smirnov test
+## 4  late S-start 0.3201567 0.01508288017 Two-sample Kolmogorov-Smirnov test
+## 5  late   S-mid 0.2827715 0.04390086425 Two-sample Kolmogorov-Smirnov test
+## 6  late   S-end 0.4809091 0.00001812592 Two-sample Kolmogorov-Smirnov test
+##   alternative         type stars
+## 1   two-sided endo vs meso   ***
+## 2   two-sided endo vs meso    **
+## 3   two-sided endo vs meso   ***
+## 4   two-sided endo vs meso     *
+## 5   two-sided endo vs meso     *
+## 6   two-sided endo vs meso  ****</code></pre>
+<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="single-cell-methylation.html#cb492-1"></a>df_diff <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(tor, ord_grp) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">do</span>({broom<span class="op">::</span><span class="kw">tidy</span>(<span class="kw">ks.test</span>(.<span class="op">$</span>diff[.<span class="op">$</span>germ_layer <span class="op">==</span><span class="st"> &quot;ecto&quot;</span>], .<span class="op">$</span>diff[.<span class="op">$</span>germ_layer <span class="op">==</span><span class="st"> &quot;endo&quot;</span>]))}) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">type =</span> <span class="st">&quot;ecto vs endo&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">stars =</span> <span class="kw">case_when</span>(p.value <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.0001</span> <span class="op">~</span><span class="st"> &quot;****&quot;</span>, p.value <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.001</span> <span class="op">~</span><span class="st"> &quot;***&quot;</span>, p.value <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.01</span> <span class="op">~</span><span class="st"> &quot;**&quot;</span>, p.value <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.05</span> <span class="op">~</span><span class="st"> &quot;*&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 8
+## # groups: tor, ord_grp
+##     tor ord_grp  statistic    p.value                             method
+## 1 early S-start 0.10732323 0.94277838 Two-sample Kolmogorov-Smirnov test
+## 2 early   S-mid 0.08856784 0.98966542 Two-sample Kolmogorov-Smirnov test
+## 3 early   S-end 0.16767677 0.50363651 Two-sample Kolmogorov-Smirnov test
+## 4  late S-start 0.17171717 0.49845073 Two-sample Kolmogorov-Smirnov test
+## 5  late   S-mid 0.13086265 0.80670065 Two-sample Kolmogorov-Smirnov test
+## 6  late   S-end 0.29272727 0.03484286 Two-sample Kolmogorov-Smirnov test
+##   alternative         type stars
+## 1   two-sided ecto vs endo  &lt;NA&gt;
+## 2   two-sided ecto vs endo  &lt;NA&gt;
+## 3   two-sided ecto vs endo  &lt;NA&gt;
+## 4   two-sided ecto vs endo  &lt;NA&gt;
+## 5   two-sided ecto vs endo  &lt;NA&gt;
+## 6   two-sided ecto vs endo     *</code></pre>
+</div>
+</div>
+<div id="plot-ebs-cell-cycle" class="section level2 hasAnchor">
+<h2><span class="header-section-number">7.3</span> Plot EBs cell cycle<a href="single-cell-methylation.html#plot-ebs-cell-cycle" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="single-cell-methylation.html#cb494-1"></a>df_ord_ebs &lt;-<span class="st"> </span>df_ord_ebs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(day <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;d5&quot;</span>, <span class="st">&quot;d6&quot;</span>))  </span></code></pre></div>
+<div id="figure-6de" class="section level3 hasAnchor">
+<h3><span class="header-section-number">7.3.1</span> Figure 6D,E<a href="single-cell-methylation.html#figure-6de" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="single-cell-methylation.html#cb495-1"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">10</span>, <span class="dt">repr.plot.height =</span> <span class="dv">7</span>)</span>
+<span id="cb495-2"><a href="single-cell-methylation.html#cb495-2"></a></span>
+<span id="cb495-3"><a href="single-cell-methylation.html#cb495-3"></a>p_el_ebs_circle_wt &lt;-<span class="st"> </span>df_ord_ebs <span class="op">%&gt;%</span><span class="st">         </span></span>
+<span id="cb495-4"><a href="single-cell-methylation.html#cb495-4"></a><span class="st">    </span><span class="kw">filter</span>(line <span class="op">==</span><span class="st"> &quot;wt&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb495-5"><a href="single-cell-methylation.html#cb495-5"></a><span class="st">    </span><span class="kw">plot_cc_circle</span>(<span class="dt">point_size=</span><span class="fl">0.4</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb495-6"><a href="single-cell-methylation.html#cb495-6"></a><span class="st">    </span><span class="kw">facet_grid</span>(type<span class="op">~</span>.) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb495-7"><a href="single-cell-methylation.html#cb495-7"></a><span class="st">    </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.1</span>, <span class="fl">0.15</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb495-8"><a href="single-cell-methylation.html#cb495-8"></a><span class="st">    </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.15</span>, <span class="fl">1.9</span>), <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.12</span>, <span class="fl">0.14</span>))</span>
+<span id="cb495-9"><a href="single-cell-methylation.html#cb495-9"></a></span>
+<span id="cb495-10"><a href="single-cell-methylation.html#cb495-10"></a>p_el_ebs_circle_ko &lt;-<span class="st"> </span>df_ord_ebs <span class="op">%&gt;%</span><span class="st">         </span></span>
+<span id="cb495-11"><a href="single-cell-methylation.html#cb495-11"></a><span class="st">    </span><span class="kw">filter</span>(line <span class="op">!=</span><span class="st"> &quot;wt&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb495-12"><a href="single-cell-methylation.html#cb495-12"></a><span class="st">    </span><span class="kw">plot_cc_circle</span>(<span class="dt">point_size=</span><span class="fl">0.4</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb495-13"><a href="single-cell-methylation.html#cb495-13"></a><span class="st">    </span><span class="kw">facet_grid</span>(type<span class="op">~</span>.) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb495-14"><a href="single-cell-methylation.html#cb495-14"></a><span class="st">    </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.1</span>, <span class="fl">0.15</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb495-15"><a href="single-cell-methylation.html#cb495-15"></a><span class="st">    </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.15</span>, <span class="fl">1.9</span>), <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.12</span>, <span class="fl">0.14</span>))</span>
+<span id="cb495-16"><a href="single-cell-methylation.html#cb495-16"></a></span>
+<span id="cb495-17"><a href="single-cell-methylation.html#cb495-17"></a>p_el_ebs_circle_wt <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">aspect.ratio=</span><span class="dv">1</span>) </span></code></pre></div>
+<p><img src="Single-cell-methylation_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="single-cell-methylation.html#cb496-1"></a>p_el_ebs_circle_ko <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">aspect.ratio=</span><span class="dv">1</span>) </span></code></pre></div>
+<p><img src="Single-cell-methylation_files/figure-html/unnamed-chunk-35-2.png" width="672" /></p>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="single-cell-methylation.html#cb497-1"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">10</span>, <span class="dt">repr.plot.height =</span> <span class="dv">7</span>)</span>
+<span id="cb497-2"><a href="single-cell-methylation.html#cb497-2"></a>dff &lt;-<span class="st"> </span>df_ord_ebs <span class="op">%&gt;%</span><span class="st">    </span></span>
+<span id="cb497-3"><a href="single-cell-methylation.html#cb497-3"></a><span class="st">    </span><span class="kw">filter</span>(line <span class="op">==</span><span class="st"> &quot;wt&quot;</span>) </span>
+<span id="cb497-4"><a href="single-cell-methylation.html#cb497-4"></a></span>
+<span id="cb497-5"><a href="single-cell-methylation.html#cb497-5"></a>p_el_ebs_wt &lt;-<span class="st"> </span><span class="kw">map</span>(<span class="kw">c</span>(<span class="st">&quot;d6&quot;</span>, <span class="st">&quot;d5&quot;</span>), <span class="op">~</span><span class="st"> </span>dff <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb497-6"><a href="single-cell-methylation.html#cb497-6"></a><span class="st">            </span><span class="kw">filter</span>(day <span class="op">==</span><span class="st"> </span>.x) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb497-7"><a href="single-cell-methylation.html#cb497-7"></a><span class="st">            </span><span class="kw">plot_cc_early_late_meth</span>(<span class="dt">point_size=</span><span class="fl">0.1</span>, <span class="dt">add_trend_lines =</span> <span class="ot">TRUE</span>, <span class="dt">y_lim =</span> <span class="kw">c</span>(<span class="fl">0.7</span>, <span class="dv">1</span>), <span class="dt">plot_phase_lines =</span> <span class="ot">FALSE</span>, <span class="dt">trend_ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">1.2</span>)))</span>
+<span id="cb497-8"><a href="single-cell-methylation.html#cb497-8"></a></span>
+<span id="cb497-9"><a href="single-cell-methylation.html#cb497-9"></a>p_el_ebs_wt</span></code></pre></div>
+<pre><code>## [[1]]</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<pre><code>## Warning: Removed 39 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 39 rows containing missing values (geom_point).</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="Single-cell-methylation_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<pre><code>## 
+## [[2]]</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<pre><code>## Warning: Removed 12 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 12 rows containing missing values (geom_point).</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="Single-cell-methylation_files/figure-html/unnamed-chunk-36-2.png" width="672" /></p>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="single-cell-methylation.html#cb508-1"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">10</span>, <span class="dt">repr.plot.height =</span> <span class="dv">7</span>)</span>
+<span id="cb508-2"><a href="single-cell-methylation.html#cb508-2"></a>dff &lt;-<span class="st"> </span>df_ord_ebs <span class="op">%&gt;%</span><span class="st">    </span></span>
+<span id="cb508-3"><a href="single-cell-methylation.html#cb508-3"></a><span class="st">    </span><span class="kw">filter</span>(line <span class="op">!=</span><span class="st"> &quot;wt&quot;</span>) </span>
+<span id="cb508-4"><a href="single-cell-methylation.html#cb508-4"></a></span>
+<span id="cb508-5"><a href="single-cell-methylation.html#cb508-5"></a>p_el_ebs_ko &lt;-<span class="st"> </span><span class="kw">map</span>(<span class="kw">c</span>(<span class="st">&quot;ko3a&quot;</span>, <span class="st">&quot;ko3b&quot;</span>), <span class="op">~</span><span class="st"> </span>dff <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb508-6"><a href="single-cell-methylation.html#cb508-6"></a><span class="st">            </span><span class="kw">filter</span>(line <span class="op">==</span><span class="st"> </span>.x) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb508-7"><a href="single-cell-methylation.html#cb508-7"></a><span class="st">            </span><span class="kw">plot_cc_early_late_meth</span>(<span class="dt">point_size=</span><span class="fl">0.1</span>, <span class="dt">add_trend_lines =</span> <span class="ot">TRUE</span>, <span class="dt">y_lim =</span> <span class="kw">c</span>(<span class="fl">0.7</span>, <span class="dv">1</span>), <span class="dt">plot_phase_lines =</span> <span class="ot">FALSE</span>, <span class="dt">trend_ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">1.2</span>)))</span>
+<span id="cb508-8"><a href="single-cell-methylation.html#cb508-8"></a></span>
+<span id="cb508-9"><a href="single-cell-methylation.html#cb508-9"></a>p_el_ebs_ko[[<span class="dv">1</span>]]</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<pre><code>## Warning: Removed 9 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 9 rows containing missing values (geom_point).</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="Single-cell-methylation_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<div id="explanation" class="section level4 hasAnchor">
+<h4><span class="header-section-number">7.3.1.1</span> Explanation<a href="single-cell-methylation.html#explanation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<pre class="math"><code>ab_score = mA - mB = mA(ko) - mB(ko) = B - A
+a_score = mA - mWT = mA(ko) - mWT = B - (A + B) = -A
+b_score = mB - mWT = mB(ko) - mWT = A - (A + B) = -B</code></pre>
+<blockquote>
+<p>(m prefix indicates methylation. Without prefix - activity.)</p>
+</blockquote>
+<p>Therefore:</p>
+<ul>
+<li>Low <code>ab_score</code> =&gt; A &gt; B, high <code>ab_score</code> =&gt; B &gt; A</li>
+<li>Low <code>a_score</code> =&gt; high activity of A</li>
+<li>Low <code>b_score</code> =&gt; high activity of B</li>
+</ul>
+<p>We will show:</p>
+<ol style="list-style-type: decimal">
+<li>Methylation of wt stratified by the activity of A and B (<code>ab_score</code>)</li>
+<li>Methylation of 3A-/- stratified by the activity of B (<code>b_score</code>)</li>
+<li>Methylation of 3B-/- stratified by the activity of A (<code>a_score</code>)</li>
+</ol>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="single-cell-methylation.html#cb514-1"></a>line_colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;wt&quot;</span> =<span class="st"> &quot;darkblue&quot;</span>, <span class="st">&quot;ko3a&quot;</span> =<span class="st"> &quot;purple&quot;</span>, <span class="st">&quot;ko3b&quot;</span> =<span class="st"> &quot;orange&quot;</span>)</span>
+<span id="cb514-2"><a href="single-cell-methylation.html#cb514-2"></a></span>
+<span id="cb514-3"><a href="single-cell-methylation.html#cb514-3"></a>df_ebs &lt;-<span class="st"> </span>df_ord_ab_score_ebs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(day <span class="op">==</span><span class="st"> &quot;d5&quot;</span>, cg_cont <span class="op">==</span><span class="st"> &#39;(0,0.02]&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">distinct</span>(cell_id, ord2, early_late_cov, day, line)</span>
+<span id="cb514-4"><a href="single-cell-methylation.html#cb514-4"></a></span>
+<span id="cb514-5"><a href="single-cell-methylation.html#cb514-5"></a></span>
+<span id="cb514-6"><a href="single-cell-methylation.html#cb514-6"></a>df_ebs_wt &lt;-<span class="st"> </span>tor_ab_meth <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb514-7"><a href="single-cell-methylation.html#cb514-7"></a><span class="st">    </span><span class="kw">inner_join</span>(df_ebs) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb514-8"><a href="single-cell-methylation.html#cb514-8"></a><span class="st">    </span><span class="kw">filter</span>(line <span class="op">==</span><span class="st"> &quot;wt&quot;</span>) <span class="op">%&gt;%</span><span class="st">     </span></span>
+<span id="cb514-9"><a href="single-cell-methylation.html#cb514-9"></a><span class="st">    </span><span class="kw">do</span>({<span class="kw">calc_cc_early_late_ab_diff</span>(., <span class="dt">low =</span> <span class="st">&quot;(-1.46,-0.734]&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;(0.281,1.63]&quot;</span>)})</span></code></pre></div>
+<pre><code>## Joining, by = &quot;cell_id&quot;</code></pre>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="single-cell-methylation.html#cb516-1"></a><span class="co"># methylation of 3B-/- stratified by activity of A (a_score)</span></span>
+<span id="cb516-2"><a href="single-cell-methylation.html#cb516-2"></a>df_ebs_ko3b &lt;-<span class="st"> </span>tor_a_meth <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb516-3"><a href="single-cell-methylation.html#cb516-3"></a><span class="st">    </span><span class="kw">inner_join</span>(df_ebs) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb516-4"><a href="single-cell-methylation.html#cb516-4"></a><span class="st">    </span><span class="kw">filter</span>(line <span class="op">==</span><span class="st"> &quot;ko3b&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb516-5"><a href="single-cell-methylation.html#cb516-5"></a><span class="st">    </span><span class="kw">rename</span>(<span class="dt">ab_score =</span> a_score) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb516-6"><a href="single-cell-methylation.html#cb516-6"></a><span class="st">    </span><span class="kw">do</span>({<span class="kw">calc_cc_early_late_ab_diff</span>(., <span class="dt">low =</span> <span class="st">&quot;(-1.21,-0.638]&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;(0.125,0.678]&quot;</span>)})</span></code></pre></div>
+<pre><code>## Joining, by = &quot;cell_id&quot;</code></pre>
+<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="single-cell-methylation.html#cb518-1"></a><span class="co"># methylation of 3A-/- stratified by activity of B (b_score)</span></span>
+<span id="cb518-2"><a href="single-cell-methylation.html#cb518-2"></a>df_ebs_ko3a &lt;-<span class="st"> </span>tor_b_meth <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb518-3"><a href="single-cell-methylation.html#cb518-3"></a><span class="st">    </span><span class="kw">inner_join</span>(df_ebs) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb518-4"><a href="single-cell-methylation.html#cb518-4"></a><span class="st">    </span><span class="kw">filter</span>(line <span class="op">==</span><span class="st"> &quot;ko3a&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb518-5"><a href="single-cell-methylation.html#cb518-5"></a><span class="st">    </span><span class="kw">rename</span>(<span class="dt">ab_score =</span> b_score) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb518-6"><a href="single-cell-methylation.html#cb518-6"></a><span class="st">    </span><span class="kw">do</span>({<span class="kw">calc_cc_early_late_ab_diff</span>(., <span class="dt">low =</span> <span class="st">&quot;(-1,-0.17]&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;(0.123,0.396]&quot;</span>)})</span></code></pre></div>
+<pre><code>## Joining, by = &quot;cell_id&quot;</code></pre>
+<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="single-cell-methylation.html#cb520-1"></a>df_ebs &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(</span>
+<span id="cb520-2"><a href="single-cell-methylation.html#cb520-2"></a>    df_ebs_wt,</span>
+<span id="cb520-3"><a href="single-cell-methylation.html#cb520-3"></a>    df_ebs_ko3a,</span>
+<span id="cb520-4"><a href="single-cell-methylation.html#cb520-4"></a>    df_ebs_ko3b</span>
+<span id="cb520-5"><a href="single-cell-methylation.html#cb520-5"></a>) </span>
+<span id="cb520-6"><a href="single-cell-methylation.html#cb520-6"></a></span>
+<span id="cb520-7"><a href="single-cell-methylation.html#cb520-7"></a>df_ebs &lt;-<span class="st"> </span>df_ebs <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb520-8"><a href="single-cell-methylation.html#cb520-8"></a><span class="st">    </span><span class="kw">pivot_longer</span>(<span class="dt">names_sep=</span><span class="st">&quot;_&quot;</span>, <span class="dt">names_prefix=</span><span class="st">&quot;avg_&quot;</span>, <span class="dt">cols=</span><span class="kw">starts_with</span>(<span class="st">&quot;avg&quot;</span>), <span class="dt">names_to=</span><span class="kw">c</span>(<span class="st">&quot;tor&quot;</span>, <span class="st">&quot;ab_score&quot;</span>, <span class="st">&quot;dummy&quot;</span>), <span class="dt">values_to=</span><span class="st">&quot;avg&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb520-9"><a href="single-cell-methylation.html#cb520-9"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">ab_score =</span> forcats<span class="op">::</span><span class="kw">fct_recode</span>(<span class="kw">factor</span>(ab_score), <span class="st">&quot;Favoring&quot;</span> =<span class="st"> &quot;l&quot;</span>, <span class="st">&quot;Opposing&quot;</span> =<span class="st"> &quot;h&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb520-10"><a href="single-cell-methylation.html#cb520-10"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">line =</span> <span class="kw">factor</span>(line, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;wt&quot;</span>, <span class="st">&quot;ko3b&quot;</span>, <span class="st">&quot;ko3a&quot;</span>))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb520-11"><a href="single-cell-methylation.html#cb520-11"></a><span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(line)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb520-12"><a href="single-cell-methylation.html#cb520-12"></a><span class="st">    </span><span class="kw">filter</span>(cg_cont <span class="op">==</span><span class="st"> &quot;(0,0.02]&quot;</span>) </span>
+<span id="cb520-13"><a href="single-cell-methylation.html#cb520-13"></a></span>
+<span id="cb520-14"><a href="single-cell-methylation.html#cb520-14"></a>df_ebs &lt;-<span class="st"> </span>df_ebs <span class="op">%&gt;%</span><span class="st">     </span></span>
+<span id="cb520-15"><a href="single-cell-methylation.html#cb520-15"></a><span class="st">    </span><span class="kw">group_by</span>(line, tor, ab_score) <span class="op">%&gt;%</span></span>
+<span id="cb520-16"><a href="single-cell-methylation.html#cb520-16"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">trend =</span> <span class="kw">loess</span>(avg<span class="op">~</span>ord2, <span class="dt">span=</span><span class="fl">0.2</span>)<span class="op">$</span>fitted) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb520-17"><a href="single-cell-methylation.html#cb520-17"></a><span class="st">    </span><span class="kw">group_by</span>(line, tor, ab_score) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb520-18"><a href="single-cell-methylation.html#cb520-18"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">max_ab =</span> <span class="kw">max</span>(trend[ord2 <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span>ord2 <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1</span>], <span class="dt">na.rm=</span><span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb520-19"><a href="single-cell-methylation.html#cb520-19"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">trend_norm =</span> (trend <span class="op">-</span><span class="st"> </span>max_ab) <span class="op">/</span><span class="st"> </span>(max_ab <span class="op">/</span><span class="st"> </span><span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="single-cell-methylation.html#cb521-1"></a>df_max_repli_ebs &lt;-<span class="st"> </span>df_ebs <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb521-2"><a href="single-cell-methylation.html#cb521-2"></a><span class="st">    </span><span class="kw">group_by</span>(line, tor) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb521-3"><a href="single-cell-methylation.html#cb521-3"></a><span class="st">    </span><span class="kw">filter</span>(ord2 <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>, ord2 <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb521-4"><a href="single-cell-methylation.html#cb521-4"></a><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">s =</span> ord2[<span class="kw">which.max</span>(early_late_cov)])</span>
+<span id="cb521-5"><a href="single-cell-methylation.html#cb521-5"></a>df_max_repli_ebs</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+## # groups: line
+##   line   tor        s
+## 1   wt early 1.604009
+## 2   wt  late 1.604009
+## 3 ko3b early 1.463781
+## 4 ko3b  late 1.463781
+## 5 ko3a early 1.441504
+## 6 ko3a  late 1.441504</code></pre>
+</div>
+</div>
+<div id="figure-6fg-extended-data-figure-9i" class="section level3 hasAnchor">
+<h3><span class="header-section-number">7.3.2</span> Figure 6F,G, Extended Data Figure 9I<a href="single-cell-methylation.html#figure-6fg-extended-data-figure-9i" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="single-cell-methylation.html#cb523-1"></a>p_ab_trend_ebs1 &lt;-<span class="st"> </span>df_ebs <span class="op">%&gt;%</span></span>
+<span id="cb523-2"><a href="single-cell-methylation.html#cb523-2"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>ord2, <span class="dt">y=</span>trend, <span class="dt">color=</span>ab_score)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb523-3"><a href="single-cell-methylation.html#cb523-3"></a><span class="st">        </span><span class="kw">geom_line</span>(<span class="dt">size=</span><span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb523-4"><a href="single-cell-methylation.html#cb523-4"></a><span class="st">        </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">expand=</span><span class="dv">0</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb523-5"><a href="single-cell-methylation.html#cb523-5"></a><span class="st">        </span>ggsci<span class="op">::</span><span class="kw">scale_color_jama</span>(<span class="dt">name =</span> <span class="st">&quot;CpGs&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb523-6"><a href="single-cell-methylation.html#cb523-6"></a><span class="st">        </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> s), <span class="dt">data =</span> df_max_repli_ebs, <span class="dt">color =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb523-7"><a href="single-cell-methylation.html#cb523-7"></a><span class="st">        </span><span class="kw">facet_grid</span>(line<span class="op">~</span>tor) <span class="op">+</span><span class="st">  </span></span>
+<span id="cb523-8"><a href="single-cell-methylation.html#cb523-8"></a><span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb523-9"><a href="single-cell-methylation.html#cb523-9"></a><span class="st">        </span><span class="kw">ylab</span>(<span class="st">&quot;Methylation&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb523-10"><a href="single-cell-methylation.html#cb523-10"></a><span class="st">        </span><span class="kw">theme</span>(</span>
+<span id="cb523-11"><a href="single-cell-methylation.html#cb523-11"></a>            <span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>(), </span>
+<span id="cb523-12"><a href="single-cell-methylation.html#cb523-12"></a>            <span class="dt">axis.ticks.x =</span> <span class="kw">element_blank</span>()</span>
+<span id="cb523-13"><a href="single-cell-methylation.html#cb523-13"></a>        ) </span>
+<span id="cb523-14"><a href="single-cell-methylation.html#cb523-14"></a></span>
+<span id="cb523-15"><a href="single-cell-methylation.html#cb523-15"></a>p_ab_trend_ebs_norm &lt;-<span class="st"> </span>df_ebs <span class="op">%&gt;%</span></span>
+<span id="cb523-16"><a href="single-cell-methylation.html#cb523-16"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>ord2, <span class="dt">y=</span>trend_norm, <span class="dt">color=</span>ab_score)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb523-17"><a href="single-cell-methylation.html#cb523-17"></a><span class="st">        </span><span class="kw">geom_line</span>(<span class="dt">size=</span><span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb523-18"><a href="single-cell-methylation.html#cb523-18"></a><span class="st">        </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">expand=</span><span class="dv">0</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb523-19"><a href="single-cell-methylation.html#cb523-19"></a><span class="st">        </span>ggsci<span class="op">::</span><span class="kw">scale_color_jama</span>(<span class="dt">name =</span> <span class="st">&quot;CpGs&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb523-20"><a href="single-cell-methylation.html#cb523-20"></a><span class="st">        </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> s), <span class="dt">data =</span> df_max_repli_ebs, <span class="dt">color =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb523-21"><a href="single-cell-methylation.html#cb523-21"></a><span class="st">        </span><span class="kw">facet_grid</span>(line<span class="op">~</span>tor) <span class="op">+</span><span class="st">  </span></span>
+<span id="cb523-22"><a href="single-cell-methylation.html#cb523-22"></a><span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb523-23"><a href="single-cell-methylation.html#cb523-23"></a><span class="st">        </span><span class="kw">ylab</span>(<span class="st">&quot;Normalized methylation trend&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb523-24"><a href="single-cell-methylation.html#cb523-24"></a><span class="st">        </span><span class="kw">theme</span>(</span>
+<span id="cb523-25"><a href="single-cell-methylation.html#cb523-25"></a>            <span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>(), </span>
+<span id="cb523-26"><a href="single-cell-methylation.html#cb523-26"></a>            <span class="dt">axis.ticks.x =</span> <span class="kw">element_blank</span>()</span>
+<span id="cb523-27"><a href="single-cell-methylation.html#cb523-27"></a>        ) </span>
+<span id="cb523-28"><a href="single-cell-methylation.html#cb523-28"></a></span>
+<span id="cb523-29"><a href="single-cell-methylation.html#cb523-29"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">14</span>, <span class="dt">repr.plot.height =</span> <span class="dv">8</span>)</span>
+<span id="cb523-30"><a href="single-cell-methylation.html#cb523-30"></a>p_ab_trend_ebs1 <span class="op">+</span><span class="st"> </span>p_ab_trend_ebs_norm</span></code></pre></div>
+<p><img src="Single-cell-methylation_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p>Using the ab-score</p>
+<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="single-cell-methylation.html#cb524-1"></a>line_colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;wt&quot;</span> =<span class="st"> &quot;darkblue&quot;</span>, <span class="st">&quot;ko3a&quot;</span> =<span class="st"> &quot;purple&quot;</span>, <span class="st">&quot;ko3b&quot;</span> =<span class="st"> &quot;orange&quot;</span>)</span>
+<span id="cb524-2"><a href="single-cell-methylation.html#cb524-2"></a></span>
+<span id="cb524-3"><a href="single-cell-methylation.html#cb524-3"></a>df_ebs &lt;-<span class="st"> </span>df_ord_ab_score_ebs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(day <span class="op">==</span><span class="st"> &quot;d5&quot;</span>, cg_cont <span class="op">==</span><span class="st"> &#39;(0,0.02]&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb524-4"><a href="single-cell-methylation.html#cb524-4"></a><span class="st">    </span><span class="kw">group_by</span>(line) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb524-5"><a href="single-cell-methylation.html#cb524-5"></a><span class="st">    </span><span class="kw">do</span>({<span class="kw">calc_cc_early_late_ab_diff</span>(., <span class="dt">low =</span> <span class="st">&quot;(-1.46,-0.734]&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;(0.281,1.63]&quot;</span>)}) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb524-6"><a href="single-cell-methylation.html#cb524-6"></a><span class="st">    </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb524-7"><a href="single-cell-methylation.html#cb524-7"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">line =</span> <span class="kw">factor</span>(line, <span class="dt">levels =</span> <span class="kw">names</span>(line_colors))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb524-8"><a href="single-cell-methylation.html#cb524-8"></a><span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(line)) </span>
+<span id="cb524-9"><a href="single-cell-methylation.html#cb524-9"></a></span>
+<span id="cb524-10"><a href="single-cell-methylation.html#cb524-10"></a>df_ebs &lt;-<span class="st"> </span>df_ebs <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb524-11"><a href="single-cell-methylation.html#cb524-11"></a><span class="st">    </span><span class="kw">pivot_longer</span>(<span class="dt">names_sep=</span><span class="st">&quot;_&quot;</span>, <span class="dt">names_prefix=</span><span class="st">&quot;avg_&quot;</span>, <span class="dt">cols=</span><span class="kw">starts_with</span>(<span class="st">&quot;avg&quot;</span>), <span class="dt">names_to=</span><span class="kw">c</span>(<span class="st">&quot;tor&quot;</span>, <span class="st">&quot;ab_score&quot;</span>, <span class="st">&quot;dummy&quot;</span>), <span class="dt">values_to=</span><span class="st">&quot;avg&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb524-12"><a href="single-cell-methylation.html#cb524-12"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">ab_score =</span> forcats<span class="op">::</span><span class="kw">fct_recode</span>(<span class="kw">factor</span>(ab_score), <span class="st">&quot;A-phil&quot;</span> =<span class="st"> &quot;l&quot;</span>, <span class="st">&quot;B-phil&quot;</span> =<span class="st"> &quot;h&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb524-13"><a href="single-cell-methylation.html#cb524-13"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">line =</span> <span class="kw">factor</span>(line, <span class="dt">levels =</span> <span class="kw">names</span>(line_colors))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb524-14"><a href="single-cell-methylation.html#cb524-14"></a><span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(line)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb524-15"><a href="single-cell-methylation.html#cb524-15"></a><span class="st">    </span><span class="kw">filter</span>(cg_cont <span class="op">==</span><span class="st"> &quot;(0,0.02]&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="single-cell-methylation.html#cb525-1"></a>df_max_repli_ebs &lt;-<span class="st"> </span>df_ebs <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb525-2"><a href="single-cell-methylation.html#cb525-2"></a><span class="st">    </span><span class="kw">group_by</span>(line, tor) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb525-3"><a href="single-cell-methylation.html#cb525-3"></a><span class="st">    </span><span class="kw">filter</span>(ord2 <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>, ord2 <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb525-4"><a href="single-cell-methylation.html#cb525-4"></a><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">s =</span> ord2[<span class="kw">which.max</span>(early_late_cov)])</span>
+<span id="cb525-5"><a href="single-cell-methylation.html#cb525-5"></a>df_max_repli_ebs</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+## # groups: line
+##   line   tor        s
+## 1   wt early 1.604009
+## 2   wt  late 1.604009
+## 3 ko3a early 1.441504
+## 4 ko3a  late 1.441504
+## 5 ko3b early 1.463781
+## 6 ko3b  late 1.463781</code></pre>
+</div>
+<div id="figure-6d" class="section level3 hasAnchor">
+<h3><span class="header-section-number">7.3.3</span> Figure 6D<a href="single-cell-methylation.html#figure-6d" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="single-cell-methylation.html#cb527-1"></a>p_ab_trend_ebs &lt;-<span class="st"> </span>df_ebs <span class="op">%&gt;%</span></span>
+<span id="cb527-2"><a href="single-cell-methylation.html#cb527-2"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>ord2, <span class="dt">y=</span>avg, <span class="dt">color=</span>ab_score)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb527-3"><a href="single-cell-methylation.html#cb527-3"></a><span class="st">        </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;loess&quot;</span>, <span class="dt">span=</span><span class="fl">0.2</span>, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">size=</span><span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb527-4"><a href="single-cell-methylation.html#cb527-4"></a><span class="st">        </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">expand=</span><span class="dv">0</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb527-5"><a href="single-cell-methylation.html#cb527-5"></a><span class="st">        </span>ggsci<span class="op">::</span><span class="kw">scale_color_lancet</span>(<span class="dt">name =</span> <span class="st">&quot;CpGs&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb527-6"><a href="single-cell-methylation.html#cb527-6"></a><span class="st">        </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> s), <span class="dt">data =</span> df_max_repli_ebs, <span class="dt">color =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></span>
+<span id="cb527-7"><a href="single-cell-methylation.html#cb527-7"></a><span class="st">        </span><span class="kw">facet_grid</span>(line<span class="op">~</span>tor) <span class="op">+</span><span class="st">  </span></span>
+<span id="cb527-8"><a href="single-cell-methylation.html#cb527-8"></a><span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb527-9"><a href="single-cell-methylation.html#cb527-9"></a><span class="st">        </span><span class="kw">ylab</span>(<span class="st">&quot;Methylation&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb527-10"><a href="single-cell-methylation.html#cb527-10"></a><span class="st">        </span><span class="kw">theme</span>(</span>
+<span id="cb527-11"><a href="single-cell-methylation.html#cb527-11"></a>            <span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>(), </span>
+<span id="cb527-12"><a href="single-cell-methylation.html#cb527-12"></a>            <span class="dt">axis.ticks.x =</span> <span class="kw">element_blank</span>()</span>
+<span id="cb527-13"><a href="single-cell-methylation.html#cb527-13"></a>        ) </span>
+<span id="cb527-14"><a href="single-cell-methylation.html#cb527-14"></a></span>
+<span id="cb527-15"><a href="single-cell-methylation.html#cb527-15"></a>p_ab_trend_ebs</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="Single-cell-methylation_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="single-cell-methylation.html#cb529-1"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">5</span>, <span class="dt">repr.plot.height =</span> <span class="dv">5</span>)</span>
+<span id="cb529-2"><a href="single-cell-methylation.html#cb529-2"></a></span>
+<span id="cb529-3"><a href="single-cell-methylation.html#cb529-3"></a>line_colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;wt&quot;</span> =<span class="st"> &quot;darkblue&quot;</span>, <span class="st">&quot;ko3a&quot;</span> =<span class="st"> &quot;purple&quot;</span>, <span class="st">&quot;ko3b&quot;</span> =<span class="st"> &quot;orange&quot;</span>)</span>
+<span id="cb529-4"><a href="single-cell-methylation.html#cb529-4"></a></span>
+<span id="cb529-5"><a href="single-cell-methylation.html#cb529-5"></a>df_diff &lt;-<span class="st"> </span>df_ebs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">distinct</span>(cell_id, cg_cont, day, line, ord2, tor, ab_score, avg)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">spread</span>(ab_score, avg) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">diff =</span> <span class="st">`</span><span class="dt">B-phil</span><span class="st">`</span> <span class="op">-</span><span class="st"> `</span><span class="dt">A-phil</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ord2 <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1</span>, ord2 <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>)</span>
+<span id="cb529-6"><a href="single-cell-methylation.html#cb529-6"></a></span>
+<span id="cb529-7"><a href="single-cell-methylation.html#cb529-7"></a>p_diff &lt;-<span class="st"> </span>df_diff <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb529-8"><a href="single-cell-methylation.html#cb529-8"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">line =</span> <span class="kw">factor</span>(line, <span class="dt">levels =</span> <span class="kw">names</span>(line_colors))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb529-9"><a href="single-cell-methylation.html#cb529-9"></a><span class="st">    </span><span class="kw">unite</span>(<span class="st">&quot;type&quot;</span>, line, tor, <span class="dt">sep=</span><span class="st">&quot; &quot;</span>, <span class="dt">remove=</span><span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb529-10"><a href="single-cell-methylation.html#cb529-10"></a><span class="st">    </span><span class="kw">group_by</span>(type) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb529-11"><a href="single-cell-methylation.html#cb529-11"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">mean_diff =</span> <span class="kw">mean</span>(diff)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb529-12"><a href="single-cell-methylation.html#cb529-12"></a><span class="st">    </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb529-13"><a href="single-cell-methylation.html#cb529-13"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">type =</span> <span class="kw">gsub</span>(<span class="st">&quot;ko3a&quot;</span>, <span class="st">&quot;3a-/-&quot;</span>, type), </span>
+<span id="cb529-14"><a href="single-cell-methylation.html#cb529-14"></a>          <span class="dt">type =</span> <span class="kw">gsub</span>(<span class="st">&quot;ko3b&quot;</span>, <span class="st">&quot;3b-/-&quot;</span>, type)</span>
+<span id="cb529-15"><a href="single-cell-methylation.html#cb529-15"></a>          ) <span class="op">%&gt;%</span></span>
+<span id="cb529-16"><a href="single-cell-methylation.html#cb529-16"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">type =</span> forcats<span class="op">::</span><span class="kw">fct_reorder</span>(type, <span class="op">-</span>mean_diff)) <span class="op">%&gt;%</span></span>
+<span id="cb529-17"><a href="single-cell-methylation.html#cb529-17"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>type, <span class="dt">y=</span>diff, <span class="dt">fill=</span>line)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb529-18"><a href="single-cell-methylation.html#cb529-18"></a><span class="st">        </span><span class="kw">geom_boxplot</span>(<span class="dt">outlier.shape=</span><span class="ot">NA</span>) <span class="op">+</span><span class="st">         </span></span>
+<span id="cb529-19"><a href="single-cell-methylation.html#cb529-19"></a><span class="st">        </span><span class="kw">scale_fill_manual</span>(<span class="dt">name=</span><span class="st">&quot;&quot;</span>, <span class="dt">values=</span>line_colors) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb529-20"><a href="single-cell-methylation.html#cb529-20"></a><span class="st">        </span><span class="kw">ylab</span>(<span class="st">&quot;B-phil - A-phil&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb529-21"><a href="single-cell-methylation.html#cb529-21"></a><span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb529-22"><a href="single-cell-methylation.html#cb529-22"></a><span class="st">        </span>ggforce<span class="op">::</span><span class="kw">geom_sina</span>(<span class="dt">size=</span><span class="fl">0.01</span>, <span class="dt">alpha=</span><span class="fl">0.05</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb529-23"><a href="single-cell-methylation.html#cb529-23"></a><span class="st">        </span><span class="kw">vertical_labs</span>()</span>
+<span id="cb529-24"><a href="single-cell-methylation.html#cb529-24"></a></span>
+<span id="cb529-25"><a href="single-cell-methylation.html#cb529-25"></a>p_diff</span></code></pre></div>
+<p><img src="Single-cell-methylation_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+</div>
+</div>
+<div id="plot-other-eb-batches" class="section level2 hasAnchor">
+<h2><span class="header-section-number">7.4</span> Plot other EB batches<a href="single-cell-methylation.html#plot-other-eb-batches" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="single-cell-methylation.html#cb530-1"></a>df_cell_cycle_eb_other &lt;-<span class="st"> </span>df_cell_cycle_annot <span class="op">%&gt;%</span><span class="st">  </span></span>
+<span id="cb530-2"><a href="single-cell-methylation.html#cb530-2"></a><span class="st">    </span><span class="kw">filter</span>(line <span class="op">!=</span><span class="st"> &quot;mouse&quot;</span>, day <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;d5&quot;</span>, <span class="st">&quot;d6&quot;</span>), (experiment <span class="op">%in%</span><span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;experiment&quot;</span>, <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">8</span>))), avg_early <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.7</span>, avg_late <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.7</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb530-3"><a href="single-cell-methylation.html#cb530-3"></a><span class="st">    </span><span class="kw">select</span>(cell_id, day, line, sort, experiment, avg_late, avg_early, early, late, early_late_cov, <span class="dt">early_late_diff =</span> meth_late_early_diff)</span></code></pre></div>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="single-cell-methylation.html#cb531-1"></a>l_ebs_other &lt;-<span class="st"> </span>df_cell_cycle_eb_other <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_count</span>(day, line) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(n <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span><span class="st"> </span>plyr<span class="op">::</span><span class="kw">dlply</span>(<span class="kw">c</span>(<span class="st">&quot;day&quot;</span>, <span class="st">&quot;line&quot;</span>), <span class="cf">function</span>(x) <span class="kw">calc_cell_cycle_ord</span>(<span class="kw">as_tibble</span>(x)))</span></code></pre></div>
+<pre><code>## Joining, by = &quot;cell_id&quot;
+## Joining, by = &quot;cell_id&quot;
+## Joining, by = &quot;cell_id&quot;
+## Joining, by = &quot;cell_id&quot;
+## Joining, by = &quot;cell_id&quot;
+## Joining, by = &quot;cell_id&quot;</code></pre>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="single-cell-methylation.html#cb533-1"></a>df_ord_ebs_other &lt;-<span class="st"> </span>l_ebs_other <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb533-2"><a href="single-cell-methylation.html#cb533-2"></a><span class="st">    </span><span class="kw">map_dfr</span>(<span class="op">~</span><span class="st"> </span>.<span class="op">$</span>df) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb533-3"><a href="single-cell-methylation.html#cb533-3"></a><span class="st">    </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb533-4"><a href="single-cell-methylation.html#cb533-4"></a><span class="st">    </span><span class="kw">unite</span>(<span class="st">&quot;type&quot;</span>, day<span class="op">:</span>line, <span class="dt">remove=</span><span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb533-5"><a href="single-cell-methylation.html#cb533-5"></a><span class="st">    </span><span class="kw">group_by</span>(day, line) <span class="op">%&gt;%</span><span class="st">         </span></span>
+<span id="cb533-6"><a href="single-cell-methylation.html#cb533-6"></a><span class="st">    </span><span class="kw">arrange</span>(day, line, <span class="kw">desc</span>(early_late_cov) ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb533-7"><a href="single-cell-methylation.html#cb533-7"></a><span class="st">    </span><span class="kw">mutate</span>(</span>
+<span id="cb533-8"><a href="single-cell-methylation.html#cb533-8"></a>        <span class="dt">new_ord =</span> ord <span class="op">-</span><span class="st"> </span>ord[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span><span class="dv">1</span>, </span>
+<span id="cb533-9"><a href="single-cell-methylation.html#cb533-9"></a>        <span class="dt">new_ord =</span> <span class="kw">ifelse</span>(new_ord <span class="op">&gt;=</span><span class="st"> </span><span class="dv">0</span>, new_ord, <span class="kw">max</span>(new_ord) <span class="op">+</span><span class="st"> </span><span class="kw">abs</span>(<span class="kw">min</span>(new_ord)) <span class="op">-</span><span class="st"> </span><span class="kw">abs</span>(new_ord)),</span>
+<span id="cb533-10"><a href="single-cell-methylation.html#cb533-10"></a>        <span class="dt">ord1 =</span> new_ord <span class="op">/</span><span class="st"> </span><span class="kw">max</span>(new_ord)</span>
+<span id="cb533-11"><a href="single-cell-methylation.html#cb533-11"></a>    ) <span class="op">%&gt;%</span><span class="st">    </span></span>
+<span id="cb533-12"><a href="single-cell-methylation.html#cb533-12"></a><span class="st">    </span><span class="kw">mutate</span>(</span>
+<span id="cb533-13"><a href="single-cell-methylation.html#cb533-13"></a>        <span class="dt">trend =</span> zoo<span class="op">::</span><span class="kw">rollmean</span>(early_late_cov[<span class="kw">order</span>(ord1)], <span class="dv">20</span>, <span class="dt">na.pad =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb533-14"><a href="single-cell-methylation.html#cb533-14"></a>        <span class="dt">i_mid =</span> zoo<span class="op">::</span><span class="kw">rollmean</span>(ord1[<span class="kw">order</span>(ord1)],<span class="dv">20</span>)[<span class="kw">which.min</span>(trend)],</span>
+<span id="cb533-15"><a href="single-cell-methylation.html#cb533-15"></a>        <span class="dt">ord2 =</span> i_mid <span class="op">-</span><span class="st"> </span>ord1,</span>
+<span id="cb533-16"><a href="single-cell-methylation.html#cb533-16"></a>        <span class="dt">ord2 =</span> ord2 <span class="op">-</span><span class="st"> </span><span class="kw">floor</span>(ord2)</span>
+<span id="cb533-17"><a href="single-cell-methylation.html#cb533-17"></a>    ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb533-18"><a href="single-cell-methylation.html#cb533-18"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">type =</span> <span class="kw">factor</span>(type, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;d6_wt&quot;</span>, <span class="st">&quot;d5_wt&quot;</span>, <span class="st">&quot;d5_ko3a&quot;</span>, <span class="st">&quot;d5_ko3b&quot;</span>, <span class="st">&quot;d6_ko3a&quot;</span>, <span class="st">&quot;d6_ko3b&quot;</span>))) <span class="op">%fcache_df%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/cell_cycle/ebs_other.tsv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="single-cell-methylation.html#cb534-1"></a>df_ord_cgc_ebs_other &lt;-<span class="st"> </span>tor_cgc_meth <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb534-2"><a href="single-cell-methylation.html#cb534-2"></a><span class="st">    </span><span class="kw">inner_join</span>(df_ord_ebs_other <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(cell_id, day, line, type, ord2, early_late_cov)) </span></code></pre></div>
+<pre><code>## Joining, by = &quot;cell_id&quot;</code></pre>
+<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="single-cell-methylation.html#cb536-1"></a>df_ord_ab_score_ebs_other &lt;-<span class="st"> </span>tor_ab_meth <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb536-2"><a href="single-cell-methylation.html#cb536-2"></a><span class="st">    </span><span class="kw">inner_join</span>(df_ord_ebs_other <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(cell_id, day, line, type, ord2, early_late_cov))</span></code></pre></div>
+<pre><code>## Joining, by = &quot;cell_id&quot;</code></pre>
+<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="single-cell-methylation.html#cb538-1"></a>df_ord_ebs_other &lt;-<span class="st"> </span>df_ord_ebs_other <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(day <span class="op">==</span><span class="st"> &quot;d5&quot;</span>)</span></code></pre></div>
+<div id="extended-data-figure-9h" class="section level3 hasAnchor">
+<h3><span class="header-section-number">7.4.1</span> Extended Data Figure 9H<a href="single-cell-methylation.html#extended-data-figure-9h" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="single-cell-methylation.html#cb539-1"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">10</span>, <span class="dt">repr.plot.height =</span> <span class="dv">7</span>)</span>
+<span id="cb539-2"><a href="single-cell-methylation.html#cb539-2"></a></span>
+<span id="cb539-3"><a href="single-cell-methylation.html#cb539-3"></a>p_el_ebs_circle_wt_other &lt;-<span class="st"> </span>df_ord_ebs_other <span class="op">%&gt;%</span><span class="st">         </span></span>
+<span id="cb539-4"><a href="single-cell-methylation.html#cb539-4"></a><span class="st">    </span><span class="kw">filter</span>(line <span class="op">==</span><span class="st"> &quot;wt&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb539-5"><a href="single-cell-methylation.html#cb539-5"></a><span class="st">    </span><span class="kw">plot_cc_circle</span>(<span class="dt">point_size=</span><span class="fl">0.4</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb539-6"><a href="single-cell-methylation.html#cb539-6"></a><span class="st">    </span><span class="kw">facet_grid</span>(type<span class="op">~</span>.) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb539-7"><a href="single-cell-methylation.html#cb539-7"></a><span class="st">    </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.1</span>, <span class="fl">0.15</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb539-8"><a href="single-cell-methylation.html#cb539-8"></a><span class="st">    </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.15</span>, <span class="fl">1.9</span>), <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.12</span>, <span class="fl">0.14</span>))</span>
+<span id="cb539-9"><a href="single-cell-methylation.html#cb539-9"></a></span>
+<span id="cb539-10"><a href="single-cell-methylation.html#cb539-10"></a>p_el_ebs_circle_ko_other &lt;-<span class="st"> </span>df_ord_ebs_other <span class="op">%&gt;%</span><span class="st">         </span></span>
+<span id="cb539-11"><a href="single-cell-methylation.html#cb539-11"></a><span class="st">    </span><span class="kw">filter</span>(line <span class="op">!=</span><span class="st"> &quot;wt&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb539-12"><a href="single-cell-methylation.html#cb539-12"></a><span class="st">    </span><span class="kw">plot_cc_circle</span>(<span class="dt">point_size=</span><span class="fl">0.4</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb539-13"><a href="single-cell-methylation.html#cb539-13"></a><span class="st">    </span><span class="kw">facet_grid</span>(type<span class="op">~</span>.) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb539-14"><a href="single-cell-methylation.html#cb539-14"></a><span class="st">    </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.1</span>, <span class="fl">0.15</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb539-15"><a href="single-cell-methylation.html#cb539-15"></a><span class="st">    </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.15</span>, <span class="fl">1.9</span>), <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.12</span>, <span class="fl">0.14</span>))</span>
+<span id="cb539-16"><a href="single-cell-methylation.html#cb539-16"></a></span>
+<span id="cb539-17"><a href="single-cell-methylation.html#cb539-17"></a>p_el_ebs_circle_wt_other <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">aspect.ratio=</span><span class="dv">1</span>) </span></code></pre></div>
+<p><img src="Single-cell-methylation_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="single-cell-methylation.html#cb540-1"></a>p_el_ebs_circle_ko_other <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">aspect.ratio=</span><span class="dv">1</span>) </span></code></pre></div>
+<p><img src="Single-cell-methylation_files/figure-html/unnamed-chunk-50-2.png" width="672" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="yagi-et-al..html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="differential-methylation-in-eb-day-6.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

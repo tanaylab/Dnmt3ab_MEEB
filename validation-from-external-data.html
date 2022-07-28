@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Validation from external data | DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation</title>
+  <meta name="description" content="Analysis and code for the paper: DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Validation from external data | DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Analysis and code for the paper: DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
+  <meta name="github-repo" content="tanaylab/Dnmt3ab_MEEB" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Validation from external data | DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
+  
+  <meta name="twitter:description" content="Analysis and code for the paper: DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
+  
+
+<meta name="author" content="Aviezer Lifshitz" />
+
+
+<meta name="date" content="2022-07-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ab-sequence-model.html"/>
+<link rel="next" href="mallona-et-al.-nar-2020.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#run-the-notebooks"><i class="fa fa-check"></i><b>1.1</b> Run the notebooks</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#download-the-umi-matrices"><i class="fa fa-check"></i><b>1.2</b> Download the UMI matrices</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#notebook-order"><i class="fa fa-check"></i><b>1.3</b> Notebook order</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html"><i class="fa fa-check"></i><b>2</b> Methylation trends in EB days 0-6</a><ul>
+<li class="chapter" data-level="2.0.1" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#initialize-definitions"><i class="fa fa-check"></i><b>2.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="2.0.2" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#load-data"><i class="fa fa-check"></i><b>2.0.2</b> Load data</a></li>
+<li class="chapter" data-level="2.0.3" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#cluster"><i class="fa fa-check"></i><b>2.0.3</b> Cluster</a></li>
+<li class="chapter" data-level="2.0.4" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#project-dnmt1-data"><i class="fa fa-check"></i><b>2.0.4</b> Project DNMT1 data</a></li>
+<li class="chapter" data-level="2.1" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#plot-global-eb-trends"><i class="fa fa-check"></i><b>2.1</b> Plot global EB trends</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#figure-4a"><i class="fa fa-check"></i><b>2.1.1</b> Figure 4A</a></li>
+<li class="chapter" data-level="2.1.2" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#extended-data-figure-8k"><i class="fa fa-check"></i><b>2.1.2</b> Extended Data Figure 8K</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#cluster-methylation-in-days-5-and-6-with-dko"><i class="fa fa-check"></i><b>2.2</b> cluster methylation in days 5 and 6 with DKO</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#project-dko-on-day-1-4-clusters"><i class="fa fa-check"></i><b>2.2.1</b> Project DKO on day 1-4 clusters</a></li>
+<li class="chapter" data-level="2.2.2" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#figure-4c"><i class="fa fa-check"></i><b>2.2.2</b> Figure 4C</a></li>
+<li class="chapter" data-level="2.2.3" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#figure-4b"><i class="fa fa-check"></i><b>2.2.3</b> Figure 4B</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html"><i class="fa fa-check"></i><b>3</b> A/B sequence model</a><ul>
+<li class="chapter" data-level="3.0.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#initialize-definitions-1"><i class="fa fa-check"></i><b>3.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="3.0.2" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#get-ab-meth-data"><i class="fa fa-check"></i><b>3.0.2</b> Get A/B meth data</a></li>
+<li class="chapter" data-level="3.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#calculate-models"><i class="fa fa-check"></i><b>3.1</b> Calculate models</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#compute-models"><i class="fa fa-check"></i><b>3.1.1</b> Compute models</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#plot-models-vs-preditions"><i class="fa fa-check"></i><b>3.2</b> Plot models vs preditions</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-4f"><i class="fa fa-check"></i><b>3.2.1</b> Figure 4F</a></li>
+<li class="chapter" data-level="3.2.2" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#plot-glm-model-parameters"><i class="fa fa-check"></i><b>3.2.2</b> Plot GLM model parameters</a></li>
+<li class="chapter" data-level="3.2.3" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-4d"><i class="fa fa-check"></i><b>3.2.3</b> Figure 4D</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#plot-logo"><i class="fa fa-check"></i><b>3.3</b> plot logo</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-4e"><i class="fa fa-check"></i><b>3.3.1</b> Figure 4E</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#test-models-with-closest-cpg-methylation"><i class="fa fa-check"></i><b>3.4</b> Test models with closest CpG methylation</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#compute-model-with-cg-and-gc-content"><i class="fa fa-check"></i><b>3.4.1</b> Compute model with CG and GC content</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#compute-model-with-tor"><i class="fa fa-check"></i><b>3.4.2</b> Compute model with TOR</a></li>
+<li class="chapter" data-level="3.4.3" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#compute-model-with-closest-cpg"><i class="fa fa-check"></i><b>3.4.3</b> Compute model with closest CpG</a></li>
+<li class="chapter" data-level="3.4.4" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#compute-model-with-all-enhancer-methylation"><i class="fa fa-check"></i><b>3.4.4</b> Compute model with all enhancer methylation</a></li>
+<li class="chapter" data-level="3.4.5" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-7a"><i class="fa fa-check"></i><b>3.4.5</b> Figure 7A</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#estimate-prediction-noise"><i class="fa fa-check"></i><b>3.5</b> Estimate prediction noise</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#kinteics-per-time-and-score-bin"><i class="fa fa-check"></i><b>3.5.1</b> Kinteics per time and score bin</a></li>
+<li class="chapter" data-level="3.5.2" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-4g"><i class="fa fa-check"></i><b>3.5.2</b> Figure 4G</a></li>
+<li class="chapter" data-level="3.5.3" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#scores-within-enhancers"><i class="fa fa-check"></i><b>3.5.3</b> Scores within enhancers</a></li>
+<li class="chapter" data-level="3.5.4" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-7b"><i class="fa fa-check"></i><b>3.5.4</b> Figure 7B</a></li>
+<li class="chapter" data-level="3.5.5" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#extract-proaprob-enhancers"><i class="fa fa-check"></i><b>3.5.5</b> Extract proA/proB enhancers</a></li>
+<li class="chapter" data-level="3.5.6" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#no-difference-in-methylation-of-full-enhancers-vs-shuffled"><i class="fa fa-check"></i><b>3.5.6</b> No difference in methylation of full enhancers vs shuffled</a></li>
+<li class="chapter" data-level="3.5.7" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#toatal-enh-methylation-prediction"><i class="fa fa-check"></i><b>3.5.7</b> Toatal enh methylation prediction</a></li>
+<li class="chapter" data-level="3.5.8" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-7c"><i class="fa fa-check"></i><b>3.5.8</b> Figure 7C</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html"><i class="fa fa-check"></i><b>4</b> Validation from external data</a><ul>
+<li class="chapter" data-level="4.0.1" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html#initialize-definitions-2"><i class="fa fa-check"></i><b>4.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="4.0.2" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html#get-ab-meth-data-1"><i class="fa fa-check"></i><b>4.0.2</b> Get A/B meth data</a></li>
+<li class="chapter" data-level="4.0.3" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html#get-meissner-data"><i class="fa fa-check"></i><b>4.0.3</b> Get Meissner data</a></li>
+<li class="chapter" data-level="4.0.4" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html#figure-4h"><i class="fa fa-check"></i><b>4.0.4</b> Figure 4H</a></li>
+<li class="chapter" data-level="4.0.5" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html#figure-4i"><i class="fa fa-check"></i><b>4.0.5</b> Figure 4I</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html"><i class="fa fa-check"></i><b>5</b> Mallona et al. NAR 2020</a><ul>
+<li class="chapter" data-level="5.0.1" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#initialize-definitions-3"><i class="fa fa-check"></i><b>5.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="5.1" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#model-es"><i class="fa fa-check"></i><b>5.1</b> Model ES</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5bc"><i class="fa fa-check"></i><b>5.1.1</b> Figure 5B,C</a></li>
+<li class="chapter" data-level="5.1.2" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5d"><i class="fa fa-check"></i><b>5.1.2</b> Figure 5D</a></li>
+<li class="chapter" data-level="5.1.3" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5e"><i class="fa fa-check"></i><b>5.1.3</b> Figure 5E</a></li>
+<li class="chapter" data-level="5.1.4" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5fg"><i class="fa fa-check"></i><b>5.1.4</b> Figure 5F,G</a></li>
+<li class="chapter" data-level="5.1.5" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5h"><i class="fa fa-check"></i><b>5.1.5</b> Figure 5H</a></li>
+<li class="chapter" data-level="5.1.6" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5i"><i class="fa fa-check"></i><b>5.1.6</b> Figure 5I</a></li>
+<li class="chapter" data-level="5.1.7" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5j"><i class="fa fa-check"></i><b>5.1.7</b> Figure 5J</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="yagi-et-al..html"><a href="yagi-et-al..html"><i class="fa fa-check"></i><b>6</b> Yagi et al. </a><ul>
+<li class="chapter" data-level="6.0.1" data-path="yagi-et-al..html"><a href="yagi-et-al..html#initialize-definitions-4"><i class="fa fa-check"></i><b>6.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="6.0.2" data-path="yagi-et-al..html"><a href="yagi-et-al..html#dmrs"><i class="fa fa-check"></i><b>6.0.2</b> DMRs</a></li>
+<li class="chapter" data-level="6.0.3" data-path="yagi-et-al..html"><a href="yagi-et-al..html#get-meissner-data-1"><i class="fa fa-check"></i><b>6.0.3</b> Get Meissner data</a></li>
+<li class="chapter" data-level="6.0.4" data-path="yagi-et-al..html"><a href="yagi-et-al..html#get-meeb-data"><i class="fa fa-check"></i><b>6.0.4</b> Get MEEB data</a></li>
+<li class="chapter" data-level="6.0.5" data-path="yagi-et-al..html"><a href="yagi-et-al..html#extended-data-figure-8i"><i class="fa fa-check"></i><b>6.0.5</b> Extended Data Figure 8I</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html"><i class="fa fa-check"></i><b>7</b> Single cell methylation</a><ul>
+<li class="chapter" data-level="7.0.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#initialize-definitions-5"><i class="fa fa-check"></i><b>7.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="7.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#generate-cell-cycle-ordering"><i class="fa fa-check"></i><b>7.1</b> Generate cell-cycle ordering</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#in-vivo"><i class="fa fa-check"></i><b>7.1.1</b> In-vivo</a></li>
+<li class="chapter" data-level="7.1.2" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#eb"><i class="fa fa-check"></i><b>7.1.2</b> EB</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#plot-in-vivo-cell-cycle"><i class="fa fa-check"></i><b>7.2</b> Plot in-vivo cell-cycle</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6b"><i class="fa fa-check"></i><b>7.2.1</b> Figure 6B</a></li>
+<li class="chapter" data-level="7.2.2" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6a"><i class="fa fa-check"></i><b>7.2.2</b> Figure 6A</a></li>
+<li class="chapter" data-level="7.2.3" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6c"><i class="fa fa-check"></i><b>7.2.3</b> Figure 6C</a></li>
+<li class="chapter" data-level="7.2.4" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#extended-data-figure-9g"><i class="fa fa-check"></i><b>7.2.4</b> Extended Data Figure 9G</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#plot-ebs-cell-cycle"><i class="fa fa-check"></i><b>7.3</b> Plot EBs cell cycle</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6de"><i class="fa fa-check"></i><b>7.3.1</b> Figure 6D,E</a></li>
+<li class="chapter" data-level="7.3.2" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6fg-extended-data-figure-9i"><i class="fa fa-check"></i><b>7.3.2</b> Figure 6F,G, Extended Data Figure 9I</a></li>
+<li class="chapter" data-level="7.3.3" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6d"><i class="fa fa-check"></i><b>7.3.3</b> Figure 6D</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#plot-other-eb-batches"><i class="fa fa-check"></i><b>7.4</b> Plot other EB batches</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#extended-data-figure-9h"><i class="fa fa-check"></i><b>7.4.1</b> Extended Data Figure 9H</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html"><i class="fa fa-check"></i><b>8</b> Differential methylation in EB day 6</a><ul>
+<li class="chapter" data-level="8.1" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#initialize-definitions-6"><i class="fa fa-check"></i><b>8.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="8.2" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#extract-data"><i class="fa fa-check"></i><b>8.2</b> Extract data</a></li>
+<li class="chapter" data-level="8.3" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#plot-global-differences"><i class="fa fa-check"></i><b>8.3</b> Plot global differences</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#figure-7d"><i class="fa fa-check"></i><b>8.3.1</b> Figure 7D</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#extract-dnmt3a-targets"><i class="fa fa-check"></i><b>8.4</b> Extract DNMT3A targets</a></li>
+<li class="chapter" data-level="8.5" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#plot-distribution-of-ab-score-on-the-differential-regions"><i class="fa fa-check"></i><b>8.5</b> Plot distribution of AB score on the differential regions</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#figure-7e"><i class="fa fa-check"></i><b>8.5.1</b> Figure 7E</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#plot-examples"><i class="fa fa-check"></i><b>8.6</b> Plot examples</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#figure-7g-extended-data-figure-10"><i class="fa fa-check"></i><b>8.6.1</b> Figure 7G, Extended Data Figure 10</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#test-regions-enrichment-vs-gene-expression"><i class="fa fa-check"></i><b>8.7</b> Test regions enrichment vs gene expression</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#figure-7f"><i class="fa fa-check"></i><b>8.7.1</b> Figure 7F</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html"><i class="fa fa-check"></i><b>9</b> QC - bulk methylation</a><ul>
+<li class="chapter" data-level="9.0.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#initialize-definitions-7"><i class="fa fa-check"></i><b>9.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="9.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#probe-design"><i class="fa fa-check"></i><b>9.1</b> Probe design</a></li>
+<li class="chapter" data-level="9.2" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#breakdown-of-probes"><i class="fa fa-check"></i><b>9.2</b> Breakdown of probes</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8b"><i class="fa fa-check"></i><b>9.2.1</b> Extended Data Figure 8B</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#wgbs-e8.5"><i class="fa fa-check"></i><b>9.3</b> WGBS E8.5</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#coverage"><i class="fa fa-check"></i><b>9.3.1</b> Coverage</a></li>
+<li class="chapter" data-level="9.3.2" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8a"><i class="fa fa-check"></i><b>9.3.2</b> Extended Data Figure 8A</a></li>
+<li class="chapter" data-level="9.3.3" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#methylation-distribution-on-target-vs-off-target"><i class="fa fa-check"></i><b>9.3.3</b> Methylation distribution on-target vs off-target</a></li>
+<li class="chapter" data-level="9.3.4" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8c"><i class="fa fa-check"></i><b>9.3.4</b> Extended Data Figure 8C</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#distribution-of-coverage-per-condition"><i class="fa fa-check"></i><b>9.4</b> Distribution of coverage per condition</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8d"><i class="fa fa-check"></i><b>9.4.1</b> Extended Data Figure 8D</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#distribution-of-non-cpgs-methylation-per-condition"><i class="fa fa-check"></i><b>9.5</b> Distribution of non-CpGs methylation per condition</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8h"><i class="fa fa-check"></i><b>9.5.1</b> Extended Data Figure 8H</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#on-target-statistics"><i class="fa fa-check"></i><b>9.6</b> “On target” statistics</a><ul>
+<li class="chapter" data-level="9.6.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8e"><i class="fa fa-check"></i><b>9.6.1</b> Extended Data Figure 8E</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#global-methylation-trend"><i class="fa fa-check"></i><b>9.7</b> Global methylation trend</a><ul>
+<li class="chapter" data-level="9.7.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8g"><i class="fa fa-check"></i><b>9.7.1</b> Extended Data Figure 8G</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html"><i class="fa fa-check"></i><b>10</b> QC - sc methylation</a><ul>
+<li class="chapter" data-level="10.0.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#initialize-definitions-8"><i class="fa fa-check"></i><b>10.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="10.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#distribution-of-chh"><i class="fa fa-check"></i><b>10.1</b> Distribution of %CHH</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9b"><i class="fa fa-check"></i><b>10.1.1</b> Extended Data Figure 9B</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#number-of-cells"><i class="fa fa-check"></i><b>10.2</b> Number of cells</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9a"><i class="fa fa-check"></i><b>10.2.1</b> Extended Data Figure 9A</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#number-of-cpgs"><i class="fa fa-check"></i><b>10.3</b> Number of CpGs</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9c"><i class="fa fa-check"></i><b>10.3.1</b> Extended Data Figure 9C</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#sorting-plots"><i class="fa fa-check"></i><b>10.4</b> Sorting plots</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9d"><i class="fa fa-check"></i><b>10.4.1</b> Extended Data Figure 9D</a></li>
+<li class="chapter" data-level="10.4.2" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9e"><i class="fa fa-check"></i><b>10.4.2</b> Extended Data Figure 9E</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#earlylate-coverage-per-cell-e7.5"><i class="fa fa-check"></i><b>10.5</b> Early/Late coverage per cell (e7.5)</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9f"><i class="fa fa-check"></i><b>10.5.1</b> Extended Data Figure 9F</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="validation-from-external-data" class="section level1 hasAnchor">
+<h1><span class="header-section-number">4</span> Validation from external data<a href="validation-from-external-data.html#validation-from-external-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="initialize-definitions-2" class="section level3 hasAnchor">
+<h3><span class="header-section-number">4.0.1</span> initialize definitions<a href="validation-from-external-data.html#initialize-definitions-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="validation-from-external-data.html#cb237-1"></a><span class="kw">suppressMessages</span>(<span class="kw">suppressWarnings</span>(<span class="kw">source</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;code/init.R&quot;</span>))))</span></code></pre></div>
+</div>
+<div id="get-ab-meth-data-1" class="section level3 hasAnchor">
+<h3><span class="header-section-number">4.0.2</span> Get A/B meth data<a href="validation-from-external-data.html#get-ab-meth-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="validation-from-external-data.html#cb238-1"></a>m &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="kw">here</span>(<span class="st">&quot;output/ebd_day1_to_day4_cpg_meth_mat.tsv&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dAB))</span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="validation-from-external-data.html#cb239-1"></a>m &lt;-<span class="st"> </span><span class="kw">gextract.left_join</span>(<span class="st">&quot;DNMT.ab_score_xgb_plus&quot;</span>, <span class="dt">intervals =</span> m <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end, dAB), <span class="dt">iterator =</span> m, <span class="dt">colnames=</span><span class="st">&quot;score&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>(chrom1<span class="op">:</span>end1)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end, dAB, score) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()</span></code></pre></div>
+</div>
+<div id="get-meissner-data" class="section level3 hasAnchor">
+<h3><span class="header-section-number">4.0.3</span> Get Meissner data<a href="validation-from-external-data.html#get-meissner-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="validation-from-external-data.html#cb240-1"></a>md &lt;-<span class="st"> </span><span class="kw">tribble</span>(<span class="op">~</span>track_name, <span class="op">~</span>sort, <span class="op">~</span>num,</span>
+<span id="cb240-2"><a href="validation-from-external-data.html#cb240-2"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3a_1&quot;</span>, <span class="st">&quot;ko3a&quot;</span>, <span class="dv">1</span>,</span>
+<span id="cb240-3"><a href="validation-from-external-data.html#cb240-3"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3a_2&quot;</span>, <span class="st">&quot;ko3a&quot;</span>, <span class="dv">2</span>,</span>
+<span id="cb240-4"><a href="validation-from-external-data.html#cb240-4"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3a_4&quot;</span>, <span class="st">&quot;ko3a&quot;</span>, <span class="dv">4</span>,</span>
+<span id="cb240-5"><a href="validation-from-external-data.html#cb240-5"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3a_5&quot;</span>, <span class="st">&quot;ko3a&quot;</span>, <span class="dv">5</span>,</span>
+<span id="cb240-6"><a href="validation-from-external-data.html#cb240-6"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3a_6&quot;</span>, <span class="st">&quot;ko3a&quot;</span>, <span class="dv">6</span>,</span>
+<span id="cb240-7"><a href="validation-from-external-data.html#cb240-7"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3b_1&quot;</span>, <span class="st">&quot;ko3b&quot;</span>, <span class="dv">1</span>,</span>
+<span id="cb240-8"><a href="validation-from-external-data.html#cb240-8"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3b_2&quot;</span>, <span class="st">&quot;ko3b&quot;</span>, <span class="dv">2</span>,</span>
+<span id="cb240-9"><a href="validation-from-external-data.html#cb240-9"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3b_3&quot;</span>, <span class="st">&quot;ko3b&quot;</span>, <span class="dv">3</span>,</span>
+<span id="cb240-10"><a href="validation-from-external-data.html#cb240-10"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3b_4&quot;</span>, <span class="st">&quot;ko3b&quot;</span>, <span class="dv">4</span>,</span>
+<span id="cb240-11"><a href="validation-from-external-data.html#cb240-11"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3b_5&quot;</span>, <span class="st">&quot;ko3b&quot;</span>, <span class="dv">5</span>,</span>
+<span id="cb240-12"><a href="validation-from-external-data.html#cb240-12"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3b_6&quot;</span>, <span class="st">&quot;ko3b&quot;</span>, <span class="dv">6</span>,</span>
+<span id="cb240-13"><a href="validation-from-external-data.html#cb240-13"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_WT_4&quot;</span>, <span class="st">&quot;wt&quot;</span>, <span class="dv">4</span>,</span>
+<span id="cb240-14"><a href="validation-from-external-data.html#cb240-14"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_WT_5&quot;</span>, <span class="st">&quot;wt&quot;</span>, <span class="dv">5</span>,</span>
+<span id="cb240-15"><a href="validation-from-external-data.html#cb240-15"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_WT_6&quot;</span>, <span class="st">&quot;wt&quot;</span>, <span class="dv">6</span>,</span>
+<span id="cb240-16"><a href="validation-from-external-data.html#cb240-16"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_WT_7&quot;</span>, <span class="st">&quot;wt&quot;</span>, <span class="dv">7</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb240-17"><a href="validation-from-external-data.html#cb240-17"></a><span class="st">        </span><span class="kw">mutate</span>(<span class="dt">name =</span> <span class="kw">paste0</span>(sort, <span class="st">&quot;_&quot;</span>, num))</span>
+<span id="cb240-18"><a href="validation-from-external-data.html#cb240-18"></a>        </span>
+<span id="cb240-19"><a href="validation-from-external-data.html#cb240-19"></a>m_all_epi6 &lt;-<span class="st"> </span><span class="kw">gextract_meth</span>(<span class="dt">tracks =</span> md<span class="op">$</span>track_name, <span class="dt">names=</span>md<span class="op">$</span>name, <span class="dt">intervals=</span>m <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end), <span class="dt">extract_meth_calls =</span> <span class="ot">TRUE</span>, <span class="dt">iterator =</span> m <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end)) <span class="op">%cache_df%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/meissner_epi_cpg_meth.tsv&quot;</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()    </span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="validation-from-external-data.html#cb241-1"></a>min_cov &lt;-<span class="st"> </span><span class="dv">10</span></span>
+<span id="cb241-2"><a href="validation-from-external-data.html#cb241-2"></a>m_epi6 &lt;-<span class="st"> </span>m_all_epi6 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end)</span>
+<span id="cb241-3"><a href="validation-from-external-data.html#cb241-3"></a><span class="cf">for</span> (g <span class="cf">in</span> <span class="kw">unique</span>(md<span class="op">$</span>sort)){</span>
+<span id="cb241-4"><a href="validation-from-external-data.html#cb241-4"></a>        nms &lt;-<span class="st"> </span>md <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sort <span class="op">==</span><span class="st"> </span>g) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(name)</span>
+<span id="cb241-5"><a href="validation-from-external-data.html#cb241-5"></a></span>
+<span id="cb241-6"><a href="validation-from-external-data.html#cb241-6"></a>        cov_col &lt;-<span class="st"> </span><span class="kw">paste0</span>(g, <span class="st">&quot;.cov&quot;</span>)</span>
+<span id="cb241-7"><a href="validation-from-external-data.html#cb241-7"></a>        meth_col &lt;-<span class="st"> </span><span class="kw">paste0</span>(g, <span class="st">&quot;.meth&quot;</span>)            </span>
+<span id="cb241-8"><a href="validation-from-external-data.html#cb241-8"></a></span>
+<span id="cb241-9"><a href="validation-from-external-data.html#cb241-9"></a>        m_epi6[[cov_col]] &lt;-<span class="st"> </span><span class="kw">rowSums</span>(m_all_epi6[, <span class="kw">paste0</span>(nms, <span class="st">&quot;.cov&quot;</span>)], <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb241-10"><a href="validation-from-external-data.html#cb241-10"></a>        m_epi6[[meth_col]] &lt;-<span class="st"> </span><span class="kw">rowSums</span>(m_all_epi6[, <span class="kw">paste0</span>(nms, <span class="st">&quot;.meth&quot;</span>)], <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb241-11"><a href="validation-from-external-data.html#cb241-11"></a>        </span>
+<span id="cb241-12"><a href="validation-from-external-data.html#cb241-12"></a>        m_epi6[[g]] &lt;-<span class="st"> </span><span class="kw">ifelse</span>(m_epi6[[cov_col]] <span class="op">&gt;=</span><span class="st"> </span>min_cov, m_epi6[[meth_col]] <span class="op">/</span><span class="st"> </span>m_epi6[[cov_col]], <span class="ot">NA</span>)</span>
+<span id="cb241-13"><a href="validation-from-external-data.html#cb241-13"></a>    }</span>
+<span id="cb241-14"><a href="validation-from-external-data.html#cb241-14"></a>m_epi6 &lt;-<span class="st"> </span>m_epi6 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">ends_with</span>(<span class="st">&quot;.meth&quot;</span>), <span class="op">-</span><span class="kw">ends_with</span>(<span class="st">&quot;.cov&quot;</span>))  <span class="op">%cache_df%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/meissner_epi_cpg_meth_sum.tsv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="validation-from-external-data.html#cb242-1"></a>df &lt;-<span class="st"> </span>m_epi6 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dAB_epi6 =</span> ko3a <span class="op">-</span><span class="st"> </span>ko3b) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dAB_epi6)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end, dAB_epi6) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join</span>(m) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dAB))</span></code></pre></div>
+<pre><code>## Joining, by = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;)</code></pre>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="validation-from-external-data.html#cb244-1"></a><span class="kw">dim</span>(df)</span></code></pre></div>
+<pre><code>## [1] 13388     6</code></pre>
+</div>
+<div id="figure-4h" class="section level3 hasAnchor">
+<h3><span class="header-section-number">4.0.4</span> Figure 4H<a href="validation-from-external-data.html#figure-4h" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="validation-from-external-data.html#cb246-1"></a>bandwidth &lt;-<span class="st"> </span><span class="fl">0.06</span></span>
+<span id="cb246-2"><a href="validation-from-external-data.html#cb246-2"></a>point_size =<span class="st"> </span><span class="fl">0.1</span></span>
+<span id="cb246-3"><a href="validation-from-external-data.html#cb246-3"></a>p_epi6_meth &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb246-4"><a href="validation-from-external-data.html#cb246-4"></a><span class="st">    </span><span class="kw">select</span>(dAB, dAB_epi6) <span class="op">%&gt;%</span></span>
+<span id="cb246-5"><a href="validation-from-external-data.html#cb246-5"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">col =</span> <span class="kw">densCols</span>(., <span class="dt">bandwidth=</span>bandwidth,<span class="dt">colramp=</span><span class="kw">colorRampPalette</span>(<span class="kw">c</span>(<span class="st">&quot;white&quot;</span>,<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkblue&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;gold&quot;</span>,<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;red&quot;</span>, <span class="st">&quot;darkred&quot;</span> )))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb246-6"><a href="validation-from-external-data.html#cb246-6"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>dAB, <span class="dt">y=</span>dAB_epi6, <span class="dt">col=</span>col)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb246-7"><a href="validation-from-external-data.html#cb246-7"></a><span class="st">        </span><span class="kw">geom_point</span>(<span class="dt">shape=</span><span class="dv">19</span>, <span class="dt">size=</span>point_size) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb246-8"><a href="validation-from-external-data.html#cb246-8"></a><span class="st">        </span><span class="kw">scale_color_identity</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb246-9"><a href="validation-from-external-data.html#cb246-9"></a><span class="st">        </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">1.4</span>, <span class="fl">1.1</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.4</span>, <span class="fl">0.7</span>)) <span class="op">+</span><span class="st">         </span></span>
+<span id="cb246-10"><a href="validation-from-external-data.html#cb246-10"></a><span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;EB d1-4 (3a-/-) – (3b-/-)&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb246-11"><a href="validation-from-external-data.html#cb246-11"></a><span class="st">        </span><span class="kw">ylab</span>(<span class="st">&quot;Epi (3a-/-) – (3b-/-)&quot;</span>) <span class="op">+</span><span class="st">         </span></span>
+<span id="cb246-12"><a href="validation-from-external-data.html#cb246-12"></a><span class="st">        </span><span class="kw">theme</span>(<span class="dt">aspect.ratio=</span><span class="dv">1</span>, <span class="dt">panel.grid.major=</span><span class="kw">element_blank</span>(), <span class="dt">panel.grid.minor=</span><span class="kw">element_blank</span>()) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb246-13"><a href="validation-from-external-data.html#cb246-13"></a><span class="st">        </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="kw">glue</span>(<span class="st">&quot;r = {cor}&quot;</span>, <span class="dt">cor =</span> <span class="kw">round</span>(<span class="kw">cor</span>(df<span class="op">$</span>dAB_epi6, df<span class="op">$</span>dAB), <span class="dt">digits=</span><span class="dv">2</span>)))</span>
+<span id="cb246-14"><a href="validation-from-external-data.html#cb246-14"></a>p_epi6_meth</span></code></pre></div>
+<p><img src="Sequence-model-validation_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="validation-from-external-data.html#cb247-1"></a>p_epi6_score &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb247-2"><a href="validation-from-external-data.html#cb247-2"></a><span class="st">    </span><span class="kw">select</span>(score, dAB_epi6) <span class="op">%&gt;%</span></span>
+<span id="cb247-3"><a href="validation-from-external-data.html#cb247-3"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">col =</span> <span class="kw">densCols</span>(., <span class="dt">bandwidth=</span>bandwidth,<span class="dt">colramp=</span><span class="kw">colorRampPalette</span>(<span class="kw">c</span>(<span class="st">&quot;white&quot;</span>,<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkblue&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;gold&quot;</span>,<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;red&quot;</span>, <span class="st">&quot;darkred&quot;</span> )))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb247-4"><a href="validation-from-external-data.html#cb247-4"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>score, <span class="dt">y=</span>dAB_epi6, <span class="dt">col=</span>col)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb247-5"><a href="validation-from-external-data.html#cb247-5"></a><span class="st">        </span><span class="kw">geom_point</span>(<span class="dt">shape=</span><span class="dv">19</span>, <span class="dt">size=</span>point_size) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb247-6"><a href="validation-from-external-data.html#cb247-6"></a><span class="st">        </span><span class="kw">scale_color_identity</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb247-7"><a href="validation-from-external-data.html#cb247-7"></a><span class="st">        </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="fl">0.6</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.4</span>, <span class="fl">0.6</span>)) <span class="op">+</span><span class="st">         </span></span>
+<span id="cb247-8"><a href="validation-from-external-data.html#cb247-8"></a><span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;Dinucleotide combined model&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb247-9"><a href="validation-from-external-data.html#cb247-9"></a><span class="st">        </span><span class="kw">ylab</span>(<span class="st">&quot;Epi (3a-/-) – (3b-/-)&quot;</span>) <span class="op">+</span><span class="st">         </span></span>
+<span id="cb247-10"><a href="validation-from-external-data.html#cb247-10"></a><span class="st">        </span><span class="kw">theme</span>(<span class="dt">aspect.ratio=</span><span class="dv">1</span>, <span class="dt">panel.grid.major=</span><span class="kw">element_blank</span>(), <span class="dt">panel.grid.minor=</span><span class="kw">element_blank</span>()) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb247-11"><a href="validation-from-external-data.html#cb247-11"></a><span class="st">        </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="kw">glue</span>(<span class="st">&quot;r = {cor}&quot;</span>, <span class="dt">cor =</span> <span class="kw">round</span>(<span class="kw">cor</span>(df<span class="op">$</span>dAB_epi6, df<span class="op">$</span>score), <span class="dt">digits=</span><span class="dv">2</span>)))</span>
+<span id="cb247-12"><a href="validation-from-external-data.html#cb247-12"></a><span class="kw">round</span>(<span class="kw">cor</span>(df<span class="op">$</span>dAB_epi6, df<span class="op">$</span>score), <span class="dt">digits=</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 0.63</code></pre>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="validation-from-external-data.html#cb249-1"></a>p_epi6_score</span></code></pre></div>
+<p><img src="Sequence-model-validation_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="validation-from-external-data.html#cb250-1"></a>weber_tracks &lt;-<span class="st"> </span><span class="kw">gtrack.ls</span>(<span class="st">&quot;Web.+8_5.+avg&quot;</span>)</span>
+<span id="cb250-2"><a href="validation-from-external-data.html#cb250-2"></a>weber_nms &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;Weber_Genome_Biol_2014.&quot;</span>,<span class="st">&quot;&quot;</span>, weber_tracks)</span>
+<span id="cb250-3"><a href="validation-from-external-data.html#cb250-3"></a>weber_capt &lt;-<span class="st"> </span><span class="kw">gextract.left_join</span>(weber_tracks, <span class="dt">intervals=</span>m, <span class="dt">iterator=</span>m, <span class="dt">colnames=</span>weber_nms) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="validation-from-external-data.html#cb251-1"></a>df_weber &lt;-<span class="st"> </span>weber_capt <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">ko3a =</span> <span class="kw">pmean</span>(E8_<span class="dv">5</span>_3AKO_Rep1.avg, E8_<span class="dv">5</span>_3AKO_Rep2.avg, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), <span class="dt">ko3b =</span> <span class="kw">pmean</span>(E8_<span class="dv">5</span>_3BKO_Rep1.avg, E8_<span class="dv">5</span>_3BKO_Rep2.avg, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dAB_e8.5 =</span> ko3a <span class="op">-</span><span class="st"> </span>ko3b) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dAB_e8<span class="fl">.5</span>), <span class="op">!</span><span class="kw">is.na</span>(dAB))  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end, dAB_e8<span class="fl">.5</span>, score, dAB)</span></code></pre></div>
+</div>
+<div id="figure-4i" class="section level3 hasAnchor">
+<h3><span class="header-section-number">4.0.5</span> Figure 4I<a href="validation-from-external-data.html#figure-4i" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="validation-from-external-data.html#cb252-1"></a>bandwidth &lt;-<span class="st"> </span><span class="fl">0.06</span></span>
+<span id="cb252-2"><a href="validation-from-external-data.html#cb252-2"></a>point_size =<span class="st"> </span><span class="fl">0.1</span></span>
+<span id="cb252-3"><a href="validation-from-external-data.html#cb252-3"></a>p_e8<span class="fl">.5</span>_meth &lt;-<span class="st"> </span>df_weber <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb252-4"><a href="validation-from-external-data.html#cb252-4"></a><span class="st">    </span><span class="kw">select</span>(dAB, dAB_e8<span class="fl">.5</span>) <span class="op">%&gt;%</span></span>
+<span id="cb252-5"><a href="validation-from-external-data.html#cb252-5"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">col =</span> <span class="kw">densCols</span>(., <span class="dt">bandwidth=</span>bandwidth,<span class="dt">colramp=</span><span class="kw">colorRampPalette</span>(<span class="kw">c</span>(<span class="st">&quot;white&quot;</span>,<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkblue&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;gold&quot;</span>,<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;red&quot;</span>, <span class="st">&quot;darkred&quot;</span> )))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb252-6"><a href="validation-from-external-data.html#cb252-6"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>dAB, <span class="dt">y=</span>dAB_e8<span class="fl">.5</span>, <span class="dt">col=</span>col)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb252-7"><a href="validation-from-external-data.html#cb252-7"></a><span class="st">        </span><span class="kw">geom_point</span>(<span class="dt">shape=</span><span class="dv">19</span>, <span class="dt">size=</span>point_size) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb252-8"><a href="validation-from-external-data.html#cb252-8"></a><span class="st">        </span><span class="kw">scale_color_identity</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb252-9"><a href="validation-from-external-data.html#cb252-9"></a><span class="st">        </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">1.4</span>, <span class="fl">1.1</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.4</span>, <span class="fl">0.7</span>)) <span class="op">+</span><span class="st">         </span></span>
+<span id="cb252-10"><a href="validation-from-external-data.html#cb252-10"></a><span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;EB d1-4 (3a-/-) – (3b-/-)&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb252-11"><a href="validation-from-external-data.html#cb252-11"></a><span class="st">        </span><span class="kw">ylab</span>(<span class="st">&quot;E8.5 (3a-/-) – (3b-/-)&quot;</span>) <span class="op">+</span><span class="st">         </span></span>
+<span id="cb252-12"><a href="validation-from-external-data.html#cb252-12"></a><span class="st">        </span><span class="kw">theme</span>(<span class="dt">aspect.ratio=</span><span class="dv">1</span>, <span class="dt">panel.grid.major=</span><span class="kw">element_blank</span>(), <span class="dt">panel.grid.minor=</span><span class="kw">element_blank</span>()) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb252-13"><a href="validation-from-external-data.html#cb252-13"></a><span class="st">        </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="kw">glue</span>(<span class="st">&quot;r = {cor}&quot;</span>, <span class="dt">cor =</span> <span class="kw">round</span>(<span class="kw">cor</span>(df_weber<span class="op">$</span>dAB_e8<span class="fl">.5</span>, df_weber<span class="op">$</span>dAB), <span class="dt">digits=</span><span class="dv">2</span>)))</span>
+<span id="cb252-14"><a href="validation-from-external-data.html#cb252-14"></a>p_e8<span class="fl">.5</span>_meth</span></code></pre></div>
+<p><img src="Sequence-model-validation_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="validation-from-external-data.html#cb253-1"></a>p_e8<span class="fl">.5</span>_score &lt;-<span class="st"> </span>df_weber <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb253-2"><a href="validation-from-external-data.html#cb253-2"></a><span class="st">    </span><span class="kw">select</span>(score, dAB_e8<span class="fl">.5</span>) <span class="op">%&gt;%</span></span>
+<span id="cb253-3"><a href="validation-from-external-data.html#cb253-3"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">col =</span> <span class="kw">densCols</span>(., <span class="dt">bandwidth=</span>bandwidth,<span class="dt">colramp=</span><span class="kw">colorRampPalette</span>(<span class="kw">c</span>(<span class="st">&quot;white&quot;</span>,<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkblue&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;gold&quot;</span>,<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;red&quot;</span>, <span class="st">&quot;darkred&quot;</span> )))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb253-4"><a href="validation-from-external-data.html#cb253-4"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>score, <span class="dt">y=</span>dAB_e8<span class="fl">.5</span>, <span class="dt">col=</span>col)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb253-5"><a href="validation-from-external-data.html#cb253-5"></a><span class="st">        </span><span class="kw">geom_point</span>(<span class="dt">shape=</span><span class="dv">19</span>, <span class="dt">size=</span>point_size) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb253-6"><a href="validation-from-external-data.html#cb253-6"></a><span class="st">        </span><span class="kw">scale_color_identity</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb253-7"><a href="validation-from-external-data.html#cb253-7"></a><span class="st">        </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="fl">0.5</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.25</span>, <span class="fl">0.7</span>)) <span class="op">+</span><span class="st">         </span></span>
+<span id="cb253-8"><a href="validation-from-external-data.html#cb253-8"></a><span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;Dinucleotide combined model&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb253-9"><a href="validation-from-external-data.html#cb253-9"></a><span class="st">        </span><span class="kw">ylab</span>(<span class="st">&quot;E8.5 (3a-/-) – (3b-/-)&quot;</span>) <span class="op">+</span><span class="st">         </span></span>
+<span id="cb253-10"><a href="validation-from-external-data.html#cb253-10"></a><span class="st">        </span><span class="kw">theme</span>(<span class="dt">aspect.ratio=</span><span class="dv">1</span>, <span class="dt">panel.grid.major=</span><span class="kw">element_blank</span>(), <span class="dt">panel.grid.minor=</span><span class="kw">element_blank</span>()) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb253-11"><a href="validation-from-external-data.html#cb253-11"></a><span class="st">        </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="kw">glue</span>(<span class="st">&quot;r = {cor}&quot;</span>, <span class="dt">cor =</span> <span class="kw">round</span>(<span class="kw">cor</span>(df_weber<span class="op">$</span>dAB_e8<span class="fl">.5</span>, df_weber<span class="op">$</span>score), <span class="dt">digits=</span><span class="dv">2</span>)))</span>
+<span id="cb253-12"><a href="validation-from-external-data.html#cb253-12"></a>p_e8<span class="fl">.5</span>_score</span></code></pre></div>
+<p><img src="Sequence-model-validation_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ab-sequence-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="mallona-et-al.-nar-2020.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

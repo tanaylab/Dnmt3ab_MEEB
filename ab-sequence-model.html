@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 A/B sequence model | DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation</title>
+  <meta name="description" content="Analysis and code for the paper: DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 A/B sequence model | DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Analysis and code for the paper: DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
+  <meta name="github-repo" content="tanaylab/Dnmt3ab_MEEB" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 A/B sequence model | DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
+  
+  <meta name="twitter:description" content="Analysis and code for the paper: DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
+  
+
+<meta name="author" content="Aviezer Lifshitz" />
+
+
+<meta name="date" content="2022-07-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="methylation-trends-in-eb-days-0-6.html"/>
+<link rel="next" href="validation-from-external-data.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#run-the-notebooks"><i class="fa fa-check"></i><b>1.1</b> Run the notebooks</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#download-the-umi-matrices"><i class="fa fa-check"></i><b>1.2</b> Download the UMI matrices</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#notebook-order"><i class="fa fa-check"></i><b>1.3</b> Notebook order</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html"><i class="fa fa-check"></i><b>2</b> Methylation trends in EB days 0-6</a><ul>
+<li class="chapter" data-level="2.0.1" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#initialize-definitions"><i class="fa fa-check"></i><b>2.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="2.0.2" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#load-data"><i class="fa fa-check"></i><b>2.0.2</b> Load data</a></li>
+<li class="chapter" data-level="2.0.3" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#cluster"><i class="fa fa-check"></i><b>2.0.3</b> Cluster</a></li>
+<li class="chapter" data-level="2.0.4" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#project-dnmt1-data"><i class="fa fa-check"></i><b>2.0.4</b> Project DNMT1 data</a></li>
+<li class="chapter" data-level="2.1" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#plot-global-eb-trends"><i class="fa fa-check"></i><b>2.1</b> Plot global EB trends</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#figure-4a"><i class="fa fa-check"></i><b>2.1.1</b> Figure 4A</a></li>
+<li class="chapter" data-level="2.1.2" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#extended-data-figure-8k"><i class="fa fa-check"></i><b>2.1.2</b> Extended Data Figure 8K</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#cluster-methylation-in-days-5-and-6-with-dko"><i class="fa fa-check"></i><b>2.2</b> cluster methylation in days 5 and 6 with DKO</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#project-dko-on-day-1-4-clusters"><i class="fa fa-check"></i><b>2.2.1</b> Project DKO on day 1-4 clusters</a></li>
+<li class="chapter" data-level="2.2.2" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#figure-4c"><i class="fa fa-check"></i><b>2.2.2</b> Figure 4C</a></li>
+<li class="chapter" data-level="2.2.3" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#figure-4b"><i class="fa fa-check"></i><b>2.2.3</b> Figure 4B</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html"><i class="fa fa-check"></i><b>3</b> A/B sequence model</a><ul>
+<li class="chapter" data-level="3.0.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#initialize-definitions-1"><i class="fa fa-check"></i><b>3.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="3.0.2" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#get-ab-meth-data"><i class="fa fa-check"></i><b>3.0.2</b> Get A/B meth data</a></li>
+<li class="chapter" data-level="3.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#calculate-models"><i class="fa fa-check"></i><b>3.1</b> Calculate models</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#compute-models"><i class="fa fa-check"></i><b>3.1.1</b> Compute models</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#plot-models-vs-preditions"><i class="fa fa-check"></i><b>3.2</b> Plot models vs preditions</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-4f"><i class="fa fa-check"></i><b>3.2.1</b> Figure 4F</a></li>
+<li class="chapter" data-level="3.2.2" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#plot-glm-model-parameters"><i class="fa fa-check"></i><b>3.2.2</b> Plot GLM model parameters</a></li>
+<li class="chapter" data-level="3.2.3" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-4d"><i class="fa fa-check"></i><b>3.2.3</b> Figure 4D</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#plot-logo"><i class="fa fa-check"></i><b>3.3</b> plot logo</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-4e"><i class="fa fa-check"></i><b>3.3.1</b> Figure 4E</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#test-models-with-closest-cpg-methylation"><i class="fa fa-check"></i><b>3.4</b> Test models with closest CpG methylation</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#compute-model-with-cg-and-gc-content"><i class="fa fa-check"></i><b>3.4.1</b> Compute model with CG and GC content</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#compute-model-with-tor"><i class="fa fa-check"></i><b>3.4.2</b> Compute model with TOR</a></li>
+<li class="chapter" data-level="3.4.3" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#compute-model-with-closest-cpg"><i class="fa fa-check"></i><b>3.4.3</b> Compute model with closest CpG</a></li>
+<li class="chapter" data-level="3.4.4" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#compute-model-with-all-enhancer-methylation"><i class="fa fa-check"></i><b>3.4.4</b> Compute model with all enhancer methylation</a></li>
+<li class="chapter" data-level="3.4.5" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-7a"><i class="fa fa-check"></i><b>3.4.5</b> Figure 7A</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#estimate-prediction-noise"><i class="fa fa-check"></i><b>3.5</b> Estimate prediction noise</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#kinteics-per-time-and-score-bin"><i class="fa fa-check"></i><b>3.5.1</b> Kinteics per time and score bin</a></li>
+<li class="chapter" data-level="3.5.2" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-4g"><i class="fa fa-check"></i><b>3.5.2</b> Figure 4G</a></li>
+<li class="chapter" data-level="3.5.3" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#scores-within-enhancers"><i class="fa fa-check"></i><b>3.5.3</b> Scores within enhancers</a></li>
+<li class="chapter" data-level="3.5.4" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-7b"><i class="fa fa-check"></i><b>3.5.4</b> Figure 7B</a></li>
+<li class="chapter" data-level="3.5.5" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#extract-proaprob-enhancers"><i class="fa fa-check"></i><b>3.5.5</b> Extract proA/proB enhancers</a></li>
+<li class="chapter" data-level="3.5.6" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#no-difference-in-methylation-of-full-enhancers-vs-shuffled"><i class="fa fa-check"></i><b>3.5.6</b> No difference in methylation of full enhancers vs shuffled</a></li>
+<li class="chapter" data-level="3.5.7" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#toatal-enh-methylation-prediction"><i class="fa fa-check"></i><b>3.5.7</b> Toatal enh methylation prediction</a></li>
+<li class="chapter" data-level="3.5.8" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-7c"><i class="fa fa-check"></i><b>3.5.8</b> Figure 7C</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html"><i class="fa fa-check"></i><b>4</b> Validation from external data</a><ul>
+<li class="chapter" data-level="4.0.1" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html#initialize-definitions-2"><i class="fa fa-check"></i><b>4.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="4.0.2" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html#get-ab-meth-data-1"><i class="fa fa-check"></i><b>4.0.2</b> Get A/B meth data</a></li>
+<li class="chapter" data-level="4.0.3" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html#get-meissner-data"><i class="fa fa-check"></i><b>4.0.3</b> Get Meissner data</a></li>
+<li class="chapter" data-level="4.0.4" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html#figure-4h"><i class="fa fa-check"></i><b>4.0.4</b> Figure 4H</a></li>
+<li class="chapter" data-level="4.0.5" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html#figure-4i"><i class="fa fa-check"></i><b>4.0.5</b> Figure 4I</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html"><i class="fa fa-check"></i><b>5</b> Mallona et al. NAR 2020</a><ul>
+<li class="chapter" data-level="5.0.1" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#initialize-definitions-3"><i class="fa fa-check"></i><b>5.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="5.1" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#model-es"><i class="fa fa-check"></i><b>5.1</b> Model ES</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5bc"><i class="fa fa-check"></i><b>5.1.1</b> Figure 5B,C</a></li>
+<li class="chapter" data-level="5.1.2" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5d"><i class="fa fa-check"></i><b>5.1.2</b> Figure 5D</a></li>
+<li class="chapter" data-level="5.1.3" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5e"><i class="fa fa-check"></i><b>5.1.3</b> Figure 5E</a></li>
+<li class="chapter" data-level="5.1.4" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5fg"><i class="fa fa-check"></i><b>5.1.4</b> Figure 5F,G</a></li>
+<li class="chapter" data-level="5.1.5" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5h"><i class="fa fa-check"></i><b>5.1.5</b> Figure 5H</a></li>
+<li class="chapter" data-level="5.1.6" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5i"><i class="fa fa-check"></i><b>5.1.6</b> Figure 5I</a></li>
+<li class="chapter" data-level="5.1.7" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5j"><i class="fa fa-check"></i><b>5.1.7</b> Figure 5J</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="yagi-et-al..html"><a href="yagi-et-al..html"><i class="fa fa-check"></i><b>6</b> Yagi et al. </a><ul>
+<li class="chapter" data-level="6.0.1" data-path="yagi-et-al..html"><a href="yagi-et-al..html#initialize-definitions-4"><i class="fa fa-check"></i><b>6.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="6.0.2" data-path="yagi-et-al..html"><a href="yagi-et-al..html#dmrs"><i class="fa fa-check"></i><b>6.0.2</b> DMRs</a></li>
+<li class="chapter" data-level="6.0.3" data-path="yagi-et-al..html"><a href="yagi-et-al..html#get-meissner-data-1"><i class="fa fa-check"></i><b>6.0.3</b> Get Meissner data</a></li>
+<li class="chapter" data-level="6.0.4" data-path="yagi-et-al..html"><a href="yagi-et-al..html#get-meeb-data"><i class="fa fa-check"></i><b>6.0.4</b> Get MEEB data</a></li>
+<li class="chapter" data-level="6.0.5" data-path="yagi-et-al..html"><a href="yagi-et-al..html#extended-data-figure-8i"><i class="fa fa-check"></i><b>6.0.5</b> Extended Data Figure 8I</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html"><i class="fa fa-check"></i><b>7</b> Single cell methylation</a><ul>
+<li class="chapter" data-level="7.0.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#initialize-definitions-5"><i class="fa fa-check"></i><b>7.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="7.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#generate-cell-cycle-ordering"><i class="fa fa-check"></i><b>7.1</b> Generate cell-cycle ordering</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#in-vivo"><i class="fa fa-check"></i><b>7.1.1</b> In-vivo</a></li>
+<li class="chapter" data-level="7.1.2" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#eb"><i class="fa fa-check"></i><b>7.1.2</b> EB</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#plot-in-vivo-cell-cycle"><i class="fa fa-check"></i><b>7.2</b> Plot in-vivo cell-cycle</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6b"><i class="fa fa-check"></i><b>7.2.1</b> Figure 6B</a></li>
+<li class="chapter" data-level="7.2.2" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6a"><i class="fa fa-check"></i><b>7.2.2</b> Figure 6A</a></li>
+<li class="chapter" data-level="7.2.3" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6c"><i class="fa fa-check"></i><b>7.2.3</b> Figure 6C</a></li>
+<li class="chapter" data-level="7.2.4" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#extended-data-figure-9g"><i class="fa fa-check"></i><b>7.2.4</b> Extended Data Figure 9G</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#plot-ebs-cell-cycle"><i class="fa fa-check"></i><b>7.3</b> Plot EBs cell cycle</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6de"><i class="fa fa-check"></i><b>7.3.1</b> Figure 6D,E</a></li>
+<li class="chapter" data-level="7.3.2" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6fg-extended-data-figure-9i"><i class="fa fa-check"></i><b>7.3.2</b> Figure 6F,G, Extended Data Figure 9I</a></li>
+<li class="chapter" data-level="7.3.3" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6d"><i class="fa fa-check"></i><b>7.3.3</b> Figure 6D</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#plot-other-eb-batches"><i class="fa fa-check"></i><b>7.4</b> Plot other EB batches</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#extended-data-figure-9h"><i class="fa fa-check"></i><b>7.4.1</b> Extended Data Figure 9H</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html"><i class="fa fa-check"></i><b>8</b> Differential methylation in EB day 6</a><ul>
+<li class="chapter" data-level="8.1" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#initialize-definitions-6"><i class="fa fa-check"></i><b>8.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="8.2" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#extract-data"><i class="fa fa-check"></i><b>8.2</b> Extract data</a></li>
+<li class="chapter" data-level="8.3" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#plot-global-differences"><i class="fa fa-check"></i><b>8.3</b> Plot global differences</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#figure-7d"><i class="fa fa-check"></i><b>8.3.1</b> Figure 7D</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#extract-dnmt3a-targets"><i class="fa fa-check"></i><b>8.4</b> Extract DNMT3A targets</a></li>
+<li class="chapter" data-level="8.5" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#plot-distribution-of-ab-score-on-the-differential-regions"><i class="fa fa-check"></i><b>8.5</b> Plot distribution of AB score on the differential regions</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#figure-7e"><i class="fa fa-check"></i><b>8.5.1</b> Figure 7E</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#plot-examples"><i class="fa fa-check"></i><b>8.6</b> Plot examples</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#figure-7g-extended-data-figure-10"><i class="fa fa-check"></i><b>8.6.1</b> Figure 7G, Extended Data Figure 10</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#test-regions-enrichment-vs-gene-expression"><i class="fa fa-check"></i><b>8.7</b> Test regions enrichment vs gene expression</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#figure-7f"><i class="fa fa-check"></i><b>8.7.1</b> Figure 7F</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html"><i class="fa fa-check"></i><b>9</b> QC - bulk methylation</a><ul>
+<li class="chapter" data-level="9.0.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#initialize-definitions-7"><i class="fa fa-check"></i><b>9.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="9.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#probe-design"><i class="fa fa-check"></i><b>9.1</b> Probe design</a></li>
+<li class="chapter" data-level="9.2" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#breakdown-of-probes"><i class="fa fa-check"></i><b>9.2</b> Breakdown of probes</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8b"><i class="fa fa-check"></i><b>9.2.1</b> Extended Data Figure 8B</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#wgbs-e8.5"><i class="fa fa-check"></i><b>9.3</b> WGBS E8.5</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#coverage"><i class="fa fa-check"></i><b>9.3.1</b> Coverage</a></li>
+<li class="chapter" data-level="9.3.2" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8a"><i class="fa fa-check"></i><b>9.3.2</b> Extended Data Figure 8A</a></li>
+<li class="chapter" data-level="9.3.3" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#methylation-distribution-on-target-vs-off-target"><i class="fa fa-check"></i><b>9.3.3</b> Methylation distribution on-target vs off-target</a></li>
+<li class="chapter" data-level="9.3.4" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8c"><i class="fa fa-check"></i><b>9.3.4</b> Extended Data Figure 8C</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#distribution-of-coverage-per-condition"><i class="fa fa-check"></i><b>9.4</b> Distribution of coverage per condition</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8d"><i class="fa fa-check"></i><b>9.4.1</b> Extended Data Figure 8D</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#distribution-of-non-cpgs-methylation-per-condition"><i class="fa fa-check"></i><b>9.5</b> Distribution of non-CpGs methylation per condition</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8h"><i class="fa fa-check"></i><b>9.5.1</b> Extended Data Figure 8H</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#on-target-statistics"><i class="fa fa-check"></i><b>9.6</b> “On target” statistics</a><ul>
+<li class="chapter" data-level="9.6.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8e"><i class="fa fa-check"></i><b>9.6.1</b> Extended Data Figure 8E</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#global-methylation-trend"><i class="fa fa-check"></i><b>9.7</b> Global methylation trend</a><ul>
+<li class="chapter" data-level="9.7.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8g"><i class="fa fa-check"></i><b>9.7.1</b> Extended Data Figure 8G</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html"><i class="fa fa-check"></i><b>10</b> QC - sc methylation</a><ul>
+<li class="chapter" data-level="10.0.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#initialize-definitions-8"><i class="fa fa-check"></i><b>10.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="10.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#distribution-of-chh"><i class="fa fa-check"></i><b>10.1</b> Distribution of %CHH</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9b"><i class="fa fa-check"></i><b>10.1.1</b> Extended Data Figure 9B</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#number-of-cells"><i class="fa fa-check"></i><b>10.2</b> Number of cells</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9a"><i class="fa fa-check"></i><b>10.2.1</b> Extended Data Figure 9A</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#number-of-cpgs"><i class="fa fa-check"></i><b>10.3</b> Number of CpGs</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9c"><i class="fa fa-check"></i><b>10.3.1</b> Extended Data Figure 9C</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#sorting-plots"><i class="fa fa-check"></i><b>10.4</b> Sorting plots</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9d"><i class="fa fa-check"></i><b>10.4.1</b> Extended Data Figure 9D</a></li>
+<li class="chapter" data-level="10.4.2" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9e"><i class="fa fa-check"></i><b>10.4.2</b> Extended Data Figure 9E</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#earlylate-coverage-per-cell-e7.5"><i class="fa fa-check"></i><b>10.5</b> Early/Late coverage per cell (e7.5)</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9f"><i class="fa fa-check"></i><b>10.5.1</b> Extended Data Figure 9F</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ab-sequence-model" class="section level1 hasAnchor">
+<h1><span class="header-section-number">3</span> A/B sequence model<a href="ab-sequence-model.html#ab-sequence-model" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<!-- #region tags=[] -->
+<div id="initialize-definitions-1" class="section level3 hasAnchor">
+<h3><span class="header-section-number">3.0.1</span> initialize definitions<a href="ab-sequence-model.html#initialize-definitions-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<!-- #endregion -->
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="ab-sequence-model.html#cb64-1"></a><span class="kw">suppressMessages</span>(<span class="kw">suppressWarnings</span>(<span class="kw">source</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;code/init.R&quot;</span>))))</span></code></pre></div>
+</div>
+<div id="get-ab-meth-data" class="section level3 hasAnchor">
+<h3><span class="header-section-number">3.0.2</span> Get A/B meth data<a href="ab-sequence-model.html#get-ab-meth-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="ab-sequence-model.html#cb65-1"></a>cpg_meth &lt;-<span class="st"> </span><span class="kw">calc_eb_day0_to_day4_cpg_meth</span>(<span class="dt">min_cov =</span> <span class="dv">10</span>, <span class="dt">max_na  =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="ab-sequence-model.html#cb66-1"></a><span class="kw">nrow</span>(cpg_meth)</span></code></pre></div>
+<pre><code>## [1] 132052</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="ab-sequence-model.html#cb68-1"></a><span class="kw">colnames</span>(cpg_meth)</span></code></pre></div>
+<pre><code>##  [1] &quot;chrom&quot;   &quot;start&quot;   &quot;end&quot;     &quot;d0_3a&quot;   &quot;d0S_3a&quot;  &quot;d1_3a&quot;   &quot;d2_3a&quot;  
+##  [8] &quot;d3_3a&quot;   &quot;d4_3a&quot;   &quot;d0_3b&quot;   &quot;d0S_3b&quot;  &quot;d1_3b&quot;   &quot;d2_3b&quot;   &quot;d3_3b&quot;  
+## [15] &quot;d4_3b&quot;   &quot;d0_tko&quot;  &quot;d0S_tko&quot; &quot;d1_tko&quot;  &quot;d2_tko&quot;  &quot;d3_tko&quot;  &quot;d4_tko&quot; 
+## [22] &quot;d0_wt&quot;   &quot;d0S_wt&quot;  &quot;d1_wt&quot;   &quot;d2_wt&quot;   &quot;d3_wt&quot;   &quot;d4_wt&quot;</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="ab-sequence-model.html#cb70-1"></a>m &lt;-<span class="st"> </span>cpg_meth <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb70-2"><a href="ab-sequence-model.html#cb70-2"></a><span class="st">    </span><span class="kw">mutate</span>(</span>
+<span id="cb70-3"><a href="ab-sequence-model.html#cb70-3"></a>        <span class="dt">mA =</span> <span class="kw">psum</span>(d1_3a, d2_3a, d3_3a, d4_3a, <span class="dt">na.rm=</span><span class="ot">FALSE</span>),</span>
+<span id="cb70-4"><a href="ab-sequence-model.html#cb70-4"></a>        <span class="dt">mB =</span> <span class="kw">psum</span>(d1_3b, d2_3b, d3_3b, d4_3b, <span class="dt">na.rm=</span><span class="ot">FALSE</span>),</span>
+<span id="cb70-5"><a href="ab-sequence-model.html#cb70-5"></a>        <span class="dt">mwt =</span> <span class="kw">psum</span>(d1_wt, d2_wt, d3_wt, d4_wt, <span class="dt">na.rm=</span><span class="ot">FALSE</span>),</span>
+<span id="cb70-6"><a href="ab-sequence-model.html#cb70-6"></a>        <span class="dt">dAB =</span> mA <span class="op">-</span><span class="st"> </span>mB,</span>
+<span id="cb70-7"><a href="ab-sequence-model.html#cb70-7"></a>        <span class="dt">dB =</span> mB <span class="op">-</span><span class="st"> </span>mwt, </span>
+<span id="cb70-8"><a href="ab-sequence-model.html#cb70-8"></a>        <span class="dt">dA =</span> mA <span class="op">-</span><span class="st"> </span>mwt    </span>
+<span id="cb70-9"><a href="ab-sequence-model.html#cb70-9"></a>    ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb70-10"><a href="ab-sequence-model.html#cb70-10"></a><span class="st">    </span><span class="kw">select</span>(chrom, start, end, mA, mB, mwt, dAB, dB, dA)</span></code></pre></div>
+<div id="clean-loci-with-0-methylation" class="section level4 hasAnchor">
+<h4><span class="header-section-number">3.0.2.1</span> Clean loci with 0 methylation:<a href="ab-sequence-model.html#clean-loci-with-0-methylation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="ab-sequence-model.html#cb71-1"></a>locus_means &lt;-<span class="st"> </span><span class="kw">rowMeans</span>(cpg_meth <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>(chrom<span class="op">:</span>end)), <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb71-2"><a href="ab-sequence-model.html#cb71-2"></a>locus_sds &lt;-<span class="st"> </span>matrixStats<span class="op">::</span><span class="kw">rowSds</span>(cpg_meth <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>(chrom<span class="op">:</span>end)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.matrix</span>() , <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="ab-sequence-model.html#cb72-1"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">8</span>, <span class="dt">repr.plot.height =</span> <span class="dv">4</span>)</span>
+<span id="cb72-2"><a href="ab-sequence-model.html#cb72-2"></a>thresh &lt;-<span class="st"> </span><span class="fl">0.05</span></span>
+<span id="cb72-3"><a href="ab-sequence-model.html#cb72-3"></a>p1 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">m =</span> locus_means) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>m)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_density</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_vline</span>(<span class="dt">xintercept=</span>thresh, <span class="dt">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb72-4"><a href="ab-sequence-model.html#cb72-4"></a>p2 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">m =</span> locus_means, <span class="dt">sd =</span> locus_sds) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>m, <span class="dt">y=</span>sd)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">size=</span><span class="fl">0.01</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_vline</span>(<span class="dt">xintercept=</span>thresh, <span class="dt">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb72-5"><a href="ab-sequence-model.html#cb72-5"></a>p1 <span class="op">+</span><span class="st"> </span>p2</span></code></pre></div>
+<p><img src="Sequence-model_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="ab-sequence-model.html#cb73-1"></a>m &lt;-<span class="st"> </span>m[locus_means <span class="op">&gt;=</span><span class="st"> </span>thresh, ]</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="ab-sequence-model.html#cb74-1"></a><span class="kw">sum</span>(locus_means <span class="op">&lt;</span><span class="st"> </span>thresh)</span></code></pre></div>
+<pre><code>## [1] 15935</code></pre>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="ab-sequence-model.html#cb76-1"></a><span class="kw">nrow</span>(m)</span></code></pre></div>
+<pre><code>## [1] 116117</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="ab-sequence-model.html#cb78-1"></a><span class="kw">fwrite</span>(m, <span class="kw">here</span>(<span class="st">&quot;output/ebd_day1_to_day4_cpg_meth_mat.tsv&quot;</span>), <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="calculate-models" class="section level2 hasAnchor">
+<h2><span class="header-section-number">3.1</span> Calculate models<a href="ab-sequence-model.html#calculate-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="ab-sequence-model.html#cb79-1"></a>intervs_all &lt;-<span class="st"> </span>m <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end)</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="ab-sequence-model.html#cb80-1"></a>flank_bp &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb80-2"><a href="ab-sequence-model.html#cb80-2"></a>seq_df &lt;-<span class="st"> </span><span class="kw">get_seq_df</span>(intervs_all, <span class="dt">flank_bp =</span> flank_bp)</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="ab-sequence-model.html#cb81-1"></a><span class="kw">head</span>(seq_df)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 6
+##   chrom   start     end nuc pos dnuc
+## 1  chr1 4402515 4402516   G   2   GG
+## 2  chr1 4402515 4402516   G   3   GG
+## 3  chr1 4402515 4402516   G   4   GA
+## 4  chr1 4402515 4402516   A   5   AA
+## 5  chr1 4402515 4402516   A   6   AG
+## 6  chr1 4402515 4402516   G   9   GC</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="ab-sequence-model.html#cb83-1"></a>seq_df_wide &lt;-<span class="st"> </span><span class="kw">seq_df_to_wide</span>(seq_df, <span class="dt">flank_bp =</span> <span class="dv">5</span>)</span>
+<span id="cb83-2"><a href="ab-sequence-model.html#cb83-2"></a>seq_df_wide_nuc &lt;-<span class="st"> </span><span class="kw">seq_df_to_wide</span>(seq_df, <span class="dt">flank_bp =</span> <span class="dv">5</span>, <span class="dt">dinuc=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<div id="compute-models" class="section level3 hasAnchor">
+<h3><span class="header-section-number">3.1.1</span> Compute models<a href="ab-sequence-model.html#compute-models" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="hyperparameters-tuning" class="section level4 hasAnchor">
+<h4><span class="header-section-number">3.1.1.1</span> hyperparameters tuning:<a href="ab-sequence-model.html#hyperparameters-tuning" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="ab-sequence-model.html#cb84-1"></a>xgb_params &lt;-<span class="st"> </span><span class="kw">hypertune_xgb</span>(seq_df_wide, m, dAB) <span class="op">%cache_rds%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data/xgb_params.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="ab-sequence-model.html#cb85-1"></a>xgb_params</span></code></pre></div>
+<pre><code>## $params
+## $params$booster
+## [1] &quot;gbtree&quot;
+## 
+## $params$objective
+## [1] &quot;reg:squarederror&quot;
+## 
+## $params$subsample
+## [1] 1
+## 
+## $params$max_depth
+## [1] 4
+## 
+## $params$colsample_bytree
+## [1] 0.4
+## 
+## $params$gamma
+## [1] 0.1
+## 
+## $params$eta
+## [1] 0.05
+## 
+## $params$eval_metric
+## [1] &quot;rmse&quot;
+## 
+## $params$min_child_weight
+## [1] 2
+## 
+## 
+## $nrounds
+## [1] 1750</code></pre>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="ab-sequence-model.html#cb87-1"></a><span class="kw">message</span>(<span class="st">&quot;dAB (dinuc)&quot;</span>)</span></code></pre></div>
+<pre><code>## dAB (dinuc)</code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="ab-sequence-model.html#cb89-1"></a>model_ab &lt;-<span class="st"> </span><span class="kw">gen_seq_model</span>(seq_df_wide, m, dAB) <span class="op">%cache_rds%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/ab_dinuc_model_5bp.rds&quot;</span>)</span>
+<span id="cb89-2"><a href="ab-sequence-model.html#cb89-2"></a></span>
+<span id="cb89-3"><a href="ab-sequence-model.html#cb89-3"></a>model_ab_xgboost &lt;-<span class="st"> </span><span class="kw">gen_seq_model_xgboost</span>(seq_df_wide, m, dAB, xgb_params) <span class="op">%cache_rds%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/ab_dinuc_model_5bp_xgboost.rds&quot;</span>)</span>
+<span id="cb89-4"><a href="ab-sequence-model.html#cb89-4"></a></span>
+<span id="cb89-5"><a href="ab-sequence-model.html#cb89-5"></a><span class="kw">message</span>(<span class="st">&quot;dAB (nuc)&quot;</span>)</span></code></pre></div>
+<pre><code>## dAB (nuc)</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="ab-sequence-model.html#cb91-1"></a>model_ab_nuc &lt;-<span class="st"> </span><span class="kw">gen_seq_model</span>(seq_df_wide_nuc, m, dAB) <span class="op">%cache_rds%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/ab_nuc_model_5bp.rds&quot;</span>)</span>
+<span id="cb91-2"><a href="ab-sequence-model.html#cb91-2"></a>model_ab_nuc_xgboost &lt;-<span class="st"> </span><span class="kw">gen_seq_model_xgboost</span>(seq_df_wide_nuc, m, dAB, xgb_params) <span class="op">%cache_rds%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/ab_nuc_model_5bp_xgboost.rds&quot;</span>)</span>
+<span id="cb91-3"><a href="ab-sequence-model.html#cb91-3"></a></span>
+<span id="cb91-4"><a href="ab-sequence-model.html#cb91-4"></a><span class="kw">message</span>(<span class="st">&quot;dA&quot;</span>)</span></code></pre></div>
+<pre><code>## dA</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="ab-sequence-model.html#cb93-1"></a>model_a &lt;-<span class="st"> </span><span class="kw">gen_seq_model</span>(seq_df_wide, m, dA) <span class="op">%cache_rds%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/a_dinuc_model_5bp.rds&quot;</span>)</span>
+<span id="cb93-2"><a href="ab-sequence-model.html#cb93-2"></a>model_a_xgboost &lt;-<span class="st"> </span><span class="kw">gen_seq_model_xgboost</span>(seq_df_wide, m, dA, xgb_params) <span class="op">%cache_rds%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/a_dinuc_model_5bp_xgboost.rds&quot;</span>)</span>
+<span id="cb93-3"><a href="ab-sequence-model.html#cb93-3"></a></span>
+<span id="cb93-4"><a href="ab-sequence-model.html#cb93-4"></a><span class="kw">message</span>(<span class="st">&quot;dB&quot;</span>)</span></code></pre></div>
+<pre><code>## dB</code></pre>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="ab-sequence-model.html#cb95-1"></a>model_b &lt;-<span class="st"> </span><span class="kw">gen_seq_model</span>(seq_df_wide, m, dB) <span class="op">%cache_rds%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/b_dinuc_model_5bp.rds&quot;</span>)</span>
+<span id="cb95-2"><a href="ab-sequence-model.html#cb95-2"></a>model_b_xgboost &lt;-<span class="st"> </span><span class="kw">gen_seq_model_xgboost</span>(seq_df_wide, m, dB, xgb_params) <span class="op">%cache_rds%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/b_dinuc_model_5bp_xgboost.rds&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="plot-models-vs-preditions" class="section level2 hasAnchor">
+<h2><span class="header-section-number">3.2</span> Plot models vs preditions<a href="ab-sequence-model.html#plot-models-vs-preditions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="figure-4f" class="section level3 hasAnchor">
+<h3><span class="header-section-number">3.2.1</span> Figure 4F<a href="ab-sequence-model.html#figure-4f" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="ab-sequence-model.html#cb96-1"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">20</span>, <span class="dt">repr.plot.height=</span><span class="dv">4</span>)</span>
+<span id="cb96-2"><a href="ab-sequence-model.html#cb96-2"></a></span>
+<span id="cb96-3"><a href="ab-sequence-model.html#cb96-3"></a>p_ab_glm &lt;-<span class="st"> </span><span class="kw">plot_model_scatter</span>(model_ab, <span class="dt">x_lab=</span><span class="st">&quot;Dinucleotide combined model (GLM)&quot;</span>, <span class="dt">y_lab =</span> <span class="st">&quot;Meth (3a-/-) - (3b-/-)&quot;</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">1.1</span>, <span class="fl">0.6</span>), <span class="dt">ylim=</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">1.8</span>, <span class="fl">1.2</span>))</span>
+<span id="cb96-4"><a href="ab-sequence-model.html#cb96-4"></a>p_ab &lt;-<span class="st"> </span><span class="kw">plot_model_scatter</span>(model_ab_xgboost, <span class="dt">x_lab=</span><span class="st">&quot;Dinucleotide combined model&quot;</span>, <span class="dt">y_lab =</span> <span class="st">&quot;Meth (3a-/-) - (3b-/-)&quot;</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">1.1</span>, <span class="fl">0.6</span>), <span class="dt">ylim=</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">1.8</span>, <span class="fl">1.2</span>))</span>
+<span id="cb96-5"><a href="ab-sequence-model.html#cb96-5"></a>p_ab_nuc &lt;-<span class="st"> </span><span class="kw">plot_model_scatter</span>(model_ab_nuc_xgboost, <span class="dt">x_lab=</span><span class="st">&quot;Nucleotide combined model&quot;</span>, <span class="dt">y_lab =</span> <span class="st">&quot;Meth (3a-/-) - (3b-/-)&quot;</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">1.1</span>, <span class="fl">0.6</span>), <span class="dt">ylim=</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">1.8</span>, <span class="fl">1.2</span>))</span>
+<span id="cb96-6"><a href="ab-sequence-model.html#cb96-6"></a>p_a &lt;-<span class="st"> </span><span class="kw">plot_model_scatter</span>(model_a_xgboost, <span class="dt">x_lab=</span><span class="st">&quot;Dinucleotide combined model&quot;</span>, <span class="dt">y_lab =</span> <span class="st">&quot;3a-/- - wt&quot;</span>)</span>
+<span id="cb96-7"><a href="ab-sequence-model.html#cb96-7"></a>p_b &lt;-<span class="st"> </span><span class="kw">plot_model_scatter</span>(model_b_xgboost, <span class="dt">x_lab=</span><span class="st">&quot;Dinucleotide combined model&quot;</span>, <span class="dt">y_lab =</span> <span class="st">&quot;3b-/- - wt&quot;</span>)</span>
+<span id="cb96-8"><a href="ab-sequence-model.html#cb96-8"></a></span>
+<span id="cb96-9"><a href="ab-sequence-model.html#cb96-9"></a>fa_b &lt;-<span class="st"> </span>model_a<span class="op">$</span>mat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom<span class="op">:</span>end) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">i =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join</span>(model_b<span class="op">$</span>mat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(i)</span></code></pre></div>
+<pre><code>## Joining, by = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;)</code></pre>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="ab-sequence-model.html#cb98-1"></a>fb_a &lt;-<span class="st"> </span>model_b<span class="op">$</span>mat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom<span class="op">:</span>end) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">i =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join</span>(model_a<span class="op">$</span>mat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(i)</span></code></pre></div>
+<pre><code>## Joining, by = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;)</code></pre>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="ab-sequence-model.html#cb100-1"></a>p_models &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">model_a =</span> model_a_xgboost<span class="op">$</span>pred[fa_b], <span class="dt">model_b =</span> model_b_xgboost<span class="op">$</span>pred[fb_a]) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb100-2"><a href="ab-sequence-model.html#cb100-2"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">col =</span> <span class="kw">densCols</span>(., <span class="dt">bandwidth=</span><span class="fl">0.08</span>,<span class="dt">colramp=</span><span class="kw">colorRampPalette</span>(<span class="kw">c</span>(<span class="st">&quot;white&quot;</span>,<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkblue&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;gold&quot;</span>,<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;red&quot;</span>, <span class="st">&quot;darkred&quot;</span> )))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb100-3"><a href="ab-sequence-model.html#cb100-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>model_a, <span class="dt">y=</span>model_b, <span class="dt">col=</span>col)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb100-4"><a href="ab-sequence-model.html#cb100-4"></a><span class="st">        </span><span class="kw">geom_point</span>(<span class="dt">shape=</span><span class="dv">19</span>, <span class="dt">size=</span><span class="fl">0.4</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb100-5"><a href="ab-sequence-model.html#cb100-5"></a><span class="st">        </span><span class="kw">scale_color_identity</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb100-6"><a href="ab-sequence-model.html#cb100-6"></a><span class="st">        </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="fl">0.4</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.3</span>, <span class="fl">0.3</span>)) <span class="op">+</span><span class="st">         </span></span>
+<span id="cb100-7"><a href="ab-sequence-model.html#cb100-7"></a><span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;3a-/- model&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb100-8"><a href="ab-sequence-model.html#cb100-8"></a><span class="st">        </span><span class="kw">ylab</span>(<span class="st">&quot;3b-/- model&quot;</span>) <span class="op">+</span><span class="st">         </span></span>
+<span id="cb100-9"><a href="ab-sequence-model.html#cb100-9"></a><span class="st">        </span><span class="kw">theme</span>(<span class="dt">aspect.ratio=</span><span class="dv">1</span>, <span class="dt">panel.grid.major=</span><span class="kw">element_blank</span>(), <span class="dt">panel.grid.minor=</span><span class="kw">element_blank</span>()) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb100-10"><a href="ab-sequence-model.html#cb100-10"></a><span class="st">        </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="kw">glue</span>(<span class="st">&quot;R^2 = {cor}, m = {meth_cor}&quot;</span>, <span class="dt">cor =</span> <span class="kw">round</span>(<span class="kw">cor</span>(model_a_xgboost<span class="op">$</span>pred[fa_b], model_b_xgboost<span class="op">$</span>pred[fb_a])<span class="op">^</span><span class="dv">2</span>, <span class="dt">digits=</span><span class="dv">2</span>), <span class="dt">meth_cor =</span> <span class="kw">round</span>(<span class="kw">cor</span>(model_a_xgboost<span class="op">$</span>mat<span class="op">$</span>dA[fa_b], model_b_xgboost<span class="op">$</span>mat<span class="op">$</span>dB[fb_a])<span class="op">^</span><span class="dv">2</span>, <span class="dt">digits=</span><span class="dv">2</span>)))</span>
+<span id="cb100-11"><a href="ab-sequence-model.html#cb100-11"></a></span>
+<span id="cb100-12"><a href="ab-sequence-model.html#cb100-12"></a></span>
+<span id="cb100-13"><a href="ab-sequence-model.html#cb100-13"></a></span>
+<span id="cb100-14"><a href="ab-sequence-model.html#cb100-14"></a>p &lt;-<span class="st"> </span>p_a <span class="op">+</span><span class="st"> </span>p_b <span class="op">+</span><span class="st"> </span>p_models <span class="op">+</span><span class="st"> </span>p_ab_nuc <span class="op">+</span><span class="st"> </span>p_ab <span class="op">+</span><span class="st"> </span>p_ab_glm <span class="op">+</span><span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">nrow=</span><span class="dv">1</span>)</span>
+<span id="cb100-15"><a href="ab-sequence-model.html#cb100-15"></a>p <span class="op">&amp;</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">&amp;</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">plot.subtitle =</span> ggtext<span class="op">::</span><span class="kw">element_markdown</span>(), <span class="dt">aspect.ratio=</span><span class="dv">1</span>, <span class="dt">panel.grid.major=</span><span class="kw">element_blank</span>(), <span class="dt">panel.grid.minor=</span><span class="kw">element_blank</span>())</span></code></pre></div>
+<p><img src="Sequence-model_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="ab-sequence-model.html#cb101-1"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">6</span>, <span class="dt">repr.plot.height=</span><span class="dv">10</span>)</span>
+<span id="cb101-2"><a href="ab-sequence-model.html#cb101-2"></a><span class="kw">plot_model_scatter_legend</span>(model_ab)</span></code></pre></div>
+<p><img src="Sequence-model_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+</div>
+<div id="plot-glm-model-parameters" class="section level3 hasAnchor">
+<h3><span class="header-section-number">3.2.2</span> Plot GLM model parameters<a href="ab-sequence-model.html#plot-glm-model-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="figure-4d" class="section level3 hasAnchor">
+<h3><span class="header-section-number">3.2.3</span> Figure 4D<a href="ab-sequence-model.html#figure-4d" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="ab-sequence-model.html#cb102-1"></a>coef_df &lt;-<span class="st"> </span><span class="kw">get_coef_df</span>(model_ab)</span></code></pre></div>
+<pre><code>## Loading required package: Matrix</code></pre>
+<pre><code>## 
+## Attaching package: &#39;Matrix&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:tidyr&#39;:
+## 
+##     expand, pack, unpack</code></pre>
+<pre><code>## Loaded glmnet 4.1-4</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="ab-sequence-model.html#cb107-1"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">5</span>, <span class="dt">repr.plot.height =</span> <span class="dv">6</span>)</span>
+<span id="cb107-2"><a href="ab-sequence-model.html#cb107-2"></a>p &lt;-<span class="st"> </span>coef_df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb107-3"><a href="ab-sequence-model.html#cb107-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>pos, <span class="dt">y=</span>dinuc, <span class="dt">fill=</span>coefficient)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb107-4"><a href="ab-sequence-model.html#cb107-4"></a><span class="st">        </span><span class="kw">geom_tile</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb107-5"><a href="ab-sequence-model.html#cb107-5"></a><span class="st">        </span><span class="kw">scale_fill_gradient2</span>(<span class="dt">low =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;darkred&quot;</span>, <span class="dt">mid =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">midpoint =</span> <span class="dv">0</span>, <span class="dt">na.value=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb107-6"><a href="ab-sequence-model.html#cb107-6"></a><span class="st">        </span><span class="kw">theme_minimal</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb107-7"><a href="ab-sequence-model.html#cb107-7"></a><span class="st">        </span><span class="kw">ylab</span>(<span class="st">&quot;Dinucleotide&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb107-8"><a href="ab-sequence-model.html#cb107-8"></a><span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;Position&quot;</span>)</span>
+<span id="cb107-9"><a href="ab-sequence-model.html#cb107-9"></a>p</span></code></pre></div>
+<p><img src="Sequence-model_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<!-- #region tags=[] -->
+</div>
+</div>
+<div id="plot-logo" class="section level2 hasAnchor">
+<h2><span class="header-section-number">3.3</span> plot logo<a href="ab-sequence-model.html#plot-logo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<!-- #endregion -->
+<div id="figure-4e" class="section level3 hasAnchor">
+<h3><span class="header-section-number">3.3.1</span> Figure 4E<a href="ab-sequence-model.html#figure-4e" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="ab-sequence-model.html#cb108-1"></a>ab_score_quant &lt;-<span class="st"> </span><span class="kw">gquantiles</span>(<span class="st">&quot;DNMT.ab_score_glm_plus&quot;</span>, <span class="kw">c</span>(<span class="fl">0.1</span>,<span class="fl">0.9</span>))</span>
+<span id="cb108-2"><a href="ab-sequence-model.html#cb108-2"></a>high_score_df &lt;-<span class="st"> </span><span class="kw">gscreen</span>(<span class="st">&quot;DNMT.ab_score_glm_plus &gt;= ab_score_quant[2]&quot;</span>, <span class="dt">intervals=</span><span class="kw">gintervals.all</span>()) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">start =</span> start <span class="op">-</span><span class="st"> </span><span class="dv">5</span>, <span class="dt">end =</span> end <span class="op">+</span><span class="st"> </span><span class="dv">6</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">s =</span> <span class="kw">toupper</span>(<span class="kw">gseq.extract</span>(.))) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>() </span>
+<span id="cb108-3"><a href="ab-sequence-model.html#cb108-3"></a>low_score_df &lt;-<span class="st"> </span><span class="kw">gscreen</span>(<span class="st">&quot;DNMT.ab_score_glm_plus &lt;= ab_score_quant[1]&quot;</span>, <span class="dt">intervals=</span><span class="kw">gintervals.all</span>()) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">start =</span> start <span class="op">-</span><span class="st"> </span><span class="dv">5</span>, <span class="dt">end =</span> end <span class="op">+</span><span class="st"> </span><span class="dv">6</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">s =</span> <span class="kw">toupper</span>(<span class="kw">gseq.extract</span>(.))) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="ab-sequence-model.html#cb109-1"></a>high_score_df1 &lt;-<span class="st"> </span>high_score_df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb109-2"><a href="ab-sequence-model.html#cb109-2"></a><span class="st">    </span><span class="kw">mutate</span>(</span>
+<span id="cb109-3"><a href="ab-sequence-model.html#cb109-3"></a>        <span class="dt">r1 =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;G&quot;</span>, <span class="st">&quot;T&quot;</span>), <span class="dt">size=</span><span class="kw">length</span>(s), <span class="dt">replace=</span><span class="ot">TRUE</span>), </span>
+<span id="cb109-4"><a href="ab-sequence-model.html#cb109-4"></a>        <span class="dt">r2 =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;G&quot;</span>, <span class="st">&quot;T&quot;</span>), <span class="dt">size=</span><span class="kw">length</span>(s), <span class="dt">replace=</span><span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb109-5"><a href="ab-sequence-model.html#cb109-5"></a><span class="st">    </span><span class="kw">unite</span>(<span class="st">&quot;r&quot;</span>, r1, r2, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb109-6"><a href="ab-sequence-model.html#cb109-6"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">i =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">n</span>(), <span class="dt">r =</span> <span class="kw">ifelse</span>(i <span class="op">&lt;=</span><span class="st"> </span><span class="kw">length</span>(s) <span class="op">*</span><span class="st"> </span><span class="fl">0.8</span>, <span class="st">&quot;CG&quot;</span>, r)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb109-7"><a href="ab-sequence-model.html#cb109-7"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">s1 =</span> <span class="kw">paste0</span>(<span class="kw">substr</span>(s, <span class="dv">1</span>, <span class="dv">5</span>), r, <span class="kw">substr</span>(s, <span class="dv">8</span>, <span class="kw">length</span>(s)))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb109-8"><a href="ab-sequence-model.html#cb109-8"></a><span class="st">    </span><span class="kw">select</span>(chrom, start, end, <span class="dt">s =</span> s1)</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="ab-sequence-model.html#cb110-1"></a>low_score_df1 &lt;-<span class="st"> </span>low_score_df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb110-2"><a href="ab-sequence-model.html#cb110-2"></a><span class="st">    </span><span class="kw">mutate</span>(</span>
+<span id="cb110-3"><a href="ab-sequence-model.html#cb110-3"></a>        <span class="dt">r1 =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;G&quot;</span>, <span class="st">&quot;T&quot;</span>), <span class="dt">size=</span><span class="kw">length</span>(s), <span class="dt">replace=</span><span class="ot">TRUE</span>), </span>
+<span id="cb110-4"><a href="ab-sequence-model.html#cb110-4"></a>        <span class="dt">r2 =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;G&quot;</span>, <span class="st">&quot;T&quot;</span>), <span class="dt">size=</span><span class="kw">length</span>(s), <span class="dt">replace=</span><span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb110-5"><a href="ab-sequence-model.html#cb110-5"></a><span class="st">    </span><span class="kw">unite</span>(<span class="st">&quot;r&quot;</span>, r1, r2, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb110-6"><a href="ab-sequence-model.html#cb110-6"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">i =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">n</span>(), <span class="dt">r =</span> <span class="kw">ifelse</span>(i <span class="op">&lt;=</span><span class="st"> </span><span class="kw">length</span>(s) <span class="op">*</span><span class="st"> </span><span class="fl">0.8</span>, <span class="st">&quot;CG&quot;</span>, r)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb110-7"><a href="ab-sequence-model.html#cb110-7"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">s1 =</span> <span class="kw">paste0</span>(<span class="kw">substr</span>(s, <span class="dv">1</span>, <span class="dv">5</span>), r, <span class="kw">substr</span>(s, <span class="dv">8</span>, <span class="kw">length</span>(s)))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb110-8"><a href="ab-sequence-model.html#cb110-8"></a><span class="st">    </span><span class="kw">select</span>(chrom, start, end, <span class="dt">s =</span> s1)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="ab-sequence-model.html#cb111-1"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">8</span>, <span class="dt">repr.plot.height =</span> <span class="dv">4</span>)</span>
+<span id="cb111-2"><a href="ab-sequence-model.html#cb111-2"></a>p_high &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span>ggseqlogo<span class="op">::</span><span class="kw">geom_logo</span>(high_score_df1<span class="op">$</span>s, <span class="dt">method=</span><span class="st">&quot;bits&quot;</span>, <span class="dt">seq_type=</span><span class="st">&quot;dna&quot;</span>) <span class="op">+</span><span class="st"> </span>ggseqlogo<span class="op">::</span><span class="kw">theme_logo</span>()</span></code></pre></div>
+<pre><code>## Warning: `guides(&lt;scale&gt; = FALSE)` is deprecated. Please use `guides(&lt;scale&gt; =
+## &quot;none&quot;)` instead.</code></pre>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="ab-sequence-model.html#cb113-1"></a>p_high</span></code></pre></div>
+<p><img src="Sequence-model_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="ab-sequence-model.html#cb114-1"></a>p_high &lt;-<span class="st"> </span>p_high <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">5</span><span class="op">:-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>), <span class="dt">breaks=</span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span>)</span></code></pre></div>
+<pre><code>## Scale for &#39;x&#39; is already present. Adding another scale for &#39;x&#39;, which will
+## replace the existing scale.</code></pre>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="ab-sequence-model.html#cb116-1"></a>p_high</span></code></pre></div>
+<p><img src="Sequence-model_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="ab-sequence-model.html#cb117-1"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">8</span>, <span class="dt">repr.plot.height =</span> <span class="dv">4</span>)</span>
+<span id="cb117-2"><a href="ab-sequence-model.html#cb117-2"></a>p_low &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span>ggseqlogo<span class="op">::</span><span class="kw">geom_logo</span>(low_score_df1<span class="op">$</span>s, <span class="dt">method=</span><span class="st">&quot;bits&quot;</span>, <span class="dt">seq_type=</span><span class="st">&quot;dna&quot;</span>) <span class="op">+</span><span class="st"> </span>ggseqlogo<span class="op">::</span><span class="kw">theme_logo</span>()</span></code></pre></div>
+<pre><code>## Warning: `guides(&lt;scale&gt; = FALSE)` is deprecated. Please use `guides(&lt;scale&gt; =
+## &quot;none&quot;)` instead.</code></pre>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="ab-sequence-model.html#cb119-1"></a>p_low</span></code></pre></div>
+<p><img src="Sequence-model_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="ab-sequence-model.html#cb120-1"></a>p_low &lt;-<span class="st"> </span>p_low <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">5</span><span class="op">:-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>), <span class="dt">breaks=</span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span>)</span></code></pre></div>
+<pre><code>## Scale for &#39;x&#39; is already present. Adding another scale for &#39;x&#39;, which will
+## replace the existing scale.</code></pre>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="ab-sequence-model.html#cb122-1"></a>p_low</span></code></pre></div>
+<p><img src="Sequence-model_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+</div>
+</div>
+<div id="test-models-with-closest-cpg-methylation" class="section level2 hasAnchor">
+<h2><span class="header-section-number">3.4</span> Test models with closest CpG methylation<a href="ab-sequence-model.html#test-models-with-closest-cpg-methylation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Add CG content and GC content</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="ab-sequence-model.html#cb123-1"></a><span class="kw">gvtrack.create</span>(<span class="st">&quot;tor&quot;</span>, <span class="st">&quot;Encode.esd3.replichip.rep2&quot;</span>, <span class="st">&quot;avg&quot;</span>)</span>
+<span id="cb123-2"><a href="ab-sequence-model.html#cb123-2"></a><span class="kw">gvtrack.iterator</span>(<span class="st">&quot;tor&quot;</span>, <span class="dt">sshift=</span><span class="op">-</span><span class="dv">15000</span>, <span class="dt">eshift=</span><span class="dv">15000</span>)</span>
+<span id="cb123-3"><a href="ab-sequence-model.html#cb123-3"></a>m_annot &lt;-<span class="st"> </span><span class="kw">gextract.left_join</span>(<span class="kw">c</span>(<span class="st">&quot;seq.CG_500_mean&quot;</span>, <span class="st">&quot;seq.GC_500_mean&quot;</span>, <span class="st">&quot;tor&quot;</span>), <span class="dt">intervals=</span>m, <span class="dt">iterator=</span>m, <span class="dt">colnames=</span><span class="kw">c</span>(<span class="st">&quot;cg_cont&quot;</span>, <span class="st">&quot;gc_cont&quot;</span>, <span class="st">&quot;tor&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end, cg_cont, gc_cont, tor)</span></code></pre></div>
+<p>Add closest CpG methylation</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="ab-sequence-model.html#cb124-1"></a>m_close_cg &lt;-<span class="st"> </span>m <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gintervals.neighbors1</span>(m <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end, <span class="dt">dAB_close =</span> dAB), <span class="dt">maxneighbors=</span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span>(start <span class="op">==</span><span class="st"> </span>start1 <span class="op">&amp;</span><span class="st"> </span>end <span class="op">==</span><span class="st"> </span>end1 <span class="op">&amp;</span><span class="st"> </span>chrom <span class="op">==</span><span class="st"> </span>chrom1))  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dAB_close =</span> <span class="kw">ifelse</span>(<span class="kw">abs</span>(dist) <span class="op">&lt;=</span><span class="st"> </span><span class="fl">1e3</span>, dAB_close, <span class="ot">NA</span>)) <span class="op">%&gt;%</span><span class="st">  </span><span class="kw">select</span>(chrom, start, end, dAB_close)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="ab-sequence-model.html#cb125-1"></a>m_annot &lt;-<span class="st"> </span>m_annot <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">left_join</span>(m_close_cg) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()</span></code></pre></div>
+<pre><code>## Joining, by = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;)</code></pre>
+<div id="compute-model-with-cg-and-gc-content" class="section level3 hasAnchor">
+<h3><span class="header-section-number">3.4.1</span> Compute model with CG and GC content<a href="ab-sequence-model.html#compute-model-with-cg-and-gc-content" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="ab-sequence-model.html#cb127-1"></a><span class="kw">stopifnot</span>(m_annot <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">anti_join</span>(seq_df_wide) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">nrow</span>() <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)</span></code></pre></div>
+<pre><code>## Joining, by = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;)</code></pre>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="ab-sequence-model.html#cb129-1"></a>model_ab_gc_cg &lt;-<span class="st"> </span><span class="kw">gen_seq_model</span>(<span class="kw">bind_cols</span>(seq_df_wide, m_annot <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(cg_cont, gc_cont)), m, dAB) <span class="op">%cache_rds%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/ab_dinuc_model_5bp_cg_gc.rds&quot;</span>)</span>
+<span id="cb129-2"><a href="ab-sequence-model.html#cb129-2"></a></span>
+<span id="cb129-3"><a href="ab-sequence-model.html#cb129-3"></a>model_ab_gc_cg_xgb &lt;-<span class="st"> </span><span class="kw">gen_seq_model_xgboost</span>(<span class="kw">bind_cols</span>(seq_df_wide, m_annot <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(cg_cont, gc_cont)), m, dAB, xgb_params) <span class="op">%cache_rds%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/ab_dinuc_model_5bp_cg_gc_xgboost.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="ab-sequence-model.html#cb130-1"></a>bandwidth &lt;-<span class="st"> </span><span class="fl">0.08</span></span>
+<span id="cb130-2"><a href="ab-sequence-model.html#cb130-2"></a>point_size &lt;-<span class="st"> </span><span class="fl">0.001</span></span>
+<span id="cb130-3"><a href="ab-sequence-model.html#cb130-3"></a>p_gc_cg &lt;-<span class="st"> </span><span class="kw">plot_model_scatter</span>(model_ab_gc_cg_xgb, <span class="dt">x_lab=</span><span class="st">&quot;Dinucleotide model +</span><span class="ch">\n</span><span class="st">CG content + GC content&quot;</span>, <span class="dt">y_lab =</span> <span class="st">&quot;Meth (3a-/-) - (3b-/-)&quot;</span>)</span>
+<span id="cb130-4"><a href="ab-sequence-model.html#cb130-4"></a></span>
+<span id="cb130-5"><a href="ab-sequence-model.html#cb130-5"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">5</span>, <span class="dt">repr.plot.height=</span><span class="dv">5</span>)</span>
+<span id="cb130-6"><a href="ab-sequence-model.html#cb130-6"></a>p_gc_cg <span class="op">&amp;</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">&amp;</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">plot.subtitle =</span> ggtext<span class="op">::</span><span class="kw">element_markdown</span>(),, <span class="dt">aspect.ratio=</span><span class="dv">1</span>, <span class="dt">panel.grid.major=</span><span class="kw">element_blank</span>(), <span class="dt">panel.grid.minor=</span><span class="kw">element_blank</span>())</span></code></pre></div>
+<p><img src="Sequence-model_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+</div>
+<div id="compute-model-with-tor" class="section level3 hasAnchor">
+<h3><span class="header-section-number">3.4.2</span> Compute model with TOR<a href="ab-sequence-model.html#compute-model-with-tor" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="ab-sequence-model.html#cb131-1"></a>model_ab_tor_xgb &lt;-<span class="st"> </span><span class="kw">gen_seq_model_xgboost</span>(<span class="kw">bind_cols</span>(seq_df_wide, m_annot <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(tor)), m, dAB, xgb_params) <span class="op">%cache_rds%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/ab_dinuc_model_5bp_tor_xgboost.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="ab-sequence-model.html#cb132-1"></a>bandwidth &lt;-<span class="st"> </span><span class="fl">0.08</span></span>
+<span id="cb132-2"><a href="ab-sequence-model.html#cb132-2"></a>point_size &lt;-<span class="st"> </span><span class="fl">0.001</span></span>
+<span id="cb132-3"><a href="ab-sequence-model.html#cb132-3"></a>p_tor &lt;-<span class="st"> </span><span class="kw">plot_model_scatter</span>(model_ab_tor_xgb, <span class="dt">x_lab=</span><span class="st">&quot;Dinucleotide model +</span><span class="ch">\n</span><span class="st">TOR&quot;</span>, <span class="dt">y_lab =</span> <span class="st">&quot;Meth (3a-/-) - (3b-/-)&quot;</span>)</span>
+<span id="cb132-4"><a href="ab-sequence-model.html#cb132-4"></a></span>
+<span id="cb132-5"><a href="ab-sequence-model.html#cb132-5"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">5</span>, <span class="dt">repr.plot.height=</span><span class="dv">5</span>)</span>
+<span id="cb132-6"><a href="ab-sequence-model.html#cb132-6"></a>p_tor <span class="op">&amp;</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">&amp;</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">plot.subtitle =</span> ggtext<span class="op">::</span><span class="kw">element_markdown</span>(),, <span class="dt">aspect.ratio=</span><span class="dv">1</span>, <span class="dt">panel.grid.major=</span><span class="kw">element_blank</span>(), <span class="dt">panel.grid.minor=</span><span class="kw">element_blank</span>())</span></code></pre></div>
+<p><img src="Sequence-model_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+</div>
+<div id="compute-model-with-closest-cpg" class="section level3 hasAnchor">
+<h3><span class="header-section-number">3.4.3</span> Compute model with closest CpG<a href="ab-sequence-model.html#compute-model-with-closest-cpg" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="ab-sequence-model.html#cb133-1"></a>intervs_f &lt;-<span class="st"> </span>m_annot <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dAB_close)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end, dAB_close)</span>
+<span id="cb133-2"><a href="ab-sequence-model.html#cb133-2"></a>m_f &lt;-<span class="st"> </span>m <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join</span>(intervs_f <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom<span class="op">:</span>end))</span></code></pre></div>
+<pre><code>## Joining, by = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;)</code></pre>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="ab-sequence-model.html#cb135-1"></a>seq_df_wide_f &lt;-<span class="st"> </span>seq_df_wide <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join</span>(intervs_f)</span></code></pre></div>
+<pre><code>## Joining, by = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;)</code></pre>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="ab-sequence-model.html#cb137-1"></a>model_ab_close_cg &lt;-<span class="st"> </span><span class="kw">gen_seq_model</span>(seq_df_wide_f, m_f, dAB) <span class="op">%cache_rds%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/ab_dinuc_model_5bp_close_cg.rds&quot;</span>)</span>
+<span id="cb137-2"><a href="ab-sequence-model.html#cb137-2"></a><span class="kw">nrow</span>(intervs_f)</span></code></pre></div>
+<pre><code>## [1] 80056</code></pre>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="ab-sequence-model.html#cb139-1"></a>model_ab_close_cg_xgb &lt;-<span class="st"> </span><span class="kw">gen_seq_model_xgboost</span>(seq_df_wide_f, m_f, dAB, xgb_params) <span class="op">%cache_rds%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/ab_dinuc_model_5bp_close_cg_xgb.rds&quot;</span>)</span>
+<span id="cb139-2"><a href="ab-sequence-model.html#cb139-2"></a><span class="kw">nrow</span>(intervs_f)</span></code></pre></div>
+<pre><code>## [1] 80056</code></pre>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="ab-sequence-model.html#cb141-1"></a>p_close_cg &lt;-<span class="st"> </span><span class="kw">plot_model_scatter</span>(model_ab_close_cg_xgb, <span class="dt">x_lab=</span><span class="st">&quot;Dinucleotide model +</span><span class="ch">\n</span><span class="st">closest CpG methylation&quot;</span>, <span class="dt">y_lab =</span> <span class="st">&quot;Meth (3a-/-) - (3b-/-)&quot;</span>)</span>
+<span id="cb141-2"><a href="ab-sequence-model.html#cb141-2"></a></span>
+<span id="cb141-3"><a href="ab-sequence-model.html#cb141-3"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">5</span>, <span class="dt">repr.plot.height=</span><span class="dv">5</span>)</span>
+<span id="cb141-4"><a href="ab-sequence-model.html#cb141-4"></a>p_close_cg <span class="op">&amp;</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">&amp;</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">plot.subtitle =</span> ggtext<span class="op">::</span><span class="kw">element_markdown</span>(),, <span class="dt">aspect.ratio=</span><span class="dv">1</span>, <span class="dt">panel.grid.major=</span><span class="kw">element_blank</span>(), <span class="dt">panel.grid.minor=</span><span class="kw">element_blank</span>())</span></code></pre></div>
+<p><img src="Sequence-model_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+</div>
+<div id="compute-model-with-all-enhancer-methylation" class="section level3 hasAnchor">
+<h3><span class="header-section-number">3.4.4</span> Compute model with all enhancer methylation<a href="ab-sequence-model.html#compute-model-with-all-enhancer-methylation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="ab-sequence-model.html#cb142-1"></a>cpg_meth_meth_cov &lt;-<span class="st"> </span><span class="kw">calc_eb_day0_to_day4_cpg_meth</span>(<span class="dt">min_cov =</span> <span class="dv">10</span>, <span class="dt">max_na =</span> <span class="dv">5</span>, <span class="dt">rm_meth_cov=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="ab-sequence-model.html#cb143-1"></a>enh_intervs &lt;-<span class="st"> </span><span class="kw">get_all_enhancers</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">l =</span> end <span class="op">-</span><span class="st"> </span>start) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(l <span class="op">&lt;=</span><span class="st"> </span><span class="fl">1e4</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>l)</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="ab-sequence-model.html#cb144-1"></a>enh_intervs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">l =</span> end <span class="op">-</span><span class="st"> </span>start) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(l) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    20.0    60.0   100.0   200.2   200.0  9320.0</code></pre>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="ab-sequence-model.html#cb146-1"></a>m_enh_punc &lt;-<span class="st"> </span>cpg_meth_meth_cov <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb146-2"><a href="ab-sequence-model.html#cb146-2"></a><span class="st">    </span><span class="kw">gintervals.neighbors1</span>(enh_intervs) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb146-3"><a href="ab-sequence-model.html#cb146-3"></a><span class="st">    </span><span class="kw">filter</span>(dist <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb146-4"><a href="ab-sequence-model.html#cb146-4"></a><span class="st">    </span><span class="kw">group_by</span>(chrom1, start1, end1) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb146-5"><a href="ab-sequence-model.html#cb146-5"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">mA_enh.meth =</span> <span class="kw">sum</span>(d1_3a.meth, d2_3a.meth, d3_3a.meth, d4_3a.meth, <span class="dt">na.rm=</span><span class="ot">FALSE</span>),</span>
+<span id="cb146-6"><a href="ab-sequence-model.html#cb146-6"></a>           <span class="dt">mA_enh.cov =</span> <span class="kw">sum</span>(d1_3a.cov, d2_3a.cov, d3_3a.cov, d4_3a.cov, <span class="dt">na.rm=</span><span class="ot">FALSE</span>),</span>
+<span id="cb146-7"><a href="ab-sequence-model.html#cb146-7"></a>           <span class="dt">mB_enh.meth =</span> <span class="kw">sum</span>(d1_3b.meth, d2_3b.meth, d3_3b.meth, d4_3b.meth, <span class="dt">na.rm=</span><span class="ot">FALSE</span>),</span>
+<span id="cb146-8"><a href="ab-sequence-model.html#cb146-8"></a>           <span class="dt">mB_enh.cov =</span> <span class="kw">sum</span>(d1_3b.cov, d2_3b.cov, d3_3b.cov, d4_3b.cov, <span class="dt">na.rm=</span><span class="ot">FALSE</span>),</span>
+<span id="cb146-9"><a href="ab-sequence-model.html#cb146-9"></a>           </span>
+<span id="cb146-10"><a href="ab-sequence-model.html#cb146-10"></a>           <span class="dt">mA.meth =</span> <span class="kw">psum</span>(d1_3a.meth, d2_3a.meth, d3_3a.meth, d4_3a.meth, <span class="dt">na.rm=</span><span class="ot">FALSE</span>),</span>
+<span id="cb146-11"><a href="ab-sequence-model.html#cb146-11"></a>           <span class="dt">mA.cov =</span> <span class="kw">psum</span>(d1_3a.cov, d2_3a.cov, d3_3a.cov, d4_3a.cov, <span class="dt">na.rm=</span><span class="ot">FALSE</span>),</span>
+<span id="cb146-12"><a href="ab-sequence-model.html#cb146-12"></a>           <span class="dt">mB.meth =</span> <span class="kw">psum</span>(d1_3b.meth, d2_3b.meth, d3_3b.meth, d4_3b.meth, <span class="dt">na.rm=</span><span class="ot">FALSE</span>),</span>
+<span id="cb146-13"><a href="ab-sequence-model.html#cb146-13"></a>           <span class="dt">mB.cov =</span> <span class="kw">psum</span>(d1_3b.cov, d2_3b.cov, d3_3b.cov, d4_3b.cov, <span class="dt">na.rm=</span><span class="ot">FALSE</span>),</span>
+<span id="cb146-14"><a href="ab-sequence-model.html#cb146-14"></a>           </span>
+<span id="cb146-15"><a href="ab-sequence-model.html#cb146-15"></a>           <span class="dt">mA_enh =</span> (mA_enh.meth <span class="op">-</span><span class="st"> </span>mA.meth) <span class="op">/</span><span class="st"> </span>(mA_enh.cov <span class="op">-</span><span class="st"> </span>mA.cov),</span>
+<span id="cb146-16"><a href="ab-sequence-model.html#cb146-16"></a>           <span class="dt">mB_enh =</span> (mB_enh.meth <span class="op">-</span><span class="st"> </span>mB.meth) <span class="op">/</span><span class="st"> </span>(mB_enh.cov <span class="op">-</span><span class="st"> </span>mB.cov),</span>
+<span id="cb146-17"><a href="ab-sequence-model.html#cb146-17"></a>           <span class="dt">dAB_enh =</span> mA_enh <span class="op">-</span><span class="st"> </span>mB_enh</span>
+<span id="cb146-18"><a href="ab-sequence-model.html#cb146-18"></a>    ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb146-19"><a href="ab-sequence-model.html#cb146-19"></a><span class="st">    </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb146-20"><a href="ab-sequence-model.html#cb146-20"></a><span class="st">    </span><span class="kw">select</span>(chrom, start, end, dAB_enh)</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="ab-sequence-model.html#cb147-1"></a>intervs_f &lt;-<span class="st"> </span>m_annot <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join</span>(m_enh_punc) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dAB_enh)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end, dAB_enh)</span></code></pre></div>
+<pre><code>## Joining, by = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;)</code></pre>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="ab-sequence-model.html#cb149-1"></a>m_f &lt;-<span class="st"> </span>m <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join</span>(intervs_f <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom<span class="op">:</span>end))</span></code></pre></div>
+<pre><code>## Joining, by = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;)</code></pre>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="ab-sequence-model.html#cb151-1"></a>seq_df_wide_f &lt;-<span class="st"> </span>seq_df_wide <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join</span>(intervs_f)</span></code></pre></div>
+<pre><code>## Joining, by = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;)</code></pre>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="ab-sequence-model.html#cb153-1"></a>model_ab_enh &lt;-<span class="st"> </span><span class="kw">gen_seq_model</span>(seq_df_wide_f, m_f, dAB) <span class="op">%cache_rds%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/ab_dinuc_model_5bp_enh_meth.rds&quot;</span>)</span>
+<span id="cb153-2"><a href="ab-sequence-model.html#cb153-2"></a></span>
+<span id="cb153-3"><a href="ab-sequence-model.html#cb153-3"></a>model_ab_enh_xgb &lt;-<span class="st"> </span><span class="kw">gen_seq_model_xgboost</span>(seq_df_wide_f, m_f, dAB, xgb_params) <span class="op">%cache_rds%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/ab_dinuc_model_5bp_enh_meth_xgb.rds&quot;</span>)</span>
+<span id="cb153-4"><a href="ab-sequence-model.html#cb153-4"></a><span class="kw">nrow</span>(intervs_f)</span></code></pre></div>
+<pre><code>## [1] 40813</code></pre>
+</div>
+<div id="figure-7a" class="section level3 hasAnchor">
+<h3><span class="header-section-number">3.4.5</span> Figure 7A<a href="ab-sequence-model.html#figure-7a" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="ab-sequence-model.html#cb155-1"></a>p_enh_meth &lt;-<span class="st"> </span><span class="kw">plot_model_scatter</span>(model_ab_enh_xgb, <span class="dt">x_lab=</span><span class="st">&quot;Dinucleotide model +</span><span class="ch">\n</span><span class="st">Enhancer methylation&quot;</span>, <span class="dt">y_lab =</span> <span class="st">&quot;Meth (3a-/-) - (3b-/-)&quot;</span>)</span>
+<span id="cb155-2"><a href="ab-sequence-model.html#cb155-2"></a></span>
+<span id="cb155-3"><a href="ab-sequence-model.html#cb155-3"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">5</span>, <span class="dt">repr.plot.height=</span><span class="dv">5</span>)</span>
+<span id="cb155-4"><a href="ab-sequence-model.html#cb155-4"></a>p_enh_meth <span class="op">&amp;</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">&amp;</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">plot.subtitle =</span> ggtext<span class="op">::</span><span class="kw">element_markdown</span>(), <span class="dt">aspect.ratio=</span><span class="dv">1</span>, <span class="dt">panel.grid.major=</span><span class="kw">element_blank</span>(), <span class="dt">panel.grid.minor=</span><span class="kw">element_blank</span>())</span></code></pre></div>
+<p><img src="Sequence-model_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<div id="all-variables" class="section level4 hasAnchor">
+<h4><span class="header-section-number">3.4.5.1</span> All variables<a href="ab-sequence-model.html#all-variables" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="ab-sequence-model.html#cb156-1"></a>intervs_f &lt;-<span class="st"> </span>m_annot <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join</span>(m_enh_punc) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dAB_enh)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end, dAB_enh)</span></code></pre></div>
+<pre><code>## Joining, by = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;)</code></pre>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="ab-sequence-model.html#cb158-1"></a>m_f &lt;-<span class="st"> </span>m <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join</span>(intervs_f <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom<span class="op">:</span>end))</span></code></pre></div>
+<pre><code>## Joining, by = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;)</code></pre>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="ab-sequence-model.html#cb160-1"></a>seq_df_wide_f &lt;-<span class="st"> </span>seq_df_wide <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join</span>(intervs_f)</span></code></pre></div>
+<pre><code>## Joining, by = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;)</code></pre>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="ab-sequence-model.html#cb162-1"></a>seq_df_wide_f &lt;-<span class="st"> </span>seq_df_wide_f <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">left_join</span>(m_annot <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom<span class="op">:</span>end, cg_cont, gc_cont, tor, dAB_close))</span></code></pre></div>
+<pre><code>## Joining, by = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;)</code></pre>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="ab-sequence-model.html#cb164-1"></a>model_ab_all_vars_xgb &lt;-<span class="st"> </span><span class="kw">gen_seq_model_xgboost</span>(seq_df_wide_f, m_f, dAB, xgb_params) <span class="op">%cache_rds%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/ab_dinuc_model_5bp_all_vars_xgb.rds&quot;</span>)</span>
+<span id="cb164-2"><a href="ab-sequence-model.html#cb164-2"></a><span class="kw">nrow</span>(intervs_f)</span></code></pre></div>
+<pre><code>## [1] 40813</code></pre>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="ab-sequence-model.html#cb166-1"></a>p_all_vars &lt;-<span class="st"> </span><span class="kw">plot_model_scatter</span>(model_ab_all_vars_xgb, <span class="dt">x_lab=</span><span class="st">&quot;Dinucleotide model +</span><span class="ch">\n</span><span class="st">CG+GC+TOR+Closest CpG+Enhancer&quot;</span>, <span class="dt">y_lab =</span> <span class="st">&quot;Meth (3a-/-) - (3b-/-)&quot;</span>)</span>
+<span id="cb166-2"><a href="ab-sequence-model.html#cb166-2"></a></span>
+<span id="cb166-3"><a href="ab-sequence-model.html#cb166-3"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">5</span>, <span class="dt">repr.plot.height=</span><span class="dv">5</span>)</span>
+<span id="cb166-4"><a href="ab-sequence-model.html#cb166-4"></a>p_all_vars <span class="op">&amp;</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">&amp;</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">plot.subtitle =</span> ggtext<span class="op">::</span><span class="kw">element_markdown</span>(), <span class="dt">aspect.ratio=</span><span class="dv">1</span>, <span class="dt">panel.grid.major=</span><span class="kw">element_blank</span>(), <span class="dt">panel.grid.minor=</span><span class="kw">element_blank</span>())</span></code></pre></div>
+<p><img src="Sequence-model_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+<div id="estimate-prediction-noise" class="section level2 hasAnchor">
+<h2><span class="header-section-number">3.5</span> Estimate prediction noise<a href="ab-sequence-model.html#estimate-prediction-noise" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="ab-sequence-model.html#cb167-1"></a>cpg_meth1 &lt;-<span class="st"> </span><span class="kw">calc_eb_day0_to_day4_cpg_meth</span>(<span class="dt">min_cov =</span> <span class="dv">10</span>, <span class="dt">max_na  =</span> <span class="dv">5</span>, <span class="dt">rm_meth_cov=</span><span class="ot">FALSE</span>)</span>
+<span id="cb167-2"><a href="ab-sequence-model.html#cb167-2"></a>cpg_meth1 &lt;-<span class="st"> </span>cpg_meth1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join</span>(m <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end))</span></code></pre></div>
+<pre><code>## Joining, by = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;)</code></pre>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="ab-sequence-model.html#cb169-1"></a>cpg_meth.avg &lt;-<span class="st"> </span>cpg_meth1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">ends_with</span>(<span class="st">&quot;meth&quot;</span>), <span class="op">-</span><span class="kw">ends_with</span>(<span class="st">&quot;cov&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">intervs_to_mat</span>()</span>
+<span id="cb169-2"><a href="ab-sequence-model.html#cb169-2"></a></span>
+<span id="cb169-3"><a href="ab-sequence-model.html#cb169-3"></a>cpg_meth.cov &lt;-<span class="st"> </span>cpg_meth1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom<span class="op">:</span>end, <span class="kw">ends_with</span>(<span class="st">&quot;cov&quot;</span>))  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">intervs_to_mat</span>()</span>
+<span id="cb169-4"><a href="ab-sequence-model.html#cb169-4"></a>cpg_meth.cov &lt;-<span class="st"> </span>cpg_meth.cov[, <span class="kw">paste0</span>(<span class="kw">colnames</span>(cpg_meth.avg), <span class="st">&quot;.cov&quot;</span>)]</span>
+<span id="cb169-5"><a href="ab-sequence-model.html#cb169-5"></a></span>
+<span id="cb169-6"><a href="ab-sequence-model.html#cb169-6"></a>cpg_meth.samp_meth &lt;-<span class="st"> </span>cpg_meth.avg</span>
+<span id="cb169-7"><a href="ab-sequence-model.html#cb169-7"></a><span class="cf">for</span> (col <span class="cf">in</span> <span class="kw">colnames</span>(cpg_meth.avg)){</span>
+<span id="cb169-8"><a href="ab-sequence-model.html#cb169-8"></a>    <span class="kw">suppressWarnings</span>(cpg_meth.samp_meth[, col] &lt;-<span class="st"> </span><span class="kw">map2_int</span>(cpg_meth.cov[, <span class="kw">paste0</span>(col, <span class="st">&quot;.cov&quot;</span>)], cpg_meth.avg[, col], <span class="op">~</span><span class="st"> </span><span class="kw">sum</span>(<span class="kw">rbinom</span>(<span class="dt">n=</span>.x, <span class="dt">size=</span><span class="dv">1</span>, <span class="dt">prob=</span>.y) )))</span>
+<span id="cb169-9"><a href="ab-sequence-model.html#cb169-9"></a>}</span>
+<span id="cb169-10"><a href="ab-sequence-model.html#cb169-10"></a></span>
+<span id="cb169-11"><a href="ab-sequence-model.html#cb169-11"></a>cpg_meth.samp &lt;-<span class="st"> </span>cpg_meth.samp_meth <span class="op">/</span><span class="st"> </span>cpg_meth.cov</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="ab-sequence-model.html#cb170-1"></a>m_samp &lt;-<span class="st"> </span>cpg_meth.samp <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mat_to_intervs</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb170-2"><a href="ab-sequence-model.html#cb170-2"></a><span class="st">    </span><span class="kw">mutate</span>(</span>
+<span id="cb170-3"><a href="ab-sequence-model.html#cb170-3"></a>        <span class="dt">mA =</span> <span class="kw">psum</span>(d1_3a, d2_3a, d3_3a, d4_3a, <span class="dt">na.rm=</span><span class="ot">FALSE</span>),</span>
+<span id="cb170-4"><a href="ab-sequence-model.html#cb170-4"></a>        <span class="dt">mB =</span> <span class="kw">psum</span>(d1_3b, d2_3b, d3_3b, d4_3b, <span class="dt">na.rm=</span><span class="ot">FALSE</span>),</span>
+<span id="cb170-5"><a href="ab-sequence-model.html#cb170-5"></a>        <span class="dt">mwt =</span> <span class="kw">psum</span>(d1_wt, d2_wt, d3_wt, d4_wt, <span class="dt">na.rm=</span><span class="ot">FALSE</span>),</span>
+<span id="cb170-6"><a href="ab-sequence-model.html#cb170-6"></a>        <span class="dt">dAB =</span> mA <span class="op">-</span><span class="st"> </span>mB,</span>
+<span id="cb170-7"><a href="ab-sequence-model.html#cb170-7"></a>        <span class="dt">dB =</span> mB <span class="op">-</span><span class="st"> </span>mwt, </span>
+<span id="cb170-8"><a href="ab-sequence-model.html#cb170-8"></a>        <span class="dt">dA =</span> mA <span class="op">-</span><span class="st"> </span>mwt    </span>
+<span id="cb170-9"><a href="ab-sequence-model.html#cb170-9"></a>    ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb170-10"><a href="ab-sequence-model.html#cb170-10"></a><span class="st">    </span><span class="kw">select</span>(chrom, start, end, mA, mB, mwt, dAB, dB, dA) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb170-11"><a href="ab-sequence-model.html#cb170-11"></a><span class="st">    </span><span class="kw">as_tibble</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="ab-sequence-model.html#cb171-1"></a><span class="kw">message</span>(<span class="st">&quot;dAB (dinuc)&quot;</span>)</span></code></pre></div>
+<pre><code>## dAB (dinuc)</code></pre>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="ab-sequence-model.html#cb173-1"></a>model_ab_samp &lt;-<span class="st"> </span><span class="kw">gen_seq_model</span>(seq_df_wide, m_samp, dAB) <span class="op">%cache_rds%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/ab_dinuc_model_5bp_samp.rds&quot;</span>)</span>
+<span id="cb173-2"><a href="ab-sequence-model.html#cb173-2"></a>model_ab_samp_xgb &lt;-<span class="st"> </span><span class="kw">gen_seq_model_xgboost</span>(seq_df_wide, m_samp, dAB, xgb_params) <span class="op">%cache_rds%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/ab_dinuc_model_5bp_samp_xgboost.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="ab-sequence-model.html#cb174-1"></a>bandwidth &lt;-<span class="st"> </span><span class="fl">0.08</span></span>
+<span id="cb174-2"><a href="ab-sequence-model.html#cb174-2"></a>point_size &lt;-<span class="st"> </span><span class="fl">0.001</span></span>
+<span id="cb174-3"><a href="ab-sequence-model.html#cb174-3"></a>p_ab_samp &lt;-<span class="st"> </span><span class="kw">plot_model_scatter</span>(model_ab_samp_xgb, <span class="dt">x_lab=</span><span class="st">&quot;Dinucleotide combined model (sampled)&quot;</span>, <span class="dt">y_lab =</span> <span class="st">&quot;Meth (3a-/-) - (3b-/-)&quot;</span>)</span>
+<span id="cb174-4"><a href="ab-sequence-model.html#cb174-4"></a></span>
+<span id="cb174-5"><a href="ab-sequence-model.html#cb174-5"></a>p_ab_samp</span></code></pre></div>
+<p><img src="Sequence-model_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="ab-sequence-model.html#cb175-1"></a>bandwidth &lt;-<span class="st"> </span><span class="fl">0.08</span></span>
+<span id="cb175-2"><a href="ab-sequence-model.html#cb175-2"></a>point_size &lt;-<span class="st"> </span><span class="fl">0.001</span></span>
+<span id="cb175-3"><a href="ab-sequence-model.html#cb175-3"></a>p_ab_samp_obs &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">pred =</span> model_ab_xgboost<span class="op">$</span>pred, <span class="dt">y =</span> model_ab_samp_xgb<span class="op">$</span>pred) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb175-4"><a href="ab-sequence-model.html#cb175-4"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">col =</span> <span class="kw">densCols</span>(., <span class="dt">bandwidth=</span><span class="fl">0.06</span>,<span class="dt">colramp=</span><span class="kw">colorRampPalette</span>(<span class="kw">c</span>(<span class="st">&quot;white&quot;</span>,<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkblue&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;gold&quot;</span>,<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;red&quot;</span>, <span class="st">&quot;darkred&quot;</span> )))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb175-5"><a href="ab-sequence-model.html#cb175-5"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>pred, <span class="dt">y=</span>y, <span class="dt">col=</span>col)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb175-6"><a href="ab-sequence-model.html#cb175-6"></a><span class="st">        </span><span class="kw">geom_point</span>(<span class="dt">shape=</span><span class="dv">19</span>, <span class="dt">size=</span><span class="fl">0.001</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb175-7"><a href="ab-sequence-model.html#cb175-7"></a><span class="st">        </span><span class="kw">scale_color_identity</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb175-8"><a href="ab-sequence-model.html#cb175-8"></a><span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;Dinucleotide combined model (observed)&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb175-9"><a href="ab-sequence-model.html#cb175-9"></a><span class="st">        </span><span class="kw">ylab</span>(<span class="st">&quot;Dinucleotide combined model (sampled)&quot;</span>) <span class="op">+</span><span class="st">         </span></span>
+<span id="cb175-10"><a href="ab-sequence-model.html#cb175-10"></a><span class="st">        </span><span class="kw">theme</span>(<span class="dt">aspect.ratio=</span><span class="dv">1</span>, <span class="dt">panel.grid.major=</span><span class="kw">element_blank</span>(), <span class="dt">panel.grid.minor=</span><span class="kw">element_blank</span>()) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb175-11"><a href="ab-sequence-model.html#cb175-11"></a><span class="st">        </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="kw">glue</span>(<span class="st">&quot;R^2 = {cor}&quot;</span>, <span class="dt">cor =</span> <span class="kw">round</span>(<span class="kw">cor</span>(model_ab_xgboost<span class="op">$</span>pred, model_ab_samp_xgb<span class="op">$</span>pred)<span class="op">^</span><span class="dv">2</span>, <span class="dt">digits=</span><span class="dv">5</span>))) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb175-12"><a href="ab-sequence-model.html#cb175-12"></a><span class="st">        </span><span class="kw">theme</span>(<span class="dt">plot.subtitle =</span> ggtext<span class="op">::</span><span class="kw">element_markdown</span>())</span>
+<span id="cb175-13"><a href="ab-sequence-model.html#cb175-13"></a>p_ab_samp_obs</span></code></pre></div>
+<p><img src="Sequence-model_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="ab-sequence-model.html#cb176-1"></a><span class="kw">round</span>(<span class="kw">cor</span>(model_ab_xgboost<span class="op">$</span>pred, model_ab_samp_xgb<span class="op">$</span>pred)<span class="op">^</span><span class="dv">2</span>, <span class="dt">digits=</span><span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 0.98552</code></pre>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="ab-sequence-model.html#cb178-1"></a>bandwidth &lt;-<span class="st"> </span><span class="fl">0.08</span></span>
+<span id="cb178-2"><a href="ab-sequence-model.html#cb178-2"></a>point_size &lt;-<span class="st"> </span><span class="fl">0.001</span></span>
+<span id="cb178-3"><a href="ab-sequence-model.html#cb178-3"></a>p_ab_samp_obs_y &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">pred =</span> model_ab_xgboost<span class="op">$</span>y, <span class="dt">y =</span> model_ab_samp_xgb<span class="op">$</span>y) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb178-4"><a href="ab-sequence-model.html#cb178-4"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">col =</span> <span class="kw">densCols</span>(., <span class="dt">bandwidth=</span><span class="fl">0.06</span>,<span class="dt">colramp=</span><span class="kw">colorRampPalette</span>(<span class="kw">c</span>(<span class="st">&quot;white&quot;</span>,<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkblue&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;gold&quot;</span>,<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;red&quot;</span>, <span class="st">&quot;darkred&quot;</span> )))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb178-5"><a href="ab-sequence-model.html#cb178-5"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>pred, <span class="dt">y=</span>y, <span class="dt">col=</span>col)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb178-6"><a href="ab-sequence-model.html#cb178-6"></a><span class="st">        </span><span class="kw">geom_point</span>(<span class="dt">shape=</span><span class="dv">19</span>, <span class="dt">size=</span><span class="fl">0.001</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb178-7"><a href="ab-sequence-model.html#cb178-7"></a><span class="st">        </span><span class="kw">scale_color_identity</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb178-8"><a href="ab-sequence-model.html#cb178-8"></a><span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;Meth (3a-/-) - (3b-/-) (observed)&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb178-9"><a href="ab-sequence-model.html#cb178-9"></a><span class="st">        </span><span class="kw">ylab</span>(<span class="st">&quot;Meth (3a-/-) - (3b-/-) (sampled)&quot;</span>) <span class="op">+</span><span class="st">         </span></span>
+<span id="cb178-10"><a href="ab-sequence-model.html#cb178-10"></a><span class="st">        </span><span class="kw">theme</span>(<span class="dt">aspect.ratio=</span><span class="dv">1</span>, <span class="dt">panel.grid.major=</span><span class="kw">element_blank</span>(), <span class="dt">panel.grid.minor=</span><span class="kw">element_blank</span>()) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb178-11"><a href="ab-sequence-model.html#cb178-11"></a><span class="st">        </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="kw">glue</span>(<span class="st">&quot;R^2 = {cor}&quot;</span>, <span class="dt">cor =</span> <span class="kw">round</span>(<span class="kw">cor</span>(model_ab_xgboost<span class="op">$</span>y, model_ab_samp_xgb<span class="op">$</span>y)<span class="op">^</span><span class="dv">2</span>, <span class="dt">digits=</span><span class="dv">2</span>))) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb178-12"><a href="ab-sequence-model.html#cb178-12"></a><span class="st">        </span><span class="kw">theme</span>(<span class="dt">plot.subtitle =</span> ggtext<span class="op">::</span><span class="kw">element_markdown</span>())</span>
+<span id="cb178-13"><a href="ab-sequence-model.html#cb178-13"></a>p_ab_samp_obs_y</span></code></pre></div>
+<p><img src="Sequence-model_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<div id="kinteics-per-time-and-score-bin" class="section level3 hasAnchor">
+<h3><span class="header-section-number">3.5.1</span> Kinteics per time and score bin<a href="ab-sequence-model.html#kinteics-per-time-and-score-bin" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="ab-sequence-model.html#cb179-1"></a>track_df &lt;-<span class="st"> </span>tracks_key <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(day <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;d0S&quot;</span>, <span class="kw">paste0</span>(<span class="st">&quot;d&quot;</span>, <span class="dv">0</span><span class="op">:</span><span class="dv">6</span>)))  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(day, line) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">name1 =</span> <span class="kw">glue</span>(<span class="st">&quot;{day}_{line}_{sort}_{1:n()}&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ungroup</span>()  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(line, day, sort, <span class="dt">name =</span> name1, track_name) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unite</span>(<span class="st">&quot;grp&quot;</span>, day, line, sort, <span class="dt">remove=</span><span class="ot">FALSE</span>)</span>
+<span id="cb179-2"><a href="ab-sequence-model.html#cb179-2"></a></span>
+<span id="cb179-3"><a href="ab-sequence-model.html#cb179-3"></a>cpg_meth_all &lt;-<span class="st"> </span><span class="kw">gextract_meth</span>(</span>
+<span id="cb179-4"><a href="ab-sequence-model.html#cb179-4"></a>    <span class="dt">tracks =</span> track_df<span class="op">$</span>track_name, </span>
+<span id="cb179-5"><a href="ab-sequence-model.html#cb179-5"></a>    <span class="dt">names=</span>track_df<span class="op">$</span>name, </span>
+<span id="cb179-6"><a href="ab-sequence-model.html#cb179-6"></a>    <span class="dt">intervals=</span><span class="kw">gintervals.union</span>(<span class="st">&quot;intervs.captPBAT_probes.ES_EB_V1&quot;</span>, <span class="st">&quot;intervs.captPBAT_probes.ES_EB_V2&quot;</span>), </span>
+<span id="cb179-7"><a href="ab-sequence-model.html#cb179-7"></a>    <span class="dt">extract_meth_calls =</span> <span class="ot">TRUE</span>) <span class="op">%cache_df%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/eb_day0_to_day6_cpg_meth.tsv&quot;</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>intervalID) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()    </span>
+<span id="cb179-8"><a href="ab-sequence-model.html#cb179-8"></a></span>
+<span id="cb179-9"><a href="ab-sequence-model.html#cb179-9"></a>cpg_meth_all &lt;-<span class="st"> </span>cpg_meth_all <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">ends_with</span>(<span class="st">&quot;ko1&quot;</span>))  </span>
+<span id="cb179-10"><a href="ab-sequence-model.html#cb179-10"></a><span class="kw">colnames</span>(cpg_meth_all) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;ko3a&quot;</span>, <span class="st">&quot;3a&quot;</span>, <span class="kw">colnames</span>(cpg_meth_all))</span>
+<span id="cb179-11"><a href="ab-sequence-model.html#cb179-11"></a><span class="kw">colnames</span>(cpg_meth_all) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;ko3b&quot;</span>, <span class="st">&quot;3b&quot;</span>, <span class="kw">colnames</span>(cpg_meth_all))</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="ab-sequence-model.html#cb180-1"></a>cpg_meth_days &lt;-<span class="st"> </span>cpg_meth_all <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end)</span>
+<span id="cb180-2"><a href="ab-sequence-model.html#cb180-2"></a>grps &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(<span class="kw">paste0</span>(<span class="st">&quot;d&quot;</span>, <span class="dv">0</span><span class="op">:</span><span class="dv">6</span>), <span class="kw">c</span>(<span class="st">&quot;wt&quot;</span>, <span class="st">&quot;3a&quot;</span>, <span class="st">&quot;3b&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unite</span>(<span class="st">&quot;var&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;Var1&quot;</span>, <span class="st">&quot;Var2&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(var)</span>
+<span id="cb180-3"><a href="ab-sequence-model.html#cb180-3"></a><span class="cf">for</span> (g <span class="cf">in</span> grps){</span>
+<span id="cb180-4"><a href="ab-sequence-model.html#cb180-4"></a>    cov_cols &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="kw">glue</span>(<span class="st">&quot;{g}.*cov$&quot;</span>), <span class="kw">colnames</span>(cpg_meth_all), <span class="dt">value=</span><span class="ot">TRUE</span>)</span>
+<span id="cb180-5"><a href="ab-sequence-model.html#cb180-5"></a>    meth_cols &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="kw">glue</span>(<span class="st">&quot;{g}.*meth$&quot;</span>), <span class="kw">colnames</span>(cpg_meth_all), <span class="dt">value=</span><span class="ot">TRUE</span>)</span>
+<span id="cb180-6"><a href="ab-sequence-model.html#cb180-6"></a>    cpg_meth_days[[<span class="kw">paste0</span>(g, <span class="st">&quot;.cov&quot;</span>)]] &lt;-<span class="st"> </span><span class="kw">rowSums</span>(cpg_meth_all[, cov_cols], <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb180-7"><a href="ab-sequence-model.html#cb180-7"></a>    cpg_meth_days[[<span class="kw">paste0</span>(g, <span class="st">&quot;.meth&quot;</span>)]] &lt;-<span class="st"> </span><span class="kw">rowSums</span>(cpg_meth_all[, meth_cols], <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb180-8"><a href="ab-sequence-model.html#cb180-8"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="ab-sequence-model.html#cb181-1"></a>cpg_intervs &lt;-<span class="st"> </span>cpg_meth_all <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom<span class="op">:</span>end)</span>
+<span id="cb181-2"><a href="ab-sequence-model.html#cb181-2"></a>scores_df &lt;-<span class="st"> </span><span class="kw">gextract</span>(<span class="st">&quot;DNMT.ab_score_xgb_plus&quot;</span>, <span class="dt">iterator=</span>cpg_intervs, <span class="dt">intervals=</span>cpg_intervs, <span class="dt">colnames=</span><span class="st">&quot;ab_score&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(intervalID) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>intervalID) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="ab-sequence-model.html#cb182-1"></a>cov_mat &lt;-<span class="st"> </span>cpg_meth_days <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom<span class="op">:</span>end, <span class="kw">ends_with</span>(<span class="st">&quot;cov&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">intervs_to_mat</span>()</span>
+<span id="cb182-2"><a href="ab-sequence-model.html#cb182-2"></a><span class="kw">colnames</span>(cov_mat) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;.cov$&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="kw">colnames</span>(cov_mat))</span>
+<span id="cb182-3"><a href="ab-sequence-model.html#cb182-3"></a>meth_mat &lt;-<span class="st"> </span>cpg_meth_days <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom<span class="op">:</span>end, <span class="kw">ends_with</span>(<span class="st">&quot;meth&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">intervs_to_mat</span>()</span>
+<span id="cb182-4"><a href="ab-sequence-model.html#cb182-4"></a><span class="kw">colnames</span>(meth_mat) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;.meth$&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="kw">colnames</span>(meth_mat))</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="ab-sequence-model.html#cb183-1"></a>score_qs &lt;-<span class="st"> </span><span class="kw">quantile</span>(scores_df<span class="op">$</span>ab_score, (<span class="dv">0</span><span class="op">:</span><span class="dv">20</span>)<span class="op">/</span><span class="dv">20</span>)</span>
+<span id="cb183-2"><a href="ab-sequence-model.html#cb183-2"></a>score_qs[<span class="kw">length</span>(score_qs)] &lt;-<span class="st"> </span>score_qs[<span class="kw">length</span>(score_qs)]<span class="op">+</span><span class="dv">1</span></span>
+<span id="cb183-3"><a href="ab-sequence-model.html#cb183-3"></a>score_qs[<span class="dv">1</span>] &lt;-<span class="st"> </span>score_qs[<span class="dv">1</span>]<span class="op">-</span><span class="dv">1</span></span>
+<span id="cb183-4"><a href="ab-sequence-model.html#cb183-4"></a>scores_df &lt;-<span class="st"> </span>scores_df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">score_grp =</span> <span class="kw">as.character</span>(<span class="kw">as.numeric</span>(<span class="kw">cut</span>(ab_score, <span class="dt">breaks=</span>score_qs, <span class="dt">include.lowest =</span> <span class="ot">TRUE</span>))))</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="ab-sequence-model.html#cb184-1"></a>cov_bin &lt;-<span class="st"> </span><span class="kw">tgs_matrix_tapply</span>(<span class="kw">t</span>(cov_mat), scores_df<span class="op">$</span>score_grp, sum, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb184-2"><a href="ab-sequence-model.html#cb184-2"></a>meth_bin &lt;-<span class="st"> </span><span class="kw">tgs_matrix_tapply</span>(<span class="kw">t</span>(meth_mat), scores_df<span class="op">$</span>score_grp, sum, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb184-3"><a href="ab-sequence-model.html#cb184-3"></a><span class="kw">stopifnot</span>(<span class="kw">all</span>(<span class="kw">colnames</span>(cov_bin) <span class="op">==</span><span class="st"> </span><span class="kw">colnames</span>(meth_bin)))</span>
+<span id="cb184-4"><a href="ab-sequence-model.html#cb184-4"></a>avg_bin &lt;-<span class="st"> </span>meth_bin <span class="op">/</span><span class="st"> </span>cov_bin</span>
+<span id="cb184-5"><a href="ab-sequence-model.html#cb184-5"></a>avg_df &lt;-<span class="st"> </span>avg_bin <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rownames_to_column</span>(<span class="st">&quot;bin&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gather</span>(<span class="st">&quot;samp&quot;</span>, <span class="st">&quot;val&quot;</span>, <span class="op">-</span>bin) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">separate</span>(samp, <span class="kw">c</span>(<span class="st">&quot;day&quot;</span>, <span class="st">&quot;line&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()</span></code></pre></div>
+</div>
+<div id="figure-4g" class="section level3 hasAnchor">
+<h3><span class="header-section-number">3.5.2</span> Figure 4G<a href="ab-sequence-model.html#figure-4g" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="ab-sequence-model.html#cb185-1"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">10</span>, <span class="dt">repr.plot.height=</span><span class="dv">4</span>)</span>
+<span id="cb185-2"><a href="ab-sequence-model.html#cb185-2"></a>cols &lt;-<span class="st"> </span><span class="kw">colorRampPalette</span>(<span class="kw">c</span>(<span class="st">&quot;gray&quot;</span>, <span class="st">&quot;darkred&quot;</span>,<span class="st">&quot;yellow&quot;</span>))(<span class="dv">20</span>)</span>
+<span id="cb185-3"><a href="ab-sequence-model.html#cb185-3"></a>p &lt;-<span class="st"> </span>avg_df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb185-4"><a href="ab-sequence-model.html#cb185-4"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">day =</span> <span class="kw">gsub</span>(<span class="st">&quot;d&quot;</span>, <span class="st">&quot;&quot;</span>, day)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb185-5"><a href="ab-sequence-model.html#cb185-5"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">bin =</span> <span class="kw">factor</span>(bin, <span class="dt">levels=</span><span class="kw">as.character</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>))) <span class="op">%&gt;%</span></span>
+<span id="cb185-6"><a href="ab-sequence-model.html#cb185-6"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">line =</span> <span class="kw">factor</span>(line, <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;wt&quot;</span>, <span class="st">&quot;3b&quot;</span>, <span class="st">&quot;3a&quot;</span>))) <span class="op">%&gt;%</span></span>
+<span id="cb185-7"><a href="ab-sequence-model.html#cb185-7"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">line =</span> <span class="kw">fct_recode</span>(line, <span class="st">&quot;3b-/-&quot;</span> =<span class="st"> &quot;3b&quot;</span>, <span class="st">&quot;3a-/-&quot;</span> =<span class="st"> &quot;3a&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb185-8"><a href="ab-sequence-model.html#cb185-8"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>day, <span class="dt">y=</span>val, <span class="dt">color=</span>bin, <span class="dt">group=</span>bin)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb185-9"><a href="ab-sequence-model.html#cb185-9"></a><span class="st">        </span><span class="kw">geom_point</span>(<span class="dt">size=</span><span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb185-10"><a href="ab-sequence-model.html#cb185-10"></a><span class="st">        </span><span class="kw">geom_line</span>(<span class="dt">lwd =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb185-11"><a href="ab-sequence-model.html#cb185-11"></a><span class="st">        </span><span class="kw">scale_color_manual</span>(<span class="dt">values=</span>cols) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb185-12"><a href="ab-sequence-model.html#cb185-12"></a><span class="st">        </span><span class="kw">facet_grid</span>(.<span class="op">~</span>line) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb185-13"><a href="ab-sequence-model.html#cb185-13"></a><span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;EB day&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb185-14"><a href="ab-sequence-model.html#cb185-14"></a><span class="st">        </span><span class="kw">ylab</span>(<span class="st">&quot;Meth.&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb185-15"><a href="ab-sequence-model.html#cb185-15"></a><span class="st">        </span><span class="kw">guides</span>(<span class="dt">color=</span><span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb185-16"><a href="ab-sequence-model.html#cb185-16"></a><span class="st">        </span><span class="kw">theme_arial</span>(<span class="dv">7</span>)  </span></code></pre></div>
+<pre><code>## Warning: `guides(&lt;scale&gt; = FALSE)` is deprecated. Please use `guides(&lt;scale&gt; =
+## &quot;none&quot;)` instead.</code></pre>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="ab-sequence-model.html#cb187-1"></a>p</span></code></pre></div>
+<p><img src="Sequence-model_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="ab-sequence-model.html#cb188-1"></a><span class="kw">options</span>(<span class="dt">repr.plot.width=</span><span class="dv">2</span>, <span class="dt">repr.plot.height=</span><span class="dv">10</span>)</span>
+<span id="cb188-2"><a href="ab-sequence-model.html#cb188-2"></a>color.bar &lt;-<span class="st"> </span><span class="cf">function</span>(lut, min, <span class="dt">max=</span><span class="op">-</span>min, <span class="dt">nticks=</span><span class="dv">11</span>, <span class="dt">ticks=</span><span class="kw">seq</span>(min, max, <span class="dt">len=</span>nticks), <span class="dt">title=</span><span class="st">&#39;&#39;</span>) {</span>
+<span id="cb188-3"><a href="ab-sequence-model.html#cb188-3"></a>    scale =<span class="st"> </span>(<span class="kw">length</span>(lut)<span class="op">-</span><span class="dv">1</span>)<span class="op">/</span>(max<span class="op">-</span>min)</span>
+<span id="cb188-4"><a href="ab-sequence-model.html#cb188-4"></a></span>
+<span id="cb188-5"><a href="ab-sequence-model.html#cb188-5"></a>    <span class="kw">plot</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">10</span>), <span class="kw">c</span>(min,max), <span class="dt">type=</span><span class="st">&#39;n&#39;</span>, <span class="dt">bty=</span><span class="st">&#39;n&#39;</span>, <span class="dt">xaxt=</span><span class="st">&#39;n&#39;</span>, <span class="dt">xlab=</span><span class="st">&#39;&#39;</span>, <span class="dt">yaxt=</span><span class="st">&#39;n&#39;</span>, <span class="dt">ylab=</span><span class="st">&#39;&#39;</span>, <span class="dt">main=</span>title)</span>
+<span id="cb188-6"><a href="ab-sequence-model.html#cb188-6"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>(<span class="kw">length</span>(lut)<span class="op">-</span><span class="dv">1</span>)) {</span>
+<span id="cb188-7"><a href="ab-sequence-model.html#cb188-7"></a>     y =<span class="st"> </span>(i<span class="dv">-1</span>)<span class="op">/</span>scale <span class="op">+</span><span class="st"> </span>min</span>
+<span id="cb188-8"><a href="ab-sequence-model.html#cb188-8"></a>     <span class="kw">rect</span>(<span class="dv">0</span>,y,<span class="dv">10</span>,y<span class="op">+</span><span class="dv">1</span><span class="op">/</span>scale, <span class="dt">col=</span>lut[i], <span class="dt">border=</span><span class="ot">NA</span>)</span>
+<span id="cb188-9"><a href="ab-sequence-model.html#cb188-9"></a>    }</span>
+<span id="cb188-10"><a href="ab-sequence-model.html#cb188-10"></a>}</span>
+<span id="cb188-11"><a href="ab-sequence-model.html#cb188-11"></a><span class="kw">color.bar</span>(cols, <span class="dt">min=</span><span class="dv">1</span>, <span class="dt">max=</span><span class="dv">20</span>, <span class="dt">nticks=</span><span class="dv">20</span>)</span></code></pre></div>
+<p><img src="Sequence-model_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
+</div>
+<div id="scores-within-enhancers" class="section level3 hasAnchor">
+<h3><span class="header-section-number">3.5.3</span> Scores within enhancers<a href="ab-sequence-model.html#scores-within-enhancers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="ab-sequence-model.html#cb189-1"></a>enh_intervs &lt;-<span class="st"> </span><span class="kw">get_all_enhancers</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="ab-sequence-model.html#cb190-1"></a>small_enh &lt;-<span class="st"> </span>enh_intervs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">l =</span> end <span class="op">-</span><span class="st"> </span>start) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(l <span class="op">&lt;=</span><span class="st"> </span><span class="fl">1e4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="ab-sequence-model.html#cb191-1"></a>enh_cpg_score &lt;-<span class="st"> </span><span class="kw">gextract.left_join</span>(<span class="st">&quot;DNMT.ab_score_xgb_plus&quot;</span>, <span class="dt">intervals =</span> small_enh, <span class="dt">iterator =</span> <span class="st">&quot;intervs.global.seq_CG&quot;</span>, <span class="dt">colnames=</span><span class="st">&quot;score&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()</span></code></pre></div>
+<div id="plot-distribution-of-sequence-scores-inside-enhancers" class="section level4 hasAnchor">
+<h4><span class="header-section-number">3.5.3.1</span> Plot distribution of sequence scores inside enhancers<a href="ab-sequence-model.html#plot-distribution-of-sequence-scores-inside-enhancers" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="ab-sequence-model.html#cb192-1"></a>enh_cpg_score &lt;-<span class="st"> </span>enh_cpg_score <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_count</span>(chrom1, start1, end1, <span class="dt">name =</span> <span class="st">&quot;n_cpgs&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="ab-sequence-model.html#cb193-1"></a><span class="kw">nrow</span>(enh_cpg_score)</span></code></pre></div>
+<pre><code>## [1] 1787409</code></pre>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="ab-sequence-model.html#cb195-1"></a>enh_cpg_score <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">distinct</span>(chrom1, start1, end1) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">distinct</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">nrow</span>()</span></code></pre></div>
+<pre><code>## [1] 323431</code></pre>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="ab-sequence-model.html#cb197-1"></a>enh_cpg_score <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(n_cpgs <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">6</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(n_cpgs)</span></code></pre></div>
+<pre><code>## # A tibble: 5 x 2
+##   n_cpgs      n
+## 1      2 120330
+## 2      3 110865
+## 3      4  97400
+## 4      5  85575
+## 5      6  76332</code></pre>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="ab-sequence-model.html#cb199-1"></a>mean_enh_score &lt;-<span class="st"> </span>enh_cpg_score <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(chrom1, start1, end1, n_cpgs) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">mean_enh =</span> <span class="kw">mean</span>(score), <span class="dt">.groups=</span><span class="st">&quot;drop&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="ab-sequence-model.html#cb200-1"></a>enh_cpg_score_shuff &lt;-<span class="st"> </span>enh_cpg_score <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">score =</span> <span class="kw">sample</span>(score))</span>
+<span id="cb200-2"><a href="ab-sequence-model.html#cb200-2"></a>mean_enh_score_shuff &lt;-<span class="st"> </span>enh_cpg_score_shuff <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(chrom1, start1, end1, n_cpgs) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">mean_enh =</span> <span class="kw">mean</span>(score), <span class="dt">.groups=</span><span class="st">&quot;drop&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="figure-7b" class="section level3 hasAnchor">
+<h3><span class="header-section-number">3.5.4</span> Figure 7B<a href="ab-sequence-model.html#figure-7b" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="ab-sequence-model.html#cb201-1"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">7</span>, <span class="dt">repr.plot.height =</span> <span class="dv">5</span>)</span>
+<span id="cb201-2"><a href="ab-sequence-model.html#cb201-2"></a>p &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(mean_enh_score <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">type =</span> <span class="st">&quot;Observed&quot;</span>), mean_enh_score_shuff <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">type =</span> <span class="st">&quot;Control&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(n_cpgs <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">6</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">type =</span> <span class="kw">factor</span>(type, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Observed&quot;</span>, <span class="st">&quot;Control&quot;</span>))) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">factor</span>(n_cpgs), <span class="dt">y=</span>mean_enh, <span class="dt">fill=</span>type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>( <span class="dt">outlier.size =</span> <span class="fl">0.005</span>, <span class="dt">lwd =</span> <span class="fl">0.2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_manual</span>(<span class="dt">name=</span><span class="st">&quot;&quot;</span>, <span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;Observed&quot;</span> =<span class="st"> &quot;darkred&quot;</span>, <span class="st">&quot;Control&quot;</span> =<span class="st"> &quot;darkgray&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;# of CpGs in enhancer&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Mean sequence score&quot;</span>)</span>
+<span id="cb201-3"><a href="ab-sequence-model.html#cb201-3"></a>p</span></code></pre></div>
+<p><img src="Sequence-model_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+</div>
+<div id="extract-proaprob-enhancers" class="section level3 hasAnchor">
+<h3><span class="header-section-number">3.5.5</span> Extract proA/proB enhancers<a href="ab-sequence-model.html#extract-proaprob-enhancers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We will extract enhancers with 2 or more CpGs which have a sequence score in the top 2% as proB, and the bottom 2% as proA:</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="ab-sequence-model.html#cb202-1"></a>norm_enh_intervs &lt;-<span class="st"> </span><span class="kw">get_all_enhancers</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gintervals.normalize</span>(<span class="dv">200</span>)</span>
+<span id="cb202-2"><a href="ab-sequence-model.html#cb202-2"></a>norm_enh_cpg_score &lt;-<span class="st"> </span><span class="kw">gextract.left_join</span>(<span class="st">&quot;DNMT.ab_score_xgb_plus&quot;</span>, <span class="dt">intervals =</span> norm_enh_intervs, <span class="dt">iterator =</span> <span class="st">&quot;intervs.global.seq_CG&quot;</span>, <span class="dt">colnames=</span><span class="st">&quot;score&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="ab-sequence-model.html#cb203-1"></a>score_quants &lt;-<span class="st"> </span><span class="kw">gquantiles</span>(<span class="st">&quot;DNMT.ab_score_xgb_plus&quot;</span>, <span class="kw">c</span>(<span class="fl">0.07</span>, <span class="fl">0.93</span>), <span class="dt">iterator =</span> <span class="dv">200</span>)</span>
+<span id="cb203-2"><a href="ab-sequence-model.html#cb203-2"></a>quant_A &lt;-<span class="st"> </span>score_quants[<span class="dv">1</span>]</span>
+<span id="cb203-3"><a href="ab-sequence-model.html#cb203-3"></a>quant_B &lt;-<span class="st"> </span>score_quants[<span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="ab-sequence-model.html#cb204-1"></a>biased_enh &lt;-<span class="st"> </span>norm_enh_cpg_score <span class="op">%&gt;%</span></span>
+<span id="cb204-2"><a href="ab-sequence-model.html#cb204-2"></a><span class="st">            </span>data.table<span class="op">::</span><span class="kw">as.data.table</span>() <span class="op">%&gt;%</span></span>
+<span id="cb204-3"><a href="ab-sequence-model.html#cb204-3"></a><span class="st">            </span><span class="kw">group_by</span>(chrom1, start1, end1) <span class="op">%&gt;%</span></span>
+<span id="cb204-4"><a href="ab-sequence-model.html#cb204-4"></a><span class="st">            </span><span class="kw">filter</span>(<span class="kw">n</span>() <span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span>) <span class="op">%&gt;%</span></span>
+<span id="cb204-5"><a href="ab-sequence-model.html#cb204-5"></a><span class="st">            </span><span class="kw">summarise</span>(<span class="dt">n_cpgs =</span> <span class="kw">n</span>(), <span class="dt">type =</span> <span class="kw">case_when</span>(<span class="kw">all</span>(score <span class="op">&lt;=</span><span class="st"> </span>quant_A) <span class="op">~</span><span class="st"> &quot;proA&quot;</span>, <span class="kw">all</span>(score <span class="op">&gt;=</span><span class="st"> </span>quant_B) <span class="op">~</span><span class="st"> &quot;proB&quot;</span>), <span class="dt">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb204-6"><a href="ab-sequence-model.html#cb204-6"></a><span class="st">            </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(type)) <span class="op">%&gt;%</span></span>
+<span id="cb204-7"><a href="ab-sequence-model.html#cb204-7"></a><span class="st">            </span><span class="kw">as_tibble</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="ab-sequence-model.html#cb205-1"></a>biased_enh1 &lt;-<span class="st"> </span>biased_enh <span class="op">%&gt;%</span></span>
+<span id="cb205-2"><a href="ab-sequence-model.html#cb205-2"></a><span class="st">        </span><span class="kw">rename</span>(<span class="dt">chrom =</span> chrom1, <span class="dt">start =</span> start1, <span class="dt">end =</span> end1) <span class="op">%&gt;%</span></span>
+<span id="cb205-3"><a href="ab-sequence-model.html#cb205-3"></a><span class="st">        </span><span class="kw">gintervals.neighbors1</span>(<span class="st">&quot;intervs.global.tss&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb205-4"><a href="ab-sequence-model.html#cb205-4"></a><span class="st">        </span><span class="kw">select</span>(chrom<span class="op">:</span>type, <span class="dt">closest_gene =</span> geneSymbol, <span class="dt">gene_distance =</span> dist) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb205-5"><a href="ab-sequence-model.html#cb205-5"></a><span class="st">        </span><span class="kw">filter</span>(gene_distance <span class="op">&lt;</span><span class="st"> </span><span class="dv">-500</span> <span class="op">|</span><span class="st"> </span>gene_distance <span class="op">&gt;</span><span class="st"> </span><span class="dv">50</span>) <span class="co"># remove promoters</span></span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="ab-sequence-model.html#cb206-1"></a>writexl<span class="op">::</span><span class="kw">write_xlsx</span>(</span>
+<span id="cb206-2"><a href="ab-sequence-model.html#cb206-2"></a>    <span class="kw">list</span>(<span class="dt">proA =</span> biased_enh1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(type <span class="op">==</span><span class="st"> &quot;proA&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom<span class="op">:</span>end, n_cpgs, closest_gene, gene_distance) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">abs</span>(gene_distance)),</span>
+<span id="cb206-3"><a href="ab-sequence-model.html#cb206-3"></a>         <span class="dt">proB =</span> biased_enh1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(type <span class="op">==</span><span class="st"> &quot;proB&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom<span class="op">:</span>end, n_cpgs, closest_gene, gene_distance) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">abs</span>(gene_distance))),</span>
+<span id="cb206-4"><a href="ab-sequence-model.html#cb206-4"></a>         <span class="kw">here</span>(<span class="st">&quot;output/Biased-Enhancers.xlsx&quot;</span>))</span></code></pre></div>
+</div>
+<div id="no-difference-in-methylation-of-full-enhancers-vs-shuffled" class="section level3 hasAnchor">
+<h3><span class="header-section-number">3.5.6</span> No difference in methylation of full enhancers vs shuffled<a href="ab-sequence-model.html#no-difference-in-methylation-of-full-enhancers-vs-shuffled" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="ab-sequence-model.html#cb207-1"></a>enh_cpg_score1 &lt;-<span class="st"> </span>enh_cpg_score <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">center =</span> start1 <span class="op">+</span><span class="st"> </span>(end1 <span class="op">-</span><span class="st"> </span>start1) <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">d_center =</span> <span class="kw">abs</span>(start <span class="op">-</span><span class="st"> </span>center))  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(chrom1, start1, end1) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">n</span>() <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(chrom1, start1, end1, d_center) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ungroup</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="ab-sequence-model.html#cb208-1"></a><span class="kw">set.seed</span>(<span class="dv">17</span>)</span>
+<span id="cb208-2"><a href="ab-sequence-model.html#cb208-2"></a>obs_df &lt;-<span class="st"> </span>enh_cpg_score1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(chrom1, start1, end1) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">mean_score =</span> <span class="kw">mean</span>(score, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), <span class="dt">.groups=</span><span class="st">&quot;drop&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">type =</span> <span class="st">&quot;obs&quot;</span>)</span>
+<span id="cb208-3"><a href="ab-sequence-model.html#cb208-3"></a>shuff_df &lt;-<span class="st"> </span>enh_cpg_score1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">score =</span> <span class="kw">sample</span>(score)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(chrom1, start1, end1) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">mean_score =</span> <span class="kw">mean</span>(score, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), <span class="dt">.groups=</span><span class="st">&quot;drop&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">type =</span> <span class="st">&quot;shuff&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="ab-sequence-model.html#cb209-1"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">7</span>, <span class="dt">repr.plot.height =</span> <span class="dv">7</span>)</span>
+<span id="cb209-2"><a href="ab-sequence-model.html#cb209-2"></a><span class="kw">bind_rows</span>(shuff_df, obs_df) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>mean_score, <span class="dt">color=</span>type)) <span class="op">+</span><span class="st"> </span><span class="kw">stat_ecdf</span>()</span></code></pre></div>
+<p><img src="Sequence-model_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="ab-sequence-model.html#cb210-1"></a><span class="kw">ks.test</span>(shuff_df<span class="op">$</span>mean_score, obs_df<span class="op">$</span>mean_score)</span></code></pre></div>
+<pre><code>## Warning in ks.test(shuff_df$mean_score, obs_df$mean_score): p-value will be
+## approximate in the presence of ties</code></pre>
+<pre><code>## 
+##  Two-sample Kolmogorov-Smirnov test
+## 
+## data:  shuff_df$mean_score and obs_df$mean_score
+## D = 0.0058028, p-value = 0.06908
+## alternative hypothesis: two-sided</code></pre>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="ab-sequence-model.html#cb213-1"></a><span class="kw">bind_rows</span>(shuff_df, obs_df) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>mean_score, <span class="dt">color=</span>type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_density</span>()</span></code></pre></div>
+<p><img src="Sequence-model_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="ab-sequence-model.html#cb214-1"></a><span class="kw">map_dfr</span>(<span class="kw">c</span>(<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">-0.3</span>, <span class="fl">-0.2</span>), <span class="cf">function</span>(thresh) <span class="kw">tibble</span>(<span class="dt">thresh =</span> thresh, <span class="dt">fdr =</span> (obs_df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(mean_score <span class="op">&lt;=</span><span class="st"> </span>thresh) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">nrow</span>()) <span class="op">/</span><span class="st"> </span>(shuff_df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(mean_score <span class="op">&lt;=</span><span class="st"> </span>thresh) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">nrow</span>())))</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##   thresh       fdr
+## 1   -0.5 1.0502502
+## 2   -0.3 1.0016682
+## 3   -0.2 0.9960809</code></pre>
+</div>
+<div id="toatal-enh-methylation-prediction" class="section level3 hasAnchor">
+<h3><span class="header-section-number">3.5.7</span> Toatal enh methylation prediction<a href="ab-sequence-model.html#toatal-enh-methylation-prediction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="ab-sequence-model.html#cb216-1"></a>enh_intervs &lt;-<span class="st"> </span><span class="kw">get_all_enhancers</span>()</span>
+<span id="cb216-2"><a href="ab-sequence-model.html#cb216-2"></a>small_enh &lt;-<span class="st"> </span>enh_intervs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">l =</span> end <span class="op">-</span><span class="st"> </span>start) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(l <span class="op">&lt;=</span><span class="st"> </span><span class="fl">1e4</span>)</span>
+<span id="cb216-3"><a href="ab-sequence-model.html#cb216-3"></a>full_enh_meth &lt;-<span class="st"> </span><span class="kw">calc_eb_day0_to_day4_cpg_meth</span>(<span class="dt">min_cov =</span> <span class="dv">10</span>, <span class="dt">max_na =</span> <span class="dv">5</span>, <span class="dt">intervals=</span>small_enh, <span class="dt">iterator =</span> small_enh, <span class="dt">cache_fn =</span> <span class="kw">here</span>(<span class="st">&quot;output/eb_day0_to_day4_full_enh_meth.tsv&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="ab-sequence-model.html#cb217-1"></a>m_full &lt;-<span class="st"> </span>full_enh_meth <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb217-2"><a href="ab-sequence-model.html#cb217-2"></a><span class="st">    </span><span class="kw">mutate</span>(</span>
+<span id="cb217-3"><a href="ab-sequence-model.html#cb217-3"></a>        <span class="dt">mA =</span> <span class="kw">psum</span>(d1_3a, d2_3a, d3_3a, d4_3a, <span class="dt">na.rm=</span><span class="ot">FALSE</span>),</span>
+<span id="cb217-4"><a href="ab-sequence-model.html#cb217-4"></a>        <span class="dt">mB =</span> <span class="kw">psum</span>(d1_3b, d2_3b, d3_3b, d4_3b, <span class="dt">na.rm=</span><span class="ot">FALSE</span>),</span>
+<span id="cb217-5"><a href="ab-sequence-model.html#cb217-5"></a>        <span class="dt">mwt =</span> <span class="kw">psum</span>(d1_wt, d2_wt, d3_wt, d4_wt, <span class="dt">na.rm=</span><span class="ot">FALSE</span>),</span>
+<span id="cb217-6"><a href="ab-sequence-model.html#cb217-6"></a>        <span class="dt">dAB =</span> mA <span class="op">-</span><span class="st"> </span>mB,</span>
+<span id="cb217-7"><a href="ab-sequence-model.html#cb217-7"></a>        <span class="dt">dB =</span> mB <span class="op">-</span><span class="st"> </span>mwt, </span>
+<span id="cb217-8"><a href="ab-sequence-model.html#cb217-8"></a>        <span class="dt">dA =</span> mA <span class="op">-</span><span class="st"> </span>mwt    </span>
+<span id="cb217-9"><a href="ab-sequence-model.html#cb217-9"></a>    ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb217-10"><a href="ab-sequence-model.html#cb217-10"></a><span class="st">    </span><span class="kw">select</span>(chrom, start, end, mA, mB, mwt, dAB, dB, dA)</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="ab-sequence-model.html#cb218-1"></a>locus_means &lt;-<span class="st"> </span><span class="kw">rowMeans</span>(full_enh_meth <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>(chrom<span class="op">:</span>end)), <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb218-2"><a href="ab-sequence-model.html#cb218-2"></a>locus_sds &lt;-<span class="st"> </span>matrixStats<span class="op">::</span><span class="kw">rowSds</span>(full_enh_meth <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>(chrom<span class="op">:</span>end)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.matrix</span>(), <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="ab-sequence-model.html#cb219-1"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">8</span>, <span class="dt">repr.plot.height =</span> <span class="dv">4</span>)</span>
+<span id="cb219-2"><a href="ab-sequence-model.html#cb219-2"></a>thresh &lt;-<span class="st"> </span><span class="fl">0.05</span></span>
+<span id="cb219-3"><a href="ab-sequence-model.html#cb219-3"></a>p1 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">m =</span> locus_means) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>m)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_density</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_vline</span>(<span class="dt">xintercept=</span>thresh, <span class="dt">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb219-4"><a href="ab-sequence-model.html#cb219-4"></a>p2 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">m =</span> locus_means, <span class="dt">sd =</span> locus_sds) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>m, <span class="dt">y=</span>sd)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">size=</span><span class="fl">0.01</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_vline</span>(<span class="dt">xintercept=</span>thresh, <span class="dt">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb219-5"><a href="ab-sequence-model.html#cb219-5"></a>p1 <span class="op">+</span><span class="st"> </span>p2</span></code></pre></div>
+<p><img src="Sequence-model_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="ab-sequence-model.html#cb220-1"></a>m_full &lt;-<span class="st"> </span>m_full[locus_means <span class="op">&gt;=</span><span class="st"> </span>thresh, ]</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="ab-sequence-model.html#cb221-1"></a><span class="kw">sum</span>(locus_means <span class="op">&lt;</span><span class="st"> </span>thresh)</span></code></pre></div>
+<pre><code>## [1] 7901</code></pre>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="ab-sequence-model.html#cb223-1"></a><span class="kw">nrow</span>(m)</span></code></pre></div>
+<pre><code>## [1] 116117</code></pre>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="ab-sequence-model.html#cb225-1"></a>m_full_dAB &lt;-<span class="st"> </span>m_full <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dAB)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end, dAB)</span>
+<span id="cb225-2"><a href="ab-sequence-model.html#cb225-2"></a>m_full_cpg_scores &lt;-<span class="st"> </span><span class="kw">gextract.left_join</span>(<span class="st">&quot;DNMT.ab_score_xgb_plus&quot;</span>, <span class="dt">intervals =</span> m_full_dAB, <span class="dt">iterator =</span> <span class="st">&quot;intervs.global.seq_CG&quot;</span>, <span class="dt">colnames=</span><span class="st">&quot;score&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="ab-sequence-model.html#cb226-1"></a>m_full_pred &lt;-<span class="st"> </span>m_full_cpg_scores <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(chrom1, start1, end1) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">n</span>() <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">score =</span> <span class="kw">mean</span>(score), <span class="dt">dAB =</span> dAB[<span class="dv">1</span>], <span class="dt">.groups=</span><span class="st">&quot;drop&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(<span class="dt">chrom =</span> chrom1, <span class="dt">start =</span> start1, <span class="dt">end =</span> end1, <span class="dt">pred =</span> score, <span class="dt">y =</span> dAB) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(pred), <span class="op">!</span><span class="kw">is.na</span>(y))</span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="ab-sequence-model.html#cb227-1"></a>bandwidth &lt;-<span class="st"> </span><span class="fl">0.08</span></span>
+<span id="cb227-2"><a href="ab-sequence-model.html#cb227-2"></a>point_size &lt;-<span class="st"> </span><span class="fl">0.001</span></span>
+<span id="cb227-3"><a href="ab-sequence-model.html#cb227-3"></a>p_full_enh_meth &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">pred =</span> m_full_pred<span class="op">$</span>pred, <span class="dt">y =</span> m_full_pred<span class="op">$</span>y) <span class="op">%&gt;%</span><span class="st">     </span></span>
+<span id="cb227-4"><a href="ab-sequence-model.html#cb227-4"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">col =</span> <span class="kw">densCols</span>(., <span class="dt">bandwidth=</span>bandwidth,<span class="dt">colramp=</span><span class="kw">colorRampPalette</span>(<span class="kw">c</span>(<span class="st">&quot;white&quot;</span>,<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkblue&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;gold&quot;</span>,<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;red&quot;</span>, <span class="st">&quot;darkred&quot;</span> )))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb227-5"><a href="ab-sequence-model.html#cb227-5"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>pred, <span class="dt">y=</span>y, <span class="dt">col=</span>col)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb227-6"><a href="ab-sequence-model.html#cb227-6"></a><span class="st">        </span><span class="kw">geom_point</span>(<span class="dt">shape=</span><span class="dv">19</span>, <span class="dt">size=</span>point_size) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb227-7"><a href="ab-sequence-model.html#cb227-7"></a><span class="st">        </span><span class="kw">scale_color_identity</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb227-8"><a href="ab-sequence-model.html#cb227-8"></a><span class="st">        </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.6</span>, <span class="fl">0.1</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="fl">0.6</span>)) <span class="op">+</span><span class="st">                 </span></span>
+<span id="cb227-9"><a href="ab-sequence-model.html#cb227-9"></a><span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;Prediction&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb227-10"><a href="ab-sequence-model.html#cb227-10"></a><span class="st">        </span><span class="kw">ylab</span>(<span class="st">&quot;Full enhancer meth. (3a-/-) - (3b-/-)&quot;</span>) <span class="op">+</span><span class="st">         </span></span>
+<span id="cb227-11"><a href="ab-sequence-model.html#cb227-11"></a><span class="st">        </span><span class="kw">theme</span>(<span class="dt">aspect.ratio=</span><span class="dv">1</span>, <span class="dt">panel.grid.major=</span><span class="kw">element_blank</span>(), <span class="dt">panel.grid.minor=</span><span class="kw">element_blank</span>()) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb227-12"><a href="ab-sequence-model.html#cb227-12"></a><span class="st">        </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="kw">glue</span>(<span class="st">&quot;R^2 = {cor}&quot;</span>, <span class="dt">cor =</span> <span class="kw">round</span>(<span class="kw">cor</span>(m_full_pred<span class="op">$</span>pred, m_full_pred<span class="op">$</span>y)<span class="op">^</span><span class="dv">2</span>, <span class="dt">digits=</span><span class="dv">2</span>)))</span>
+<span id="cb227-13"><a href="ab-sequence-model.html#cb227-13"></a></span>
+<span id="cb227-14"><a href="ab-sequence-model.html#cb227-14"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">5</span>, <span class="dt">repr.plot.height=</span><span class="dv">5</span>)</span>
+<span id="cb227-15"><a href="ab-sequence-model.html#cb227-15"></a>p_full_enh_meth <span class="op">&amp;</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">&amp;</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">plot.subtitle =</span> ggtext<span class="op">::</span><span class="kw">element_markdown</span>(), <span class="dt">aspect.ratio=</span><span class="dv">1</span>, <span class="dt">panel.grid.major=</span><span class="kw">element_blank</span>(), <span class="dt">panel.grid.minor=</span><span class="kw">element_blank</span>())</span></code></pre></div>
+<p><img src="Sequence-model_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="ab-sequence-model.html#cb228-1"></a>m_full_pred_cg_num &lt;-<span class="st"> </span>m_full_cpg_scores <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(chrom1, start1, end1) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">n_cpgs =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(chrom1, start1, end1, n_cpgs) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">score =</span> <span class="kw">mean</span>(score), <span class="dt">dAB =</span> dAB[<span class="dv">1</span>], <span class="dt">.groups=</span><span class="st">&quot;drop&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(<span class="dt">chrom =</span> chrom1, <span class="dt">start =</span> start1, <span class="dt">end =</span> end1, <span class="dt">pred =</span> score, <span class="dt">y =</span> dAB) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(pred),  <span class="op">!</span><span class="kw">is.na</span>(y)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(n_cpgs) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">rsq =</span> <span class="kw">cor</span>(pred, y)<span class="op">^</span><span class="dv">2</span>)</span></code></pre></div>
+</div>
+<div id="figure-7c" class="section level3 hasAnchor">
+<h3><span class="header-section-number">3.5.8</span> Figure 7C<a href="ab-sequence-model.html#figure-7c" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="ab-sequence-model.html#cb229-1"></a>p &lt;-<span class="st"> </span>m_full_pred_cg_num <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(n_cpgs <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1</span>, n_cpgs <span class="op">&lt;=</span><span class="st"> </span><span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">factor</span>(n_cpgs), <span class="dt">y=</span>rsq)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>() <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;# of CpGs in enhancer&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="kw">expression</span> (R<span class="op">^</span><span class="dv">2</span>))</span>
+<span id="cb229-2"><a href="ab-sequence-model.html#cb229-2"></a>p</span></code></pre></div>
+<p><img src="Sequence-model_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="ab-sequence-model.html#cb230-1"></a>df_full &lt;-<span class="st"> </span>full_enh_meth <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end)</span>
+<span id="cb230-2"><a href="ab-sequence-model.html#cb230-2"></a><span class="cf">for</span> (d <span class="cf">in</span> <span class="dv">0</span><span class="op">:</span><span class="dv">4</span>){</span>
+<span id="cb230-3"><a href="ab-sequence-model.html#cb230-3"></a>    df_full[[<span class="kw">paste0</span>(<span class="st">&quot;d&quot;</span>, d)]] &lt;-<span class="st"> </span>full_enh_meth[[<span class="kw">glue</span>(<span class="st">&quot;d{d}_3a&quot;</span>)]] <span class="op">-</span><span class="st"> </span>full_enh_meth[[<span class="kw">glue</span>(<span class="st">&quot;d{d}_3b&quot;</span>)]]</span>
+<span id="cb230-4"><a href="ab-sequence-model.html#cb230-4"></a>}</span>
+<span id="cb230-5"><a href="ab-sequence-model.html#cb230-5"></a>df_full &lt;-<span class="st"> </span>df_full <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gather</span>(<span class="st">&quot;day&quot;</span>, <span class="st">&quot;diff&quot;</span>, <span class="op">-</span>(chrom<span class="op">:</span>end)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">day =</span> <span class="kw">gsub</span>(<span class="st">&quot;d&quot;</span>, <span class="st">&quot;Day &quot;</span>, day))</span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="ab-sequence-model.html#cb231-1"></a><span class="kw">options</span>(<span class="dt">repr.plot.width=</span><span class="dv">5</span>, <span class="dt">repr.plot.height=</span><span class="dv">12</span>)</span>
+<span id="cb231-2"><a href="ab-sequence-model.html#cb231-2"></a>p &lt;-<span class="st"> </span>df_full <span class="op">%&gt;%</span><span class="st">     </span></span>
+<span id="cb231-3"><a href="ab-sequence-model.html#cb231-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>diff, <span class="dt">fill=</span><span class="kw">stat</span>(<span class="kw">abs</span>(x)), <span class="dt">y=</span><span class="dv">1</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb231-4"><a href="ab-sequence-model.html#cb231-4"></a><span class="st">        </span>ggridges<span class="op">::</span><span class="kw">geom_density_ridges_gradient</span>(<span class="dt">lwd =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb231-5"><a href="ab-sequence-model.html#cb231-5"></a><span class="st">        </span><span class="kw">scale_fill_stepsn</span>(<span class="dt">colors=</span><span class="kw">c</span>(<span class="st">&quot;darkgray&quot;</span>, <span class="st">&quot;darkred&quot;</span>), <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.2</span>, <span class="dv">1</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb231-6"><a href="ab-sequence-model.html#cb231-6"></a><span class="st">        </span><span class="kw">guides</span>(<span class="dt">fill=</span><span class="st">&quot;none&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb231-7"><a href="ab-sequence-model.html#cb231-7"></a><span class="st">        </span><span class="kw">ylab</span>(<span class="st">&quot;Density&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb231-8"><a href="ab-sequence-model.html#cb231-8"></a><span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;Meth (3a-/-) - (3b-/-)&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb231-9"><a href="ab-sequence-model.html#cb231-9"></a><span class="st">        </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb231-10"><a href="ab-sequence-model.html#cb231-10"></a><span class="st">        </span><span class="kw">facet_grid</span>(day<span class="op">~</span>., <span class="dt">scales=</span><span class="st">&quot;free_y&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb231-11"><a href="ab-sequence-model.html#cb231-11"></a><span class="st">        </span><span class="kw">theme_arial</span>(<span class="dv">7</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb231-12"><a href="ab-sequence-model.html#cb231-12"></a><span class="st">        </span><span class="kw">theme</span>(<span class="dt">aspect.ratio=</span><span class="fl">0.6</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb231-13"><a href="ab-sequence-model.html#cb231-13"></a><span class="st">        </span><span class="kw">vertical_labs</span>()</span>
+<span id="cb231-14"><a href="ab-sequence-model.html#cb231-14"></a>p</span></code></pre></div>
+<pre><code>## Picking joint bandwidth of 0.00776</code></pre>
+<pre><code>## Picking joint bandwidth of 0.00824</code></pre>
+<pre><code>## Picking joint bandwidth of 0.0118</code></pre>
+<pre><code>## Picking joint bandwidth of 0.0148</code></pre>
+<pre><code>## Picking joint bandwidth of 0.00856</code></pre>
+<p><img src="Sequence-model_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="methylation-trends-in-eb-days-0-6.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="validation-from-external-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

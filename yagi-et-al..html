@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 Yagi et al.  | DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation</title>
+  <meta name="description" content="Analysis and code for the paper: DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 Yagi et al.  | DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Analysis and code for the paper: DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
+  <meta name="github-repo" content="tanaylab/Dnmt3ab_MEEB" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 Yagi et al.  | DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
+  
+  <meta name="twitter:description" content="Analysis and code for the paper: DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
+  
+
+<meta name="author" content="Aviezer Lifshitz" />
+
+
+<meta name="date" content="2022-07-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="mallona-et-al.-nar-2020.html"/>
+<link rel="next" href="single-cell-methylation.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#run-the-notebooks"><i class="fa fa-check"></i><b>1.1</b> Run the notebooks</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#download-the-umi-matrices"><i class="fa fa-check"></i><b>1.2</b> Download the UMI matrices</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#notebook-order"><i class="fa fa-check"></i><b>1.3</b> Notebook order</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html"><i class="fa fa-check"></i><b>2</b> Methylation trends in EB days 0-6</a><ul>
+<li class="chapter" data-level="2.0.1" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#initialize-definitions"><i class="fa fa-check"></i><b>2.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="2.0.2" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#load-data"><i class="fa fa-check"></i><b>2.0.2</b> Load data</a></li>
+<li class="chapter" data-level="2.0.3" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#cluster"><i class="fa fa-check"></i><b>2.0.3</b> Cluster</a></li>
+<li class="chapter" data-level="2.0.4" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#project-dnmt1-data"><i class="fa fa-check"></i><b>2.0.4</b> Project DNMT1 data</a></li>
+<li class="chapter" data-level="2.1" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#plot-global-eb-trends"><i class="fa fa-check"></i><b>2.1</b> Plot global EB trends</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#figure-4a"><i class="fa fa-check"></i><b>2.1.1</b> Figure 4A</a></li>
+<li class="chapter" data-level="2.1.2" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#extended-data-figure-8k"><i class="fa fa-check"></i><b>2.1.2</b> Extended Data Figure 8K</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#cluster-methylation-in-days-5-and-6-with-dko"><i class="fa fa-check"></i><b>2.2</b> cluster methylation in days 5 and 6 with DKO</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#project-dko-on-day-1-4-clusters"><i class="fa fa-check"></i><b>2.2.1</b> Project DKO on day 1-4 clusters</a></li>
+<li class="chapter" data-level="2.2.2" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#figure-4c"><i class="fa fa-check"></i><b>2.2.2</b> Figure 4C</a></li>
+<li class="chapter" data-level="2.2.3" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#figure-4b"><i class="fa fa-check"></i><b>2.2.3</b> Figure 4B</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html"><i class="fa fa-check"></i><b>3</b> A/B sequence model</a><ul>
+<li class="chapter" data-level="3.0.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#initialize-definitions-1"><i class="fa fa-check"></i><b>3.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="3.0.2" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#get-ab-meth-data"><i class="fa fa-check"></i><b>3.0.2</b> Get A/B meth data</a></li>
+<li class="chapter" data-level="3.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#calculate-models"><i class="fa fa-check"></i><b>3.1</b> Calculate models</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#compute-models"><i class="fa fa-check"></i><b>3.1.1</b> Compute models</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#plot-models-vs-preditions"><i class="fa fa-check"></i><b>3.2</b> Plot models vs preditions</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-4f"><i class="fa fa-check"></i><b>3.2.1</b> Figure 4F</a></li>
+<li class="chapter" data-level="3.2.2" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#plot-glm-model-parameters"><i class="fa fa-check"></i><b>3.2.2</b> Plot GLM model parameters</a></li>
+<li class="chapter" data-level="3.2.3" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-4d"><i class="fa fa-check"></i><b>3.2.3</b> Figure 4D</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#plot-logo"><i class="fa fa-check"></i><b>3.3</b> plot logo</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-4e"><i class="fa fa-check"></i><b>3.3.1</b> Figure 4E</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#test-models-with-closest-cpg-methylation"><i class="fa fa-check"></i><b>3.4</b> Test models with closest CpG methylation</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#compute-model-with-cg-and-gc-content"><i class="fa fa-check"></i><b>3.4.1</b> Compute model with CG and GC content</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#compute-model-with-tor"><i class="fa fa-check"></i><b>3.4.2</b> Compute model with TOR</a></li>
+<li class="chapter" data-level="3.4.3" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#compute-model-with-closest-cpg"><i class="fa fa-check"></i><b>3.4.3</b> Compute model with closest CpG</a></li>
+<li class="chapter" data-level="3.4.4" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#compute-model-with-all-enhancer-methylation"><i class="fa fa-check"></i><b>3.4.4</b> Compute model with all enhancer methylation</a></li>
+<li class="chapter" data-level="3.4.5" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-7a"><i class="fa fa-check"></i><b>3.4.5</b> Figure 7A</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#estimate-prediction-noise"><i class="fa fa-check"></i><b>3.5</b> Estimate prediction noise</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#kinteics-per-time-and-score-bin"><i class="fa fa-check"></i><b>3.5.1</b> Kinteics per time and score bin</a></li>
+<li class="chapter" data-level="3.5.2" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-4g"><i class="fa fa-check"></i><b>3.5.2</b> Figure 4G</a></li>
+<li class="chapter" data-level="3.5.3" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#scores-within-enhancers"><i class="fa fa-check"></i><b>3.5.3</b> Scores within enhancers</a></li>
+<li class="chapter" data-level="3.5.4" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-7b"><i class="fa fa-check"></i><b>3.5.4</b> Figure 7B</a></li>
+<li class="chapter" data-level="3.5.5" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#extract-proaprob-enhancers"><i class="fa fa-check"></i><b>3.5.5</b> Extract proA/proB enhancers</a></li>
+<li class="chapter" data-level="3.5.6" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#no-difference-in-methylation-of-full-enhancers-vs-shuffled"><i class="fa fa-check"></i><b>3.5.6</b> No difference in methylation of full enhancers vs shuffled</a></li>
+<li class="chapter" data-level="3.5.7" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#toatal-enh-methylation-prediction"><i class="fa fa-check"></i><b>3.5.7</b> Toatal enh methylation prediction</a></li>
+<li class="chapter" data-level="3.5.8" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-7c"><i class="fa fa-check"></i><b>3.5.8</b> Figure 7C</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html"><i class="fa fa-check"></i><b>4</b> Validation from external data</a><ul>
+<li class="chapter" data-level="4.0.1" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html#initialize-definitions-2"><i class="fa fa-check"></i><b>4.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="4.0.2" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html#get-ab-meth-data-1"><i class="fa fa-check"></i><b>4.0.2</b> Get A/B meth data</a></li>
+<li class="chapter" data-level="4.0.3" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html#get-meissner-data"><i class="fa fa-check"></i><b>4.0.3</b> Get Meissner data</a></li>
+<li class="chapter" data-level="4.0.4" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html#figure-4h"><i class="fa fa-check"></i><b>4.0.4</b> Figure 4H</a></li>
+<li class="chapter" data-level="4.0.5" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html#figure-4i"><i class="fa fa-check"></i><b>4.0.5</b> Figure 4I</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html"><i class="fa fa-check"></i><b>5</b> Mallona et al. NAR 2020</a><ul>
+<li class="chapter" data-level="5.0.1" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#initialize-definitions-3"><i class="fa fa-check"></i><b>5.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="5.1" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#model-es"><i class="fa fa-check"></i><b>5.1</b> Model ES</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5bc"><i class="fa fa-check"></i><b>5.1.1</b> Figure 5B,C</a></li>
+<li class="chapter" data-level="5.1.2" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5d"><i class="fa fa-check"></i><b>5.1.2</b> Figure 5D</a></li>
+<li class="chapter" data-level="5.1.3" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5e"><i class="fa fa-check"></i><b>5.1.3</b> Figure 5E</a></li>
+<li class="chapter" data-level="5.1.4" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5fg"><i class="fa fa-check"></i><b>5.1.4</b> Figure 5F,G</a></li>
+<li class="chapter" data-level="5.1.5" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5h"><i class="fa fa-check"></i><b>5.1.5</b> Figure 5H</a></li>
+<li class="chapter" data-level="5.1.6" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5i"><i class="fa fa-check"></i><b>5.1.6</b> Figure 5I</a></li>
+<li class="chapter" data-level="5.1.7" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5j"><i class="fa fa-check"></i><b>5.1.7</b> Figure 5J</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="yagi-et-al..html"><a href="yagi-et-al..html"><i class="fa fa-check"></i><b>6</b> Yagi et al. </a><ul>
+<li class="chapter" data-level="6.0.1" data-path="yagi-et-al..html"><a href="yagi-et-al..html#initialize-definitions-4"><i class="fa fa-check"></i><b>6.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="6.0.2" data-path="yagi-et-al..html"><a href="yagi-et-al..html#dmrs"><i class="fa fa-check"></i><b>6.0.2</b> DMRs</a></li>
+<li class="chapter" data-level="6.0.3" data-path="yagi-et-al..html"><a href="yagi-et-al..html#get-meissner-data-1"><i class="fa fa-check"></i><b>6.0.3</b> Get Meissner data</a></li>
+<li class="chapter" data-level="6.0.4" data-path="yagi-et-al..html"><a href="yagi-et-al..html#get-meeb-data"><i class="fa fa-check"></i><b>6.0.4</b> Get MEEB data</a></li>
+<li class="chapter" data-level="6.0.5" data-path="yagi-et-al..html"><a href="yagi-et-al..html#extended-data-figure-8i"><i class="fa fa-check"></i><b>6.0.5</b> Extended Data Figure 8I</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html"><i class="fa fa-check"></i><b>7</b> Single cell methylation</a><ul>
+<li class="chapter" data-level="7.0.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#initialize-definitions-5"><i class="fa fa-check"></i><b>7.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="7.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#generate-cell-cycle-ordering"><i class="fa fa-check"></i><b>7.1</b> Generate cell-cycle ordering</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#in-vivo"><i class="fa fa-check"></i><b>7.1.1</b> In-vivo</a></li>
+<li class="chapter" data-level="7.1.2" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#eb"><i class="fa fa-check"></i><b>7.1.2</b> EB</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#plot-in-vivo-cell-cycle"><i class="fa fa-check"></i><b>7.2</b> Plot in-vivo cell-cycle</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6b"><i class="fa fa-check"></i><b>7.2.1</b> Figure 6B</a></li>
+<li class="chapter" data-level="7.2.2" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6a"><i class="fa fa-check"></i><b>7.2.2</b> Figure 6A</a></li>
+<li class="chapter" data-level="7.2.3" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6c"><i class="fa fa-check"></i><b>7.2.3</b> Figure 6C</a></li>
+<li class="chapter" data-level="7.2.4" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#extended-data-figure-9g"><i class="fa fa-check"></i><b>7.2.4</b> Extended Data Figure 9G</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#plot-ebs-cell-cycle"><i class="fa fa-check"></i><b>7.3</b> Plot EBs cell cycle</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6de"><i class="fa fa-check"></i><b>7.3.1</b> Figure 6D,E</a></li>
+<li class="chapter" data-level="7.3.2" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6fg-extended-data-figure-9i"><i class="fa fa-check"></i><b>7.3.2</b> Figure 6F,G, Extended Data Figure 9I</a></li>
+<li class="chapter" data-level="7.3.3" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6d"><i class="fa fa-check"></i><b>7.3.3</b> Figure 6D</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#plot-other-eb-batches"><i class="fa fa-check"></i><b>7.4</b> Plot other EB batches</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#extended-data-figure-9h"><i class="fa fa-check"></i><b>7.4.1</b> Extended Data Figure 9H</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html"><i class="fa fa-check"></i><b>8</b> Differential methylation in EB day 6</a><ul>
+<li class="chapter" data-level="8.1" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#initialize-definitions-6"><i class="fa fa-check"></i><b>8.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="8.2" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#extract-data"><i class="fa fa-check"></i><b>8.2</b> Extract data</a></li>
+<li class="chapter" data-level="8.3" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#plot-global-differences"><i class="fa fa-check"></i><b>8.3</b> Plot global differences</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#figure-7d"><i class="fa fa-check"></i><b>8.3.1</b> Figure 7D</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#extract-dnmt3a-targets"><i class="fa fa-check"></i><b>8.4</b> Extract DNMT3A targets</a></li>
+<li class="chapter" data-level="8.5" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#plot-distribution-of-ab-score-on-the-differential-regions"><i class="fa fa-check"></i><b>8.5</b> Plot distribution of AB score on the differential regions</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#figure-7e"><i class="fa fa-check"></i><b>8.5.1</b> Figure 7E</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#plot-examples"><i class="fa fa-check"></i><b>8.6</b> Plot examples</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#figure-7g-extended-data-figure-10"><i class="fa fa-check"></i><b>8.6.1</b> Figure 7G, Extended Data Figure 10</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#test-regions-enrichment-vs-gene-expression"><i class="fa fa-check"></i><b>8.7</b> Test regions enrichment vs gene expression</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#figure-7f"><i class="fa fa-check"></i><b>8.7.1</b> Figure 7F</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html"><i class="fa fa-check"></i><b>9</b> QC - bulk methylation</a><ul>
+<li class="chapter" data-level="9.0.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#initialize-definitions-7"><i class="fa fa-check"></i><b>9.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="9.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#probe-design"><i class="fa fa-check"></i><b>9.1</b> Probe design</a></li>
+<li class="chapter" data-level="9.2" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#breakdown-of-probes"><i class="fa fa-check"></i><b>9.2</b> Breakdown of probes</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8b"><i class="fa fa-check"></i><b>9.2.1</b> Extended Data Figure 8B</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#wgbs-e8.5"><i class="fa fa-check"></i><b>9.3</b> WGBS E8.5</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#coverage"><i class="fa fa-check"></i><b>9.3.1</b> Coverage</a></li>
+<li class="chapter" data-level="9.3.2" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8a"><i class="fa fa-check"></i><b>9.3.2</b> Extended Data Figure 8A</a></li>
+<li class="chapter" data-level="9.3.3" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#methylation-distribution-on-target-vs-off-target"><i class="fa fa-check"></i><b>9.3.3</b> Methylation distribution on-target vs off-target</a></li>
+<li class="chapter" data-level="9.3.4" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8c"><i class="fa fa-check"></i><b>9.3.4</b> Extended Data Figure 8C</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#distribution-of-coverage-per-condition"><i class="fa fa-check"></i><b>9.4</b> Distribution of coverage per condition</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8d"><i class="fa fa-check"></i><b>9.4.1</b> Extended Data Figure 8D</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#distribution-of-non-cpgs-methylation-per-condition"><i class="fa fa-check"></i><b>9.5</b> Distribution of non-CpGs methylation per condition</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8h"><i class="fa fa-check"></i><b>9.5.1</b> Extended Data Figure 8H</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#on-target-statistics"><i class="fa fa-check"></i><b>9.6</b> “On target” statistics</a><ul>
+<li class="chapter" data-level="9.6.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8e"><i class="fa fa-check"></i><b>9.6.1</b> Extended Data Figure 8E</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#global-methylation-trend"><i class="fa fa-check"></i><b>9.7</b> Global methylation trend</a><ul>
+<li class="chapter" data-level="9.7.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8g"><i class="fa fa-check"></i><b>9.7.1</b> Extended Data Figure 8G</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html"><i class="fa fa-check"></i><b>10</b> QC - sc methylation</a><ul>
+<li class="chapter" data-level="10.0.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#initialize-definitions-8"><i class="fa fa-check"></i><b>10.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="10.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#distribution-of-chh"><i class="fa fa-check"></i><b>10.1</b> Distribution of %CHH</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9b"><i class="fa fa-check"></i><b>10.1.1</b> Extended Data Figure 9B</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#number-of-cells"><i class="fa fa-check"></i><b>10.2</b> Number of cells</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9a"><i class="fa fa-check"></i><b>10.2.1</b> Extended Data Figure 9A</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#number-of-cpgs"><i class="fa fa-check"></i><b>10.3</b> Number of CpGs</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9c"><i class="fa fa-check"></i><b>10.3.1</b> Extended Data Figure 9C</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#sorting-plots"><i class="fa fa-check"></i><b>10.4</b> Sorting plots</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9d"><i class="fa fa-check"></i><b>10.4.1</b> Extended Data Figure 9D</a></li>
+<li class="chapter" data-level="10.4.2" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9e"><i class="fa fa-check"></i><b>10.4.2</b> Extended Data Figure 9E</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#earlylate-coverage-per-cell-e7.5"><i class="fa fa-check"></i><b>10.5</b> Early/Late coverage per cell (e7.5)</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9f"><i class="fa fa-check"></i><b>10.5.1</b> Extended Data Figure 9F</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="yagi-et-al." class="section level1 hasAnchor">
+<h1><span class="header-section-number">6</span> Yagi et al. <a href="yagi-et-al..html#yagi-et-al." class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><a href="https://www.nature.com/articles/s41467-020-16989-w">Identification of distinct loci for de novo DNA methylation by DNMT3A and DNMT3B during mammalian development</a></p>
+<div id="initialize-definitions-4" class="section level3 hasAnchor">
+<h3><span class="header-section-number">6.0.1</span> initialize definitions<a href="yagi-et-al..html#initialize-definitions-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="yagi-et-al..html#cb394-1"></a><span class="kw">suppressMessages</span>(<span class="kw">suppressWarnings</span>(<span class="kw">source</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;code/init.R&quot;</span>))))</span></code></pre></div>
+</div>
+<div id="dmrs" class="section level3 hasAnchor">
+<h3><span class="header-section-number">6.0.2</span> DMRs<a href="yagi-et-al..html#dmrs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="yagi-et-al..html#cb395-1"></a>yagi_dmrs &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="kw">here</span>(<span class="st">&quot;data/yagi_dmrs.tsv&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb395-2"><a href="yagi-et-al..html#cb395-2"></a><span class="st">    </span><span class="kw">filter</span>(chrom <span class="op">%in%</span><span class="st"> </span><span class="kw">gintervals.all</span>()<span class="op">$</span>chrom) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb395-3"><a href="yagi-et-al..html#cb395-3"></a><span class="st">    </span><span class="kw">as_tibble</span>() </span>
+<span id="cb395-4"><a href="yagi-et-al..html#cb395-4"></a></span>
+<span id="cb395-5"><a href="yagi-et-al..html#cb395-5"></a>yagi_dmrs &lt;-<span class="st"> </span>yagi_dmrs <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb395-6"><a href="yagi-et-al..html#cb395-6"></a><span class="st">    </span><span class="kw">mutate</span>(</span>
+<span id="cb395-7"><a href="yagi-et-al..html#cb395-7"></a>        <span class="dt">Yagi_3a =</span> <span class="kw">ifelse</span>(type <span class="op">==</span><span class="st"> &quot;proA&quot;</span>, meanMethy2, meanMethy1),</span>
+<span id="cb395-8"><a href="yagi-et-al..html#cb395-8"></a>        <span class="dt">Yagi_3b =</span> <span class="kw">ifelse</span>(type <span class="op">==</span><span class="st"> &quot;proB&quot;</span>, meanMethy2, meanMethy1)</span>
+<span id="cb395-9"><a href="yagi-et-al..html#cb395-9"></a>    )</span>
+<span id="cb395-10"><a href="yagi-et-al..html#cb395-10"></a></span>
+<span id="cb395-11"><a href="yagi-et-al..html#cb395-11"></a>yagi_dmrs &lt;-<span class="st"> </span>yagi_dmrs <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb395-12"><a href="yagi-et-al..html#cb395-12"></a><span class="st">    </span><span class="kw">select</span>(chrom, start, end, type, Yagi_3a, Yagi_3b)</span>
+<span id="cb395-13"><a href="yagi-et-al..html#cb395-13"></a></span>
+<span id="cb395-14"><a href="yagi-et-al..html#cb395-14"></a></span>
+<span id="cb395-15"><a href="yagi-et-al..html#cb395-15"></a><span class="kw">head</span>(yagi_dmrs)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 6
+##   chrom     start       end type    Yagi_3a   Yagi_3b
+## 1  chr6  48387929  48389217 proA 0.05732420 0.6731291
+## 2  chr3  55584536  55588340 proA 0.02412445 0.4470477
+## 3  chr1 186549516 186554917 proA 0.02829836 0.5260327
+## 4  chr4 135845931 135846972 proA 0.10997219 0.6153078
+## 5 chr11 118941147 118943355 proA 0.04548308 0.6741248
+## 6  chr7  77491664  77494580 proA 0.02552988 0.6597258</code></pre>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="yagi-et-al..html#cb397-1"></a><span class="kw">nrow</span>(yagi_dmrs)</span></code></pre></div>
+<pre><code>## [1] 764</code></pre>
+</div>
+<div id="get-meissner-data-1" class="section level3 hasAnchor">
+<h3><span class="header-section-number">6.0.3</span> Get Meissner data<a href="yagi-et-al..html#get-meissner-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="yagi-et-al..html#cb399-1"></a>md &lt;-<span class="st"> </span><span class="kw">tribble</span>(<span class="op">~</span>track_name, <span class="op">~</span>sort, <span class="op">~</span>num,</span>
+<span id="cb399-2"><a href="yagi-et-al..html#cb399-2"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3a_1&quot;</span>, <span class="st">&quot;ko3a&quot;</span>, <span class="dv">1</span>,</span>
+<span id="cb399-3"><a href="yagi-et-al..html#cb399-3"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3a_2&quot;</span>, <span class="st">&quot;ko3a&quot;</span>, <span class="dv">2</span>,</span>
+<span id="cb399-4"><a href="yagi-et-al..html#cb399-4"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3a_4&quot;</span>, <span class="st">&quot;ko3a&quot;</span>, <span class="dv">4</span>,</span>
+<span id="cb399-5"><a href="yagi-et-al..html#cb399-5"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3a_5&quot;</span>, <span class="st">&quot;ko3a&quot;</span>, <span class="dv">5</span>,</span>
+<span id="cb399-6"><a href="yagi-et-al..html#cb399-6"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3a_6&quot;</span>, <span class="st">&quot;ko3a&quot;</span>, <span class="dv">6</span>,</span>
+<span id="cb399-7"><a href="yagi-et-al..html#cb399-7"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3b_1&quot;</span>, <span class="st">&quot;ko3b&quot;</span>, <span class="dv">1</span>,</span>
+<span id="cb399-8"><a href="yagi-et-al..html#cb399-8"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3b_2&quot;</span>, <span class="st">&quot;ko3b&quot;</span>, <span class="dv">2</span>,</span>
+<span id="cb399-9"><a href="yagi-et-al..html#cb399-9"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3b_3&quot;</span>, <span class="st">&quot;ko3b&quot;</span>, <span class="dv">3</span>,</span>
+<span id="cb399-10"><a href="yagi-et-al..html#cb399-10"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3b_4&quot;</span>, <span class="st">&quot;ko3b&quot;</span>, <span class="dv">4</span>,</span>
+<span id="cb399-11"><a href="yagi-et-al..html#cb399-11"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3b_5&quot;</span>, <span class="st">&quot;ko3b&quot;</span>, <span class="dv">5</span>,</span>
+<span id="cb399-12"><a href="yagi-et-al..html#cb399-12"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3b_6&quot;</span>, <span class="st">&quot;ko3b&quot;</span>, <span class="dv">6</span>,</span>
+<span id="cb399-13"><a href="yagi-et-al..html#cb399-13"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_WT_4&quot;</span>, <span class="st">&quot;wt&quot;</span>, <span class="dv">4</span>,</span>
+<span id="cb399-14"><a href="yagi-et-al..html#cb399-14"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_WT_5&quot;</span>, <span class="st">&quot;wt&quot;</span>, <span class="dv">5</span>,</span>
+<span id="cb399-15"><a href="yagi-et-al..html#cb399-15"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_WT_6&quot;</span>, <span class="st">&quot;wt&quot;</span>, <span class="dv">6</span>,</span>
+<span id="cb399-16"><a href="yagi-et-al..html#cb399-16"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_WT_7&quot;</span>, <span class="st">&quot;wt&quot;</span>, <span class="dv">7</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb399-17"><a href="yagi-et-al..html#cb399-17"></a><span class="st">        </span><span class="kw">mutate</span>(<span class="dt">name =</span> <span class="kw">paste0</span>(sort, <span class="st">&quot;_&quot;</span>, num))</span>
+<span id="cb399-18"><a href="yagi-et-al..html#cb399-18"></a>        </span>
+<span id="cb399-19"><a href="yagi-et-al..html#cb399-19"></a>m_all_epi6 &lt;-<span class="st"> </span><span class="kw">gextract_meth</span>(<span class="dt">tracks =</span> md<span class="op">$</span>track_name, <span class="dt">names=</span>md<span class="op">$</span>name, <span class="dt">intervals=</span>yagi_dmrs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end), <span class="dt">extract_meth_calls =</span> <span class="ot">TRUE</span>, <span class="dt">iterator =</span> yagi_dmrs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end)) <span class="op">%cache_df%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/meissner_epi_yagi_meth.tsv&quot;</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()    </span></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="yagi-et-al..html#cb400-1"></a>min_cov &lt;-<span class="st"> </span><span class="dv">10</span></span>
+<span id="cb400-2"><a href="yagi-et-al..html#cb400-2"></a>m_epi6 &lt;-<span class="st"> </span>m_all_epi6 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end)</span>
+<span id="cb400-3"><a href="yagi-et-al..html#cb400-3"></a><span class="cf">for</span> (g <span class="cf">in</span> <span class="kw">unique</span>(md<span class="op">$</span>sort)){</span>
+<span id="cb400-4"><a href="yagi-et-al..html#cb400-4"></a>        nms &lt;-<span class="st"> </span>md <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sort <span class="op">==</span><span class="st"> </span>g) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(name)</span>
+<span id="cb400-5"><a href="yagi-et-al..html#cb400-5"></a></span>
+<span id="cb400-6"><a href="yagi-et-al..html#cb400-6"></a>        cov_col &lt;-<span class="st"> </span><span class="kw">paste0</span>(g, <span class="st">&quot;.cov&quot;</span>)</span>
+<span id="cb400-7"><a href="yagi-et-al..html#cb400-7"></a>        meth_col &lt;-<span class="st"> </span><span class="kw">paste0</span>(g, <span class="st">&quot;.meth&quot;</span>)            </span>
+<span id="cb400-8"><a href="yagi-et-al..html#cb400-8"></a></span>
+<span id="cb400-9"><a href="yagi-et-al..html#cb400-9"></a>        m_epi6[[cov_col]] &lt;-<span class="st"> </span><span class="kw">rowSums</span>(m_all_epi6[, <span class="kw">paste0</span>(nms, <span class="st">&quot;.cov&quot;</span>)], <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb400-10"><a href="yagi-et-al..html#cb400-10"></a>        m_epi6[[meth_col]] &lt;-<span class="st"> </span><span class="kw">rowSums</span>(m_all_epi6[, <span class="kw">paste0</span>(nms, <span class="st">&quot;.meth&quot;</span>)], <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb400-11"><a href="yagi-et-al..html#cb400-11"></a>        </span>
+<span id="cb400-12"><a href="yagi-et-al..html#cb400-12"></a>        m_epi6[[g]] &lt;-<span class="st"> </span><span class="kw">ifelse</span>(m_epi6[[cov_col]] <span class="op">&gt;=</span><span class="st"> </span>min_cov, m_epi6[[meth_col]] <span class="op">/</span><span class="st"> </span>m_epi6[[cov_col]], <span class="ot">NA</span>)</span>
+<span id="cb400-13"><a href="yagi-et-al..html#cb400-13"></a>    }</span>
+<span id="cb400-14"><a href="yagi-et-al..html#cb400-14"></a>m_epi6 &lt;-<span class="st"> </span>m_epi6 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">ends_with</span>(<span class="st">&quot;.meth&quot;</span>), <span class="op">-</span><span class="kw">ends_with</span>(<span class="st">&quot;.cov&quot;</span>))  <span class="op">%cache_df%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/meissner_epi_yagi_meth_sum.tsv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="get-meeb-data" class="section level3 hasAnchor">
+<h3><span class="header-section-number">6.0.4</span> Get MEEB data<a href="yagi-et-al..html#get-meeb-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="yagi-et-al..html#cb401-1"></a>m_meeb &lt;-<span class="st"> </span><span class="kw">calc_eb_day0_to_day6_cpg_meth</span>(<span class="dt">intervals =</span> yagi_dmrs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end), <span class="dt">iterator =</span>  yagi_dmrs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end), <span class="dt">cache_fn =</span> <span class="kw">here</span>(<span class="st">&quot;output/meeb_day0_to_day6_yagi_meth.tsv&quot;</span>), <span class="dt">use_sort =</span> <span class="ot">FALSE</span>, <span class="dt">max_na =</span> <span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb401-2"><a href="yagi-et-al..html#cb401-2"></a><span class="st">    </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">ends_with</span>(<span class="st">&quot;cov&quot;</span>), <span class="op">-</span><span class="kw">ends_with</span>(<span class="st">&quot;meth&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb401-3"><a href="yagi-et-al..html#cb401-3"></a><span class="st">    </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">contains</span>(<span class="st">&quot;_ko1&quot;</span>), <span class="op">-</span><span class="kw">contains</span>(<span class="st">&quot;_tko&quot;</span>), <span class="op">-</span><span class="kw">starts_with</span>(<span class="st">&quot;d0_&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="yagi-et-al..html#cb402-1"></a><span class="kw">head</span>(m_meeb)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 30
+##   chrom    start      end d3_d13ako  d4_d13ako d3_d13bko  d4_d13bko     d5_dko
+## 1  chr1 14497410 14498475        NA         NA        NA 0.38461538         NA
+## 2  chr1 21070410 21070719        NA         NA        NA         NA         NA
+## 3  chr1 34163709 34164326        NA         NA        NA         NA         NA
+## 4  chr1 38266943 38267649 0.1076265 0.09757137 0.1166078 0.07476636 0.01094891
+## 5  chr1 38685382 38686284        NA         NA        NA         NA         NA
+## 6  chr1 57032568 57032760 0.0000000 0.00000000 0.0000000         NA         NA
+##        d6_dko     d0S_3a     d1_3a     d2_3a     d3_3a      d4_3a     d5_3a
+## 1          NA 0.66346154        NA        NA        NA 0.55855856 0.4925373
+## 2          NA 0.31428571        NA        NA        NA 0.29113924 0.3614458
+## 3          NA 0.05769231        NA        NA        NA 0.08333333 0.1320755
+## 4 0.009803922 0.29095853 0.1721992 0.1582915 0.2002882 0.25531915 0.5327103
+## 5          NA 0.41111111        NA        NA        NA 0.22222222 0.4615385
+## 6          NA 0.06779661        NA        NA 0.0000000 0.00000000 0.0000000
+##        d6_3a    d0S_3b     d1_3b     d2_3b     d3_3b      d4_3b      d5_3b
+## 1 0.50000000 0.8068182        NA        NA        NA 0.80373832 0.80000000
+## 2 0.43801653 0.5918367        NA        NA        NA 0.61538462 0.64406780
+## 3 0.17283951 0.0000000        NA        NA        NA 0.13513514 0.22580645
+## 4 0.67054908 0.3020355 0.1372951 0.2084993 0.2549451 0.25453654 0.29600000
+## 5 0.44520548 0.5306122        NA        NA        NA 0.48913043 0.64444444
+## 6 0.04635762 0.1538462        NA        NA        NA 0.04395604 0.01923077
+##        d6_3b    d0S_wt     d1_wt     d2_wt     d3_wt     d4_wt      d5_wt
+## 1 0.81250000        NA        NA        NA 0.8571429 0.8000000 0.79569892
+## 2 0.67832168        NA        NA        NA        NA 0.9523810 0.59183673
+## 3 0.22602740        NA        NA        NA        NA 0.1600000 0.46913580
+## 4 0.33012628 0.3144775 0.1382979 0.1384615 0.2685560 0.3562982 0.77044610
+## 5 0.58235294        NA        NA        NA        NA 0.5666667 0.66666667
+## 6 0.05128205        NA        NA        NA        NA 0.2666667 0.03921569
+##        d6_wt
+## 1 0.82173913
+## 2 0.84771574
+## 3 0.36200000
+## 4 0.74321230
+## 5 0.61437908
+## 6 0.05809129</code></pre>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="yagi-et-al..html#cb404-1"></a><span class="kw">dim</span>(m_meeb)</span></code></pre></div>
+<pre><code>## [1] 764  30</code></pre>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="yagi-et-al..html#cb406-1"></a>yagi_meth &lt;-<span class="st"> </span>yagi_dmrs <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb406-2"><a href="yagi-et-al..html#cb406-2"></a><span class="st">    </span><span class="kw">left_join</span>(m_epi6) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb406-3"><a href="yagi-et-al..html#cb406-3"></a><span class="st">    </span><span class="kw">left_join</span>(m_meeb)</span></code></pre></div>
+<pre><code>## Joining, by = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;)
+## Joining, by = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;)</code></pre>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="yagi-et-al..html#cb408-1"></a><span class="kw">head</span>(yagi_meth)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 36
+##   chrom     start       end type    Yagi_3a   Yagi_3b       ko3a       ko3b
+## 1  chr6  48387929  48389217 proA 0.05732420 0.6731291 0.03305727 0.01935100
+## 2  chr3  55584536  55588340 proA 0.02412445 0.4470477 0.03345408 0.02190160
+## 3  chr1 186549516 186554917 proA 0.02829836 0.5260327 0.03760639 0.02147777
+## 4  chr4 135845931 135846972 proA 0.10997219 0.6153078 0.11737341 0.04451465
+## 5 chr11 118941147 118943355 proA 0.04548308 0.6741248 0.07684360 0.03943182
+## 6  chr7  77491664  77494580 proA 0.02552988 0.6597258 0.00000000 0.04000000
+##           wt  d3_d13ako  d4_d13ako d3_d13bko  d4_d13bko      d5_dko     d6_dko
+## 1 0.03128703         NA 0.05000000        NA 0.00000000          NA 0.00000000
+## 2 0.05538695         NA 0.00000000 0.0000000 0.00000000          NA         NA
+## 3 0.07845847 0.09322034 0.09478407 0.1114696 0.04453912 0.007029877 0.01030928
+## 4 0.21266968 0.03361345 0.06903766 0.0311804 0.02857143 0.000000000 0.01162791
+## 5 0.14754879 0.15384615 0.09090909 0.0000000 0.03571429          NA 0.00000000
+## 6         NA         NA 0.00000000        NA         NA          NA         NA
+##       d0S_3a      d1_3a     d2_3a      d3_3a      d4_3a     d5_3a     d6_3a
+## 1 0.05240642 0.00000000 0.0000000 0.03378378 0.03199269 0.0715859 0.1162437
+## 2 0.22588832 0.31034483 0.1200000 0.08333333 0.24896836 0.2323718 0.2582781
+## 3 0.46839605 0.33613445 0.3232462 0.38888889 0.43388339 0.2618705 0.3223706
+## 4 0.12714157 0.06666667 0.0505618 0.10747664 0.10019084 0.1414427 0.4215470
+## 5 0.18901660 0.07692308 0.2500000 0.14893617 0.19910847 0.2071713 0.2143895
+## 6 0.36474164 0.25000000 0.1153846 0.34482759 0.34335840 0.2874251 0.3011665
+##       d0S_3b      d1_3b      d2_3b      d3_3b      d4_3b      d5_3b      d6_3b
+## 1 0.09992194 0.01086957 0.02816901 0.00781250 0.03423237 0.05020921 0.03491379
+## 2 0.22635659 0.19148936 0.12500000 0.14893617 0.21798030 0.21082621 0.25292056
+## 3 0.51350450 0.40802213 0.51413428 0.60601504 0.54364798 0.23013245 0.35954601
+## 4 0.11684518 0.03960396 0.05479452 0.09459459 0.10903427 0.08480000 0.08768536
+## 5 0.19321149 0.23255814 0.14285714 0.22580645 0.18750000 0.17412141 0.18470021
+## 6 0.66250000 0.15384615 0.88235294 0.77777778 0.72745098 0.64102564 0.62837163
+##      d0S_wt      d1_wt      d2_wt      d3_wt      d4_wt      d5_wt      d6_wt
+## 1 0.0733945 0.00000000 0.01075269 0.04411765 0.05958132 0.07562278 0.08210877
+## 2 0.1935484 0.11363636 0.18918919 0.22857143 0.27392739 0.31428571 0.33866951
+## 3 0.6337895 0.39802336 0.44246032 0.56379101 0.67888716 0.59645937 0.38639532
+## 4 0.1174785 0.05925926 0.05384615 0.12921348 0.19919786 0.27834179 0.32883390
+## 5 0.1296296 0.06000000 0.07317073 0.15789474 0.28443114 0.22222222 0.24428214
+## 6 0.7187500 0.48275862 0.66666667 0.56410256 0.82432432 0.73489933 0.66535433</code></pre>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="yagi-et-al..html#cb410-1"></a>yagi_meth <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(type)</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##   type   n
+## 1 proA 427
+## 2 proB 343</code></pre>
+</div>
+<div id="extended-data-figure-8i" class="section level3 hasAnchor">
+<h3><span class="header-section-number">6.0.5</span> Extended Data Figure 8I<a href="yagi-et-al..html#extended-data-figure-8i" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="yagi-et-al..html#cb412-1"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">14</span>, <span class="dt">repr.plot.height =</span> <span class="dv">7</span>)</span>
+<span id="cb412-2"><a href="yagi-et-al..html#cb412-2"></a>line_colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;wt&quot;</span> =<span class="st"> &quot;darkblue&quot;</span>, <span class="st">&quot;3a&quot;</span> =<span class="st"> &quot;purple&quot;</span>, <span class="st">&quot;3b&quot;</span> =<span class="st"> &quot;orange&quot;</span>)</span>
+<span id="cb412-3"><a href="yagi-et-al..html#cb412-3"></a>p_yagi &lt;-<span class="st"> </span>yagi_meth <span class="op">%&gt;%</span><span class="st">     </span></span>
+<span id="cb412-4"><a href="yagi-et-al..html#cb412-4"></a><span class="st">    </span><span class="kw">select</span>(chrom<span class="op">:</span>end, type, Yagi_3a, Yagi_3b, <span class="dt">epi_ko3a =</span> ko3a, <span class="dt">epi_ko3b =</span> ko3b, <span class="dt">epi_wt =</span> wt, <span class="kw">everything</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb412-5"><a href="yagi-et-al..html#cb412-5"></a><span class="st">    </span><span class="kw">gather</span>(<span class="st">&quot;samp&quot;</span>, <span class="st">&quot;meth&quot;</span>, <span class="op">-</span>(chrom<span class="op">:</span>type)) <span class="op">%&gt;%</span><span class="st">     </span></span>
+<span id="cb412-6"><a href="yagi-et-al..html#cb412-6"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">samp =</span> <span class="kw">gsub</span>(<span class="st">&quot;_all&quot;</span>, <span class="st">&quot;&quot;</span>, samp)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb412-7"><a href="yagi-et-al..html#cb412-7"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">line =</span> <span class="kw">case_when</span>(</span>
+<span id="cb412-8"><a href="yagi-et-al..html#cb412-8"></a>        <span class="kw">grepl</span>(<span class="st">&quot;3a&quot;</span>, samp) <span class="op">~</span><span class="st"> &quot;3a&quot;</span>,</span>
+<span id="cb412-9"><a href="yagi-et-al..html#cb412-9"></a>        <span class="kw">grepl</span>(<span class="st">&quot;3b&quot;</span>, samp) <span class="op">~</span><span class="st"> &quot;3b&quot;</span>,</span>
+<span id="cb412-10"><a href="yagi-et-al..html#cb412-10"></a>        <span class="kw">grepl</span>(<span class="st">&quot;wt&quot;</span>, samp) <span class="op">~</span><span class="st"> &quot;wt&quot;</span></span>
+<span id="cb412-11"><a href="yagi-et-al..html#cb412-11"></a>    )) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb412-12"><a href="yagi-et-al..html#cb412-12"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">line =</span> <span class="kw">factor</span>(line, <span class="dt">levels =</span> <span class="kw">names</span>(line_colors))) <span class="op">%&gt;%</span></span>
+<span id="cb412-13"><a href="yagi-et-al..html#cb412-13"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>samp, <span class="dt">y=</span>meth, <span class="dt">fill=</span>line)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb412-14"><a href="yagi-et-al..html#cb412-14"></a><span class="st">        </span><span class="kw">geom_boxplot</span>(<span class="dt">outlier.size =</span> <span class="dv">0</span>, <span class="dt">lwd =</span> <span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb412-15"><a href="yagi-et-al..html#cb412-15"></a><span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb412-16"><a href="yagi-et-al..html#cb412-16"></a><span class="st">        </span><span class="kw">ylab</span>(<span class="st">&quot;Methylation&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb412-17"><a href="yagi-et-al..html#cb412-17"></a><span class="st">        </span><span class="kw">scale_fill_manual</span>(<span class="st">&quot;&quot;</span>, <span class="dt">values=</span>line_colors) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb412-18"><a href="yagi-et-al..html#cb412-18"></a><span class="st">        </span><span class="kw">vertical_labs</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb412-19"><a href="yagi-et-al..html#cb412-19"></a><span class="st">        </span><span class="kw">theme</span>(<span class="dt">axis.text.x=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">4</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb412-20"><a href="yagi-et-al..html#cb412-20"></a><span class="st">        </span><span class="kw">facet_wrap</span>(<span class="op">~</span>type)</span>
+<span id="cb412-21"><a href="yagi-et-al..html#cb412-21"></a></span>
+<span id="cb412-22"><a href="yagi-et-al..html#cb412-22"></a>p_yagi</span></code></pre></div>
+<pre><code>## Warning: Removed 8158 rows containing non-finite values (stat_boxplot).</code></pre>
+<p><img src="Yagi_et_al_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="mallona-et-al.-nar-2020.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="single-cell-methylation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

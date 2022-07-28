@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8 Differential methylation in EB day 6 | DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation</title>
+  <meta name="description" content="Analysis and code for the paper: DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8 Differential methylation in EB day 6 | DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Analysis and code for the paper: DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
+  <meta name="github-repo" content="tanaylab/Dnmt3ab_MEEB" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8 Differential methylation in EB day 6 | DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
+  
+  <meta name="twitter:description" content="Analysis and code for the paper: DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
+  
+
+<meta name="author" content="Aviezer Lifshitz" />
+
+
+<meta name="date" content="2022-07-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="single-cell-methylation.html"/>
+<link rel="next" href="qc---bulk-methylation.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#run-the-notebooks"><i class="fa fa-check"></i><b>1.1</b> Run the notebooks</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#download-the-umi-matrices"><i class="fa fa-check"></i><b>1.2</b> Download the UMI matrices</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#notebook-order"><i class="fa fa-check"></i><b>1.3</b> Notebook order</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html"><i class="fa fa-check"></i><b>2</b> Methylation trends in EB days 0-6</a><ul>
+<li class="chapter" data-level="2.0.1" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#initialize-definitions"><i class="fa fa-check"></i><b>2.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="2.0.2" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#load-data"><i class="fa fa-check"></i><b>2.0.2</b> Load data</a></li>
+<li class="chapter" data-level="2.0.3" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#cluster"><i class="fa fa-check"></i><b>2.0.3</b> Cluster</a></li>
+<li class="chapter" data-level="2.0.4" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#project-dnmt1-data"><i class="fa fa-check"></i><b>2.0.4</b> Project DNMT1 data</a></li>
+<li class="chapter" data-level="2.1" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#plot-global-eb-trends"><i class="fa fa-check"></i><b>2.1</b> Plot global EB trends</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#figure-4a"><i class="fa fa-check"></i><b>2.1.1</b> Figure 4A</a></li>
+<li class="chapter" data-level="2.1.2" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#extended-data-figure-8k"><i class="fa fa-check"></i><b>2.1.2</b> Extended Data Figure 8K</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#cluster-methylation-in-days-5-and-6-with-dko"><i class="fa fa-check"></i><b>2.2</b> cluster methylation in days 5 and 6 with DKO</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#project-dko-on-day-1-4-clusters"><i class="fa fa-check"></i><b>2.2.1</b> Project DKO on day 1-4 clusters</a></li>
+<li class="chapter" data-level="2.2.2" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#figure-4c"><i class="fa fa-check"></i><b>2.2.2</b> Figure 4C</a></li>
+<li class="chapter" data-level="2.2.3" data-path="methylation-trends-in-eb-days-0-6.html"><a href="methylation-trends-in-eb-days-0-6.html#figure-4b"><i class="fa fa-check"></i><b>2.2.3</b> Figure 4B</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html"><i class="fa fa-check"></i><b>3</b> A/B sequence model</a><ul>
+<li class="chapter" data-level="3.0.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#initialize-definitions-1"><i class="fa fa-check"></i><b>3.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="3.0.2" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#get-ab-meth-data"><i class="fa fa-check"></i><b>3.0.2</b> Get A/B meth data</a></li>
+<li class="chapter" data-level="3.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#calculate-models"><i class="fa fa-check"></i><b>3.1</b> Calculate models</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#compute-models"><i class="fa fa-check"></i><b>3.1.1</b> Compute models</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#plot-models-vs-preditions"><i class="fa fa-check"></i><b>3.2</b> Plot models vs preditions</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-4f"><i class="fa fa-check"></i><b>3.2.1</b> Figure 4F</a></li>
+<li class="chapter" data-level="3.2.2" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#plot-glm-model-parameters"><i class="fa fa-check"></i><b>3.2.2</b> Plot GLM model parameters</a></li>
+<li class="chapter" data-level="3.2.3" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-4d"><i class="fa fa-check"></i><b>3.2.3</b> Figure 4D</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#plot-logo"><i class="fa fa-check"></i><b>3.3</b> plot logo</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-4e"><i class="fa fa-check"></i><b>3.3.1</b> Figure 4E</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#test-models-with-closest-cpg-methylation"><i class="fa fa-check"></i><b>3.4</b> Test models with closest CpG methylation</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#compute-model-with-cg-and-gc-content"><i class="fa fa-check"></i><b>3.4.1</b> Compute model with CG and GC content</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#compute-model-with-tor"><i class="fa fa-check"></i><b>3.4.2</b> Compute model with TOR</a></li>
+<li class="chapter" data-level="3.4.3" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#compute-model-with-closest-cpg"><i class="fa fa-check"></i><b>3.4.3</b> Compute model with closest CpG</a></li>
+<li class="chapter" data-level="3.4.4" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#compute-model-with-all-enhancer-methylation"><i class="fa fa-check"></i><b>3.4.4</b> Compute model with all enhancer methylation</a></li>
+<li class="chapter" data-level="3.4.5" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-7a"><i class="fa fa-check"></i><b>3.4.5</b> Figure 7A</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#estimate-prediction-noise"><i class="fa fa-check"></i><b>3.5</b> Estimate prediction noise</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#kinteics-per-time-and-score-bin"><i class="fa fa-check"></i><b>3.5.1</b> Kinteics per time and score bin</a></li>
+<li class="chapter" data-level="3.5.2" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-4g"><i class="fa fa-check"></i><b>3.5.2</b> Figure 4G</a></li>
+<li class="chapter" data-level="3.5.3" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#scores-within-enhancers"><i class="fa fa-check"></i><b>3.5.3</b> Scores within enhancers</a></li>
+<li class="chapter" data-level="3.5.4" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-7b"><i class="fa fa-check"></i><b>3.5.4</b> Figure 7B</a></li>
+<li class="chapter" data-level="3.5.5" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#extract-proaprob-enhancers"><i class="fa fa-check"></i><b>3.5.5</b> Extract proA/proB enhancers</a></li>
+<li class="chapter" data-level="3.5.6" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#no-difference-in-methylation-of-full-enhancers-vs-shuffled"><i class="fa fa-check"></i><b>3.5.6</b> No difference in methylation of full enhancers vs shuffled</a></li>
+<li class="chapter" data-level="3.5.7" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#toatal-enh-methylation-prediction"><i class="fa fa-check"></i><b>3.5.7</b> Toatal enh methylation prediction</a></li>
+<li class="chapter" data-level="3.5.8" data-path="ab-sequence-model.html"><a href="ab-sequence-model.html#figure-7c"><i class="fa fa-check"></i><b>3.5.8</b> Figure 7C</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html"><i class="fa fa-check"></i><b>4</b> Validation from external data</a><ul>
+<li class="chapter" data-level="4.0.1" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html#initialize-definitions-2"><i class="fa fa-check"></i><b>4.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="4.0.2" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html#get-ab-meth-data-1"><i class="fa fa-check"></i><b>4.0.2</b> Get A/B meth data</a></li>
+<li class="chapter" data-level="4.0.3" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html#get-meissner-data"><i class="fa fa-check"></i><b>4.0.3</b> Get Meissner data</a></li>
+<li class="chapter" data-level="4.0.4" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html#figure-4h"><i class="fa fa-check"></i><b>4.0.4</b> Figure 4H</a></li>
+<li class="chapter" data-level="4.0.5" data-path="validation-from-external-data.html"><a href="validation-from-external-data.html#figure-4i"><i class="fa fa-check"></i><b>4.0.5</b> Figure 4I</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html"><i class="fa fa-check"></i><b>5</b> Mallona et al. NAR 2020</a><ul>
+<li class="chapter" data-level="5.0.1" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#initialize-definitions-3"><i class="fa fa-check"></i><b>5.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="5.1" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#model-es"><i class="fa fa-check"></i><b>5.1</b> Model ES</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5bc"><i class="fa fa-check"></i><b>5.1.1</b> Figure 5B,C</a></li>
+<li class="chapter" data-level="5.1.2" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5d"><i class="fa fa-check"></i><b>5.1.2</b> Figure 5D</a></li>
+<li class="chapter" data-level="5.1.3" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5e"><i class="fa fa-check"></i><b>5.1.3</b> Figure 5E</a></li>
+<li class="chapter" data-level="5.1.4" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5fg"><i class="fa fa-check"></i><b>5.1.4</b> Figure 5F,G</a></li>
+<li class="chapter" data-level="5.1.5" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5h"><i class="fa fa-check"></i><b>5.1.5</b> Figure 5H</a></li>
+<li class="chapter" data-level="5.1.6" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5i"><i class="fa fa-check"></i><b>5.1.6</b> Figure 5I</a></li>
+<li class="chapter" data-level="5.1.7" data-path="mallona-et-al.-nar-2020.html"><a href="mallona-et-al.-nar-2020.html#figure-5j"><i class="fa fa-check"></i><b>5.1.7</b> Figure 5J</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="yagi-et-al..html"><a href="yagi-et-al..html"><i class="fa fa-check"></i><b>6</b> Yagi et al. </a><ul>
+<li class="chapter" data-level="6.0.1" data-path="yagi-et-al..html"><a href="yagi-et-al..html#initialize-definitions-4"><i class="fa fa-check"></i><b>6.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="6.0.2" data-path="yagi-et-al..html"><a href="yagi-et-al..html#dmrs"><i class="fa fa-check"></i><b>6.0.2</b> DMRs</a></li>
+<li class="chapter" data-level="6.0.3" data-path="yagi-et-al..html"><a href="yagi-et-al..html#get-meissner-data-1"><i class="fa fa-check"></i><b>6.0.3</b> Get Meissner data</a></li>
+<li class="chapter" data-level="6.0.4" data-path="yagi-et-al..html"><a href="yagi-et-al..html#get-meeb-data"><i class="fa fa-check"></i><b>6.0.4</b> Get MEEB data</a></li>
+<li class="chapter" data-level="6.0.5" data-path="yagi-et-al..html"><a href="yagi-et-al..html#extended-data-figure-8i"><i class="fa fa-check"></i><b>6.0.5</b> Extended Data Figure 8I</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html"><i class="fa fa-check"></i><b>7</b> Single cell methylation</a><ul>
+<li class="chapter" data-level="7.0.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#initialize-definitions-5"><i class="fa fa-check"></i><b>7.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="7.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#generate-cell-cycle-ordering"><i class="fa fa-check"></i><b>7.1</b> Generate cell-cycle ordering</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#in-vivo"><i class="fa fa-check"></i><b>7.1.1</b> In-vivo</a></li>
+<li class="chapter" data-level="7.1.2" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#eb"><i class="fa fa-check"></i><b>7.1.2</b> EB</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#plot-in-vivo-cell-cycle"><i class="fa fa-check"></i><b>7.2</b> Plot in-vivo cell-cycle</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6b"><i class="fa fa-check"></i><b>7.2.1</b> Figure 6B</a></li>
+<li class="chapter" data-level="7.2.2" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6a"><i class="fa fa-check"></i><b>7.2.2</b> Figure 6A</a></li>
+<li class="chapter" data-level="7.2.3" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6c"><i class="fa fa-check"></i><b>7.2.3</b> Figure 6C</a></li>
+<li class="chapter" data-level="7.2.4" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#extended-data-figure-9g"><i class="fa fa-check"></i><b>7.2.4</b> Extended Data Figure 9G</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#plot-ebs-cell-cycle"><i class="fa fa-check"></i><b>7.3</b> Plot EBs cell cycle</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6de"><i class="fa fa-check"></i><b>7.3.1</b> Figure 6D,E</a></li>
+<li class="chapter" data-level="7.3.2" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6fg-extended-data-figure-9i"><i class="fa fa-check"></i><b>7.3.2</b> Figure 6F,G, Extended Data Figure 9I</a></li>
+<li class="chapter" data-level="7.3.3" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#figure-6d"><i class="fa fa-check"></i><b>7.3.3</b> Figure 6D</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#plot-other-eb-batches"><i class="fa fa-check"></i><b>7.4</b> Plot other EB batches</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="single-cell-methylation.html"><a href="single-cell-methylation.html#extended-data-figure-9h"><i class="fa fa-check"></i><b>7.4.1</b> Extended Data Figure 9H</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html"><i class="fa fa-check"></i><b>8</b> Differential methylation in EB day 6</a><ul>
+<li class="chapter" data-level="8.1" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#initialize-definitions-6"><i class="fa fa-check"></i><b>8.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="8.2" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#extract-data"><i class="fa fa-check"></i><b>8.2</b> Extract data</a></li>
+<li class="chapter" data-level="8.3" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#plot-global-differences"><i class="fa fa-check"></i><b>8.3</b> Plot global differences</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#figure-7d"><i class="fa fa-check"></i><b>8.3.1</b> Figure 7D</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#extract-dnmt3a-targets"><i class="fa fa-check"></i><b>8.4</b> Extract DNMT3A targets</a></li>
+<li class="chapter" data-level="8.5" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#plot-distribution-of-ab-score-on-the-differential-regions"><i class="fa fa-check"></i><b>8.5</b> Plot distribution of AB score on the differential regions</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#figure-7e"><i class="fa fa-check"></i><b>8.5.1</b> Figure 7E</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#plot-examples"><i class="fa fa-check"></i><b>8.6</b> Plot examples</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#figure-7g-extended-data-figure-10"><i class="fa fa-check"></i><b>8.6.1</b> Figure 7G, Extended Data Figure 10</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#test-regions-enrichment-vs-gene-expression"><i class="fa fa-check"></i><b>8.7</b> Test regions enrichment vs gene expression</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="differential-methylation-in-eb-day-6.html"><a href="differential-methylation-in-eb-day-6.html#figure-7f"><i class="fa fa-check"></i><b>8.7.1</b> Figure 7F</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html"><i class="fa fa-check"></i><b>9</b> QC - bulk methylation</a><ul>
+<li class="chapter" data-level="9.0.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#initialize-definitions-7"><i class="fa fa-check"></i><b>9.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="9.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#probe-design"><i class="fa fa-check"></i><b>9.1</b> Probe design</a></li>
+<li class="chapter" data-level="9.2" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#breakdown-of-probes"><i class="fa fa-check"></i><b>9.2</b> Breakdown of probes</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8b"><i class="fa fa-check"></i><b>9.2.1</b> Extended Data Figure 8B</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#wgbs-e8.5"><i class="fa fa-check"></i><b>9.3</b> WGBS E8.5</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#coverage"><i class="fa fa-check"></i><b>9.3.1</b> Coverage</a></li>
+<li class="chapter" data-level="9.3.2" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8a"><i class="fa fa-check"></i><b>9.3.2</b> Extended Data Figure 8A</a></li>
+<li class="chapter" data-level="9.3.3" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#methylation-distribution-on-target-vs-off-target"><i class="fa fa-check"></i><b>9.3.3</b> Methylation distribution on-target vs off-target</a></li>
+<li class="chapter" data-level="9.3.4" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8c"><i class="fa fa-check"></i><b>9.3.4</b> Extended Data Figure 8C</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#distribution-of-coverage-per-condition"><i class="fa fa-check"></i><b>9.4</b> Distribution of coverage per condition</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8d"><i class="fa fa-check"></i><b>9.4.1</b> Extended Data Figure 8D</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#distribution-of-non-cpgs-methylation-per-condition"><i class="fa fa-check"></i><b>9.5</b> Distribution of non-CpGs methylation per condition</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8h"><i class="fa fa-check"></i><b>9.5.1</b> Extended Data Figure 8H</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#on-target-statistics"><i class="fa fa-check"></i><b>9.6</b> “On target” statistics</a><ul>
+<li class="chapter" data-level="9.6.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8e"><i class="fa fa-check"></i><b>9.6.1</b> Extended Data Figure 8E</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#global-methylation-trend"><i class="fa fa-check"></i><b>9.7</b> Global methylation trend</a><ul>
+<li class="chapter" data-level="9.7.1" data-path="qc---bulk-methylation.html"><a href="qc---bulk-methylation.html#extended-data-figure-8g"><i class="fa fa-check"></i><b>9.7.1</b> Extended Data Figure 8G</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html"><i class="fa fa-check"></i><b>10</b> QC - sc methylation</a><ul>
+<li class="chapter" data-level="10.0.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#initialize-definitions-8"><i class="fa fa-check"></i><b>10.0.1</b> initialize definitions</a></li>
+<li class="chapter" data-level="10.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#distribution-of-chh"><i class="fa fa-check"></i><b>10.1</b> Distribution of %CHH</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9b"><i class="fa fa-check"></i><b>10.1.1</b> Extended Data Figure 9B</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#number-of-cells"><i class="fa fa-check"></i><b>10.2</b> Number of cells</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9a"><i class="fa fa-check"></i><b>10.2.1</b> Extended Data Figure 9A</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#number-of-cpgs"><i class="fa fa-check"></i><b>10.3</b> Number of CpGs</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9c"><i class="fa fa-check"></i><b>10.3.1</b> Extended Data Figure 9C</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#sorting-plots"><i class="fa fa-check"></i><b>10.4</b> Sorting plots</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9d"><i class="fa fa-check"></i><b>10.4.1</b> Extended Data Figure 9D</a></li>
+<li class="chapter" data-level="10.4.2" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9e"><i class="fa fa-check"></i><b>10.4.2</b> Extended Data Figure 9E</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#earlylate-coverage-per-cell-e7.5"><i class="fa fa-check"></i><b>10.5</b> Early/Late coverage per cell (e7.5)</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="qc---sc-methylation.html"><a href="qc---sc-methylation.html#extended-data-figure-9f"><i class="fa fa-check"></i><b>10.5.1</b> Extended Data Figure 9F</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="differential-methylation-in-eb-day-6" class="section level1 hasAnchor">
+<h1><span class="header-section-number">8</span> Differential methylation in EB day 6<a href="differential-methylation-in-eb-day-6.html#differential-methylation-in-eb-day-6" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="initialize-definitions-6" class="section level2 hasAnchor">
+<h2><span class="header-section-number">8.1</span> initialize definitions<a href="differential-methylation-in-eb-day-6.html#initialize-definitions-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="differential-methylation-in-eb-day-6.html#cb541-1"></a><span class="kw">suppressMessages</span>(<span class="kw">suppressWarnings</span>(<span class="kw">source</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;code/init.R&quot;</span>))))</span></code></pre></div>
+</div>
+<div id="extract-data" class="section level2 hasAnchor">
+<h2><span class="header-section-number">8.2</span> Extract data<a href="differential-methylation-in-eb-day-6.html#extract-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="differential-methylation-in-eb-day-6.html#cb542-1"></a>df &lt;-<span class="st"> </span>{</span>
+<span id="cb542-2"><a href="differential-methylation-in-eb-day-6.html#cb542-2"></a>    df_wt &lt;-<span class="st"> </span>tracks_key  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(day <span class="op">==</span><span class="st"> &quot;d6&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(line <span class="op">==</span><span class="st"> &quot;wt&quot;</span>)</span>
+<span id="cb542-3"><a href="differential-methylation-in-eb-day-6.html#cb542-3"></a>    df_ko3a &lt;-<span class="st"> </span>tracks_key  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(day <span class="op">==</span><span class="st"> &quot;d6&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(line <span class="op">==</span><span class="st"> &quot;ko3a&quot;</span>)</span>
+<span id="cb542-4"><a href="differential-methylation-in-eb-day-6.html#cb542-4"></a>    df_ko3b &lt;-<span class="st"> </span>tracks_key  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(day <span class="op">==</span><span class="st"> &quot;d6&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(line <span class="op">==</span><span class="st"> &quot;ko3b&quot;</span>)</span>
+<span id="cb542-5"><a href="differential-methylation-in-eb-day-6.html#cb542-5"></a>    df_ab_bulk &lt;-<span class="st"> </span><span class="kw">extract_meth_annot</span>(<span class="kw">c</span>(</span>
+<span id="cb542-6"><a href="differential-methylation-in-eb-day-6.html#cb542-6"></a>        df_wt<span class="op">$</span>track_name, </span>
+<span id="cb542-7"><a href="differential-methylation-in-eb-day-6.html#cb542-7"></a>        df_ko3a<span class="op">$</span>track_name, </span>
+<span id="cb542-8"><a href="differential-methylation-in-eb-day-6.html#cb542-8"></a>        df_ko3b<span class="op">$</span>track_name,  </span>
+<span id="cb542-9"><a href="differential-methylation-in-eb-day-6.html#cb542-9"></a>        <span class="st">&quot;Zhang_Nature_Genetics_2017.Ect_mCG&quot;</span>,</span>
+<span id="cb542-10"><a href="differential-methylation-in-eb-day-6.html#cb542-10"></a>        <span class="st">&quot;Zhang_Nature_Genetics_2017.Mes_mCG&quot;</span>,</span>
+<span id="cb542-11"><a href="differential-methylation-in-eb-day-6.html#cb542-11"></a>        <span class="st">&quot;Zhang_Nature_Genetics_2017.End_mCG&quot;</span>), <span class="dt">names =</span> <span class="kw">c</span>(df_wt<span class="op">$</span>name, df_ko3a<span class="op">$</span>name, df_ko3b<span class="op">$</span>name, <span class="st">&quot;ecto&quot;</span>, <span class="st">&quot;meso&quot;</span>, <span class="st">&quot;endo&quot;</span>), <span class="dt">d_expand =</span> <span class="dv">250</span>, <span class="dt">extract_meth_calls =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb542-12"><a href="differential-methylation-in-eb-day-6.html#cb542-12"></a>    df &lt;-<span class="st"> </span>df_ab_bulk <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end, d_exon<span class="op">:</span>gc_cont, ecto, ecto.cov, meso, meso.cov, endo, endo.cov)</span>
+<span id="cb542-13"><a href="differential-methylation-in-eb-day-6.html#cb542-13"></a>    df<span class="op">$</span>wt.meth &lt;-<span class="st"> </span><span class="kw">rowSums</span>(df_ab_bulk[, <span class="kw">paste0</span>(df_wt<span class="op">$</span>name, <span class="st">&quot;.meth&quot;</span>)], <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb542-14"><a href="differential-methylation-in-eb-day-6.html#cb542-14"></a>    df<span class="op">$</span>wt.cov &lt;-<span class="st"> </span><span class="kw">rowSums</span>(df_ab_bulk[, <span class="kw">paste0</span>(df_wt<span class="op">$</span>name, <span class="st">&quot;.cov&quot;</span>)], <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb542-15"><a href="differential-methylation-in-eb-day-6.html#cb542-15"></a></span>
+<span id="cb542-16"><a href="differential-methylation-in-eb-day-6.html#cb542-16"></a>    df<span class="op">$</span>ko3a.meth &lt;-<span class="st"> </span><span class="kw">rowSums</span>(df_ab_bulk[, <span class="kw">paste0</span>(df_ko3a<span class="op">$</span>name, <span class="st">&quot;.meth&quot;</span>)], <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb542-17"><a href="differential-methylation-in-eb-day-6.html#cb542-17"></a>    df<span class="op">$</span>ko3a.cov &lt;-<span class="st"> </span><span class="kw">rowSums</span>(df_ab_bulk[, <span class="kw">paste0</span>(df_ko3a<span class="op">$</span>name, <span class="st">&quot;.cov&quot;</span>)], <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb542-18"><a href="differential-methylation-in-eb-day-6.html#cb542-18"></a></span>
+<span id="cb542-19"><a href="differential-methylation-in-eb-day-6.html#cb542-19"></a>    df<span class="op">$</span>ko3b.meth &lt;-<span class="st"> </span><span class="kw">rowSums</span>(df_ab_bulk[, <span class="kw">paste0</span>(df_ko3b<span class="op">$</span>name, <span class="st">&quot;.meth&quot;</span>)], <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb542-20"><a href="differential-methylation-in-eb-day-6.html#cb542-20"></a>    df<span class="op">$</span>ko3b.cov &lt;-<span class="st"> </span><span class="kw">rowSums</span>(df_ab_bulk[, <span class="kw">paste0</span>(df_ko3b<span class="op">$</span>name, <span class="st">&quot;.cov&quot;</span>)], <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb542-21"><a href="differential-methylation-in-eb-day-6.html#cb542-21"></a></span>
+<span id="cb542-22"><a href="differential-methylation-in-eb-day-6.html#cb542-22"></a>    df<span class="op">$</span>ko3a &lt;-<span class="st"> </span>df<span class="op">$</span>ko3a.meth <span class="op">/</span><span class="st"> </span>df<span class="op">$</span>ko3a.cov</span>
+<span id="cb542-23"><a href="differential-methylation-in-eb-day-6.html#cb542-23"></a>    df<span class="op">$</span>wt &lt;-<span class="st"> </span>df<span class="op">$</span>wt.meth <span class="op">/</span><span class="st"> </span>df<span class="op">$</span>wt.cov</span>
+<span id="cb542-24"><a href="differential-methylation-in-eb-day-6.html#cb542-24"></a>    df<span class="op">$</span>ko3b &lt;-<span class="st"> </span>df<span class="op">$</span>ko3b.meth <span class="op">/</span><span class="st"> </span>df<span class="op">$</span>ko3b.cov</span>
+<span id="cb542-25"><a href="differential-methylation-in-eb-day-6.html#cb542-25"></a>    df    </span>
+<span id="cb542-26"><a href="differential-methylation-in-eb-day-6.html#cb542-26"></a>} <span class="op">%cache_df%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/ab_diff_d6_bulk.tsv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()</span></code></pre></div>
+<p>We take only regions that are well covered and add a <code>diff</code> column with <code>3a(-/-) - 3b(-/-)</code></p>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="differential-methylation-in-eb-day-6.html#cb543-1"></a>min_cov &lt;-<span class="st"> </span><span class="dv">50</span></span>
+<span id="cb543-2"><a href="differential-methylation-in-eb-day-6.html#cb543-2"></a>df_diff &lt;-<span class="st"> </span>{</span>
+<span id="cb543-3"><a href="differential-methylation-in-eb-day-6.html#cb543-3"></a>        df_diff &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ko3a.cov <span class="op">&gt;=</span><span class="st"> </span>min_cov, ko3b.cov <span class="op">&gt;=</span><span class="st"> </span>min_cov, wt.cov <span class="op">&gt;=</span><span class="st"> </span>min_cov) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">diff =</span> ko3a <span class="op">-</span><span class="st"> </span>ko3b)</span>
+<span id="cb543-4"><a href="differential-methylation-in-eb-day-6.html#cb543-4"></a>        df_diff &lt;-<span class="st"> </span>df_diff <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gintervals.neighbors1</span>(<span class="st">&quot;intervs.global.tss&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom<span class="op">:</span>diff, geneSymbol, dist)</span>
+<span id="cb543-5"><a href="differential-methylation-in-eb-day-6.html#cb543-5"></a>        df_diff</span>
+<span id="cb543-6"><a href="differential-methylation-in-eb-day-6.html#cb543-6"></a>} <span class="op">%cache_df%</span><span class="st">  </span><span class="kw">here</span>(<span class="st">&quot;output/ab_diff_d6_bulk_diff.tsv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="differential-methylation-in-eb-day-6.html#cb544-1"></a><span class="kw">dim</span>(df_diff)</span></code></pre></div>
+<pre><code>## [1] 9130435      29</code></pre>
+</div>
+<div id="plot-global-differences" class="section level2 hasAnchor">
+<h2><span class="header-section-number">8.3</span> Plot global differences<a href="differential-methylation-in-eb-day-6.html#plot-global-differences" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="differential-methylation-in-eb-day-6.html#cb546-1"></a><span class="kw">sqrt</span>(min_cov)<span class="op">/</span>min_cov</span></code></pre></div>
+<pre><code>## [1] 0.1414214</code></pre>
+<div id="figure-7d" class="section level3 hasAnchor">
+<h3><span class="header-section-number">8.3.1</span> Figure 7D<a href="differential-methylation-in-eb-day-6.html#figure-7d" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb548-1"><a href="differential-methylation-in-eb-day-6.html#cb548-1"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">7</span>, <span class="dt">repr.plot.height =</span> <span class="dv">7</span>)</span>
+<span id="cb548-2"><a href="differential-methylation-in-eb-day-6.html#cb548-2"></a>shades &lt;-<span class="st"> </span><span class="kw">colorRampPalette</span>(<span class="kw">c</span>(<span class="st">&quot;white&quot;</span>,<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkblue&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;gold&quot;</span>,<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;red&quot;</span>, <span class="st">&quot;darkred&quot;</span> ))    </span>
+<span id="cb548-3"><a href="differential-methylation-in-eb-day-6.html#cb548-3"></a><span class="kw">smoothScatter</span>(df_diff<span class="op">$</span>ko3a, df_diff<span class="op">$</span>ko3b, <span class="dt">colramp =</span> shades, <span class="dt">xlab =</span> <span class="st">&quot;3A (-/-)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;3B (-/-)&quot;</span>)</span>
+<span id="cb548-4"><a href="differential-methylation-in-eb-day-6.html#cb548-4"></a><span class="kw">abline</span>(<span class="dt">a =</span> <span class="fl">0.25</span>, <span class="dt">b =</span> <span class="dv">1</span>, <span class="dt">lty =</span> <span class="dv">3</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb548-5"><a href="differential-methylation-in-eb-day-6.html#cb548-5"></a><span class="kw">abline</span>(<span class="dt">a =</span> <span class="fl">-0.25</span>, <span class="dt">b =</span> <span class="dv">1</span>, <span class="dt">lty =</span> <span class="dv">3</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb548-6"><a href="differential-methylation-in-eb-day-6.html#cb548-6"></a><span class="kw">title</span>(<span class="kw">glue</span>(<span class="st">&quot;{scales::comma(nrow(df_diff))} CpGs&quot;</span>))</span></code></pre></div>
+<p><img src="Day6-differential-methylation_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Focusing only on promoters:</p>
+<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="differential-methylation-in-eb-day-6.html#cb549-1"></a>df_diff_prom &lt;-<span class="st"> </span>df_diff <span class="op">%&gt;%</span></span>
+<span id="cb549-2"><a href="differential-methylation-in-eb-day-6.html#cb549-2"></a><span class="st">        </span><span class="kw">gintervals.neighbors1</span>(<span class="kw">get_promoters</span>()) <span class="op">%&gt;%</span></span>
+<span id="cb549-3"><a href="differential-methylation-in-eb-day-6.html#cb549-3"></a><span class="st">        </span><span class="kw">filter</span>(dist1 <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span></span>
+<span id="cb549-4"><a href="differential-methylation-in-eb-day-6.html#cb549-4"></a><span class="st">        </span><span class="kw">select</span>(<span class="op">-</span>(chrom1<span class="op">:</span>dist1)) <span class="op">%cache_df%</span><span class="st">  </span><span class="kw">here</span>(<span class="st">&quot;output/ab_diff_d6_bulk_diff_promoters.tsv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb550-1"><a href="differential-methylation-in-eb-day-6.html#cb550-1"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">7</span>, <span class="dt">repr.plot.height =</span> <span class="dv">7</span>)</span>
+<span id="cb550-2"><a href="differential-methylation-in-eb-day-6.html#cb550-2"></a>shades &lt;-<span class="st"> </span><span class="kw">colorRampPalette</span>(<span class="kw">c</span>(<span class="st">&quot;white&quot;</span>,<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkblue&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;gold&quot;</span>,<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;red&quot;</span>, <span class="st">&quot;darkred&quot;</span> ))    </span>
+<span id="cb550-3"><a href="differential-methylation-in-eb-day-6.html#cb550-3"></a><span class="kw">smoothScatter</span>(df_diff_prom<span class="op">$</span>ko3a, df_diff_prom<span class="op">$</span>ko3b, <span class="dt">colramp =</span> shades, <span class="dt">xlab =</span> <span class="st">&quot;3A (-/-)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;3B (-/-)&quot;</span>)</span>
+<span id="cb550-4"><a href="differential-methylation-in-eb-day-6.html#cb550-4"></a><span class="kw">abline</span>(<span class="dt">a =</span> <span class="fl">0.25</span>, <span class="dt">b =</span> <span class="dv">1</span>, <span class="dt">lty =</span> <span class="dv">3</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb550-5"><a href="differential-methylation-in-eb-day-6.html#cb550-5"></a><span class="kw">abline</span>(<span class="dt">a =</span> <span class="fl">-0.25</span>, <span class="dt">b =</span> <span class="dv">1</span>, <span class="dt">lty =</span> <span class="dv">3</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb550-6"><a href="differential-methylation-in-eb-day-6.html#cb550-6"></a><span class="kw">title</span>(<span class="kw">glue</span>(<span class="st">&quot;{scales::comma(nrow(df_diff_prom))} promoters&quot;</span>))</span></code></pre></div>
+<p><img src="Day6-differential-methylation_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="differential-methylation-in-eb-day-6.html#cb551-1"></a>df_diff_prom <span class="op">%&gt;%</span></span>
+<span id="cb551-2"><a href="differential-methylation-in-eb-day-6.html#cb551-2"></a><span class="st">        </span><span class="kw">filter</span>(diff <span class="op">&lt;=</span><span class="st"> </span><span class="fl">-0.3</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb551-3"><a href="differential-methylation-in-eb-day-6.html#cb551-3"></a><span class="st">        </span><span class="kw">nrow</span>()</span></code></pre></div>
+<pre><code>## [1] 169</code></pre>
+</div>
+</div>
+<div id="extract-dnmt3a-targets" class="section level2 hasAnchor">
+<h2><span class="header-section-number">8.4</span> Extract DNMT3A targets<a href="differential-methylation-in-eb-day-6.html#extract-dnmt3a-targets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We extract regions with differences that are below <code>-0.3</code> (places where <code>3a(-/-) - 3b(-/-) &lt;= -0.3</code> (upper left part of the scatter).
+These are places where <code>3a(-/-)</code> is less methylated, i.e. putative targets of DNMT3A.</p>
+<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="differential-methylation-in-eb-day-6.html#cb553-1"></a>regs &lt;-<span class="st"> </span>df_diff <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb553-2"><a href="differential-methylation-in-eb-day-6.html#cb553-2"></a><span class="st">    </span><span class="kw">filter</span>(diff <span class="op">&lt;=</span><span class="st"> </span><span class="fl">-0.3</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb553-3"><a href="differential-methylation-in-eb-day-6.html#cb553-3"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">start =</span> start <span class="op">-</span><span class="st"> </span><span class="dv">250</span>, <span class="dt">end =</span> end <span class="op">+</span><span class="st"> </span><span class="dv">250</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb553-4"><a href="differential-methylation-in-eb-day-6.html#cb553-4"></a><span class="st">    </span><span class="kw">gintervals.canonic</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb553-5"><a href="differential-methylation-in-eb-day-6.html#cb553-5"></a><span class="st">    </span><span class="kw">gextract</span>(<span class="kw">c</span>(<span class="st">&quot;d_exon&quot;</span>, <span class="st">&quot;d_tss&quot;</span>, <span class="st">&quot;tor&quot;</span>, <span class="st">&quot;ab_score&quot;</span>, <span class="st">&quot;cg_cont&quot;</span>, <span class="st">&quot;gc_cont&quot;</span>), <span class="dt">intervals=</span>., <span class="dt">iterator=</span>.) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb553-6"><a href="differential-methylation-in-eb-day-6.html#cb553-6"></a><span class="st">    </span><span class="kw">gintervals.neighbors1</span>(<span class="st">&quot;intervs.global.tss&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb553-7"><a href="differential-methylation-in-eb-day-6.html#cb553-7"></a><span class="st">    </span><span class="kw">select</span>(chrom<span class="op">:</span>gc_cont, geneSymbol, dist) <span class="op">%cache_df%</span><span class="st"> </span></span>
+<span id="cb553-8"><a href="differential-methylation-in-eb-day-6.html#cb553-8"></a><span class="st">    </span><span class="kw">here</span>(<span class="st">&quot;output/ab_eb_d6_ko3b_hyper.tsv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb553-9"><a href="differential-methylation-in-eb-day-6.html#cb553-9"></a><span class="st">    </span><span class="kw">as_tibble</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb554-1"><a href="differential-methylation-in-eb-day-6.html#cb554-1"></a><span class="kw">dim</span>(regs)</span></code></pre></div>
+<pre><code>## [1] 1525   11</code></pre>
+<div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb556-1"><a href="differential-methylation-in-eb-day-6.html#cb556-1"></a>regs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>end <span class="op">-</span><span class="st"> </span>start)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_density</span>() <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_log10</span>()</span></code></pre></div>
+<p><img src="Day6-differential-methylation_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="differential-methylation-in-eb-day-6.html#cb557-1"></a>sup_table &lt;-<span class="st"> </span>{</span>
+<span id="cb557-2"><a href="differential-methylation-in-eb-day-6.html#cb557-2"></a>    df_wt &lt;-<span class="st"> </span>tracks_key  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(day <span class="op">==</span><span class="st"> &quot;d6&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(line <span class="op">==</span><span class="st"> &quot;wt&quot;</span>)</span>
+<span id="cb557-3"><a href="differential-methylation-in-eb-day-6.html#cb557-3"></a>    df_ko3a &lt;-<span class="st"> </span>tracks_key  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(day <span class="op">==</span><span class="st"> &quot;d6&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(line <span class="op">==</span><span class="st"> &quot;ko3a&quot;</span>)</span>
+<span id="cb557-4"><a href="differential-methylation-in-eb-day-6.html#cb557-4"></a>    df_ko3b &lt;-<span class="st"> </span>tracks_key  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(day <span class="op">==</span><span class="st"> &quot;d6&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(line <span class="op">==</span><span class="st"> &quot;ko3b&quot;</span>)</span>
+<span id="cb557-5"><a href="differential-methylation-in-eb-day-6.html#cb557-5"></a>    df_ab_bulk &lt;-<span class="st"> </span><span class="kw">extract_meth_annot</span>(<span class="kw">c</span>(</span>
+<span id="cb557-6"><a href="differential-methylation-in-eb-day-6.html#cb557-6"></a>        df_wt<span class="op">$</span>track_name, </span>
+<span id="cb557-7"><a href="differential-methylation-in-eb-day-6.html#cb557-7"></a>        df_ko3a<span class="op">$</span>track_name, </span>
+<span id="cb557-8"><a href="differential-methylation-in-eb-day-6.html#cb557-8"></a>        df_ko3b<span class="op">$</span>track_name,  </span>
+<span id="cb557-9"><a href="differential-methylation-in-eb-day-6.html#cb557-9"></a>        <span class="st">&quot;Zhang_Nature_Genetics_2017.Ect_mCG&quot;</span>,</span>
+<span id="cb557-10"><a href="differential-methylation-in-eb-day-6.html#cb557-10"></a>        <span class="st">&quot;Zhang_Nature_Genetics_2017.Mes_mCG&quot;</span>,</span>
+<span id="cb557-11"><a href="differential-methylation-in-eb-day-6.html#cb557-11"></a>        <span class="st">&quot;Zhang_Nature_Genetics_2017.End_mCG&quot;</span>), <span class="dt">names =</span> <span class="kw">c</span>(df_wt<span class="op">$</span>name, df_ko3a<span class="op">$</span>name, df_ko3b<span class="op">$</span>name, <span class="st">&quot;ecto&quot;</span>, <span class="st">&quot;meso&quot;</span>, <span class="st">&quot;endo&quot;</span>), <span class="dt">d_expand =</span> <span class="dv">250</span>, <span class="dt">extract_meth_calls =</span> <span class="ot">TRUE</span>, <span class="dt">intervals =</span> regs, <span class="dt">iterator=</span>regs)</span>
+<span id="cb557-12"><a href="differential-methylation-in-eb-day-6.html#cb557-12"></a>    df &lt;-<span class="st"> </span>df_ab_bulk <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end, d_exon<span class="op">:</span>gc_cont, ecto, ecto.cov, meso, meso.cov, endo, endo.cov)</span>
+<span id="cb557-13"><a href="differential-methylation-in-eb-day-6.html#cb557-13"></a>    df<span class="op">$</span>wt.meth &lt;-<span class="st"> </span><span class="kw">rowSums</span>(df_ab_bulk[, <span class="kw">paste0</span>(df_wt<span class="op">$</span>name, <span class="st">&quot;.meth&quot;</span>)], <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb557-14"><a href="differential-methylation-in-eb-day-6.html#cb557-14"></a>    df<span class="op">$</span>wt.cov &lt;-<span class="st"> </span><span class="kw">rowSums</span>(df_ab_bulk[, <span class="kw">paste0</span>(df_wt<span class="op">$</span>name, <span class="st">&quot;.cov&quot;</span>)], <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb557-15"><a href="differential-methylation-in-eb-day-6.html#cb557-15"></a></span>
+<span id="cb557-16"><a href="differential-methylation-in-eb-day-6.html#cb557-16"></a>    df<span class="op">$</span>ko3a.meth &lt;-<span class="st"> </span><span class="kw">rowSums</span>(df_ab_bulk[, <span class="kw">paste0</span>(df_ko3a<span class="op">$</span>name, <span class="st">&quot;.meth&quot;</span>)], <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb557-17"><a href="differential-methylation-in-eb-day-6.html#cb557-17"></a>    df<span class="op">$</span>ko3a.cov &lt;-<span class="st"> </span><span class="kw">rowSums</span>(df_ab_bulk[, <span class="kw">paste0</span>(df_ko3a<span class="op">$</span>name, <span class="st">&quot;.cov&quot;</span>)], <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb557-18"><a href="differential-methylation-in-eb-day-6.html#cb557-18"></a></span>
+<span id="cb557-19"><a href="differential-methylation-in-eb-day-6.html#cb557-19"></a>    df<span class="op">$</span>ko3b.meth &lt;-<span class="st"> </span><span class="kw">rowSums</span>(df_ab_bulk[, <span class="kw">paste0</span>(df_ko3b<span class="op">$</span>name, <span class="st">&quot;.meth&quot;</span>)], <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb557-20"><a href="differential-methylation-in-eb-day-6.html#cb557-20"></a>    df<span class="op">$</span>ko3b.cov &lt;-<span class="st"> </span><span class="kw">rowSums</span>(df_ab_bulk[, <span class="kw">paste0</span>(df_ko3b<span class="op">$</span>name, <span class="st">&quot;.cov&quot;</span>)], <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb557-21"><a href="differential-methylation-in-eb-day-6.html#cb557-21"></a></span>
+<span id="cb557-22"><a href="differential-methylation-in-eb-day-6.html#cb557-22"></a>    df<span class="op">$</span>ko3a &lt;-<span class="st"> </span>df<span class="op">$</span>ko3a.meth <span class="op">/</span><span class="st"> </span>df<span class="op">$</span>ko3a.cov</span>
+<span id="cb557-23"><a href="differential-methylation-in-eb-day-6.html#cb557-23"></a>    df<span class="op">$</span>wt &lt;-<span class="st"> </span>df<span class="op">$</span>wt.meth <span class="op">/</span><span class="st"> </span>df<span class="op">$</span>wt.cov</span>
+<span id="cb557-24"><a href="differential-methylation-in-eb-day-6.html#cb557-24"></a>    df<span class="op">$</span>ko3b &lt;-<span class="st"> </span>df<span class="op">$</span>ko3b.meth <span class="op">/</span><span class="st"> </span>df<span class="op">$</span>ko3b.cov</span>
+<span id="cb557-25"><a href="differential-methylation-in-eb-day-6.html#cb557-25"></a>    df    </span>
+<span id="cb557-26"><a href="differential-methylation-in-eb-day-6.html#cb557-26"></a>} </span>
+<span id="cb557-27"><a href="differential-methylation-in-eb-day-6.html#cb557-27"></a><span class="kw">head</span>(sup_table)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 26
+##   chrom    start      end  d_exon   d_tss        tor   ab_score    a_score
+## 1  chr1 12856026 12856579     328   23572  1.3366647 -0.4332772 -0.4043494
+## 2  chr1 13117554 13118055    -560    -560  0.6330189 -0.4057871 -0.3534880
+## 3  chr1 13524846 13525376   29671   54833  0.8855244 -0.5009643 -0.4720550
+## 4  chr1 14495784 14496427 -195825 -195825 -0.8437675 -0.4262571 -0.3651721
+## 5  chr1 14497465 14498563 -197734 -197734 -0.8437675 -0.4453787 -0.3654922
+## 6  chr1 14907781 14908427     701     838 -0.9435036 -0.3355332 -0.2938322
+##      b_score    cg_cont   gc_cont       ecto ecto.cov       meso meso.cov
+## 1 0.04263026 0.01212121 0.4500000 0.52976190      168 0.34482759      145
+## 2 0.04959648 0.02231405 0.4995041 0.14791667      480 0.11333333      300
+## 3 0.06331065 0.02303030 0.4686364 0.81167109      377 0.82283465      254
+## 4 0.05616216 0.02012987 0.4293507 0.02386635      419 0.01745636      401
+## 5 0.06639115 0.01604743 0.4779448 0.01891892      370 0.03412969      293
+## 6 0.05721129 0.01545454 0.4189610 0.25698324      179 0.36666667      150
+##        endo endo.cov wt.meth wt.cov ko3a.meth ko3a.cov ko3b.meth ko3b.cov
+## 1 0.2699387      163     355    450        69      130        72       98
+## 2 0.3497110      346     474   1109        82      288       123      304
+## 3 0.5284810      316     702    791       188      246       201      214
+## 4 0.1633238      349     308    888        61      298       114      320
+## 5 0.2029703      404     745   1089       108      282       221      359
+## 6 0.4080000      125     343    440        76      138        83      113
+##        ko3a        wt      ko3b
+## 1 0.5307692 0.7888889 0.7346939
+## 2 0.2847222 0.4274121 0.4046053
+## 3 0.7642276 0.8874842 0.9392523
+## 4 0.2046980 0.3468468 0.3562500
+## 5 0.3829787 0.6841139 0.6155989
+## 6 0.5507246 0.7795455 0.7345133</code></pre>
+<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="differential-methylation-in-eb-day-6.html#cb559-1"></a>sup_table <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb559-2"><a href="differential-methylation-in-eb-day-6.html#cb559-2"></a><span class="st">    </span><span class="kw">select</span>(chrom<span class="op">:</span>end, ko3a, ko3a.cov, ko3b, ko3b.cov, wt, wt.cov, ab_score, <span class="st">`</span><span class="dt">CG content</span><span class="st">`</span>=cg_cont, <span class="st">`</span><span class="dt">GC content</span><span class="st">`</span>=gc_cont) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb559-3"><a href="differential-methylation-in-eb-day-6.html#cb559-3"></a><span class="st">    </span><span class="kw">inner_join</span>(regs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom<span class="op">:</span>end, geneSymbol, <span class="st">`</span><span class="dt">distance to gene</span><span class="st">`</span>=dist)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb559-4"><a href="differential-methylation-in-eb-day-6.html#cb559-4"></a><span class="st">    </span>writexl<span class="op">::</span><span class="kw">write_xlsx</span>(<span class="dt">path =</span> <span class="kw">here</span>(<span class="st">&quot;output/S3 - DNMT3A DMRs.xlsx&quot;</span>))    </span></code></pre></div>
+<pre><code>## Joining, by = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;)</code></pre>
+</div>
+<div id="plot-distribution-of-ab-score-on-the-differential-regions" class="section level2 hasAnchor">
+<h2><span class="header-section-number">8.5</span> Plot distribution of AB score on the differential regions<a href="differential-methylation-in-eb-day-6.html#plot-distribution-of-ab-score-on-the-differential-regions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="differential-methylation-in-eb-day-6.html#cb561-1"></a>all_intervs &lt;-<span class="st"> </span>df_diff <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">start =</span> start <span class="op">-</span><span class="st"> </span><span class="dv">250</span>, <span class="dt">end =</span> end <span class="op">+</span><span class="st"> </span><span class="dv">250</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gintervals.force_range</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gintervals.canonic</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gextract</span>(<span class="kw">c</span>(<span class="st">&quot;d_exon&quot;</span>, <span class="st">&quot;d_tss&quot;</span>, <span class="st">&quot;tor&quot;</span>, <span class="st">&quot;ab_score&quot;</span>, <span class="st">&quot;cg_cont&quot;</span>, <span class="st">&quot;gc_cont&quot;</span>), <span class="dt">intervals=</span>., <span class="dt">iterator=</span>.)</span></code></pre></div>
+<pre><code>## 31%...68%...100%</code></pre>
+<div id="figure-7e" class="section level3 hasAnchor">
+<h3><span class="header-section-number">8.5.1</span> Figure 7E<a href="differential-methylation-in-eb-day-6.html#figure-7e" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="differential-methylation-in-eb-day-6.html#cb563-1"></a>p_ab_score_regs &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(all_intervs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">type =</span> <span class="st">&#39;Bg.&#39;</span>), regs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">type =</span> <span class="st">&#39;Diff&#39;</span>))  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>ab_score, <span class="dt">color=</span>type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_density</span>() <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_manual</span>(<span class="dt">name =</span> <span class="st">&#39;&#39;</span>, <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;Bg.&quot;</span> =<span class="st"> &quot;gray&quot;</span>, <span class="st">&quot;Diff&quot;</span> =<span class="st"> &quot;red&quot;</span>))</span>
+<span id="cb563-2"><a href="differential-methylation-in-eb-day-6.html#cb563-2"></a>p_ab_score_regs <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="Day6-differential-methylation_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="differential-methylation-in-eb-day-6.html#cb564-1"></a>all_intervs_prom &lt;-<span class="st"> </span>df_diff_prom <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">start =</span> start <span class="op">-</span><span class="st"> </span><span class="dv">250</span>, <span class="dt">end =</span> end <span class="op">+</span><span class="st"> </span><span class="dv">250</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gintervals.force_range</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gintervals.canonic</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gextract</span>(<span class="kw">c</span>(<span class="st">&quot;d_exon&quot;</span>, <span class="st">&quot;d_tss&quot;</span>, <span class="st">&quot;tor&quot;</span>, <span class="st">&quot;ab_score&quot;</span>, <span class="st">&quot;cg_cont&quot;</span>, <span class="st">&quot;gc_cont&quot;</span>), <span class="dt">intervals=</span>., <span class="dt">iterator=</span>.)</span></code></pre></div>
+<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="differential-methylation-in-eb-day-6.html#cb565-1"></a>p_ab_score_regs_prom &lt;-<span class="st"> </span>df_diff_prom <span class="op">%&gt;%</span></span>
+<span id="cb565-2"><a href="differential-methylation-in-eb-day-6.html#cb565-2"></a><span class="st">        </span><span class="kw">mutate</span>(<span class="dt">type =</span> <span class="kw">case_when</span>(diff <span class="op">&lt;=</span><span class="st"> </span><span class="fl">-0.3</span> <span class="op">~</span><span class="st"> &quot;3a&quot;</span>, diff <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.3</span> <span class="op">~</span><span class="st"> &quot;3b&quot;</span>, <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;Bg.&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb565-3"><a href="differential-methylation-in-eb-day-6.html#cb565-3"></a><span class="st">        </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>ab_score, <span class="dt">color=</span>type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_density</span>() <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_manual</span>(<span class="dt">name =</span> <span class="st">&#39;&#39;</span>, <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;Bg.&quot;</span> =<span class="st"> &quot;gray&quot;</span>, <span class="st">&quot;3a&quot;</span> =<span class="st"> &quot;purple&quot;</span>, <span class="st">&quot;3b&quot;</span> =<span class="st"> &quot;orange&quot;</span>))</span>
+<span id="cb565-4"><a href="differential-methylation-in-eb-day-6.html#cb565-4"></a>p_ab_score_regs_prom <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="Day6-differential-methylation_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+</div>
+</div>
+<div id="plot-examples" class="section level2 hasAnchor">
+<h2><span class="header-section-number">8.6</span> Plot examples<a href="differential-methylation-in-eb-day-6.html#plot-examples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="figure-7g-extended-data-figure-10" class="section level3 hasAnchor">
+<h3><span class="header-section-number">8.6.1</span> Figure 7G, Extended Data Figure 10<a href="differential-methylation-in-eb-day-6.html#figure-7g-extended-data-figure-10" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="differential-methylation-in-eb-day-6.html#cb566-1"></a>example_genes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Msx1&quot;</span>, <span class="st">&quot;Cyp26a1&quot;</span>, <span class="st">&quot;Foxa2&quot;</span>, <span class="st">&quot;Krt18&quot;</span>, <span class="st">&quot;Sox2&quot;</span>, <span class="st">&quot;Sp5&quot;</span>, <span class="st">&quot;Zfpm1&quot;</span>)</span>
+<span id="cb566-2"><a href="differential-methylation-in-eb-day-6.html#cb566-2"></a></span>
+<span id="cb566-3"><a href="differential-methylation-in-eb-day-6.html#cb566-3"></a>plot_example &lt;-<span class="st"> </span><span class="cf">function</span>(gene, ...){</span>
+<span id="cb566-4"><a href="differential-methylation-in-eb-day-6.html#cb566-4"></a>    <span class="kw">print</span>(gene)</span>
+<span id="cb566-5"><a href="differential-methylation-in-eb-day-6.html#cb566-5"></a>    x &lt;-<span class="st"> </span>regs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(geneSymbol <span class="op">==</span><span class="st"> </span>gene) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span>)</span>
+<span id="cb566-6"><a href="differential-methylation-in-eb-day-6.html#cb566-6"></a>    genome_res &lt;-<span class="st"> </span><span class="kw">max</span>(<span class="fl">1e4</span>, <span class="kw">abs</span>(x<span class="op">$</span>d_tss) <span class="op">+</span><span class="st"> </span><span class="fl">0.2</span> <span class="op">*</span><span class="st"> </span><span class="kw">abs</span>(x<span class="op">$</span>d_tss))</span>
+<span id="cb566-7"><a href="differential-methylation-in-eb-day-6.html#cb566-7"></a>    plot_res &lt;-<span class="st"> </span><span class="fl">1e3</span></span>
+<span id="cb566-8"><a href="differential-methylation-in-eb-day-6.html#cb566-8"></a>    d_expand &lt;-<span class="st"> </span><span class="dv">250</span></span>
+<span id="cb566-9"><a href="differential-methylation-in-eb-day-6.html#cb566-9"></a>    med_ab_score =<span class="st"> </span><span class="kw">gquantiles</span>(<span class="st">&quot;DNMT.ab_score&quot;</span>)</span>
+<span id="cb566-10"><a href="differential-methylation-in-eb-day-6.html#cb566-10"></a>    p &lt;-<span class="st"> </span><span class="kw">plot_ab_diff_cis_example</span>(x, <span class="kw">c</span>(<span class="st">&quot;mEBDNMT.comb.d6_wt&quot;</span>, <span class="st">&quot;mEBDNMT.comb.d6_ko3a&quot;</span>, <span class="st">&quot;mEBDNMT.comb.d6_ko3b&quot;</span>), <span class="dt">names =</span> <span class="kw">c</span>(<span class="st">&quot;wt&quot;</span>, <span class="st">&quot;ko3a&quot;</span>, <span class="st">&quot;ko3b&quot;</span>), <span class="dt">colors =</span>  <span class="kw">c</span>(<span class="st">&quot;wt&quot;</span> =<span class="st"> &quot;black&quot;</span>, <span class="st">&quot;ko3a&quot;</span> =<span class="st"> &quot;purple&quot;</span>, <span class="st">&quot;ko3b&quot;</span> =<span class="st"> &quot;orange&quot;</span>),  <span class="dt">trend_track =</span> <span class="st">&quot;mEBDNMT.comb.d6_wt&quot;</span>, <span class="dt">trend_res =</span> <span class="dv">500</span>, <span class="dt">genome_res =</span> genome_res, <span class="dt">plot_res =</span> plot_res, <span class="dt">d_expand =</span> d_expand, <span class="dt">add_legend =</span> <span class="ot">FALSE</span>, <span class="dt">med_ab_score=</span> med_ab_score)</span>
+<span id="cb566-11"><a href="differential-methylation-in-eb-day-6.html#cb566-11"></a>    <span class="kw">print</span>(p)</span>
+<span id="cb566-12"><a href="differential-methylation-in-eb-day-6.html#cb566-12"></a>}</span>
+<span id="cb566-13"><a href="differential-methylation-in-eb-day-6.html#cb566-13"></a></span>
+<span id="cb566-14"><a href="differential-methylation-in-eb-day-6.html#cb566-14"></a><span class="kw">walk</span>(example_genes, plot_example)</span></code></pre></div>
+<pre><code>## [1] &quot;Msx1&quot;</code></pre>
+<pre><code>## Warning: Removed 1 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_rect).</code></pre>
+<pre><code>## Warning: Removed 14 rows containing missing values (geom_point).</code></pre>
+<p><img src="Day6-differential-methylation_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<pre><code>## [1] &quot;Cyp26a1&quot;</code></pre>
+<pre><code>## Warning: Removed 75 rows containing missing values (geom_point).</code></pre>
+<p><img src="Day6-differential-methylation_files/figure-html/unnamed-chunk-19-2.png" width="672" /></p>
+<pre><code>## [1] &quot;Foxa2&quot;</code></pre>
+<pre><code>## Warning: Removed 1 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 29 rows containing missing values (geom_point).</code></pre>
+<p><img src="Day6-differential-methylation_files/figure-html/unnamed-chunk-19-3.png" width="672" /></p>
+<pre><code>## [1] &quot;Krt18&quot;</code></pre>
+<pre><code>## Warning: Removed 1 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 9 rows containing missing values (geom_point).</code></pre>
+<p><img src="Day6-differential-methylation_files/figure-html/unnamed-chunk-19-4.png" width="672" /></p>
+<pre><code>## [1] &quot;Sox2&quot;</code></pre>
+<pre><code>## Warning: Removed 1 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_rect).</code></pre>
+<pre><code>## Warning: Removed 68 rows containing missing values (geom_point).</code></pre>
+<p><img src="Day6-differential-methylation_files/figure-html/unnamed-chunk-19-5.png" width="672" /></p>
+<pre><code>## [1] &quot;Sp5&quot;</code></pre>
+<pre><code>## Warning: Removed 1 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 15 rows containing missing values (geom_point).</code></pre>
+<p><img src="Day6-differential-methylation_files/figure-html/unnamed-chunk-19-6.png" width="672" /></p>
+<pre><code>## [1] &quot;Zfpm1&quot;</code></pre>
+<pre><code>## Warning: Removed 1 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 7 rows containing missing values (geom_point).</code></pre>
+<p><img src="Day6-differential-methylation_files/figure-html/unnamed-chunk-19-7.png" width="672" /></p>
+<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="differential-methylation-in-eb-day-6.html#cb589-1"></a>example_cands &lt;-<span class="st"> </span><span class="kw">c</span>( <span class="st">&quot;T&quot;</span>,</span>
+<span id="cb589-2"><a href="differential-methylation-in-eb-day-6.html#cb589-2"></a>                    <span class="st">&quot;Eomes&quot;</span>,</span>
+<span id="cb589-3"><a href="differential-methylation-in-eb-day-6.html#cb589-3"></a>                    <span class="st">&quot;Gsc&quot;</span>,                    </span>
+<span id="cb589-4"><a href="differential-methylation-in-eb-day-6.html#cb589-4"></a>                    <span class="st">&quot;Pou3f1&quot;</span>,</span>
+<span id="cb589-5"><a href="differential-methylation-in-eb-day-6.html#cb589-5"></a>                    <span class="st">&quot;Pou5f1&quot;</span>,</span>
+<span id="cb589-6"><a href="differential-methylation-in-eb-day-6.html#cb589-6"></a>                    <span class="st">&quot;Sall4&quot;</span>,                    </span>
+<span id="cb589-7"><a href="differential-methylation-in-eb-day-6.html#cb589-7"></a>                    <span class="st">&quot;Lyl1&quot;</span>)</span>
+<span id="cb589-8"><a href="differential-methylation-in-eb-day-6.html#cb589-8"></a></span>
+<span id="cb589-9"><a href="differential-methylation-in-eb-day-6.html#cb589-9"></a>more_examples &lt;-<span class="st"> </span>example_cands[example_cands <span class="op">%in%</span><span class="st"> </span>regs<span class="op">$</span>geneSymbol]</span>
+<span id="cb589-10"><a href="differential-methylation-in-eb-day-6.html#cb589-10"></a></span>
+<span id="cb589-11"><a href="differential-methylation-in-eb-day-6.html#cb589-11"></a>more_examples</span></code></pre></div>
+<pre><code>## [1] &quot;Eomes&quot;  &quot;Gsc&quot;    &quot;Pou3f1&quot; &quot;Pou5f1&quot; &quot;Sall4&quot;  &quot;Lyl1&quot;</code></pre>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="differential-methylation-in-eb-day-6.html#cb591-1"></a><span class="kw">walk</span>(more_examples, plot_example)</span></code></pre></div>
+<pre><code>## [1] &quot;Eomes&quot;</code></pre>
+<pre><code>## Warning: Removed 1 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 8 rows containing missing values (geom_point).</code></pre>
+<p><img src="Day6-differential-methylation_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<pre><code>## [1] &quot;Gsc&quot;</code></pre>
+<pre><code>## Warning: Removed 2 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 20 rows containing missing values (geom_point).</code></pre>
+<p><img src="Day6-differential-methylation_files/figure-html/unnamed-chunk-20-2.png" width="672" /></p>
+<pre><code>## [1] &quot;Pou3f1&quot;</code></pre>
+<pre><code>## Warning: Removed 1 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 29 rows containing missing values (geom_point).</code></pre>
+<p><img src="Day6-differential-methylation_files/figure-html/unnamed-chunk-20-3.png" width="672" /></p>
+<pre><code>## [1] &quot;Pou5f1&quot;</code></pre>
+<pre><code>## Warning: Removed 2 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_rect).</code></pre>
+<pre><code>## Warning: Removed 5 rows containing missing values (geom_point).</code></pre>
+<p><img src="Day6-differential-methylation_files/figure-html/unnamed-chunk-20-4.png" width="672" /></p>
+<pre><code>## [1] &quot;Sall4&quot;</code></pre>
+<pre><code>## Warning: Removed 1 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 28 rows containing missing values (geom_point).</code></pre>
+<p><img src="Day6-differential-methylation_files/figure-html/unnamed-chunk-20-5.png" width="672" /></p>
+<pre><code>## [1] &quot;Lyl1&quot;</code></pre>
+<pre><code>## Warning: Removed 9 rows containing missing values (geom_point).</code></pre>
+<p><img src="Day6-differential-methylation_files/figure-html/unnamed-chunk-20-6.png" width="672" /></p>
+</div>
+</div>
+<div id="test-regions-enrichment-vs-gene-expression" class="section level2 hasAnchor">
+<h2><span class="header-section-number">8.7</span> Test regions enrichment vs gene expression<a href="differential-methylation-in-eb-day-6.html#test-regions-enrichment-vs-gene-expression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="differential-methylation-in-eb-day-6.html#cb610-1"></a>germ_genes &lt;-<span class="st"> </span><span class="kw">fread_rownames</span>(<span class="kw">here</span>(<span class="st">&quot;data/germ_genes.txt&quot;</span>), <span class="dt">row.var =</span> <span class="st">&quot;geneSymbol&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(x) )  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">250</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()</span>
+<span id="cb610-2"><a href="differential-methylation-in-eb-day-6.html#cb610-2"></a><span class="kw">nrow</span>(germ_genes)</span></code></pre></div>
+<pre><code>## [1] 250</code></pre>
+<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="differential-methylation-in-eb-day-6.html#cb612-1"></a>germ_genes &lt;-<span class="st"> </span>germ_genes <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">separate_rows</span>(geneSymbol, <span class="dt">sep=</span><span class="st">&quot;;&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">left_join</span>(<span class="kw">gintervals.load</span>(<span class="st">&quot;intervs.global.tss&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end, strand, geneSymbol, x) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(chrom)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">distinct</span>(geneSymbol, <span class="dt">.keep_all=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## Joining, by = &quot;geneSymbol&quot;</code></pre>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="differential-methylation-in-eb-day-6.html#cb614-1"></a><span class="kw">nrow</span>(germ_genes)</span></code></pre></div>
+<pre><code>## [1] 267</code></pre>
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="differential-methylation-in-eb-day-6.html#cb616-1"></a>gastru_genes &lt;-<span class="st"> </span><span class="kw">fread_rownames</span>(<span class="kw">here</span>(<span class="st">&quot;data/gastru_genes.txt&quot;</span>), <span class="dt">row.var =</span> <span class="st">&quot;geneSymbol&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()</span>
+<span id="cb616-2"><a href="differential-methylation-in-eb-day-6.html#cb616-2"></a><span class="kw">nrow</span>(gastru_genes)</span></code></pre></div>
+<pre><code>## [1] 1743</code></pre>
+<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="differential-methylation-in-eb-day-6.html#cb618-1"></a>gastru_genes &lt;-<span class="st"> </span>gastru_genes <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">separate_rows</span>(geneSymbol, <span class="dt">sep=</span><span class="st">&quot;;&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">left_join</span>(<span class="kw">gintervals.load</span>(<span class="st">&quot;intervs.global.tss&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end, strand, geneSymbol, x) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(chrom)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">distinct</span>(geneSymbol, <span class="dt">.keep_all=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## Joining, by = &quot;geneSymbol&quot;</code></pre>
+<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="differential-methylation-in-eb-day-6.html#cb620-1"></a><span class="kw">nrow</span>(gastru_genes)</span></code></pre></div>
+<pre><code>## [1] 1878</code></pre>
+<blockquote>
+<p>diff = ko3a - ko3b.</p>
+</blockquote>
+<blockquote>
+<p>diff &gt; 0 =&gt; hypo in ko3b =&gt; places that 3b methylates.</p>
+</blockquote>
+<blockquote>
+<p>diff &lt; 0 =&gt; hypo in ko3a =&gt; places that 3a methylates.</p>
+</blockquote>
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="differential-methylation-in-eb-day-6.html#cb622-1"></a>diff_thresh &lt;-<span class="st"> </span><span class="fl">0.3</span></span>
+<span id="cb622-2"><a href="differential-methylation-in-eb-day-6.html#cb622-2"></a></span>
+<span id="cb622-3"><a href="differential-methylation-in-eb-day-6.html#cb622-3"></a>regs_3a_intervs &lt;-<span class="st"> </span>df_diff  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(diff <span class="op">&gt;=</span><span class="st"> </span>diff_thresh) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">start =</span> start <span class="op">-</span><span class="st"> </span><span class="dv">250</span>, <span class="dt">end =</span> end <span class="op">+</span><span class="st"> </span><span class="dv">250</span>) <span class="op">%&gt;%</span></span>
+<span id="cb622-4"><a href="differential-methylation-in-eb-day-6.html#cb622-4"></a><span class="st">        </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb622-5"><a href="differential-methylation-in-eb-day-6.html#cb622-5"></a><span class="st">        </span><span class="kw">gintervals.canonic</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb622-6"><a href="differential-methylation-in-eb-day-6.html#cb622-6"></a><span class="st">        </span><span class="kw">mutate</span>(<span class="dt">type =</span> <span class="st">&quot;3b&quot;</span>)</span>
+<span id="cb622-7"><a href="differential-methylation-in-eb-day-6.html#cb622-7"></a>regs_3b_intervs &lt;-<span class="st"> </span>df_diff <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(diff <span class="op">&lt;=</span><span class="st"> </span><span class="op">-</span>diff_thresh) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">start =</span> start <span class="op">-</span><span class="st"> </span><span class="dv">250</span>, <span class="dt">end =</span> end <span class="op">+</span><span class="st"> </span><span class="dv">250</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb622-8"><a href="differential-methylation-in-eb-day-6.html#cb622-8"></a><span class="st">        </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb622-9"><a href="differential-methylation-in-eb-day-6.html#cb622-9"></a><span class="st">        </span><span class="kw">gintervals.canonic</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb622-10"><a href="differential-methylation-in-eb-day-6.html#cb622-10"></a><span class="st">        </span><span class="kw">mutate</span>(<span class="dt">type =</span> <span class="st">&quot;3a&quot;</span>)</span>
+<span id="cb622-11"><a href="differential-methylation-in-eb-day-6.html#cb622-11"></a>regs_no_diff_intervs &lt;-<span class="st"> </span>df_diff <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">abs</span>(diff) <span class="op">&lt;</span><span class="st"> </span>diff_thresh) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">start =</span> start <span class="op">-</span><span class="st"> </span><span class="dv">250</span>, <span class="dt">end =</span> end <span class="op">+</span><span class="st"> </span><span class="dv">250</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb622-12"><a href="differential-methylation-in-eb-day-6.html#cb622-12"></a><span class="st">        </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb622-13"><a href="differential-methylation-in-eb-day-6.html#cb622-13"></a><span class="st">        </span><span class="kw">gintervals.force_range</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb622-14"><a href="differential-methylation-in-eb-day-6.html#cb622-14"></a><span class="st">        </span><span class="kw">gintervals.canonic</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb622-15"><a href="differential-methylation-in-eb-day-6.html#cb622-15"></a><span class="st">        </span><span class="kw">mutate</span>(<span class="dt">type =</span> <span class="st">&quot;bg&quot;</span>)</span></code></pre></div>
+<pre><code>## 22%...54%...77%...100%</code></pre>
+<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="differential-methylation-in-eb-day-6.html#cb624-1"></a>df_germ &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(regs_3a_intervs, regs_3b_intervs, regs_no_diff_intervs) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end, type) <span class="op">%&gt;%</span><span class="st">  </span><span class="kw">gintervals.neighbors1</span>(germ_genes)</span>
+<span id="cb624-2"><a href="differential-methylation-in-eb-day-6.html#cb624-2"></a>df_gastru &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(regs_3a_intervs, regs_3b_intervs, regs_no_diff_intervs) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end, type) <span class="op">%&gt;%</span><span class="st">  </span><span class="kw">gintervals.neighbors1</span>(germ_genes)</span></code></pre></div>
+<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="differential-methylation-in-eb-day-6.html#cb625-1"></a>df_germ <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(type)</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##   type      n
+## 1   3a   1526
+## 2   3b  14409
+## 3   bg 519257</code></pre>
+<div id="figure-7f" class="section level3 hasAnchor">
+<h3><span class="header-section-number">8.7.1</span> Figure 7F<a href="differential-methylation-in-eb-day-6.html#figure-7f" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="differential-methylation-in-eb-day-6.html#cb627-1"></a>p &lt;-<span class="st"> </span>df_germ <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">abs</span>(dist), <span class="dt">color=</span>type)) <span class="op">+</span><span class="st"> </span><span class="kw">stat_ecdf</span>(<span class="dt">size=</span><span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_manual</span>(<span class="dt">name =</span> <span class="st">&quot;&quot;</span>, <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;bg&quot;</span> =<span class="st"> &quot;darkblue&quot;</span>, <span class="st">&quot;3a&quot;</span> =<span class="st"> &quot;purple&quot;</span>, <span class="st">&quot;3b&quot;</span> =<span class="st"> &quot;orange&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Distance to gene (bp)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_log10</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;1k&quot;</span>, <span class="st">&quot;10k&quot;</span>, <span class="st">&quot;100k&quot;</span>, <span class="st">&quot;1M&quot;</span>), <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">1e3</span>, <span class="fl">1e4</span>, <span class="fl">1e5</span>, <span class="fl">1e6</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="fl">1e3</span>,<span class="fl">1e6</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.3</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Fraction of regions</span><span class="ch">\n</span><span class="st">with distance &lt; x&quot;</span>)</span>
+<span id="cb627-2"><a href="differential-methylation-in-eb-day-6.html#cb627-2"></a>p  <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() </span></code></pre></div>
+<pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
+<pre><code>## Warning: Removed 335 rows containing non-finite values (stat_ecdf).</code></pre>
+<p><img src="Day6-differential-methylation_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="differential-methylation-in-eb-day-6.html#cb630-1"></a><span class="kw">ks.test</span>(<span class="kw">abs</span>(df_germ<span class="op">$</span>dist[df_germ<span class="op">$</span>type <span class="op">==</span><span class="st"> &quot;3a&quot;</span>]), <span class="kw">abs</span>(df_germ<span class="op">$</span>dist[df_germ<span class="op">$</span>type <span class="op">==</span><span class="st"> &quot;3b&quot;</span>]))</span></code></pre></div>
+<pre><code>## Warning in ks.test(abs(df_germ$dist[df_germ$type == &quot;3a&quot;]),
+## abs(df_germ$dist[df_germ$type == : p-value will be approximate in the presence
+## of ties</code></pre>
+<pre><code>## 
+##  Two-sample Kolmogorov-Smirnov test
+## 
+## data:  abs(df_germ$dist[df_germ$type == &quot;3a&quot;]) and abs(df_germ$dist[df_germ$type == &quot;3b&quot;])
+## D = 0.052125, p-value = 0.001113
+## alternative hypothesis: two-sided</code></pre>
+<div class="sourceCode" id="cb633"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb633-1"><a href="differential-methylation-in-eb-day-6.html#cb633-1"></a><span class="kw">ks.test</span>(<span class="kw">abs</span>(df_germ<span class="op">$</span>dist[df_germ<span class="op">$</span>type <span class="op">==</span><span class="st"> &quot;3b&quot;</span>]), <span class="kw">abs</span>(df_germ<span class="op">$</span>dist[df_germ<span class="op">$</span>type <span class="op">==</span><span class="st"> &quot;bg&quot;</span>]))</span></code></pre></div>
+<pre><code>## Warning in ks.test(abs(df_germ$dist[df_germ$type == &quot;3b&quot;]),
+## abs(df_germ$dist[df_germ$type == : p-value will be approximate in the presence
+## of ties</code></pre>
+<pre><code>## 
+##  Two-sample Kolmogorov-Smirnov test
+## 
+## data:  abs(df_germ$dist[df_germ$type == &quot;3b&quot;]) and abs(df_germ$dist[df_germ$type == &quot;bg&quot;])
+## D = 0.062757, p-value &lt; 2.2e-16
+## alternative hypothesis: two-sided</code></pre>
+<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="differential-methylation-in-eb-day-6.html#cb636-1"></a><span class="kw">ks.test</span>(<span class="kw">abs</span>(df_germ<span class="op">$</span>dist[df_germ<span class="op">$</span>type <span class="op">==</span><span class="st"> &quot;3a&quot;</span>]), <span class="kw">abs</span>(df_germ<span class="op">$</span>dist[df_germ<span class="op">$</span>type <span class="op">==</span><span class="st"> &quot;bg&quot;</span>]))</span></code></pre></div>
+<pre><code>## Warning in ks.test(abs(df_germ$dist[df_germ$type == &quot;3a&quot;]),
+## abs(df_germ$dist[df_germ$type == : p-value will be approximate in the presence
+## of ties</code></pre>
+<pre><code>## 
+##  Two-sample Kolmogorov-Smirnov test
+## 
+## data:  abs(df_germ$dist[df_germ$type == &quot;3a&quot;]) and abs(df_germ$dist[df_germ$type == &quot;bg&quot;])
+## D = 0.10252, p-value = 2.631e-14
+## alternative hypothesis: two-sided</code></pre>
+<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="differential-methylation-in-eb-day-6.html#cb639-1"></a>p &lt;-<span class="st"> </span>df_gastru <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">abs</span>(dist), <span class="dt">color=</span>type)) <span class="op">+</span><span class="st"> </span><span class="kw">stat_ecdf</span>(<span class="dt">size=</span><span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_manual</span>(<span class="dt">name =</span> <span class="st">&quot;&quot;</span>, <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;bg&quot;</span> =<span class="st"> &quot;darkblue&quot;</span>, <span class="st">&quot;3a&quot;</span> =<span class="st"> &quot;purple&quot;</span>, <span class="st">&quot;3b&quot;</span> =<span class="st"> &quot;orange&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Distance to gene (bp)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_log10</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;1k&quot;</span>, <span class="st">&quot;10k&quot;</span>, <span class="st">&quot;100k&quot;</span>, <span class="st">&quot;1M&quot;</span>), <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">1e3</span>, <span class="fl">1e4</span>, <span class="fl">1e5</span>, <span class="fl">1e6</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">100</span>,<span class="fl">1e6</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Fraction of regions</span><span class="ch">\n</span><span class="st">with distance &lt; x&quot;</span>)</span>
+<span id="cb639-2"><a href="differential-methylation-in-eb-day-6.html#cb639-2"></a>p  <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() </span></code></pre></div>
+<pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
+<pre><code>## Warning: Removed 335 rows containing non-finite values (stat_ecdf).</code></pre>
+<p><img src="Day6-differential-methylation_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="differential-methylation-in-eb-day-6.html#cb642-1"></a><span class="kw">ks.test</span>(<span class="kw">abs</span>(df_gastru<span class="op">$</span>dist[df_gastru<span class="op">$</span>type <span class="op">==</span><span class="st"> &quot;3a&quot;</span>]), <span class="kw">abs</span>(df_gastru<span class="op">$</span>dist[df_gastru<span class="op">$</span>type <span class="op">==</span><span class="st"> &quot;3b&quot;</span>]))</span></code></pre></div>
+<pre><code>## Warning in ks.test(abs(df_gastru$dist[df_gastru$type == &quot;3a&quot;]),
+## abs(df_gastru$dist[df_gastru$type == : p-value will be approximate in the
+## presence of ties</code></pre>
+<pre><code>## 
+##  Two-sample Kolmogorov-Smirnov test
+## 
+## data:  abs(df_gastru$dist[df_gastru$type == &quot;3a&quot;]) and abs(df_gastru$dist[df_gastru$type == &quot;3b&quot;])
+## D = 0.052125, p-value = 0.001113
+## alternative hypothesis: two-sided</code></pre>
+<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="differential-methylation-in-eb-day-6.html#cb645-1"></a><span class="kw">ks.test</span>(<span class="kw">abs</span>(df_gastru<span class="op">$</span>dist[df_gastru<span class="op">$</span>type <span class="op">==</span><span class="st"> &quot;3b&quot;</span>]), <span class="kw">abs</span>(df_gastru<span class="op">$</span>dist[df_gastru<span class="op">$</span>type <span class="op">==</span><span class="st"> &quot;bg&quot;</span>]))</span></code></pre></div>
+<pre><code>## Warning in ks.test(abs(df_gastru$dist[df_gastru$type == &quot;3b&quot;]),
+## abs(df_gastru$dist[df_gastru$type == : p-value will be approximate in the
+## presence of ties</code></pre>
+<pre><code>## 
+##  Two-sample Kolmogorov-Smirnov test
+## 
+## data:  abs(df_gastru$dist[df_gastru$type == &quot;3b&quot;]) and abs(df_gastru$dist[df_gastru$type == &quot;bg&quot;])
+## D = 0.062757, p-value &lt; 2.2e-16
+## alternative hypothesis: two-sided</code></pre>
+<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="differential-methylation-in-eb-day-6.html#cb648-1"></a><span class="kw">ks.test</span>(<span class="kw">abs</span>(df_gastru<span class="op">$</span>dist[df_gastru<span class="op">$</span>type <span class="op">==</span><span class="st"> &quot;3a&quot;</span>]), <span class="kw">abs</span>(df_gastru<span class="op">$</span>dist[df_gastru<span class="op">$</span>type <span class="op">==</span><span class="st"> &quot;bg&quot;</span>]))</span></code></pre></div>
+<pre><code>## Warning in ks.test(abs(df_gastru$dist[df_gastru$type == &quot;3a&quot;]),
+## abs(df_gastru$dist[df_gastru$type == : p-value will be approximate in the
+## presence of ties</code></pre>
+<pre><code>## 
+##  Two-sample Kolmogorov-Smirnov test
+## 
+## data:  abs(df_gastru$dist[df_gastru$type == &quot;3a&quot;]) and abs(df_gastru$dist[df_gastru$type == &quot;bg&quot;])
+## D = 0.10252, p-value = 2.631e-14
+## alternative hypothesis: two-sided</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="single-cell-methylation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="qc---bulk-methylation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
