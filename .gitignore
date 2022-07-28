@@ -5,3 +5,13 @@ rna/MCV/bundle
 rna/MCV/old
 rna/MCV/Dnmt3ab_EB
 rna/MCV/Dnmt3ab_MEEB
+methylation/data/
+methylation/output/
+methylation/db/
+rna/umi.tables
+rna/scrna_db/
+rna/figs/
+rna/paper_figs/
+umi_tables.tar.gz
+rna.tar.gz
+methylation_data.tar.gz

@@ -121,7 +121,7 @@ hypertune_xgb <- function(seq_df_wide, raw_mat, column) {
 
     tune_control <- caret::trainControl(
         method = "cv",
-        number = 3,        
+        number = 3,
         verboseIter = FALSE,
         allowParallel = FALSE
     )
@@ -226,7 +226,7 @@ hypertune_xgb <- function(seq_df_wide, raw_mat, column) {
 
     # reducing the learning rate
 
-    max_rounds <- 2000    
+    max_rounds <- 2000
 
     tune_grid5 <- expand.grid(
         nrounds = seq(50, max_rounds, by = 50),
@@ -272,7 +272,7 @@ hypertune_xgb <- function(seq_df_wide, raw_mat, column) {
     return(list(params = params, nrounds = xgb_tune5$bestTune$nrounds))
 }
 
-gen_seq_model_xgboost <- function(seq_df_wide, raw_mat, column, params=NULL, ...) {
+gen_seq_model_xgboost <- function(seq_df_wide, raw_mat, column, params = NULL, ...) {
     column <- enquo(column)
     mat <- seq_df_wide %>% inner_join(raw_mat %>% filter(!is.na(!!column)) %>% distinct(chrom, start, end, !!column), by = c("chrom", "start", "end"))
     feats <- mat %>%
@@ -285,11 +285,11 @@ gen_seq_model_xgboost <- function(seq_df_wide, raw_mat, column, params=NULL, ...
     slice <- dplyr::slice
     dtrain <- xgb.DMatrix(feats, label = y)
 
-    
-    if (is.null(params)){
+
+    if (is.null(params)) {
         params <- list(params = list(booster = "gbtree", objective = "reg:squarederror", eta = 0.3, gamma = 0, max_depth = 6, min_child_weight = 1, subsample = 1, colsample_bytree = 1), nrounds = 200)
-    }    
-    
+    }
+
     xgbcv <- xgb.cv(params = params$params, data = dtrain, nrounds = params$nrounds, nfold = 10, prediction = TRUE)
 
     xgbtrain <- xgb.train(params = params$params, data = dtrain, nrounds = params$nrounds)
@@ -321,22 +321,22 @@ compute_intervals_ab_scores <- function(intervals, flank_bp, model_a, model_b, m
     feats_minus <- feats_minus[, colnames(model_ab$feats)]
 
     message("Predicting...")
-    ab_score_plus <- predict(model_ab$fit_cv, feats_plus, s="lambda.min")
+    ab_score_plus <- predict(model_ab$fit_cv, feats_plus, s = "lambda.min")
     ab_score_xgb_plus <- predict(model_ab_xgb$fit_cv, feats_plus, s = "lambda.min")
-    a_score_plus <- predict(model_a$fit_cv, feats_plus, s="lambda.min")
+    a_score_plus <- predict(model_a$fit_cv, feats_plus, s = "lambda.min")
     a_score_xgb_plus <- predict(model_a_xgb$fit_cv, feats_plus, s = "lambda.min")
-    b_score_plus <- predict(model_b$fit_cv, feats_plus, s="lambda.min")
+    b_score_plus <- predict(model_b$fit_cv, feats_plus, s = "lambda.min")
     b_score_xgb_plus <- predict(model_b_xgb$fit_cv, feats_plus, s = "lambda.min")
 
-    ab_score_minus <- predict(model_ab$fit_cv, feats_minus, s="lambda.min")
+    ab_score_minus <- predict(model_ab$fit_cv, feats_minus, s = "lambda.min")
     ab_score_xgb_minus <- predict(model_ab_xgb$fit_cv, feats_minus, s = "lambda.min")
-    a_score_minus <- predict(model_a$fit_cv, feats_minus, s="lambda.min")
+    a_score_minus <- predict(model_a$fit_cv, feats_minus, s = "lambda.min")
     a_score_xgb_minus <- predict(model_a_xgb$fit_cv, feats_minus, s = "lambda.min")
-    b_score_minus <- predict(model_b$fit_cv, feats_minus, s="lambda.min")
+    b_score_minus <- predict(model_b$fit_cv, feats_minus, s = "lambda.min")
     b_score_xgb_minus <- predict(model_b_xgb$fit_cv, feats_minus, s = "lambda.min")
 
     message("Merging predictions...")
-    # Note that a model for methylation of A-/- predicts the activity of DNMT3B, and B-/- predict the activity of DNMT3A. 
+    # Note that a model for methylation of A-/- predicts the activity of DNMT3B, and B-/- predict the activity of DNMT3A.
     res <- seq_df_wide_plus %>%
         select(chrom, start, end) %>%
         mutate(
@@ -554,16 +554,6 @@ compute_interval_model_mat_score <- function(intervals, model, mat_ab, mat_a, ma
             score_orig_minus = predict(model$fit_cv, feats_minus, s = "lambda.min")
         )
 
-    # # verification
-    # score <- predict(model$fit_cv, feats, s="lambda.min")
-    # res <- seq_df_wide %>%
-    #     select(chrom, start, end) %>%
-    #     mutate(
-    #         score_pred = score[, 1],
-    #         score_mat = predict_mat(mat, feats)
-    #     )
-
-
     return(res)
 }
 
@@ -589,41 +579,33 @@ compute_interval_model_mat_score_parallel <- function(intervals, model_ab, mat_a
         res <- compute_interval_model_mat_score(intervals, model_ab, mat_ab, mat_a, mat_b)
     }
 
-
-    # gtrack.create_sparse(track = "DNMT.baubec_ab_score", intervals = res %>% select(chrom:end), values=res$score, description="")
-    # gtrack.create_sparse(track = "DNMT.baubec_a_score_strand", intervals = res %>% select(chrom:end), values=res$score_a, description="")
-    # gtrack.create_sparse(track = "DNMT.baubec_b_score_strand", intervals = res %>% select(chrom:end), values=res$score_b, description="")
-    # browser()
-
     return(res)
 }
 
 
-plot_model_scatter <- function(model, x_lab="", y_lab="", xlim=NULL, ylim=NULL, bandwidth=0.08, point_size=0.001){
-    tibble(pred = model$pred, y = model$y) %>% 
-        mutate(col = densCols(., bandwidth=0.06,colramp=colorRampPalette(c("white","lightblue", "blue", "darkblue", "yellow", "gold","orange","red", "darkred" )))) %>% 
-        ggplot(aes(x=pred, y=y, col=col)) + 
-            geom_point(shape=19, size=point_size) + 
-            scale_color_identity() + 
-            coord_cartesian(xlim = xlim, ylim = ylim) +                 
-            xlab(x_lab) + 
-            ylab(y_lab) +         
-            theme(aspect.ratio=1, panel.grid.major=element_blank(), panel.grid.minor=element_blank()) + 
-            labs(subtitle = glue("R^2 = {cor}", cor = round(cor(model$pred, model$y)^2, digits=2))) + 
-            theme(plot.subtitle = ggtext::element_markdown())
+plot_model_scatter <- function(model, x_lab = "", y_lab = "", xlim = NULL, ylim = NULL, bandwidth = 0.08, point_size = 0.001) {
+    tibble(pred = model$pred, y = model$y) %>%
+        mutate(col = densCols(., bandwidth = 0.06, colramp = colorRampPalette(c("white", "lightblue", "blue", "darkblue", "yellow", "gold", "orange", "red", "darkred")))) %>%
+        ggplot(aes(x = pred, y = y, col = col)) +
+        geom_point(shape = 19, size = point_size) +
+        scale_color_identity() +
+        coord_cartesian(xlim = xlim, ylim = ylim) +
+        xlab(x_lab) +
+        ylab(y_lab) +
+        theme(aspect.ratio = 1, panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+        labs(subtitle = glue("R^2 = {cor}", cor = round(cor(model$pred, model$y)^2, digits = 2))) +
+        theme(plot.subtitle = ggtext::element_markdown())
 }
 
-plot_model_scatter_legend <- function(model, colors=c("white","lightblue", "blue", "darkblue", "yellow", "gold","orange","red", "darkred" )){
-    dc <- densCols(tibble(pred = model$pred, y = model$y), bandwidth=0.06,colramp=colorRampPalette(colors))
-    dd <- grDevices:::.smoothScatterCalcDensity(data.frame(pred = model$pred, y = model$y), bandwidth = 0.06, nbin=128)
+plot_model_scatter_legend <- function(model, colors = c("white", "lightblue", "blue", "darkblue", "yellow", "gold", "orange", "red", "darkred")) {
+    dc <- densCols(tibble(pred = model$pred, y = model$y), bandwidth = 0.06, colramp = colorRampPalette(colors))
+    dd <- grDevices:::.smoothScatterCalcDensity(data.frame(pred = model$pred, y = model$y), bandwidth = 0.06, nbin = 128)
     dens <- as.numeric(dd$fhat)
-    dens <- dens[dens>0]
+    dens <- dens[dens > 0]
 
     n_colors <- 1000
-    legend <- data.frame(density=seq(min(dens), max(dens), len=n_colors), color=colorRampPalette(colors)(n_colors))
-    plot(NA, xlim=c(0,n_colors), ylim=c(0,n_colors+1), type="n", ann=FALSE, axes=FALSE)
-    rect(0, 1:n_colors, 50, 2:(n_colors+1), border=NA, col=legend$col)
-    # text(2, (1:n_colors)+0.5, signif(legend$density, 2))  
-    
-    
+    legend <- data.frame(density = seq(min(dens), max(dens), len = n_colors), color = colorRampPalette(colors)(n_colors))
+    plot(NA, xlim = c(0, n_colors), ylim = c(0, n_colors + 1), type = "n", ann = FALSE, axes = FALSE)
+    rect(0, 1:n_colors, 50, 2:(n_colors + 1), border = NA, col = legend$col)
+    # text(2, (1:n_colors)+0.5, signif(legend$density, 2))
 }

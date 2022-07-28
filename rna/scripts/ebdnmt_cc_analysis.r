@@ -82,10 +82,10 @@ gen_cc_gmods = function()
 
 plot_all_cc = function()
 {
-	ivcc = fread("/net/mraid14/export/tgdata/users/aviezerl/proj/ebdnmt/output/cell_cycle/invivo_cgc.tsv")
-	ivcc_ab = fread("/net/mraid14/export/tgdata/users/aviezerl/proj/ebdnmt/output/cell_cycle/invivo_ab_score.tsv")
-	ebcc = fread("/net/mraid14/export/tgdata/users/aviezerl/proj/ebdnmt/output/cell_cycle/eb_cgc.tsv")
-	ebcc_ab = fread("/net/mraid14/export/tgdata/users/aviezerl/proj/ebdnmt/output/cell_cycle/eb_ab_score.tsv")
+	ivcc = fread("../methylation/output/cell_cycle/invivo_cgc.tsv")
+	ivcc_ab = fread("../methylation/output/cell_cycle/invivo_ab_score.tsv")
+	ebcc = fread("../methylation/output/cell_cycle/eb_cgc.tsv")
+	ebcc_ab = fread("../methylation/output/cell_cycle/eb_ab_score.tsv")
 
 	for(layer in c("meso", "ecto", "endo")) {
 		png(sprintf("paper_figs/fig5/e75_cc_el_%s.png", layer), w=1000,h=300)

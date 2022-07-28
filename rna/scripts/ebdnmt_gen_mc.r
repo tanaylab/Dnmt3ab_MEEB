@@ -1,6 +1,6 @@
 library("devtools")
 
-load_all("metacell/")
+library(metacell)
 
 scdb_init("scrna_db")
 

@@ -11,17 +11,17 @@ gintervals.centers <- function(inv) {
 }
 
 
-psum <- function(..., na.rm=FALSE) { 
+psum <- function(..., na.rm = FALSE) {
     dat <- do.call(cbind, list(...))
-    res <- rowSums(dat, na.rm=na.rm) 
+    res <- rowSums(dat, na.rm = na.rm)
     idx_na <- !rowSums(!is.na(dat))
     res[idx_na] <- NA
     return(res)
 }
 
-pmean <- function(..., na.rm=FALSE) { 
+pmean <- function(..., na.rm = FALSE) {
     dat <- do.call(cbind, list(...))
-    res <- rowMeans(dat, na.rm=na.rm) 
+    res <- rowMeans(dat, na.rm = na.rm)
     idx_na <- !rowMeans(!is.na(dat))
     res[idx_na] <- NA
     return(res)

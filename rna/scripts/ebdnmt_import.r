@@ -1,13 +1,12 @@
 library("devtools")
 library("Matrix")
 
-load_all("/net/mraid14/export/data/users/atanay/proj/metacell/metacell/")
+library(metacell)
 scdb_init("scrna_db", force_reinit=T)
 scfigs_init("figs/")
 
 bats = read.table("config/eseb_select_batches_Aug20.txt",h=T, stringsAsFactors=F)
 rownames(bats) = bats$Amp.Batch.ID
-#key = read.table("data/zm/sc_amp_batches_es_eb.txt",h=T,sep="\t", stringsAsFactors=F)
 
 key = read.table("data/zm/sc_amp_batches_es_eb.txt",h=T,sep="\t", stringsAsFactors=F)
 fkey = key[key$Amp.Batch.ID %in% bats$Amp.Batch.ID,]

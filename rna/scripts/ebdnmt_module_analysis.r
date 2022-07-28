@@ -4,7 +4,7 @@ library("ggplot2");
 library("ggrepel")
 library("qvalue")
 
-load_all("metacell")
+library(metacell)
 scdb_init("scrna_db", force_reinit=T)
 
 cmp_exclude_genes = c("Dnmt3a", "Dnmt3b", "AK145379;H19", "Igf2","Meg3;Mir1906-1;Mir770", "Grb10", "Nnat;Peg5")
