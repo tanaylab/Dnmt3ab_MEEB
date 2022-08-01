@@ -335,26 +335,49 @@ meth_df_meeb_d4 <- calc_eb_day0_to_day4_cpg_meth(min_cov = 10, max_na  = 5) %>%
 ```
 
 ```{r}
-options(repr.plot.width = 7, repr.plot.height = 7)
-colors <- viridis::viridis(30, option = "A")
-df <- meth_df_meeb_d4 %>%
+df_A <- meth_df_meeb_d4 %>%
         mutate(score_plus = cut(score_a_plus, a_bins)) %>%
         mutate(score_minus = cut(score_a_minus, a_bins)) %>%
         group_by(score_plus, score_minus) %>%
         summarise(mB = mean(mB, na.rm=TRUE)) %>%         
         filter(!is.na(score_plus), !is.na(score_minus)) %>% 
-        tidyr::complete(fill=list(mB = NA))
-
-limits <- NULL
-
-p_A <- df %>% 
+        tidyr::complete(fill=list(mB = NA))  %>% 
     arrange(score_plus) %>%
     group_by(score_minus) %>%
     mutate(mB = zoo::rollapply(mB, FUN = function(x) mean(x, na.rm=TRUE), width=4, fill=NA)) %>%
     arrange(score_minus) %>%
     group_by(score_plus) %>%    
     mutate(mB = zoo::rollapply(mB, FUN = function(x) mean(x, na.rm=TRUE), width=4, fill=NA)) %>%
-    na.omit() %>% 
+    na.omit()                       
+```
+
+```{r tags=c()}
+df_B <- meth_df_meeb_d4 %>%
+        mutate(score_plus = cut(score_b_plus, b_bins)) %>%
+        mutate(score_minus = cut(score_b_minus, b_bins)) %>%
+        group_by(score_plus, score_minus) %>%
+        summarise(mA = mean(mA, na.rm=TRUE)) %>%         
+        filter(!is.na(score_plus), !is.na(score_minus)) %>% 
+        tidyr::complete(fill=list(mA = NA)) %>% 
+    arrange(score_plus) %>%
+    group_by(score_minus) %>%
+    mutate(mA = zoo::rollapply(mA, FUN = function(x) mean(x, na.rm=TRUE), width=4, fill=NA)) %>%
+    arrange(score_minus) %>%
+    group_by(score_plus) %>%    
+    mutate(mA = zoo::rollapply(mA, FUN = function(x) mean(x, na.rm=TRUE), width=4, fill=NA)) %>%
+    na.omit()
+```
+
+```{r}
+limits <- c(min(df_A$mB, df_B$mA), max(df_A$mB, df_B$mA))
+limits
+```
+
+```{r}
+options(repr.plot.width = 7, repr.plot.height = 7)
+colors <- viridis::viridis(30, option = "A")
+
+p_A <- df_A %>% 
     ggplot(aes(x=score_plus, y=score_minus, fill=mB)) + 
             geom_tile() + 
             scale_fill_gradientn(colors=colors, limits=limits) + 
@@ -368,25 +391,7 @@ p_A <- df %>%
                   axis.text.x = element_blank(),
                   axis.ticks.y = element_blank(),
                   axis.text.y = element_blank())
-                               
-p_A
-
-df <- meth_df_meeb_d4 %>%
-        mutate(score_plus = cut(score_b_plus, b_bins)) %>%
-        mutate(score_minus = cut(score_b_minus, b_bins)) %>%
-        group_by(score_plus, score_minus) %>%
-        summarise(mA = mean(mA, na.rm=TRUE)) %>%         
-        filter(!is.na(score_plus), !is.na(score_minus)) %>% 
-        tidyr::complete(fill=list(mA = NA))
-                               
-p_B <- df %>% 
-    arrange(score_plus) %>%
-    group_by(score_minus) %>%
-    mutate(mA = zoo::rollapply(mA, FUN = function(x) mean(x, na.rm=TRUE), width=4, fill=NA)) %>%
-    arrange(score_minus) %>%
-    group_by(score_plus) %>%    
-    mutate(mA = zoo::rollapply(mA, FUN = function(x) mean(x, na.rm=TRUE), width=4, fill=NA)) %>%
-    na.omit() %>% 
+p_B <- df_B %>% 
     ggplot(aes(x=score_plus, y=score_minus, fill=mA)) + 
             geom_tile() + 
             scale_fill_gradientn(colors=colors, limits=limits) + 
@@ -400,6 +405,8 @@ p_B <- df %>%
                   axis.text.x = element_blank(),
                   axis.ticks.y = element_blank(),
                   axis.text.y = element_blank())
+
+p_A 
 p_B
 ```
 
