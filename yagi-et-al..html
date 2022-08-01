@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6 Yagi et al.  | DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation</title>
   <meta name="description" content="Analysis and code for the paper: DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6 Yagi et al.  | DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Aviezer Lifshitz" />
 
 
-<meta name="date" content="2022-07-28" />
+<meta name="date" content="2022-08-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -315,25 +315,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><a href="https://www.nature.com/articles/s41467-020-16989-w">Identification of distinct loci for de novo DNA methylation by DNMT3A and DNMT3B during mammalian development</a></p>
 <div id="initialize-definitions-4" class="section level3 hasAnchor">
 <h3><span class="header-section-number">6.0.1</span> initialize definitions<a href="yagi-et-al..html#initialize-definitions-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="yagi-et-al..html#cb394-1"></a><span class="kw">suppressMessages</span>(<span class="kw">suppressWarnings</span>(<span class="kw">source</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;code/init.R&quot;</span>))))</span></code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="yagi-et-al..html#cb398-1"></a><span class="kw">suppressMessages</span>(<span class="kw">suppressWarnings</span>(<span class="kw">source</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;code/init.R&quot;</span>))))</span></code></pre></div>
 </div>
 <div id="dmrs" class="section level3 hasAnchor">
 <h3><span class="header-section-number">6.0.2</span> DMRs<a href="yagi-et-al..html#dmrs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="yagi-et-al..html#cb395-1"></a>yagi_dmrs &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="kw">here</span>(<span class="st">&quot;data/yagi_dmrs.tsv&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb395-2"><a href="yagi-et-al..html#cb395-2"></a><span class="st">    </span><span class="kw">filter</span>(chrom <span class="op">%in%</span><span class="st"> </span><span class="kw">gintervals.all</span>()<span class="op">$</span>chrom) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb395-3"><a href="yagi-et-al..html#cb395-3"></a><span class="st">    </span><span class="kw">as_tibble</span>() </span>
-<span id="cb395-4"><a href="yagi-et-al..html#cb395-4"></a></span>
-<span id="cb395-5"><a href="yagi-et-al..html#cb395-5"></a>yagi_dmrs &lt;-<span class="st"> </span>yagi_dmrs <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb395-6"><a href="yagi-et-al..html#cb395-6"></a><span class="st">    </span><span class="kw">mutate</span>(</span>
-<span id="cb395-7"><a href="yagi-et-al..html#cb395-7"></a>        <span class="dt">Yagi_3a =</span> <span class="kw">ifelse</span>(type <span class="op">==</span><span class="st"> &quot;proA&quot;</span>, meanMethy2, meanMethy1),</span>
-<span id="cb395-8"><a href="yagi-et-al..html#cb395-8"></a>        <span class="dt">Yagi_3b =</span> <span class="kw">ifelse</span>(type <span class="op">==</span><span class="st"> &quot;proB&quot;</span>, meanMethy2, meanMethy1)</span>
-<span id="cb395-9"><a href="yagi-et-al..html#cb395-9"></a>    )</span>
-<span id="cb395-10"><a href="yagi-et-al..html#cb395-10"></a></span>
-<span id="cb395-11"><a href="yagi-et-al..html#cb395-11"></a>yagi_dmrs &lt;-<span class="st"> </span>yagi_dmrs <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb395-12"><a href="yagi-et-al..html#cb395-12"></a><span class="st">    </span><span class="kw">select</span>(chrom, start, end, type, Yagi_3a, Yagi_3b)</span>
-<span id="cb395-13"><a href="yagi-et-al..html#cb395-13"></a></span>
-<span id="cb395-14"><a href="yagi-et-al..html#cb395-14"></a></span>
-<span id="cb395-15"><a href="yagi-et-al..html#cb395-15"></a><span class="kw">head</span>(yagi_dmrs)</span></code></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="yagi-et-al..html#cb399-1"></a>yagi_dmrs &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="kw">here</span>(<span class="st">&quot;data/yagi_dmrs.tsv&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb399-2"><a href="yagi-et-al..html#cb399-2"></a><span class="st">    </span><span class="kw">filter</span>(chrom <span class="op">%in%</span><span class="st"> </span><span class="kw">gintervals.all</span>()<span class="op">$</span>chrom) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb399-3"><a href="yagi-et-al..html#cb399-3"></a><span class="st">    </span><span class="kw">as_tibble</span>() </span>
+<span id="cb399-4"><a href="yagi-et-al..html#cb399-4"></a></span>
+<span id="cb399-5"><a href="yagi-et-al..html#cb399-5"></a>yagi_dmrs &lt;-<span class="st"> </span>yagi_dmrs <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb399-6"><a href="yagi-et-al..html#cb399-6"></a><span class="st">    </span><span class="kw">mutate</span>(</span>
+<span id="cb399-7"><a href="yagi-et-al..html#cb399-7"></a>        <span class="dt">Yagi_3a =</span> <span class="kw">ifelse</span>(type <span class="op">==</span><span class="st"> &quot;proA&quot;</span>, meanMethy2, meanMethy1),</span>
+<span id="cb399-8"><a href="yagi-et-al..html#cb399-8"></a>        <span class="dt">Yagi_3b =</span> <span class="kw">ifelse</span>(type <span class="op">==</span><span class="st"> &quot;proB&quot;</span>, meanMethy2, meanMethy1)</span>
+<span id="cb399-9"><a href="yagi-et-al..html#cb399-9"></a>    )</span>
+<span id="cb399-10"><a href="yagi-et-al..html#cb399-10"></a></span>
+<span id="cb399-11"><a href="yagi-et-al..html#cb399-11"></a>yagi_dmrs &lt;-<span class="st"> </span>yagi_dmrs <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb399-12"><a href="yagi-et-al..html#cb399-12"></a><span class="st">    </span><span class="kw">select</span>(chrom, start, end, type, Yagi_3a, Yagi_3b)</span>
+<span id="cb399-13"><a href="yagi-et-al..html#cb399-13"></a></span>
+<span id="cb399-14"><a href="yagi-et-al..html#cb399-14"></a></span>
+<span id="cb399-15"><a href="yagi-et-al..html#cb399-15"></a><span class="kw">head</span>(yagi_dmrs)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 6
 ##   chrom     start       end type    Yagi_3a   Yagi_3b
 ## 1  chr6  48387929  48389217 proA 0.05732420 0.6731291
@@ -342,51 +342,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4  chr4 135845931 135846972 proA 0.10997219 0.6153078
 ## 5 chr11 118941147 118943355 proA 0.04548308 0.6741248
 ## 6  chr7  77491664  77494580 proA 0.02552988 0.6597258</code></pre>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="yagi-et-al..html#cb397-1"></a><span class="kw">nrow</span>(yagi_dmrs)</span></code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="yagi-et-al..html#cb401-1"></a><span class="kw">nrow</span>(yagi_dmrs)</span></code></pre></div>
 <pre><code>## [1] 764</code></pre>
 </div>
 <div id="get-meissner-data-1" class="section level3 hasAnchor">
 <h3><span class="header-section-number">6.0.3</span> Get Meissner data<a href="yagi-et-al..html#get-meissner-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="yagi-et-al..html#cb399-1"></a>md &lt;-<span class="st"> </span><span class="kw">tribble</span>(<span class="op">~</span>track_name, <span class="op">~</span>sort, <span class="op">~</span>num,</span>
-<span id="cb399-2"><a href="yagi-et-al..html#cb399-2"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3a_1&quot;</span>, <span class="st">&quot;ko3a&quot;</span>, <span class="dv">1</span>,</span>
-<span id="cb399-3"><a href="yagi-et-al..html#cb399-3"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3a_2&quot;</span>, <span class="st">&quot;ko3a&quot;</span>, <span class="dv">2</span>,</span>
-<span id="cb399-4"><a href="yagi-et-al..html#cb399-4"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3a_4&quot;</span>, <span class="st">&quot;ko3a&quot;</span>, <span class="dv">4</span>,</span>
-<span id="cb399-5"><a href="yagi-et-al..html#cb399-5"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3a_5&quot;</span>, <span class="st">&quot;ko3a&quot;</span>, <span class="dv">5</span>,</span>
-<span id="cb399-6"><a href="yagi-et-al..html#cb399-6"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3a_6&quot;</span>, <span class="st">&quot;ko3a&quot;</span>, <span class="dv">6</span>,</span>
-<span id="cb399-7"><a href="yagi-et-al..html#cb399-7"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3b_1&quot;</span>, <span class="st">&quot;ko3b&quot;</span>, <span class="dv">1</span>,</span>
-<span id="cb399-8"><a href="yagi-et-al..html#cb399-8"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3b_2&quot;</span>, <span class="st">&quot;ko3b&quot;</span>, <span class="dv">2</span>,</span>
-<span id="cb399-9"><a href="yagi-et-al..html#cb399-9"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3b_3&quot;</span>, <span class="st">&quot;ko3b&quot;</span>, <span class="dv">3</span>,</span>
-<span id="cb399-10"><a href="yagi-et-al..html#cb399-10"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3b_4&quot;</span>, <span class="st">&quot;ko3b&quot;</span>, <span class="dv">4</span>,</span>
-<span id="cb399-11"><a href="yagi-et-al..html#cb399-11"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3b_5&quot;</span>, <span class="st">&quot;ko3b&quot;</span>, <span class="dv">5</span>,</span>
-<span id="cb399-12"><a href="yagi-et-al..html#cb399-12"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3b_6&quot;</span>, <span class="st">&quot;ko3b&quot;</span>, <span class="dv">6</span>,</span>
-<span id="cb399-13"><a href="yagi-et-al..html#cb399-13"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_WT_4&quot;</span>, <span class="st">&quot;wt&quot;</span>, <span class="dv">4</span>,</span>
-<span id="cb399-14"><a href="yagi-et-al..html#cb399-14"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_WT_5&quot;</span>, <span class="st">&quot;wt&quot;</span>, <span class="dv">5</span>,</span>
-<span id="cb399-15"><a href="yagi-et-al..html#cb399-15"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_WT_6&quot;</span>, <span class="st">&quot;wt&quot;</span>, <span class="dv">6</span>,</span>
-<span id="cb399-16"><a href="yagi-et-al..html#cb399-16"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_WT_7&quot;</span>, <span class="st">&quot;wt&quot;</span>, <span class="dv">7</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb399-17"><a href="yagi-et-al..html#cb399-17"></a><span class="st">        </span><span class="kw">mutate</span>(<span class="dt">name =</span> <span class="kw">paste0</span>(sort, <span class="st">&quot;_&quot;</span>, num))</span>
-<span id="cb399-18"><a href="yagi-et-al..html#cb399-18"></a>        </span>
-<span id="cb399-19"><a href="yagi-et-al..html#cb399-19"></a>m_all_epi6 &lt;-<span class="st"> </span><span class="kw">gextract_meth</span>(<span class="dt">tracks =</span> md<span class="op">$</span>track_name, <span class="dt">names=</span>md<span class="op">$</span>name, <span class="dt">intervals=</span>yagi_dmrs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end), <span class="dt">extract_meth_calls =</span> <span class="ot">TRUE</span>, <span class="dt">iterator =</span> yagi_dmrs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end)) <span class="op">%cache_df%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/meissner_epi_yagi_meth.tsv&quot;</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()    </span></code></pre></div>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="yagi-et-al..html#cb400-1"></a>min_cov &lt;-<span class="st"> </span><span class="dv">10</span></span>
-<span id="cb400-2"><a href="yagi-et-al..html#cb400-2"></a>m_epi6 &lt;-<span class="st"> </span>m_all_epi6 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end)</span>
-<span id="cb400-3"><a href="yagi-et-al..html#cb400-3"></a><span class="cf">for</span> (g <span class="cf">in</span> <span class="kw">unique</span>(md<span class="op">$</span>sort)){</span>
-<span id="cb400-4"><a href="yagi-et-al..html#cb400-4"></a>        nms &lt;-<span class="st"> </span>md <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sort <span class="op">==</span><span class="st"> </span>g) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(name)</span>
-<span id="cb400-5"><a href="yagi-et-al..html#cb400-5"></a></span>
-<span id="cb400-6"><a href="yagi-et-al..html#cb400-6"></a>        cov_col &lt;-<span class="st"> </span><span class="kw">paste0</span>(g, <span class="st">&quot;.cov&quot;</span>)</span>
-<span id="cb400-7"><a href="yagi-et-al..html#cb400-7"></a>        meth_col &lt;-<span class="st"> </span><span class="kw">paste0</span>(g, <span class="st">&quot;.meth&quot;</span>)            </span>
-<span id="cb400-8"><a href="yagi-et-al..html#cb400-8"></a></span>
-<span id="cb400-9"><a href="yagi-et-al..html#cb400-9"></a>        m_epi6[[cov_col]] &lt;-<span class="st"> </span><span class="kw">rowSums</span>(m_all_epi6[, <span class="kw">paste0</span>(nms, <span class="st">&quot;.cov&quot;</span>)], <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
-<span id="cb400-10"><a href="yagi-et-al..html#cb400-10"></a>        m_epi6[[meth_col]] &lt;-<span class="st"> </span><span class="kw">rowSums</span>(m_all_epi6[, <span class="kw">paste0</span>(nms, <span class="st">&quot;.meth&quot;</span>)], <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
-<span id="cb400-11"><a href="yagi-et-al..html#cb400-11"></a>        </span>
-<span id="cb400-12"><a href="yagi-et-al..html#cb400-12"></a>        m_epi6[[g]] &lt;-<span class="st"> </span><span class="kw">ifelse</span>(m_epi6[[cov_col]] <span class="op">&gt;=</span><span class="st"> </span>min_cov, m_epi6[[meth_col]] <span class="op">/</span><span class="st"> </span>m_epi6[[cov_col]], <span class="ot">NA</span>)</span>
-<span id="cb400-13"><a href="yagi-et-al..html#cb400-13"></a>    }</span>
-<span id="cb400-14"><a href="yagi-et-al..html#cb400-14"></a>m_epi6 &lt;-<span class="st"> </span>m_epi6 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">ends_with</span>(<span class="st">&quot;.meth&quot;</span>), <span class="op">-</span><span class="kw">ends_with</span>(<span class="st">&quot;.cov&quot;</span>))  <span class="op">%cache_df%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/meissner_epi_yagi_meth_sum.tsv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="yagi-et-al..html#cb403-1"></a>md &lt;-<span class="st"> </span><span class="kw">tribble</span>(<span class="op">~</span>track_name, <span class="op">~</span>sort, <span class="op">~</span>num,</span>
+<span id="cb403-2"><a href="yagi-et-al..html#cb403-2"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3a_1&quot;</span>, <span class="st">&quot;ko3a&quot;</span>, <span class="dv">1</span>,</span>
+<span id="cb403-3"><a href="yagi-et-al..html#cb403-3"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3a_2&quot;</span>, <span class="st">&quot;ko3a&quot;</span>, <span class="dv">2</span>,</span>
+<span id="cb403-4"><a href="yagi-et-al..html#cb403-4"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3a_4&quot;</span>, <span class="st">&quot;ko3a&quot;</span>, <span class="dv">4</span>,</span>
+<span id="cb403-5"><a href="yagi-et-al..html#cb403-5"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3a_5&quot;</span>, <span class="st">&quot;ko3a&quot;</span>, <span class="dv">5</span>,</span>
+<span id="cb403-6"><a href="yagi-et-al..html#cb403-6"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3a_6&quot;</span>, <span class="st">&quot;ko3a&quot;</span>, <span class="dv">6</span>,</span>
+<span id="cb403-7"><a href="yagi-et-al..html#cb403-7"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3b_1&quot;</span>, <span class="st">&quot;ko3b&quot;</span>, <span class="dv">1</span>,</span>
+<span id="cb403-8"><a href="yagi-et-al..html#cb403-8"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3b_2&quot;</span>, <span class="st">&quot;ko3b&quot;</span>, <span class="dv">2</span>,</span>
+<span id="cb403-9"><a href="yagi-et-al..html#cb403-9"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3b_3&quot;</span>, <span class="st">&quot;ko3b&quot;</span>, <span class="dv">3</span>,</span>
+<span id="cb403-10"><a href="yagi-et-al..html#cb403-10"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3b_4&quot;</span>, <span class="st">&quot;ko3b&quot;</span>, <span class="dv">4</span>,</span>
+<span id="cb403-11"><a href="yagi-et-al..html#cb403-11"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3b_5&quot;</span>, <span class="st">&quot;ko3b&quot;</span>, <span class="dv">5</span>,</span>
+<span id="cb403-12"><a href="yagi-et-al..html#cb403-12"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_Dnmt3b_6&quot;</span>, <span class="st">&quot;ko3b&quot;</span>, <span class="dv">6</span>,</span>
+<span id="cb403-13"><a href="yagi-et-al..html#cb403-13"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_WT_4&quot;</span>, <span class="st">&quot;wt&quot;</span>, <span class="dv">4</span>,</span>
+<span id="cb403-14"><a href="yagi-et-al..html#cb403-14"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_WT_5&quot;</span>, <span class="st">&quot;wt&quot;</span>, <span class="dv">5</span>,</span>
+<span id="cb403-15"><a href="yagi-et-al..html#cb403-15"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_WT_6&quot;</span>, <span class="st">&quot;wt&quot;</span>, <span class="dv">6</span>,</span>
+<span id="cb403-16"><a href="yagi-et-al..html#cb403-16"></a>    <span class="st">&quot;Meissner_Nature_2017.Epi_WT_7&quot;</span>, <span class="st">&quot;wt&quot;</span>, <span class="dv">7</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb403-17"><a href="yagi-et-al..html#cb403-17"></a><span class="st">        </span><span class="kw">mutate</span>(<span class="dt">name =</span> <span class="kw">paste0</span>(sort, <span class="st">&quot;_&quot;</span>, num))</span>
+<span id="cb403-18"><a href="yagi-et-al..html#cb403-18"></a>        </span>
+<span id="cb403-19"><a href="yagi-et-al..html#cb403-19"></a>m_all_epi6 &lt;-<span class="st"> </span><span class="kw">gextract_meth</span>(<span class="dt">tracks =</span> md<span class="op">$</span>track_name, <span class="dt">names=</span>md<span class="op">$</span>name, <span class="dt">intervals=</span>yagi_dmrs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end), <span class="dt">extract_meth_calls =</span> <span class="ot">TRUE</span>, <span class="dt">iterator =</span> yagi_dmrs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end)) <span class="op">%cache_df%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/meissner_epi_yagi_meth.tsv&quot;</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()    </span></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="yagi-et-al..html#cb404-1"></a>min_cov &lt;-<span class="st"> </span><span class="dv">10</span></span>
+<span id="cb404-2"><a href="yagi-et-al..html#cb404-2"></a>m_epi6 &lt;-<span class="st"> </span>m_all_epi6 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end)</span>
+<span id="cb404-3"><a href="yagi-et-al..html#cb404-3"></a><span class="cf">for</span> (g <span class="cf">in</span> <span class="kw">unique</span>(md<span class="op">$</span>sort)){</span>
+<span id="cb404-4"><a href="yagi-et-al..html#cb404-4"></a>        nms &lt;-<span class="st"> </span>md <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sort <span class="op">==</span><span class="st"> </span>g) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(name)</span>
+<span id="cb404-5"><a href="yagi-et-al..html#cb404-5"></a></span>
+<span id="cb404-6"><a href="yagi-et-al..html#cb404-6"></a>        cov_col &lt;-<span class="st"> </span><span class="kw">paste0</span>(g, <span class="st">&quot;.cov&quot;</span>)</span>
+<span id="cb404-7"><a href="yagi-et-al..html#cb404-7"></a>        meth_col &lt;-<span class="st"> </span><span class="kw">paste0</span>(g, <span class="st">&quot;.meth&quot;</span>)            </span>
+<span id="cb404-8"><a href="yagi-et-al..html#cb404-8"></a></span>
+<span id="cb404-9"><a href="yagi-et-al..html#cb404-9"></a>        m_epi6[[cov_col]] &lt;-<span class="st"> </span><span class="kw">rowSums</span>(m_all_epi6[, <span class="kw">paste0</span>(nms, <span class="st">&quot;.cov&quot;</span>)], <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb404-10"><a href="yagi-et-al..html#cb404-10"></a>        m_epi6[[meth_col]] &lt;-<span class="st"> </span><span class="kw">rowSums</span>(m_all_epi6[, <span class="kw">paste0</span>(nms, <span class="st">&quot;.meth&quot;</span>)], <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb404-11"><a href="yagi-et-al..html#cb404-11"></a>        </span>
+<span id="cb404-12"><a href="yagi-et-al..html#cb404-12"></a>        m_epi6[[g]] &lt;-<span class="st"> </span><span class="kw">ifelse</span>(m_epi6[[cov_col]] <span class="op">&gt;=</span><span class="st"> </span>min_cov, m_epi6[[meth_col]] <span class="op">/</span><span class="st"> </span>m_epi6[[cov_col]], <span class="ot">NA</span>)</span>
+<span id="cb404-13"><a href="yagi-et-al..html#cb404-13"></a>    }</span>
+<span id="cb404-14"><a href="yagi-et-al..html#cb404-14"></a>m_epi6 &lt;-<span class="st"> </span>m_epi6 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">ends_with</span>(<span class="st">&quot;.meth&quot;</span>), <span class="op">-</span><span class="kw">ends_with</span>(<span class="st">&quot;.cov&quot;</span>))  <span class="op">%cache_df%</span><span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;output/meissner_epi_yagi_meth_sum.tsv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="get-meeb-data" class="section level3 hasAnchor">
 <h3><span class="header-section-number">6.0.4</span> Get MEEB data<a href="yagi-et-al..html#get-meeb-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="yagi-et-al..html#cb401-1"></a>m_meeb &lt;-<span class="st"> </span><span class="kw">calc_eb_day0_to_day6_cpg_meth</span>(<span class="dt">intervals =</span> yagi_dmrs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end), <span class="dt">iterator =</span>  yagi_dmrs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end), <span class="dt">cache_fn =</span> <span class="kw">here</span>(<span class="st">&quot;output/meeb_day0_to_day6_yagi_meth.tsv&quot;</span>), <span class="dt">use_sort =</span> <span class="ot">FALSE</span>, <span class="dt">max_na =</span> <span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb401-2"><a href="yagi-et-al..html#cb401-2"></a><span class="st">    </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">ends_with</span>(<span class="st">&quot;cov&quot;</span>), <span class="op">-</span><span class="kw">ends_with</span>(<span class="st">&quot;meth&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb401-3"><a href="yagi-et-al..html#cb401-3"></a><span class="st">    </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">contains</span>(<span class="st">&quot;_ko1&quot;</span>), <span class="op">-</span><span class="kw">contains</span>(<span class="st">&quot;_tko&quot;</span>), <span class="op">-</span><span class="kw">starts_with</span>(<span class="st">&quot;d0_&quot;</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="yagi-et-al..html#cb402-1"></a><span class="kw">head</span>(m_meeb)</span></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="yagi-et-al..html#cb405-1"></a>m_meeb &lt;-<span class="st"> </span><span class="kw">calc_eb_day0_to_day6_cpg_meth</span>(<span class="dt">intervals =</span> yagi_dmrs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end), <span class="dt">iterator =</span>  yagi_dmrs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(chrom, start, end), <span class="dt">cache_fn =</span> <span class="kw">here</span>(<span class="st">&quot;output/meeb_day0_to_day6_yagi_meth.tsv&quot;</span>), <span class="dt">use_sort =</span> <span class="ot">FALSE</span>, <span class="dt">max_na =</span> <span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb405-2"><a href="yagi-et-al..html#cb405-2"></a><span class="st">    </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">ends_with</span>(<span class="st">&quot;cov&quot;</span>), <span class="op">-</span><span class="kw">ends_with</span>(<span class="st">&quot;meth&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb405-3"><a href="yagi-et-al..html#cb405-3"></a><span class="st">    </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">contains</span>(<span class="st">&quot;_ko1&quot;</span>), <span class="op">-</span><span class="kw">contains</span>(<span class="st">&quot;_tko&quot;</span>), <span class="op">-</span><span class="kw">starts_with</span>(<span class="st">&quot;d0_&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="yagi-et-al..html#cb406-1"></a><span class="kw">head</span>(m_meeb)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 30
 ##   chrom    start      end d3_d13ako  d4_d13ako d3_d13bko  d4_d13bko     d5_dko
 ## 1  chr1 14497410 14498475        NA         NA        NA 0.38461538         NA
@@ -423,14 +423,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 0.74321230
 ## 5 0.61437908
 ## 6 0.05809129</code></pre>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="yagi-et-al..html#cb404-1"></a><span class="kw">dim</span>(m_meeb)</span></code></pre></div>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="yagi-et-al..html#cb408-1"></a><span class="kw">dim</span>(m_meeb)</span></code></pre></div>
 <pre><code>## [1] 764  30</code></pre>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="yagi-et-al..html#cb406-1"></a>yagi_meth &lt;-<span class="st"> </span>yagi_dmrs <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb406-2"><a href="yagi-et-al..html#cb406-2"></a><span class="st">    </span><span class="kw">left_join</span>(m_epi6) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb406-3"><a href="yagi-et-al..html#cb406-3"></a><span class="st">    </span><span class="kw">left_join</span>(m_meeb)</span></code></pre></div>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="yagi-et-al..html#cb410-1"></a>yagi_meth &lt;-<span class="st"> </span>yagi_dmrs <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb410-2"><a href="yagi-et-al..html#cb410-2"></a><span class="st">    </span><span class="kw">left_join</span>(m_epi6) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb410-3"><a href="yagi-et-al..html#cb410-3"></a><span class="st">    </span><span class="kw">left_join</span>(m_meeb)</span></code></pre></div>
 <pre><code>## Joining, by = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;)
 ## Joining, by = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;)</code></pre>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="yagi-et-al..html#cb408-1"></a><span class="kw">head</span>(yagi_meth)</span></code></pre></div>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="yagi-et-al..html#cb412-1"></a><span class="kw">head</span>(yagi_meth)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 36
 ##   chrom     start       end type    Yagi_3a   Yagi_3b       ko3a       ko3b
 ## 1  chr6  48387929  48389217 proA 0.05732420 0.6731291 0.03305727 0.01935100
@@ -467,7 +467,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 0.1174785 0.05925926 0.05384615 0.12921348 0.19919786 0.27834179 0.32883390
 ## 5 0.1296296 0.06000000 0.07317073 0.15789474 0.28443114 0.22222222 0.24428214
 ## 6 0.7187500 0.48275862 0.66666667 0.56410256 0.82432432 0.73489933 0.66535433</code></pre>
-<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="yagi-et-al..html#cb410-1"></a>yagi_meth <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(type)</span></code></pre></div>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="yagi-et-al..html#cb414-1"></a>yagi_meth <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(type)</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 2
 ##   type   n
 ## 1 proA 427
@@ -475,28 +475,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="extended-data-figure-8i" class="section level3 hasAnchor">
 <h3><span class="header-section-number">6.0.5</span> Extended Data Figure 8I<a href="yagi-et-al..html#extended-data-figure-8i" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="yagi-et-al..html#cb412-1"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">14</span>, <span class="dt">repr.plot.height =</span> <span class="dv">7</span>)</span>
-<span id="cb412-2"><a href="yagi-et-al..html#cb412-2"></a>line_colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;wt&quot;</span> =<span class="st"> &quot;darkblue&quot;</span>, <span class="st">&quot;3a&quot;</span> =<span class="st"> &quot;purple&quot;</span>, <span class="st">&quot;3b&quot;</span> =<span class="st"> &quot;orange&quot;</span>)</span>
-<span id="cb412-3"><a href="yagi-et-al..html#cb412-3"></a>p_yagi &lt;-<span class="st"> </span>yagi_meth <span class="op">%&gt;%</span><span class="st">     </span></span>
-<span id="cb412-4"><a href="yagi-et-al..html#cb412-4"></a><span class="st">    </span><span class="kw">select</span>(chrom<span class="op">:</span>end, type, Yagi_3a, Yagi_3b, <span class="dt">epi_ko3a =</span> ko3a, <span class="dt">epi_ko3b =</span> ko3b, <span class="dt">epi_wt =</span> wt, <span class="kw">everything</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb412-5"><a href="yagi-et-al..html#cb412-5"></a><span class="st">    </span><span class="kw">gather</span>(<span class="st">&quot;samp&quot;</span>, <span class="st">&quot;meth&quot;</span>, <span class="op">-</span>(chrom<span class="op">:</span>type)) <span class="op">%&gt;%</span><span class="st">     </span></span>
-<span id="cb412-6"><a href="yagi-et-al..html#cb412-6"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">samp =</span> <span class="kw">gsub</span>(<span class="st">&quot;_all&quot;</span>, <span class="st">&quot;&quot;</span>, samp)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb412-7"><a href="yagi-et-al..html#cb412-7"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">line =</span> <span class="kw">case_when</span>(</span>
-<span id="cb412-8"><a href="yagi-et-al..html#cb412-8"></a>        <span class="kw">grepl</span>(<span class="st">&quot;3a&quot;</span>, samp) <span class="op">~</span><span class="st"> &quot;3a&quot;</span>,</span>
-<span id="cb412-9"><a href="yagi-et-al..html#cb412-9"></a>        <span class="kw">grepl</span>(<span class="st">&quot;3b&quot;</span>, samp) <span class="op">~</span><span class="st"> &quot;3b&quot;</span>,</span>
-<span id="cb412-10"><a href="yagi-et-al..html#cb412-10"></a>        <span class="kw">grepl</span>(<span class="st">&quot;wt&quot;</span>, samp) <span class="op">~</span><span class="st"> &quot;wt&quot;</span></span>
-<span id="cb412-11"><a href="yagi-et-al..html#cb412-11"></a>    )) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb412-12"><a href="yagi-et-al..html#cb412-12"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">line =</span> <span class="kw">factor</span>(line, <span class="dt">levels =</span> <span class="kw">names</span>(line_colors))) <span class="op">%&gt;%</span></span>
-<span id="cb412-13"><a href="yagi-et-al..html#cb412-13"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>samp, <span class="dt">y=</span>meth, <span class="dt">fill=</span>line)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb412-14"><a href="yagi-et-al..html#cb412-14"></a><span class="st">        </span><span class="kw">geom_boxplot</span>(<span class="dt">outlier.size =</span> <span class="dv">0</span>, <span class="dt">lwd =</span> <span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb412-15"><a href="yagi-et-al..html#cb412-15"></a><span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb412-16"><a href="yagi-et-al..html#cb412-16"></a><span class="st">        </span><span class="kw">ylab</span>(<span class="st">&quot;Methylation&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb412-17"><a href="yagi-et-al..html#cb412-17"></a><span class="st">        </span><span class="kw">scale_fill_manual</span>(<span class="st">&quot;&quot;</span>, <span class="dt">values=</span>line_colors) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb412-18"><a href="yagi-et-al..html#cb412-18"></a><span class="st">        </span><span class="kw">vertical_labs</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb412-19"><a href="yagi-et-al..html#cb412-19"></a><span class="st">        </span><span class="kw">theme</span>(<span class="dt">axis.text.x=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">4</span>)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb412-20"><a href="yagi-et-al..html#cb412-20"></a><span class="st">        </span><span class="kw">facet_wrap</span>(<span class="op">~</span>type)</span>
-<span id="cb412-21"><a href="yagi-et-al..html#cb412-21"></a></span>
-<span id="cb412-22"><a href="yagi-et-al..html#cb412-22"></a>p_yagi</span></code></pre></div>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="yagi-et-al..html#cb416-1"></a><span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">14</span>, <span class="dt">repr.plot.height =</span> <span class="dv">7</span>)</span>
+<span id="cb416-2"><a href="yagi-et-al..html#cb416-2"></a>line_colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;wt&quot;</span> =<span class="st"> &quot;darkblue&quot;</span>, <span class="st">&quot;3a&quot;</span> =<span class="st"> &quot;purple&quot;</span>, <span class="st">&quot;3b&quot;</span> =<span class="st"> &quot;orange&quot;</span>)</span>
+<span id="cb416-3"><a href="yagi-et-al..html#cb416-3"></a>p_yagi &lt;-<span class="st"> </span>yagi_meth <span class="op">%&gt;%</span><span class="st">     </span></span>
+<span id="cb416-4"><a href="yagi-et-al..html#cb416-4"></a><span class="st">    </span><span class="kw">select</span>(chrom<span class="op">:</span>end, type, Yagi_3a, Yagi_3b, <span class="dt">epi_ko3a =</span> ko3a, <span class="dt">epi_ko3b =</span> ko3b, <span class="dt">epi_wt =</span> wt, <span class="kw">everything</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb416-5"><a href="yagi-et-al..html#cb416-5"></a><span class="st">    </span><span class="kw">gather</span>(<span class="st">&quot;samp&quot;</span>, <span class="st">&quot;meth&quot;</span>, <span class="op">-</span>(chrom<span class="op">:</span>type)) <span class="op">%&gt;%</span><span class="st">     </span></span>
+<span id="cb416-6"><a href="yagi-et-al..html#cb416-6"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">samp =</span> <span class="kw">gsub</span>(<span class="st">&quot;_all&quot;</span>, <span class="st">&quot;&quot;</span>, samp)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb416-7"><a href="yagi-et-al..html#cb416-7"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">line =</span> <span class="kw">case_when</span>(</span>
+<span id="cb416-8"><a href="yagi-et-al..html#cb416-8"></a>        <span class="kw">grepl</span>(<span class="st">&quot;3a&quot;</span>, samp) <span class="op">~</span><span class="st"> &quot;3a&quot;</span>,</span>
+<span id="cb416-9"><a href="yagi-et-al..html#cb416-9"></a>        <span class="kw">grepl</span>(<span class="st">&quot;3b&quot;</span>, samp) <span class="op">~</span><span class="st"> &quot;3b&quot;</span>,</span>
+<span id="cb416-10"><a href="yagi-et-al..html#cb416-10"></a>        <span class="kw">grepl</span>(<span class="st">&quot;wt&quot;</span>, samp) <span class="op">~</span><span class="st"> &quot;wt&quot;</span></span>
+<span id="cb416-11"><a href="yagi-et-al..html#cb416-11"></a>    )) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb416-12"><a href="yagi-et-al..html#cb416-12"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">line =</span> <span class="kw">factor</span>(line, <span class="dt">levels =</span> <span class="kw">names</span>(line_colors))) <span class="op">%&gt;%</span></span>
+<span id="cb416-13"><a href="yagi-et-al..html#cb416-13"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>samp, <span class="dt">y=</span>meth, <span class="dt">fill=</span>line)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb416-14"><a href="yagi-et-al..html#cb416-14"></a><span class="st">        </span><span class="kw">geom_boxplot</span>(<span class="dt">outlier.size =</span> <span class="dv">0</span>, <span class="dt">lwd =</span> <span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb416-15"><a href="yagi-et-al..html#cb416-15"></a><span class="st">        </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb416-16"><a href="yagi-et-al..html#cb416-16"></a><span class="st">        </span><span class="kw">ylab</span>(<span class="st">&quot;Methylation&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb416-17"><a href="yagi-et-al..html#cb416-17"></a><span class="st">        </span><span class="kw">scale_fill_manual</span>(<span class="st">&quot;&quot;</span>, <span class="dt">values=</span>line_colors) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb416-18"><a href="yagi-et-al..html#cb416-18"></a><span class="st">        </span><span class="kw">vertical_labs</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb416-19"><a href="yagi-et-al..html#cb416-19"></a><span class="st">        </span><span class="kw">theme</span>(<span class="dt">axis.text.x=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">4</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb416-20"><a href="yagi-et-al..html#cb416-20"></a><span class="st">        </span><span class="kw">facet_wrap</span>(<span class="op">~</span>type)</span>
+<span id="cb416-21"><a href="yagi-et-al..html#cb416-21"></a></span>
+<span id="cb416-22"><a href="yagi-et-al..html#cb416-22"></a>p_yagi</span></code></pre></div>
 <pre><code>## Warning: Removed 8158 rows containing non-finite values (stat_boxplot).</code></pre>
 <p><img src="Yagi_et_al_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 

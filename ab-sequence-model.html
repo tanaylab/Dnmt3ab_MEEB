@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3 A/B sequence model | DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation</title>
   <meta name="description" content="Analysis and code for the paper: DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3 A/B sequence model | DNA methyltransferases 3A and 3B target specific sequences during mouse gastrulation" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Aviezer Lifshitz" />
 
 
-<meta name="date" content="2022-07-28" />
+<meta name="date" content="2022-08-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -870,10 +870,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb209-2"><a href="ab-sequence-model.html#cb209-2"></a><span class="kw">bind_rows</span>(shuff_df, obs_df) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>mean_score, <span class="dt">color=</span>type)) <span class="op">+</span><span class="st"> </span><span class="kw">stat_ecdf</span>()</span></code></pre></div>
 <p><img src="Sequence-model_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
 <div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="ab-sequence-model.html#cb210-1"></a><span class="kw">ks.test</span>(shuff_df<span class="op">$</span>mean_score, obs_df<span class="op">$</span>mean_score)</span></code></pre></div>
-<pre><code>## Warning in ks.test(shuff_df$mean_score, obs_df$mean_score): p-value will be
-## approximate in the presence of ties</code></pre>
+<pre><code>## Warning in ks.test.default(shuff_df$mean_score, obs_df$mean_score): p-value will
+## be approximate in the presence of ties</code></pre>
 <pre><code>## 
-##  Two-sample Kolmogorov-Smirnov test
+##  Asymptotic two-sample Kolmogorov-Smirnov test
 ## 
 ## data:  shuff_df$mean_score and obs_df$mean_score
 ## D = 0.0058028, p-value = 0.06908
